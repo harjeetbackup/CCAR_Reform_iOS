@@ -1,0 +1,33 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "Image1_top_Too-Small.jpg",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Image1_top_Too-Small-1.jpg",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Image1_top_Too-Small-2.jpg",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Image1_top_Too-Small-3.jpg",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Image1_top_Too-Small-4.jpg",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
