@@ -10,7 +10,7 @@ import UIKit
 
 class DetailVC: UIViewController
 {
-    
+     var eventInfo: CalenderSyncVC!
     var eventType = String()
     var eventName = String()
     
@@ -30,6 +30,7 @@ class DetailVC: UIViewController
                 let localfilePath = Bundle.main.url(forResource: "Acharei_Mot", withExtension: "html");
                 let myRequest = NSURLRequest(url: localfilePath!);
                 eventDetails.loadRequest(myRequest as URLRequest);
+                
             }
             else if eventName.range(of:"Parashat Behar-Bechukotai") != nil
             {

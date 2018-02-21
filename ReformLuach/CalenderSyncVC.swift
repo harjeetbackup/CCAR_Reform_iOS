@@ -19,6 +19,7 @@ import EventKitUI
 class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 //    @IBOutlet weak var CalendarType: UITableView!
+    var eventInfo: DetailVC!
     @IBOutlet weak var btnSwitch: UISwitch!
     
     @IBOutlet weak var btnMajorHoliday: UIButton!
