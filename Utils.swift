@@ -369,11 +369,11 @@ class Utils {
                  return Bundle.main.url(forResource: "Asara_B'Tevet", withExtension: "html");
  
             }
-            else if eventName.range(of:"Lag Ba'Omer_General Notes") != nil
-            {
-                return Bundle.main.url(forResource: "Lag Ba'Omer", withExtension: "html");
-                
+           
+            else if eventName == "33rd day of the Omer" {
+                return Bundle.main.url(forResource: "Lag_Ba'Omer", withExtension: "html");
             }
+                
                 
             else if eventName.range(of:"Aseret Y'mei T'shuva") != nil
             {
@@ -1354,6 +1354,9 @@ class Utils {
             {
                  return Bundle.main.url(forResource: "Korach", withExtension: "html");
  
+            }
+            else if eventName == "Sh\'mini Atzeret/Simchat Torah" {
+                return Bundle.main.url(forResource: "Sh'mini_Atzeret-Simchat_Torah", withExtension: "html");
             }
             else if eventName.range(of:"Lech_L'cha") != nil || eventName.range(of:"Lech") != nil || eventName.range(of:"cha") != nil
             {

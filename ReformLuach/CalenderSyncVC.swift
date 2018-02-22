@@ -97,17 +97,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         right.direction = .right
         self.view.addGestureRecognizer(right)
-//        localSyncView.layer.cornerRadius = 15
-//        localSyncView.layer.borderWidth = 1
-//        localSyncView.layer.borderColor = UIColor.white.cgColor
-//
-//        exportView.layer.cornerRadius = 15
-//        exportView.layer.borderWidth = 1
-//        exportView.layer.borderColor = UIColor.white.cgColor
-//
-//        settingView.layer.cornerRadius = 15
-//        settingView.layer.borderWidth = 1
-//        settingView.layer.borderColor = UIColor.white.cgColor
         
     }
     
@@ -116,18 +105,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func swipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
-        
-        
-        
-//        let fromView: UIView = tabBarController.selectedViewController!.view
-//        let toView  : UIView = viewController.view
-//        if fromView == toView {
-//            return false
-//        }
-//        
-//        UIView.transitionFromView(fromView, toView: toView, duration: 0.3, options: UIViewAnimationOptions.TransitionCrossDissolve) { (finished:Bool) in
-//        }
-        
     }
     
     func swipeRight() {
@@ -323,7 +300,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func loadMajorHoliday()
     {
-        
         if let path = Bundle.main.url(forResource: "Major_Holidays", withExtension: "json")
         {
             do {
@@ -560,573 +536,113 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func actionAddEvent()
     {
+        var itemsToAddInCalender = [[String : Any]] ()
+                
+                if self.btnMajorHoliday.tag == 201 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrMajorHoliday as! [[String : Any]]);
+                }
+                
+                if self.btnMinorHoliday.tag == 202 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrMinorHoliday as! [[String : Any]]);
+                }
+                
+                if self.btnRoshHoliday.tag == 203 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrRoshChodesh as! [[String : Any]]);
+                }
+                
+                if self.btnWeeklyHoliday.tag == 204 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrWeeklyParshiyot as! [[String : Any]]);
+                }
+                
+                if self.btnOmerHoliday.tag == 205 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrOmerHoliday as! [[String : Any]]);
+                }
         
-        DispatchQueue.global(qos: .background).async
-            {
-            print("This is run on the background queue")
-            
-        var txtStartDate = String()
-        var txtEndDate = String()
-        var txtEventName = String()
+                if self.btnSpecialShabbatot.tag == 206 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrSpecialShabbatot as! [[String : Any]]);
+                }
+                
+                if self.btnModernHolidays.tag == 207 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrModernHolidays as! [[String : Any]]);
+                }
         
-        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-         dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        var strGetEventTitle = String()
-        var strGetEventDate = Date()
-        
+                if self.btnCustomRepeatedEvents.tag == 208 {
+                    itemsToAddInCalender = itemsToAddInCalender + (self.arrCustomEventList as! [[String : Any]]);
+                }
     
-                if self.btnMajorHoliday.tag == 201
-                {
-                    for i in 0..<self.arrMajorHoliday.count
-                    {
-
-                        let dicc = self.arrMajorHoliday[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["Subject"]!)
-                        txtStartDate = String (describing: dicc["Start Date"]!)
-                   
-
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-                        print(datevalue ?? "")
-                
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        print("Events: \(events)")
-                        for event in events
-                        {   event.isAllDay = true
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-//                        print("Event Title : \(event.title) Event ID: \(event.eventIdentifier)")
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            //                       event.endDate = datevalue!.addingTimeInterval(60*60*24)
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                            }
-//                            catch let e as NSError
-//                            {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("Removed Event" + txtEventName + "201")
-                        }
-                        else
-                        {
-                          
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                          //  event.endDate = datevalue!.addingTimeInterval(60*60*24)
-                            event.endDate = datevalue1!
-                            event.notes = "God speaks to Moses, describing the menorah for the Tent of Meeting. The Levites are appointed to serve as assistants under Aaron and his sons. (8:1-26)"
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                            }
-                            catch let e as NSError
-                            {
-                                print(e.description)
-                                return
-                            }
-                        }
-                    }
-                }
-        
-                if self.btnMinorHoliday.tag == 202
-                {
-                    for i in 0..<self.arrMinorHoliday.count
-                    {
-                
-                        let dicc = self.arrMinorHoliday[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["Subject"]!)
-                        txtStartDate = String (describing: dicc["Start Date"]!)
-              
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-                 
-                        
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        for event in events
-                        {
-                            event.isAllDay = true
-
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            print("Repeated Event" + txtEventName + "202")
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                                print("events added with dates:")
-//                            } catch let e as NSError {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("removed Event" + txtEventName)
-                        }
-                        else
-                        {
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                    //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-                           event.endDate = datevalue1!
-                            event.notes = ""
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                                print("events added with dates:")
-                            } catch let e as NSError {
-                                print(e.description)
-                                return
-                            }
-                            print("Saved Event" + txtEventName)
-                        }
-                    }
-                }
-        
-                if self.btnRoshHoliday.tag == 203
-                {
-                    for i in 0..<self.arrRoshChodesh.count
-                    {
-                
-                        let dicc = self.arrRoshChodesh[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["Subject"]!)
-                        txtStartDate = String (describing: dicc["Start Date"]!)
-                
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-                        print(datevalue ?? "")
-                
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        print("Events: \(events)")
-                        for event in events
-                        {
-                            event.isAllDay = true
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-                    
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            print("Repeated Event" + txtEventName + "203")
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                                print("events added with dates:")
-//                            } catch let e as NSError {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("Removed Event" + txtEventName)
-                        }
-                        else
-                        {
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                            event.endDate = datevalue1!
-                            event.notes = ""
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                                print("events added with dates:")
-                            } catch let e as NSError {
-                                print(e.description)
-                                return
-                            }
-                            print("Saved Event" + txtEventName)
-                        }
-                    }
-                }
-        
-                if self.btnWeeklyHoliday.tag == 204
-                {
-                    for i in 0..<self.arrWeeklyParshiyot.count {
-                
-                        let dicc = self.arrWeeklyParshiyot[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["Subject"]!)
-                        txtStartDate = String (describing: dicc["Start Date"]!)
-                
- 
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-                    
-                
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        for event in events
-                        {
-                            event.isAllDay = true
-
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                                print("events added with dates:")
-//                            } catch let e as NSError {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("Removed Event" + txtEventName)
-//                            print("Repeated Event" + txtEventName + "204")
-                        }
-                        else
-                        {
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-                            event.endDate = datevalue1!
-                            event.notes = ""
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                                print("events added with dates:")
-                            } catch let e as NSError {
-                                print(e.description)
-                                return
-                            }
-                            print("Saved Event" + txtEventName)
-                        }
-                    }
-                }
-        
-                if self.btnOmerHoliday.tag == 205
-                {
-                    for i in 0..<self.arrOmerHoliday.count {
-                
-                        let dicc = self.arrOmerHoliday[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["Subject"]!)
-                        txtStartDate = String (describing: dicc["Start_Date"]!)
-                
-  
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-              
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        print("Events: \(events)")
-                        for event in events
-                        {
-                            event.isAllDay = true
-
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-                            //                        print("Event Title : \(event.title) Event ID: \(event.eventIdentifier)")
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                                print("events added with dates:")
-//                            } catch let e as NSError {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("Removed Event" + txtEventName)
-//                            print("Repeated Event" + txtEventName + "205")
-                        }
-                        else
-                        {
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-                           event.endDate = datevalue1!
-                            event.notes = ""
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                                print("events added with dates:")
-                            } catch let e as NSError {
-                                print(e.description)
-                                return
-                            }
-                            print("Saved Event" + txtEventName)
-                        }
-                    }
-                }
-        
-                if self.btnSpecialShabbatot.tag == 206
-                {
-                    for i in 0..<self.arrSpecialShabbatot.count {
-                
-                        let dicc = self.arrSpecialShabbatot[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["Subject"]!)
-                        txtStartDate = String (describing: dicc["Start Date"]!)
-                
- 
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-                        print(datevalue ?? "")
-                        //                    print(datevalue1 ?? "")
-                
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        print("Events: \(events)")
-                        for event in events
-                        {
-                            event.isAllDay = true
-
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-                            //                        print("Event Title : \(event.title) Event ID: \(event.eventIdentifier)")
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                                print("events added with dates:")
-//                            } catch let e as NSError {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("Removed Event" + txtEventName)
-//                            print("Repeated Event" + txtEventName + "206")
-                        }
-                        else
-                        {
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-                            event.endDate = datevalue1!
-                            event.notes = ""
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                                print("events added with dates:")
-                            } catch let e as NSError {
-                                print(e.description)
-                                return
-                            }
-                            print("Saved Event" + txtEventName)
-                        }
-                    }
-                }
-        
-                if self.btnModernHolidays.tag == 207
-                {
-                    for i in 0..<self.arrModernHolidays.count {
-                
-                        let dicc = self.arrModernHolidays[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["Subject"]!)
-                        txtStartDate = String (describing: dicc["Start Date"]!)
-                
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(24)
-                        print(datevalue ?? "")
-                        //                    print(datevalue1 ?? "")
-                
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        print("Events: \(events)")
-                        for event in events
-                        {
-                            event.isAllDay = true
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-                            //                        print("Event Title : \(event.title) Event ID: \(event.eventIdentifier)")
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                                print("Removed added with dates:")
-//                            } catch let e as NSError {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("Repeated Event" + txtEventName + "207")
-                        }
-                        else
-                        {
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-                            event.endDate = datevalue1!
-                            event.notes = ""
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                                print("events added with dates:")
-                            } catch let e as NSError {
-                                print(e.description)
-                                return
-                            }
-                            print("Saved Event" + txtEventName)
-                        }
-                    }
-                }
-        
-                if self.btnCustomRepeatedEvents.tag == 208
-                {
-                    for i in 0..<self.arrCustomEventList.count {
-                
-                        let dicc = self.arrCustomEventList[i] as! [String : Any]
-                        txtEventName = String (describing: dicc["eventTitle"]!)
-                        txtStartDate = String (describing: dicc["eventSDate"]!)
-                
-                        let datevalue = dateFormatter.date(from: txtStartDate)
-                        let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-                        print(datevalue ?? "")
-                //                    print(datevalue1 ?? "")
-                
-                        let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
-                        let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
-                        print("Events: \(events)")
-                        for event in events
-                        {
-                            event.isAllDay = true
-
-                            strGetEventTitle = event.title;
-                            strGetEventDate = event.startDate;
-                            //                        print("Event Title : \(event.title) Event ID: \(event.eventIdentifier)")
-                        }
-                        if strGetEventTitle == txtEventName && strGetEventDate == datevalue
-                        {
-//                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-//                            event.title = txtEventName
-//                            event.startDate = datevalue!
-//                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-//                            event.endDate = datevalue1!
-//                            event.notes = ""
-////                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-//                            do {
-//                                try self.eventStore.remove(event, span: .thisEvent)
-//                                print("events added with dates:")
-//                            } catch let e as NSError {
-//                                print(e.description)
-//                                return
-//                            }
-//                            print("Removed Event" + txtEventName)
-//                            print("Repeated Event" + txtEventName + "208")
-                        }
-                        else
-                        {
-                            let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                            event.title = txtEventName
-                            event.isAllDay = true
-                            event.startDate = datevalue!
-                            //                    event.endDate = datevalue!.addingTimeInterval(60*60*24)
-                            event.endDate = datevalue1!
-                            event.notes = ""
-                            event.calendar = self.eventStore.defaultCalendarForNewEvents
-                            do {
-                                try self.eventStore.save(event, span: .thisEvent)
-                                print("events added with dates:")
-                            } catch let e as NSError {
-                                print(e.description)
-                                return
-                            }
-                            print("Saved Event" + txtEventName)
-                        }
-                    }
-                }
-//                self.view.hideToastActivity()
-//                self.navigationController?.view.makeToast("Synced Successfully", duration: 1.5, position: .bottom)
-//                self.view.hideAllToasts()
-//                self.view.hideAllToasts(includeActivity: true, clearQueue: true)
-        }
+            syncWithCalender(itemsToAddInCalender: itemsToAddInCalender)
     }
     
     
+    func syncWithCalender(itemsToAddInCalender: [[String: Any]]) {
+        
+        var txtStartDate = String()
+        var txtEventName = String()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        var strGetEventTitle = String()
+        var strGetEventDate = Date()
+        
+        DispatchQueue.global(qos: .background).async {
+        
+                for dicc in itemsToAddInCalender {
+                    
+                    txtEventName = String (describing: dicc["Subject"]!)
+                    txtStartDate = String (describing: dicc["Start Date"]!)
+                    let datevalue = dateFormatter.date(from: txtStartDate)
+                    let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
+                    
+                    let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
+                    let events = self.eventStore.events(matching: predicate) as [EKEvent]
+    
+                    print("Events: \(events)")
+                    for event in events
+                    {   event.isAllDay = true
+                        strGetEventTitle = event.title;
+                        strGetEventDate = event.startDate;
+                    }
+                    if strGetEventTitle == txtEventName && strGetEventDate == datevalue
+                    {
+                        
+                    }
+                    else
+                    {
+                        let event:EKEvent = EKEvent(eventStore: self.eventStore)
+                        event.title = txtEventName
+                        event.isAllDay = true
+                        event.startDate = datevalue!
+                        event.endDate = datevalue1!
+                        if let description = dicc["Description"] as? String {
+                            event.notes = description
+                        }
+                        event.calendar = self.eventStore.defaultCalendarForNewEvents
+                        do {
+                            try self.eventStore.save(event, span: .thisEvent)
+                        }
+                        catch let e as NSError
+                        {
+                            print("calendar sync error")
+                            print(e.description)
+                            return
+                        }
+                    }
+                }
+        }
+    }
+    
     @IBAction func btnAddCustomEvent(_ sender: UIButton)
     {
-    
         UserDefaults.standard.set("", forKey: "Conv_Date")
         UserDefaults.standard.set("", forKey: "Conv_Month")
         UserDefaults.standard.set("", forKey: "Conv_Year")
         UserDefaults.standard.set("", forKey: "Conv_SunSet")
-//
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-//        let settingViewController: AddCustomEvent = mainStoryboard.instantiateViewController(withIdentifier: "AddCustomEvent") as! AddCustomEvent
         let settingViewController: NewAddCustomEventsVC = mainStoryboard.instantiateViewController(withIdentifier: "NewAddCustomEventsVC") as! NewAddCustomEventsVC
         
         self .present(settingViewController, animated: true, completion: nil)
         
     }
-
-//    @IBAction func btnActionSetting(_ sender: UIButton)
-//    {
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-//        let settingViewController: SettingVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
-//      
-//        self .present(settingViewController, animated: true, completion: nil)
-//        
-//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -1157,7 +673,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         return 40;//Choose your custom row height
     }
-   
     
     func pressButton(_ button: UIButton)
     {
@@ -1180,12 +695,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tblView.reloadData()
         }
-    
-    }
-
-
-
-
+}
 
 class EventListCell: UITableViewCell
 {

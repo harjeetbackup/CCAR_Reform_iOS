@@ -146,9 +146,6 @@ class Today: UIViewController {
                 
           ////////////////////////////////////////////////
                     
-                    if  (dic["events"] as AnyObject) as! String == "Shemot" {
-                        self.lblday?.text = "Sh'mot"
-                    }
          //////////////////////////////////////////////////
                     
                     let strdd = (self.lblYear?.text!)
