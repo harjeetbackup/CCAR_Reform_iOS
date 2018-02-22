@@ -116,7 +116,7 @@ class Today: UIViewController {
                 {
                     print(response.result.value!)
                     
-                    let dic = response.result.value as! [String : Any]
+                    var dic = response.result.value as! [String : Any]
                     let str  =  String (describing: dic["hd"]!)
                     let str1  = String (describing: dic["hm"]!)
                     let str2  = String (describing: dic["hy"]!)
@@ -144,6 +144,13 @@ class Today: UIViewController {
                         self.lblday?.text = arrEvent[0]//
                     }
                 
+          ////////////////////////////////////////////////
+                    
+                    if  (dic["events"] as AnyObject) as! String == "Shemot" {
+                        self.lblday?.text = "Sh'mot"
+                    }
+         //////////////////////////////////////////////////
+                    
                     let strdd = (self.lblYear?.text!)
                     let strHH = String(self.strYear)
                     

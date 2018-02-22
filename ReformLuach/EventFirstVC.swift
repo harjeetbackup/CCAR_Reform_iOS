@@ -285,17 +285,26 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
                 
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject>,
                     
-                    let person = jsonResult["result"] as? [Any]
+                let person = jsonResult["result"] as? [AnyObject]
                     
                 {
+                    var subArray = [String]()
+                    var daysArray = [String]()
+                    subArray.removeAll()
+                    let decimalCharacters = CharacterSet.decimalDigits
+                    for per in person {
+                       let sub = per["Subject"] as? String
+                        let subject = sub?.prefix(2)
+                        let decimalRange = subject?.rangeOfCharacter(from: decimalCharacters)
+                            if decimalRange != nil {
+                                subArray.append(sub!)
+                            }
+                        }
                     
-                    omerRoshChodush = person as NSArray
-                    
+                    omerRoshChodush = subArray as NSArray
                     omerDays = omerRoshChodush.addingObjects(from: readRoshChodush as! [Any]) as NSArray
-                    
                     print(omerDays)
                     readDataFromFile()
-                    
                 }
                 
             } catch {
@@ -307,8 +316,6 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         }
         
     }
-    
-    
     
     func readDataFromFile()
         
@@ -417,30 +424,19 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         
         //        NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         
-        
-        
-        
-        
-        
         for i in 0..<allArray.count
             
         {
             
             let dicc = arrHolidays[i] as! [String : Any]
             
-            
-            
             let myEventDate = String (describing: dicc["Start_Date"]!)
-            
-            
             
             let dateFormatter1 = DateFormatter()
             
             dateFormatter1.dateFormat = "MM/dd/yyyy"
             
             let dates = dateFormatter1.date(from: myEventDate)
-            
-            
             
             let currentDate = NSDate()
             
@@ -477,22 +473,17 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
         
     {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? customCell
         
-        
-        
         let dicc = arrHolidays[indexPath.row] as! [String : Any]
         
         cell?.lblEvntTitle.text = String (describing: dicc["Subject"]!)
         
         cell?.lblEvntDate.text = String (describing: dicc["Start_Date"]!)
-        
         
         
         return cell!
@@ -507,19 +498,21 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         
         let dicc = arrHolidays[indexPath.row] as! [String : Any]
         
-     //   tblParshiyot.isHidden = true;
+
+    //    tblParshiyot.isHidden = true;
     let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-        
+
         let vc: DetailVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
-        
+
         vc.eventType = "ALL"
-        
+
         vc.eventName = String (describing: dicc["Subject"]!)
-        
+
         self.present(vc, animated: false, completion: nil)
-        
-    }  
+
+    }
 }
+
 
 
 

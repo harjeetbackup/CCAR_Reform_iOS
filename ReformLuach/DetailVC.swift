@@ -18,9 +18,11 @@ class DetailVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+   
+       let url = Utils.getUrl(eventType: eventType, eventName: eventName)
        
-        if eventType == "PARSHIYOT" 
+        eventDetails.loadRequest(URLRequest(url: url!))
+   /*     if eventType == "PARSHIYOT"
         {
 //            if string.range(of:"Swift") != nil {
 //                print("exists")
@@ -29,7 +31,7 @@ class DetailVC: UIViewController
             {
                 let localfilePath = Bundle.main.url(forResource: "Acharei_Mot", withExtension: "html");
                 let myRequest = NSURLRequest(url: localfilePath!);
-                eventDetails.loadRequest(myRequest as URLRequest);
+
             }
             else if eventName.range(of:"Parashat Behar-Bechukotai") != nil
             {
@@ -1630,12 +1632,12 @@ class DetailVC: UIViewController
                     let myRequest = NSURLRequest(url: localfilePath!);
                     eventDetails.loadRequest(myRequest as URLRequest);
                 }
-                else if eventName.range(of:"Lech_L'cha") != nil || eventName.range(of:"Lech") != nil || eventName.range(of:"cha") != nil
-                {
-                    let localfilePath = Bundle.main.url(forResource: "Lech_L'cha", withExtension: "html");
-                    let myRequest = NSURLRequest(url: localfilePath!);
-                    eventDetails.loadRequest(myRequest as URLRequest);
-                }
+//                else if eventName.range(of:"Lech_L'cha") != nil || eventName.range(of:"Lech") != nil || eventName.range(of:"cha") != nil
+//                {
+//                    let localfilePath = Bundle.main.url(forResource: "Lech_L'cha", withExtension: "html");
+//                    let myRequest = NSURLRequest(url: localfilePath!);
+//                    eventDetails.loadRequest(myRequest as URLRequest);
+//                }
                 else if eventName.range(of:"Parashat Tazria-Metzora") != nil
                 {
                     let localfilePath = Bundle.main.url(forResource: "M'tzora", withExtension: "html");
@@ -1726,12 +1728,12 @@ class DetailVC: UIViewController
                     let myRequest = NSURLRequest(url: localfilePath!);
                     eventDetails.loadRequest(myRequest as URLRequest);
                 }
-                else if eventName.range(of:"Sh'mini") != nil
-                {
-                    let localfilePath = Bundle.main.url(forResource: "Sh'mini", withExtension: "html");
-                    let myRequest = NSURLRequest(url: localfilePath!);
-                    eventDetails.loadRequest(myRequest as URLRequest);
-                }
+//                else if eventName.range(of:"Sh'mini") != nil
+//                {
+//                    let localfilePath = Bundle.main.url(forResource: "Sh'mini", withExtension: "html");
+//                    let myRequest = NSURLRequest(url: localfilePath!);
+//                    eventDetails.loadRequest(myRequest as URLRequest);
+//                }
                 else if eventName.range(of:"Parashat Shmini II") != nil
                 {
                     let localfilePath = Bundle.main.url(forResource: "Sh'mini_II", withExtension: "html");
@@ -2919,8 +2921,8 @@ class DetailVC: UIViewController
                     eventDetails.loadRequest(myRequest as URLRequest);
                 }
             
-        }
-        
+        } */
+ 
         // Do any additional setup after loading the view.
     }
     

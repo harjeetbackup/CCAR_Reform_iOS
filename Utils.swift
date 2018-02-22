@@ -250,12 +250,12 @@ class Utils {
                  return Bundle.main.url(forResource: "Shof'tim", withExtension: "html");
                 
             }
-            else if eventName.range(of:"Terumah") != nil
+            else if eventName.range(of:"Parashat T'rumah") != nil
             {
                  return Bundle.main.url(forResource: "T'rumah", withExtension: "html");
                 
             }
-            else if eventName.range(of:"Tetzaveh") != nil
+            else if eventName.range(of:"Parashat T'tzaveh") != nil
             {
                  return Bundle.main.url(forResource: "T'tzaveh", withExtension: "html");
                 
@@ -300,12 +300,12 @@ class Utils {
                  return Bundle.main.url(forResource: "Va-y'chi", withExtension: "html");
                 
             }
-            else if eventName.range(of:"Vayakhel") != nil
+            else if eventName.range(of:"Parashat Vayak'heil") != nil
             {
                  return Bundle.main.url(forResource: "Vayak'heil", withExtension: "html");
                 
             }
-            else if eventName.range(of:"Vayak’heil-P’kudei") != nil
+            else if eventName.range(of:"Parashot Vayak’heil/P’kudei") != nil
             {
                  return Bundle.main.url(forResource: "Vayak’heil-P’kudei", withExtension: "html");
                 
@@ -369,6 +369,12 @@ class Utils {
                  return Bundle.main.url(forResource: "Asara_B'Tevet", withExtension: "html");
  
             }
+            else if eventName.range(of:"Lag Ba'Omer_General Notes") != nil
+            {
+                return Bundle.main.url(forResource: "Lag Ba'Omer", withExtension: "html");
+                
+            }
+                
             else if eventName.range(of:"Aseret Y'mei T'shuva") != nil
             {
                  return Bundle.main.url(forResource: "Aseret_Y'mei_T'shuva", withExtension: "html");
@@ -1225,6 +1231,7 @@ class Utils {
                  return Bundle.main.url(forResource: "Rosh_Chodesh_Elul", withExtension: "html");
  
             }
+                
             else if eventName == "Rosh Chodesh Cheshvan" || eventName == "Erev Rosh Hashanah Weekday"
             {
                  return Bundle.main.url(forResource: "Rosh_Chodesh_I_Weekday", withExtension: "html");
@@ -1830,9 +1837,9 @@ class Utils {
                  return Bundle.main.url(forResource: "Rosh_Hashanah_2", withExtension: "html");
  
             }
-            else if eventName.range(of:"Sh'mini Atzeret-Simchat Torah") != nil
+            else if eventName.range(of:"Sh'mini Atzeret_Simchat Torah") != nil
             {
-                 return Bundle.main.url(forResource: "Sh'mini_Atzeret-Simchat_Torah", withExtension: "html");
+                 return Bundle.main.url(forResource: "Sh'mini Atzeret/Simchat Torah", withExtension: "html");
  
             }
             else if eventName.range(of:"Shabbat Acharei Mot-K'doshim") != nil||eventName.range(of:"Acharei") != nil||eventName.range(of:"K'doshim") != nil

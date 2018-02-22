@@ -47,6 +47,7 @@ class EventSecondVC: UIViewController , UITableViewDelegate, UITableViewDataSour
     {
         super.viewDidLoad()
         readDataFromFile()
+       
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextSecond(notification:)), name: Notification.Name("NotificationTextSecond"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearSecond(notification:)), name: Notification.Name("NotificationClearSecond"), object: nil)

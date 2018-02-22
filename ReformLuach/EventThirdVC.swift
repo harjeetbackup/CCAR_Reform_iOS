@@ -46,7 +46,6 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
     {
         
         super.viewDidLoad()
-        
         addRoshChodush()
         
 //        addOmerDays()
