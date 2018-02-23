@@ -84,11 +84,6 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         tblParshiyot.reloadData()
     }
     
-    
-    
-    
-   
-    
     override func viewWillLayoutSubviews() {
         //  readDataFromFile()
         super.viewWillAppear(true)
@@ -106,23 +101,16 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         let yourDate = formatter.date(from: myString)
         formatter.dateFormat = "MMMM dd, yyyy"
         let myStringafd = formatter.string(from: yourDate!)
-        
         //        lblFulldate?.text = myStringafd;
-        
-        
         let date = Date()
         let calendar = Calendar.current
-        
         strYear = calendar.component(.year, from: date)
         strMonth = calendar.component(.month, from: date)
         strDate = calendar.component(.day, from: date)
         arrHolidays = (allArray as NSArray)
         self.tblParshiyot.reloadData()
-
 //        readDataFromFile()
-        
      NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
-        
         //        loaddata()
     }
 
@@ -173,28 +161,35 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
                 
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject>,
                     
-                    let person = jsonResult["result"] as? [Any]
+                    let person = jsonResult["result"] as? [AnyObject]
                     
                 {
-                    
-                    omerRoshChodush = person as NSArray
-                    
+                    var subArray = [String]()
+                    var daysArray = [[String:Any]]()
+                    subArray.removeAll()
+                    let decimalCharacters = CharacterSet.decimalDigits
+                    for per in person {
+                        let sub = per["Subject"] as? String
+                        let subject = sub?.prefix(2)
+                        let decimalRange = subject?.rangeOfCharacter(from: decimalCharacters)
+                        if decimalRange != nil {
+                            subArray.append(sub!)
+                            daysArray.append(per as! [String : Any])
+                        }
+                    }
+                    // arrHolidays = subArray as NSArray
+                    self.tblParshiyot.reloadData()
+                    omerRoshChodush = daysArray as NSArray
                     omerDays = omerRoshChodush.addingObjects(from: readRoshChodush as! [Any]) as NSArray
-                    
                     print(omerDays)
                     readDataFromFile()
                 }
-                
             } catch {
-                
                 // handle error
-                
             }
-            
         }
+    
    }
-    
-    
     
     func readDataFromFile()
         
@@ -205,7 +200,6 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         if btnTagValue == "DIASPORA"
             
         {
-            
             if let path = Bundle.main.url(forResource: "Jewish_holiday", withExtension: "json")
                 
             {
@@ -255,7 +249,6 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         else
             
         {
-            
             if let path = Bundle.main.url(forResource: "Jewish_holiday_Israel", withExtension: "json")
                 
             {
@@ -334,83 +327,31 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         // Dispose of any resources that can be recreated.
         
     }
-    
-    
-    
     //    Mark -- Tableview
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return arrHolidays.count
-        
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-        
     {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? customCell
-        
-        
-        
-        let dicc = arrHolidays[indexPath.row] as! [String : Any]
-        
-        //        cell?.lblEvntTitle.text = String (describing: dicc["Subject"]!)
-        
-        //        cell?.lblEvntDate.text = String (describing: dicc["Start Date"]!)
-        
-        
-        
+        let dicc = arrHolidays[indexPath.row] as! [String: Any]
         cell?.lblEvntTitle.text = String (describing: dicc["Subject"]!)
-        
         cell?.lblEvntDate.text = String (describing: dicc["Start_Date"]!)
-       
         return cell!
-        
     }
-    
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-        
     {
-        
         let dicc = arrHolidays[indexPath.row] as! [String : Any]
-        
-     
-        
-        //
-        
-        //        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-        
-        //        let vc = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC
-        
-        //
-        
-        //        vc?.eventType = "HOLIDAYS"
-        
-        //        vc?.eventName = String (describing: dicc["Subject"]!)
-        
-        //
-        
-        //        myNavController?.pushViewController(vc ?? UIViewController(), animated: true)
-        
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-        
         let vc: DetailVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
-        
         vc.eventType = "HOLIDAYS"
-        
         vc.eventName = String (describing: dicc["Subject"]!)
-        
         self.present(vc, animated: false, completion: nil)
-        
     }
-    
 }
 
 

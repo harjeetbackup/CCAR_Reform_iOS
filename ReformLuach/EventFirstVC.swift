@@ -289,7 +289,7 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
                     
                 {
                     var subArray = [String]()
-                    var daysArray = [String]()
+                    var daysArray = [[String:Any]]()
                     subArray.removeAll()
                     let decimalCharacters = CharacterSet.decimalDigits
                     for per in person {
@@ -298,12 +298,14 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
                         let decimalRange = subject?.rangeOfCharacter(from: decimalCharacters)
                             if decimalRange != nil {
                                 subArray.append(sub!)
+                                daysArray.append(per as! [String : Any])
                             }
                         }
-                    
-                    omerRoshChodush = subArray as NSArray
+                   // arrHolidays = subArray as NSArray
+                    self.tblParshiyot.reloadData()
+                    omerRoshChodush = daysArray as NSArray
                     omerDays = omerRoshChodush.addingObjects(from: readRoshChodush as! [Any]) as NSArray
-                    print(omerDays)
+          //          print(omerDays)
                     readDataFromFile()
                 }
                 
@@ -479,12 +481,11 @@ class EventFirstVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as? customCell
         
-        let dicc = arrHolidays[indexPath.row] as! [String : Any]
+        let dicc = arrHolidays[indexPath.row] as? [String : Any]
         
-        cell?.lblEvntTitle.text = String (describing: dicc["Subject"]!)
+        cell?.lblEvntTitle.text = String (describing: dicc!["Subject"]!)
         
-        cell?.lblEvntDate.text = String (describing: dicc["Start_Date"]!)
-        
+        cell?.lblEvntDate.text = String (describing: dicc!["Start_Date"]!)
         
         return cell!
         

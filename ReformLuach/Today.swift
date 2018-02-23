@@ -141,13 +141,12 @@ class Today: UIViewController {
                     else
                     {
                         var arrEvent = dic["events"] as! [String]
+                        if arrEvent[0] == "Shemot" {
+                            self.lblday?.text = "Sh'mot"
+                        }
                         self.lblday?.text = arrEvent[0]//
                     }
-                
-          ////////////////////////////////////////////////
-                    
-         //////////////////////////////////////////////////
-                    
+    
                     let strdd = (self.lblYear?.text!)
                     let strHH = String(self.strYear)
                     

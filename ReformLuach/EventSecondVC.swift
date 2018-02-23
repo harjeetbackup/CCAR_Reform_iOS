@@ -31,18 +31,6 @@ class EventSecondVC: UIViewController , UITableViewDelegate, UITableViewDataSour
     internal var _title : NSString = "Page Zero"
     internal var _setupSubViews:Bool = false
     
-    
-    
-    //    init(title : NSString) {
-    //        _title = title
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    //
-    //    required init?(coder aDecoder: NSCoder) {
-    //        super.init(coder: aDecoder)
-    //       // fatalError("init(coder:) has not been implemented")
-    //    }
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -51,39 +39,9 @@ class EventSecondVC: UIViewController , UITableViewDelegate, UITableViewDataSour
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextSecond(notification:)), name: Notification.Name("NotificationTextSecond"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearSecond(notification:)), name: Notification.Name("NotificationClearSecond"), object: nil)
-        
-        //        let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
-        //        left.direction = .left
-        //        self.view.addGestureRecognizer(left)
-        
-        //        let leftTable = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
-        //        leftTable.direction = .right
-        //        self.tblParshiyot.addGestureRecognizer(leftTable)
-        //
-        //        let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
-        //        right.direction = .right
-        //        self.view.addGestureRecognizer(right)
-        //
-        //        let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
-        //        left.direction = .left
-        //        self.view.addGestureRecognizer(left)
+    
     }
     
-    
-    //    func swipeLeft() {
-    //        let total = self.tabBarController!.viewControllers!.count - 1
-    //        tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
-    //
-    //    }
-    //
-    //    func swipeRight()
-    //    {
-    //
-    //         NotificationCenter.default.post(name: Notification.Name("NotificationMoveRight"), object:nil)
-    ////        myEventViewMain.CallLeftMove()
-    //
-    ////        tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
-    //    }
     @objc func filterTextSecond(notification: Notification)
     {
         let str = notification.object
@@ -102,27 +60,7 @@ class EventSecondVC: UIViewController , UITableViewDelegate, UITableViewDataSour
         arrParshita = (arrTotalParshita as NSArray)
         tblParshiyot.reloadData()
     }
-//    @objc func filterTextFirst(notification: Notification)
-//    {
-//        let str = notification.object
-//
-//
-//        let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", str as! CVarArg)
-//        arrParshita = (arrTotalParshita as NSArray).filtered(using: predicate) as NSArray
-//
-//        tblParshiyot.reloadData()
-//    }
-//
-//
-//    @objc func filterClearFirst(notification: Notification)
-//    {
-//        let str = notification.object
-//        NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
-//
-//        arrParshita = (arrTotalParshita as NSArray)
-//        tblParshiyot.reloadData()
-//    }
-//
+
     
     override func viewWillAppear(_ animated: Bool)
     {
