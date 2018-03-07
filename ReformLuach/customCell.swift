@@ -14,25 +14,14 @@ class customCell: UITableViewCell
 
     @IBOutlet weak var lblEvntTitle: UILabel!
     @IBOutlet weak var lblEvntDate: UILabel!
-
+    var event: RLEvent? = nil {
+        didSet {
+            configure()
+        }
+    }
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    func configure() {
+        lblEvntDate.text =  event?.date
+        lblEvntTitle.text = event?.title
     }
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

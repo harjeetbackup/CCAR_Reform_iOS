@@ -348,8 +348,7 @@ class EventThirdVC: UIViewController , UITableViewDelegate, UITableViewDataSourc
         let dicc = arrHolidays[indexPath.row] as! [String : Any]
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
         let vc: DetailVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
-        vc.eventType = "HOLIDAYS"
-        vc.eventName = String (describing: dicc["Subject"]!)
+
         self.present(vc, animated: false, completion: nil)
     }
 }

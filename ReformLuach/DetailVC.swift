@@ -8,40 +8,25 @@
 
 import UIKit
 
-class DetailVC: UIViewController
-{
+class DetailVC: UIViewController {
     
-    var eventType = String()
-    var eventName = String()
+    var eventUrl: String?
+    @IBOutlet weak var eventDetails: UIWebView!
     
-     @IBOutlet weak var eventDetails: UIWebView!
-    override func viewDidLoad()
-    {
+    override func viewDidLoad(){
         super.viewDidLoad()
-   
-       let url = Utils.getUrl(eventType: eventType, eventName: eventName)
-       
-        eventDetails.loadRequest(URLRequest(url: url!))
-
+        if let urlStr = eventUrl {
+           if let url = URL.init(string: urlStr) {
+                eventDetails.loadRequest(URLRequest(url: url))
+            }
+        }
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle
-    {
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    @IBAction func btnActionBAck(_ sender: UIButton)
-    {
+    @IBAction func btnActionBAck(_ sender: UIButton) {
         self .dismiss(animated: false, completion: nil)
     }
-
-  
-    
-
 }

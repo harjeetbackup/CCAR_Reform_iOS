@@ -27,7 +27,6 @@ class SettingVC: UIViewController
     {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         btnUpdate?.layer.cornerRadius = (btnUpdate?.frame.size.height)!/2;
         btnUpdate?.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8324027032);
         btnUpdate?.layer.borderWidth = 1;
@@ -40,11 +39,10 @@ class SettingVC: UIViewController
     @IBAction func btnActionBAck(_ sender: UIButton)
     {
         self.navigationController?.popViewController(animated: true)
-        //self .dismiss(animated: true, completion: nil)
     }
+    
     override func viewDidLayoutSubviews()
     {
-//        let btnTagValue = UserDefaults.standard.value(forKey: "CCTYPE") as! String
         var  btnTagValue = String()
         
         if UserDefaults.standard.object(forKey: "CCTYPE") != nil
@@ -57,39 +55,6 @@ class SettingVC: UIViewController
             UserDefaults.standard.setValue("\(ad)", forKey: "CCTYPE")
         }
         
-//        btnTagValue = UserDefaults.standard.object(forKey: "CCTYPE") as? String ?? "REFORM"
-        
-//         btnTagValue = UserDefaults.standard.string(forKey: "CCTYPE")!
-//        var UserStatus:String {
-//            get{
-//                return UserDefaults.standard.object(forKey: "pref_Foo") as? String ?? "0"
-//            }
-//            set(status){
-//                let ad = "REFORM"
-//                UserDefaults.standard.setValue("\(ad)", forKey: "CCTYPE")
-//                UserDefaults.standard.set(status, forKey: "pref_Foo")
-//                UserDefaults.standard.synchronize()
-//            }
-//        }
-
-        
-        
-//       if UserDefaults.standard.string(forKey: "CCTYPE")! == nil
-//       {
-//            let ad = "REFORM"
-//            UserDefaults.standard.setValue("\(ad)", forKey: "CCTYPE")
-//        }
-//       else
-//       {
-//            btnTagValue = UserDefaults.standard.string(forKey: "CCTYPE")!
-//        }
-       
-
-//        if btnTagValue == "" || btnTagValue == nil
-//        {
-//            UserDefaults.standard.set("REFORM", forKey: "CCTYPE")
-//        }
-       
         if btnTagValue == "REFORM"
         {
             btnReform.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
@@ -102,9 +67,7 @@ class SettingVC: UIViewController
         {
             btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
         }
-       
-       
-        
+
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
     }
@@ -121,16 +84,9 @@ class SettingVC: UIViewController
     {
         return .lightContent
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+
     @IBAction func btnCheckCalType(_ sender: UIButton)
     {
-        
         if sender.tag == 501
         {
             let ad = "REFORM"
@@ -158,6 +114,8 @@ class SettingVC: UIViewController
             btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
             self .dismiss(animated: true, completion: nil)
         }
+        
+        NotificationCenter.default.post(name: NotificationCalenderChange, object: nil)
     }
     
     @IBAction func btnUpdate(_ sender: UIButton)

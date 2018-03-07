@@ -17,7 +17,7 @@ public enum GLIndicatorType:Int
 
 public enum GLTabAnimationType:Int
 {
-     /* no animation */
+    /* no animation */
     case GLTabAnimationType_None = 0
     /* animation while scrolling */
     case GLTabAnimationType_WhileScrolling = 1
@@ -39,28 +39,9 @@ public enum GLTabAnimationType:Int
     @objc optional func didChangeTabToIndex(_ viewPager: GLViewPagerViewController, index: Int, fromTabIndex: Int)
     @objc optional func willChangeTabToIndex(_ viewPager: GLViewPagerViewController, index: Int, fromTabIndex: Int, progress: CGFloat)
     @objc optional func widthForTabIndex(_ viewPager: GLViewPagerViewController, index: Int) -> CGFloat
-    
-//    @objc optional func DisplayTopView(_ viewPager: GLViewPagerViewController) -> UIView
-
 }
 
-//@objc public protocol EventFirstVCDelegate: class
-//{
-//    @objc optional func filterTextFirst(searchText: String?)
-//    @objc optional func filterClearFirst(searchText: String?)
-//}
-//
-//@objc public protocol EventSecondVCDelegate: class
-//{
-//    @objc optional func filterTextSecond(searchText: String?)
-//    @objc optional func filterClearSecond(searchText: String?)
-//}
-//
-//@objc public protocol EventThirdVCDelegate: class
-//{
-//   @objc optional func filterTextThird(searchText: String?)
-//   @objc optional func filterClearThird(searchText: String?)
-//}
+
 
 
 
@@ -74,8 +55,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     open var subbView: UIView = UIView();
     
-//    open var indicatorColor: UIColor = UIColor.blue
-     open var indicatorColor: UIColor = UIColor.red
+    open var indicatorColor: UIColor = UIColor.red
     
     open var fixTabWidth: Bool = false
     
@@ -126,15 +106,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     internal var contentViewControllers:[UIViewController] = []
     internal var contentViews:[UIView] = []
     internal var tabViews:[UIView] = []
-    //internal var datasouceHas = _datasourceHas(numberOfTabsForViewPager: false, viewForTabIndex: false, contentViewControllerForTabAtIndex: false, contentViewForTabAtIndex: false)
-    //internal var delegateHas = _delegateHas(didChangeTabToIndex: false, willChangeTabToIndex: false, widthForTabIndex: false)
     private var mySearchBar: UISearchBar!
-
-//    weak var delegateFirst: EventFirstVCDelegate?
-//    weak var delegateSecond: EventSecondVCDelegate?
-//    weak var delegateThird: EventThirdVCDelegate?
-    
-
     
     // MARK: - const
     let  kTabTagBegin:Int = 0xA0
@@ -152,12 +124,8 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         static var didChangeTabToIndex:Bool = false
         static var willChangeTabToIndex:Bool = false
         static var  widthForTabIndex:Bool = false
-//        static var  DisplayTopView:Bool = false
-//        static var filterTextFirst:Bool = false
-        
-        
     }
-
+    
     // MARK: - Life cycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -173,14 +141,14 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     override open func awakeFromNib() {
         super.awakeFromNib()
- 
+        
     }
     
     override open func viewDidLoad()
     {
         super.viewDidLoad()
         
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.SearchBarClear(notification:)), name: Notification.Name("NotificationClearSearcBar"), object: nil)
         
         
@@ -194,7 +162,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         mySearchBar.text = nil
     }
     
-
+    
     override open func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -204,7 +172,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     {
         self.view = UIView(frame: UIScreen.main.bounds)
         self.view.backgroundColor = UIColor.white
-//        self.view.backgroundColor = UIColor.clear
+        //        self.view.backgroundColor = UIColor.clear
         self.view .addSubview(UIView.init())
         self.view .addSubview(self.tabContentView)
         self.view .addSubview(self.pageViewController.view)
@@ -212,49 +180,49 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         let bounds = UIScreen.main.bounds
         let width1 = bounds.size.width
         _ = bounds.size.height
-
+        
         subbView = UIView(frame:CGRect(x:0, y:0, width:width1, height:IS_IPAD ? 210 : 180))
         self.view .addSubview(subbView)
         
-//        var imageView : UIImageView
+        //        var imageView : UIImageView
         self.imageView  = UIImageView(frame:CGRect(x:0, y:0, width:self.view.frame.width, height:IS_IPAD ? 210 : 180));
-//        self.imageView  = UIImageView(frame:self.subbView.bounds);
+        //        self.imageView  = UIImageView(frame:self.subbView.bounds);
         
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         let strimagename = "EventHeader" + "\(strImageMoth)"
-//        let strimagename = "Sync_Header" + "\(strImageMoth)"
+        //        let strimagename = "Sync_Header" + "\(strImageMoth)"
         imageView.image = UIImage(named: strimagename)
-
-
-       subbView.addSubview(imageView)
         
-//        let Heb_day:UILabel = UILabel.init()
+        
+        subbView.addSubview(imageView)
+        
+        //        let Heb_day:UILabel = UILabel.init()
         Heb_day.frame = CGRect(x:0, y:IS_IPAD ? 40 : 35, width:self.view.frame.width, height:IS_IPAD ? 70 : 45);
-       
-       let strHoliday = UserDefaults.standard.string(forKey: "CurrentHoliday")
+        
+        let strHoliday = UserDefaults.standard.string(forKey: "CurrentHoliday")
         Heb_day.text = strHoliday
         Heb_day.textAlignment = NSTextAlignment.center
         Heb_day.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 55.0 : 35.0)
         Heb_day.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Heb_day)
         
-//        let Heb_Year:UILabel = UILabel.init()
+        //        let Heb_Year:UILabel = UILabel.init()
         Heb_Year.frame = CGRect(x:0, y:Heb_day.frame.origin.y + Heb_day.frame.size.height, width:self.view.frame.width/2-10, height:IS_IPAD ? 50 : 40);
         let strYeasr = UserDefaults.standard.string(forKey: "CurrentYear")
-         Heb_Year.text = strYeasr;
+        Heb_Year.text = strYeasr;
         Heb_Year.textAlignment = NSTextAlignment.right
         Heb_Year.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 27.0 : 20.0)
         
         Heb_Year.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Heb_Year)
         
-//        let Eng_date:UILabel = UILabel.init()
+        //        let Eng_date:UILabel = UILabel.init()
         Eng_date.frame = CGRect(x:Heb_Year.frame.origin.x + Heb_Year.frame.size.width + 20, y: Heb_day.frame.origin.y + Heb_day.frame.size.height, width:self.view.frame.width/2-10, height:IS_IPAD ? 50 : 40);
         
         let strMonthDate = UserDefaults.standard.string(forKey: "CurrentMonthDate")
         Eng_date.text = strMonthDate
         
-//        Eng_date.text = "September 30";
+        //        Eng_date.text = "September 30";
         Eng_date.textAlignment = NSTextAlignment.left
         Eng_date.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 27.0 : 20.0)
         Eng_date.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -269,7 +237,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         dotView1.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         dotView1.layer.cornerRadius = 3;
         dotView1.layer.masksToBounds = true;
-//        dotView1.layer.mask = true;
+        //        dotView1.layer.mask = true;
         dotView.addSubview(dotView1)
         
         
@@ -279,7 +247,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         mySearchBar = UISearchBar()
         mySearchBar.delegate = self
         mySearchBar.frame = CGRect(x: 0, y: subbView.frame.size.height-55, width: self.view.frame.size.width, height: 55)
-//        mySearchBar.layer.position = CGPoint(x: self.view.bounds.width/2, y: 100)
+        //        mySearchBar.layer.position = CGPoint(x: self.view.bounds.width/2, y: 100)
         
         // add shadow
         mySearchBar.layer.shadowColor = #colorLiteral(red: 0.1242686138, green: 0.1242725477, blue: 0.1242704168, alpha: 1)
@@ -290,7 +258,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         mySearchBar.showsCancelButton = true
         
         // hide bookmark button
-//        mySearchBar.showsBookmarkButton = false
+        //        mySearchBar.showsBookmarkButton = false
         
         // set Default bar status.
         mySearchBar.searchBarStyle = UISearchBarStyle.default
@@ -311,7 +279,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         subbView.addSubview(mySearchBar)
         mySearchBar.bringSubview(toFront: imageView)
         
-     
+        
         
     }
     
@@ -328,10 +296,10 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     func myBackGraound(strmonth: NSInteger)
     {
         let strimagename = "EventHeader" + "\(strmonth)"
-//        let strimagename = "Sync_Header" + "\(strImageMoth)"
+        //        let strimagename = "Sync_Header" + "\(strImageMoth)"
         self.imageView.image = UIImage(named: strimagename)
         self.imageView.contentMode = .scaleToFill
-
+        
     }
     
     
@@ -349,9 +317,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         Eng_date.text = strMonthDate
         
     }
-   
-
-
+    
     // MARK: - Data Source
     open func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if self.supportArabic {
@@ -447,7 +413,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
                     NotificationCenter.default.post(name: Notification.Name("NotificationMoveLeft"), object:nil)
                 }
             }
-            // right to left
+                // right to left
             else {
                 if self.supportArabic {
                     offset = rightTabOffsetWidth * scale
@@ -509,7 +475,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
                 scrollView.delegate = self
             }
         }
-
+        
         
         self._setNeedsReload()
     }
@@ -518,11 +484,11 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         self.dataSource = newDataSource
         
         _datasourceHas.numberOfTabsForViewPager = newDataSource.responds(to: #selector(GLViewPagerViewControllerDataSource.numberOfTabsForViewPager(_:)))
-       
+        
         _datasourceHas.contentViewForTabAtIndex = newDataSource.responds(to: #selector(GLViewPagerViewControllerDataSource.contentViewForTabAtIndex(_:index:)))
         
         _datasourceHas.viewForTabIndex = newDataSource.responds(to: #selector(GLViewPagerViewControllerDataSource.viewForTabIndex(_:index:)))
-       
+        
         _datasourceHas.contentViewControllerForTabAtIndex = newDataSource.responds(to: #selector(GLViewPagerViewControllerDataSource.contentViewControllerForTabAtIndex(_:index:)))
         
         self ._setNeedsReload()
@@ -537,9 +503,9 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         
         _delegateHas.widthForTabIndex = newDelegate.responds(to: #selector(GLViewPagerViewControllerDelegate.widthForTabIndex(_:index:)))
         
-//         _delegateHas.DisplayTopView = newDelegate.responds(to: #selector(GLViewPagerViewControllerDelegate.DisplayTopView(_:index:)))
+        //         _delegateHas.DisplayTopView = newDelegate.responds(to: #selector(GLViewPagerViewControllerDelegate.DisplayTopView(_:index:)))
         
-//        _delegateHas.filterTextFirst = newDelegate.responds(to: #selector(GLViewPagerViewControllerDelegate.filterTextFirst(_:searchText:)))
+        //        _delegateHas.filterTextFirst = newDelegate.responds(to: #selector(GLViewPagerViewControllerDelegate.filterTextFirst(_:searchText:)))
         
     }
     
@@ -569,7 +535,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
             
             var preTabView:UIView?
             var tabContentWidth:CGFloat = 0.0
-         
+            
             for index in 0 ... numberOfTabs - 1 {
                 var tabView:UIView! = UIView.init()
                 if self.supportArabic {
@@ -589,7 +555,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
                 
                 tabView.isUserInteractionEnabled = true
                 tabView .addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(self.tapInTabView(tapGR:))))
-            
+                
                 if preTabView == nil {
                     var rect:CGRect = tabView.frame
                     rect.size.width = self.fixTabWidth ? self.tabWidth : self ._getTabWidthAtIndex(tabIndex: index)
@@ -623,7 +589,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         
         if _datasourceHas.contentViewControllerForTabAtIndex {
             for i in 0 ... numberOfTabs - 1 {
-               var viewController:UIViewController!
+                var viewController:UIViewController!
                 if self.supportArabic {
                     viewController = self.dataSource?.contentViewControllerForTabAtIndex!(self, index: numberOfTabs - i - 1)
                     assert(viewController .isKind(of: UIViewController.self), "This is not an UIViewController subclass")
@@ -647,7 +613,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
                 delegate?.didChangeTabToIndex!(self, index: _currentPageIndex, fromTabIndex: self.defaultDisplayPageIndex)
             }
         }
-    
+            
         else if _datasourceHas.contentViewForTabAtIndex {
             // MARK: - TODO
         }
@@ -692,10 +658,10 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         tabContentViewFrame.size.width = self.view.bounds.size.width
         tabContentViewFrame.size.height = kTabHeight
         tabContentViewFrame.origin.x = 0
-//        tabContentViewFrame.origin.y = topLayoutGuide
-//        tabContentViewFrame.origin.y = IS_IPAD ? 160 : 130
+        //        tabContentViewFrame.origin.y = topLayoutGuide
+        //        tabContentViewFrame.origin.y = IS_IPAD ? 160 : 130
         tabContentViewFrame.origin.y = subbView.frame.origin.y + subbView.frame.size.height
-
+        
         self.tabContentView.frame = tabContentViewFrame
         self.tabContentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
@@ -715,17 +681,17 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
             bottomSpace = 55
         }
         
-//        var pageViewCtrlFrame:CGRect = self.pageViewController.view.frame
-//        var pageViewCtrlFrame:CGRect = CGRect(x: 0, y: IS_IPAD ? 160 : 130, width: self.view.frame.size.width, height:IS_IPAD ? self.view.frame.size.height-160 : self.view.frame.size.height-130)
-         var pageViewCtrlFrame:CGRect = CGRect(x: 0, y: (subbView.frame.origin.y + subbView.frame.size.height), width: self.view.frame.size.width, height: self.view.frame.size.height-(subbView.frame.origin.y + subbView.frame.size.height))
+        //        var pageViewCtrlFrame:CGRect = self.pageViewController.view.frame
+        //        var pageViewCtrlFrame:CGRect = CGRect(x: 0, y: IS_IPAD ? 160 : 130, width: self.view.frame.size.width, height:IS_IPAD ? self.view.frame.size.height-160 : self.view.frame.size.height-130)
+        var pageViewCtrlFrame:CGRect = CGRect(x: 0, y: (subbView.frame.origin.y + subbView.frame.size.height), width: self.view.frame.size.width, height: self.view.frame.size.height-(subbView.frame.origin.y + subbView.frame.size.height))
         pageViewCtrlFrame.size.width = self.view.bounds.size.width
-//        pageViewCtrlFrame.size.height = IS_IPAD ? self.view.bounds.size.height - topLayoutGuide - bottomLayoutGuide - self.tabContentView.frame.height-180 : self.view.bounds.size.height - topLayoutGuide - bottomLayoutGuide - self.tabContentView.frame.height-130
-//        pageViewCtrlFrame.size.height = IS_IPAD ? self.view.bounds.size.height - bottomLayoutGuide - self.tabContentView.frame.height-160 : self.view.bounds.size.height - bottomLayoutGuide - self.tabContentView.frame.height-130
-       pageViewCtrlFrame.size.height = self.view.bounds.size.height - bottomLayoutGuide - self.tabContentView.frame.height-(subbView.frame.origin.y + subbView.frame.size.height)
+        //        pageViewCtrlFrame.size.height = IS_IPAD ? self.view.bounds.size.height - topLayoutGuide - bottomLayoutGuide - self.tabContentView.frame.height-180 : self.view.bounds.size.height - topLayoutGuide - bottomLayoutGuide - self.tabContentView.frame.height-130
+        //        pageViewCtrlFrame.size.height = IS_IPAD ? self.view.bounds.size.height - bottomLayoutGuide - self.tabContentView.frame.height-160 : self.view.bounds.size.height - bottomLayoutGuide - self.tabContentView.frame.height-130
+        pageViewCtrlFrame.size.height = self.view.bounds.size.height - bottomLayoutGuide - self.tabContentView.frame.height-(subbView.frame.origin.y + subbView.frame.size.height)
         pageViewCtrlFrame.origin.x = 0
-//        pageViewCtrlFrame.origin.y = topLayoutGuide + self.tabContentView.frame.height
-//        pageViewCtrlFrame.origin.y = IS_IPAD ? topLayoutGuide + self.tabContentView.frame.height + 180 : topLayoutGuide + self.tabContentView.frame.height + 130
-//        pageViewCtrlFrame.origin.y = IS_IPAD ? self.tabContentView.frame.height + 160 : self.tabContentView.frame.height + 130
+        //        pageViewCtrlFrame.origin.y = topLayoutGuide + self.tabContentView.frame.height
+        //        pageViewCtrlFrame.origin.y = IS_IPAD ? topLayoutGuide + self.tabContentView.frame.height + 180 : topLayoutGuide + self.tabContentView.frame.height + 130
+        //        pageViewCtrlFrame.origin.y = IS_IPAD ? self.tabContentView.frame.height + 160 : self.tabContentView.frame.height + 130
         pageViewCtrlFrame.origin.y = self.tabContentView.frame.height + subbView.frame.size.height
         self.pageViewController.view.frame = pageViewCtrlFrame
         
@@ -760,11 +726,10 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         }
         
         DispatchQueue.main.async {
-           self.tabContentView .scrollRectToVisible(frame, animated: true)
+            self.tabContentView .scrollRectToVisible(frame, animated: true)
         }
     }
-    
-    
+
     func _setActivePageIndex(pageIndex:Int) -> Void {
         assert(pageIndex < self.contentViewControllers.count, "Default display page index is bigger than amount of view controller")
         
@@ -772,7 +737,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         if pageIndex > _currentPageIndex {
             direction = self.supportArabic ? UIPageViewControllerNavigationDirection.reverse : UIPageViewControllerNavigationDirection.forward
         }
-        
         self.pageViewController .setViewControllers([self.contentViewControllers[pageIndex]], direction: direction, animated: true, completion: nil)
         
     }
@@ -781,11 +745,11 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         var tabWidth:CGFloat = 0
         let tabView:UIView = self.tabViews[tabIndex]
         if _delegateHas.widthForTabIndex {
-           tabWidth = (delegate?.widthForTabIndex?(self, index: tabView.tag - kTabTagBegin))!
+            tabWidth = (delegate?.widthForTabIndex?(self, index: tabView.tag - kTabTagBegin))!
         }
         return tabWidth == 0 ? tabView.intrinsicContentSize.width : tabWidth
     }
- 
+    
     func _caculateTabViewFrame(tabIndex:Int) -> CGRect {
         var frameOfTabView:CGRect = CGRect.zero
         
@@ -842,7 +806,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         }
         return frameOfTabView
     }
-   
     
     func _caculateTabOffsetWidth(pageIndex:Int) -> Void {
         let currentTabIndex:Int = pageIndex
@@ -870,8 +833,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         }
     }
     
-
-    
     func _disableViewPagerScroll() -> Void {
         for view in self.pageViewController.view.subviews {
             if let scrollView = view as? UIScrollView {
@@ -888,18 +849,10 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
             }
         }
     }
-    
-    
-    /// SearchBar Delegate........
-    
-    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar)
-    {
-        
-    }
+
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
-        
         if searchText == nil || searchText == ""
         {
             if _currentPageIndex == 1
@@ -916,16 +869,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
             }
             self.view.endEditing(true)
         }
-//        let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", searchText )
-//        // NSArray *temp = [bookCollection filteredArrayUsingPredicate:predicate];
-//        arrParshita = (arrTotalParshita as NSArray).filtered(using: predicate) as NSArray
-//
-//        if searchText == "" || searchText == nil
-//        {
-//            arrParshita = arrTotalParshita;
-//        }
-//
-//        tblParshiyot.reloadData()
     }
     
     public func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
@@ -936,22 +879,22 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
     {
-       if _currentPageIndex == 1
+        if _currentPageIndex == 1
         {
             NotificationCenter.default.post(name: Notification.Name("NotificationClearSecond"), object:mySearchBar.text)
-//            delegateSecond?.filterClearSecond!(searchText: mySearchBar.text)
+            //            delegateSecond?.filterClearSecond!(searchText: mySearchBar.text)
         }
         else if _currentPageIndex == 2
         {
             NotificationCenter.default.post(name: Notification.Name("NotificationClearThird"), object:mySearchBar.text)
-//            delegateThird?.filterClearThird!(searchText: mySearchBar.text)
+            //            delegateThird?.filterClearThird!(searchText: mySearchBar.text)
         }
         else
         {
             NotificationCenter.default.post(name: Notification.Name("NotificationClearFirst"), object:mySearchBar.text)
-        
+            
         }
-    self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
@@ -959,12 +902,12 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         if _currentPageIndex == 1
         {
             NotificationCenter.default.post(name: Notification.Name("NotificationTextSecond"), object:mySearchBar.text)
-//            delegateSecond?.filterTextSecond!(searchText: mySearchBar.text)
+            //            delegateSecond?.filterTextSecond!(searchText: mySearchBar.text)
         }
         else if _currentPageIndex == 2
         {
             NotificationCenter.default.post(name: Notification.Name("NotificationTextThird"), object:mySearchBar.text)
-//            delegateThird?.filterTextThird!(searchText: mySearchBar.text)
+            //            delegateThird?.filterTextThird!(searchText: mySearchBar.text)
         }
         else
         {
@@ -973,7 +916,5 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         self.view.endEditing(true)
         
     }
-    
-    
-    
+
 }
