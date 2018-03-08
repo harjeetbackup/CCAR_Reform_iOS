@@ -21,6 +21,7 @@ enum EventType {
     case all;
     case parshat;
     case holiday;
+    case none;
 }
 var eventType: EventType?
 class EventManager: NSObject {
@@ -62,6 +63,12 @@ class EventManager: NSObject {
                         let filered = items.filter({ (event) -> Bool in
                             if let cat = event.category {
                                 if cat == "holiday" {
+                                    return true
+                                }
+                                if cat == "omer" {
+                                    return true
+                                }
+                                if cat == "roshchodesh" {
                                     return true
                                 }
                             }

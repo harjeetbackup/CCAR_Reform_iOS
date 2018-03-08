@@ -59,16 +59,22 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
     
     @objc func filterTextFirst(notification: Notification)
     {
-        let str = notification.object
-        let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", str as! CVarArg)
-        arrHolidays = (allArray as NSArray).filtered(using: predicate) as NSArray
+         let str = notification.object.unsafelyUnwrapped
         
-        self.tblParshiyot.reloadData()
+       // let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", str as! CVarArg)
+        allEvents = events.filter({(event : RLEvent) -> Bool in
+            return (event.title?.contains("cha"))!
+        })
+        searchType = EventType.all
+        if allEvents.count != 0 {
+         self.tblParshiyot.reloadData()
+        }
     }
     
     @objc func filterClearFirst(notification: Notification)
     {
         let str = notification.object
+        searchType = EventType.none
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         arrHolidays = allArray as NSArray
         self.tblParshiyot.reloadData()
@@ -79,6 +85,8 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
         tableFooterView?.loadMoreTapped(UIButton())
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.all
+        searchType = EventType.none
+        self.tblParshiyot.reloadData()
     }
     
     func fetchEvents(year:Int){

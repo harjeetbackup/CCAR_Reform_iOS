@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
 
@@ -17,27 +18,73 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
      var allEvents = [RLEvent]()
      var allHolidays = [RLEvent]()
      var allParshath = [RLEvent]()
-    
-    override func viewDidLoad() {
+     var searchType:EventType?
+   
+     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
+     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+            if let type = searchType {
+                if type == .all {
+                    return allEvents.count
+                }
+                if type == .parshat {
+                    return allParshath.count
+                }
+                if type == .holiday {
+                    return allHolidays.count
+                }
+                return events.count
+            }else{
+                return events.count
+           }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
-        cell.event = events[indexPath.row]
+        if let type = searchType {
+            if type == .all {
+                cell.event = allEvents[indexPath.row] as? RLEvent
+            }
+            if type == .parshat {
+                cell.event = allParshath[indexPath.row] as? RLEvent
+            }
+            if type == .holiday {
+                cell.event = allHolidays[indexPath.row] as? RLEvent
+            }
+            if type == .none {
+                cell.event = events[indexPath.row]
+            }
+        }else{
+            cell.event = events[indexPath.row]
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
         let vc: DetailVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
-        let event = events[indexPath.row]
-        vc.eventUrl = event.link
+        if let type = searchType {
+            let event = events[indexPath.row]
+            vc.eventUrl = event.link
+            if type == .all {
+                let event = allEvents[indexPath.row]
+                vc.eventUrl = event.link
+            }
+            if type == .parshat {
+                let event = allParshath[indexPath.row]
+                vc.eventUrl = event.link
+            }
+            if type == .holiday {
+                let event = allHolidays[indexPath.row]
+                vc.eventUrl = event.link
+            }
+        }else{
+            let event = events[indexPath.row]
+            vc.eventUrl = event.link
+        }
         self.present(vc, animated: false, completion: nil)
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

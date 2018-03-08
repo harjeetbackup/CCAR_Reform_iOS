@@ -31,21 +31,28 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearSecond(notification:)), name: Notification.Name("NotificationClearSecond"), object: nil)
         fetchEvents(year: 2017)
+        searchType = EventType.none
     }
     
     @objc func filterTextSecond(notification: Notification)
     {
         let str = notification.object
-        let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", str as! CVarArg)
-                arrParshita = (arrTotalParshita as NSArray).filtered(using: predicate) as NSArray
+        //let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", str as! CVarArg)
+        allParshath = events.filter({(event : RLEvent) -> Bool in
+            return (event.title?.contains("cha"))!
+        })
+        searchType = EventType.parshat
+        if allParshath.count != 0 {
+            self.tblParshiyot.reloadData()
+        }
         
-        tblParshiyot.reloadData()
     }
     
     @objc func filterClearSecond(notification: Notification)
     {
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         arrParshita = (arrTotalParshita as NSArray)
+        searchType = EventType.none
         tblParshiyot.reloadData()
     }
 
@@ -54,6 +61,7 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
         tableFooterView?.loadMoreTapped(UIButton())
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.parshat
+        self.tblParshiyot.reloadData()
     }
     func increaseEvents(year: Int) {
         EventManager.shared.fetchEvents(eventType: .parshat, year: year) { (events) in

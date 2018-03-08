@@ -14,8 +14,9 @@ import SwiftyJSON
 class EventThirdVC: EventBaseVC,LoadDelegate {
         
     var myNavController: UINavigationController?
-    var arrParshita = NSArray()
-    var arrTotalParshita = NSArray()
+    var arrHolidays = NSArray()
+    var arrTotalHolidays = NSArray()
+    var allArray = NSArray()
     var  data:[[String:String]] = []
     var  columnTitles:[String] = []
     
@@ -25,33 +26,50 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextSecond(notification:)), name: Notification.Name("NotificationTextSecond"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextThird(notification:)), name: Notification.Name("NotificationTextThird"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearThird(notification:)), name: Notification.Name("NotificationClearThird"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearSecond(notification:)), name: Notification.Name("NotificationClearSecond"), object: nil)
         fetchEvents(year: 2017)
     }
     
-    @objc func filterTextSecond(notification: Notification)
-    {
-        let str = notification.object
-        let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", str as! CVarArg)
-        arrParshita = (arrTotalParshita as NSArray).filtered(using: predicate) as NSArray
-        
-        tblParshiyot.reloadData()
-    }
+        @objc func filterTextThird(notification: Notification)
+        {
+            let str = notification.object
+            //let predicate = NSPredicate(format: "%K CONTAINS[cd] %@ ", "Subject", str as! CVarArg)
+            allHolidays = events.filter({(event : RLEvent) -> Bool in
+                return (event.title?.contains("cha"))!
+            })
+            searchType = EventType.holiday
+            if allHolidays.count != 0 {
+                self.tblParshiyot.reloadData()
+            }
+        }
     
-    @objc func filterClearSecond(notification: Notification)
-    {
-        NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
-        arrParshita = (arrTotalParshita as NSArray)
-        tblParshiyot.reloadData()
-    }
+        @objc func filterClearThird(notification: Notification)
+        {
+            var str = notification.object
+           searchType = EventType.none
+            NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
+        
+            tblParshiyot.reloadData()
+        }
+    
+        override func viewWillLayoutSubviews() {
+            //  readDataFromFile()
+            super.viewWillAppear(true)
+            arrHolidays = (allArray as NSArray)
+           // NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
+    
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableFooterView?.loadMoreTapped(UIButton())
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.holiday
+        searchType = EventType.none
+        self.tblParshiyot.reloadData()
     }
     func fetchEvents(year:Int){
         EventManager.shared.fetchEvents(eventType: .holiday, year: year) { (events) in
