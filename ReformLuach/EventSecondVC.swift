@@ -11,7 +11,7 @@ import Foundation
 import CSV
 import SwiftyJSON
 
-class EventSecondVC: EventBaseVC {
+class EventSecondVC: EventBaseVC,LoadDelegate {
     
     var myNavController: UINavigationController?
     var arrParshita = NSArray()
@@ -30,6 +30,7 @@ class EventSecondVC: EventBaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextSecond(notification:)), name: Notification.Name("NotificationTextSecond"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearSecond(notification:)), name: Notification.Name("NotificationClearSecond"), object: nil)
+        fetchEvents(year: 2017)
     }
     
     @objc func filterTextSecond(notification: Notification)
@@ -50,19 +51,22 @@ class EventSecondVC: EventBaseVC {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        tableFooterView?.loadMoreTapped(UIButton())
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
-        EventManager.shared.fetchEvents { (events) in
-            
-            let filered = events.filter({ (event) -> Bool in
-                if let cat = event.category {
-                    if cat == "parashat" {
-                        return true
-                    }
-                }
-                return false
-            })
-            
-            self.events = filered
+        eventType = EventType.parshat
+    }
+    func increaseEvents(year: Int) {
+        EventManager.shared.fetchEvents(eventType: .parshat, year: year) { (events) in
+            self.events += events
+            //self.allParshath += self.events
+            self.tblParshiyot.reloadData()
+        }
+    }
+   
+    func fetchEvents(year:Int){
+        EventManager.shared.fetchEvents(eventType: .parshat, year: year) { (events) in
+            self.events += events
+          //  self.allParshath += self.events
             self.tblParshiyot.reloadData()
         }
     }

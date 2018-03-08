@@ -9,14 +9,20 @@
 import UIKit
 
 class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+    
 
     @IBOutlet internal var tblParshiyot: UITableView!
      var events = [RLEvent]()
+     var tableFooterView: FooterView?
+     var allEvents = [RLEvent]()
+     var allHolidays = [RLEvent]()
+     var allParshath = [RLEvent]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -33,5 +39,16 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let event = events[indexPath.row]
         vc.eventUrl = event.link
         self.present(vc, animated: false, completion: nil)
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        tableFooterView = FooterView.footerView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70))
+        self.tableFooterView?.frame = view.bounds
+        
+        self.tableFooterView?.loadDelegate = self as? LoadDelegate
+        return tableFooterView
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 70
     }
 }

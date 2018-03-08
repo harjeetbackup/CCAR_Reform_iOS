@@ -10,6 +10,9 @@
 		18340DE8202B12FD005A2D42 /* Sh'mini_I.html in Resources */ = {isa = PBXBuildFile; fileRef = 18340DE7202B12FD005A2D42 /* Sh'mini_I.html */; };
 		18340DEA202B1306005A2D42 /* Sh'mini_II.html in Resources */ = {isa = PBXBuildFile; fileRef = 18340DE9202B1306005A2D42 /* Sh'mini_II.html */; };
 		1862887320275D0C003047F0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862887220275D0B003047F0 /* Utils.swift */; };
+		189CBEDC20510737004C5D95 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189CBEDB20510737004C5D95 /* FooterView.xib */; };
+		189CBEDE2051089F004C5D95 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CBEDD2051089F004C5D95 /* FooterView.swift */; };
+		189CBEE0205115C3004C5D95 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CBEDF205115C3004C5D95 /* Date.swift */; };
 		18A74F08202B2E0800448349 /* UIView + Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A74F07202B2E0800448349 /* UIView + Addition.swift */; };
 		6D019276204F203B0055EFC5 /* EventBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D019275204F203B0055EFC5 /* EventBaseVC.swift */; };
 		6D720365204F0FB300EE68C5 /* RLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720363204F0FB200EE68C5 /* RLEvent.swift */; };
@@ -346,6 +349,9 @@
 		18340DE7202B12FD005A2D42 /* Sh'mini_I.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Sh'mini_I.html"; sourceTree = "<group>"; };
 		18340DE9202B1306005A2D42 /* Sh'mini_II.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Sh'mini_II.html"; sourceTree = "<group>"; };
 		1862887220275D0B003047F0 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		189CBEDB20510737004C5D95 /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
+		189CBEDD2051089F004C5D95 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		189CBEDF205115C3004C5D95 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		18A74F07202B2E0800448349 /* UIView + Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Addition.swift"; sourceTree = "<group>"; };
 		4320001A992EE7D92470BBF4 /* Pods_ReformLuachUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReformLuachUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D019275204F203B0055EFC5 /* EventBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBaseVC.swift; sourceTree = "<group>"; };
@@ -696,6 +702,7 @@
 			isa = PBXGroup;
 			children = (
 				18A74F07202B2E0800448349 /* UIView + Addition.swift */,
+				189CBEDF205115C3004C5D95 /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -831,6 +838,8 @@
 				E66A86AC1FDBB8F600E5B988 /* DetailViewFromTodayVC.swift */,
 				E6B12FFE1FD7D8EF00A763D7 /* Toast.swift */,
 				E6AB61271F4C69EB00161250 /* Main.storyboard */,
+				189CBEDB20510737004C5D95 /* FooterView.xib */,
+				189CBEDD2051089F004C5D95 /* FooterView.swift */,
 				E6AB612A1F4C69EB00161250 /* Assets.xcassets */,
 				E62D1BE01FD688530003180B /* About.html */,
 				E610FC921FD9496300495DA6 /* torah-israel.json */,
@@ -1481,6 +1490,7 @@
 				E6EC813F1FC55A2B00406361 /* Major_Holidays.json in Resources */,
 				E6EC813D1FC5548A00406361 /* Rosh_Chodush.json in Resources */,
 				E6315D731FC5333F003AA087 /* Jewish_holiday.json in Resources */,
+				189CBEDC20510737004C5D95 /* FooterView.xib in Resources */,
 				E6AB61691F4C6A9500161250 /* Roboto-CondensedItalic.ttf in Resources */,
 				E6AB616A1F4C6A9500161250 /* Roboto-Italic.ttf in Resources */,
 				E6AB616C1F4C6A9500161250 /* Roboto-LightItalic.ttf in Resources */,
@@ -1609,6 +1619,7 @@
 				E6AB61261F4C69EB00161250 /* Event.swift in Sources */,
 				E63224B51FD0426D00C6BB38 /* DetailVC.swift in Sources */,
 				E63523E61FBF10C700EE6E6C /* CustomEventList.swift in Sources */,
+				189CBEE0205115C3004C5D95 /* Date.swift in Sources */,
 				E68A0D711FC013D700CCBA76 /* customData.xcdatamodeld in Sources */,
 				1862887320275D0C003047F0 /* Utils.swift in Sources */,
 				E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */,
@@ -1616,6 +1627,7 @@
 				E64786A51FF691DD00D1B734 /* NewAddCustomEventsVC.swift in Sources */,
 				E6526EA51F4D96C500E970AB /* CalenderSyncVC.swift in Sources */,
 				6D720365204F0FB300EE68C5 /* RLEvent.swift in Sources */,
+				189CBEDE2051089F004C5D95 /* FooterView.swift in Sources */,
 				E63523E41FBEEE8B00EE6E6C /* SettingVC.swift in Sources */,
 				E63B180C1FB1C53900793CA7 /* customCell.swift in Sources */,
 				E687009F1F4EA55300CB897D /* UITextField+fixCaretPosition.swift in Sources */,

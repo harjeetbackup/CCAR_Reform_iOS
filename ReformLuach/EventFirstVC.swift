@@ -12,9 +12,7 @@ import CSV
 import SwiftyJSON
 import Alamofire
 
-
-
-class EventFirstVC: EventBaseVC {
+class EventFirstVC: EventBaseVC,LoadDelegate {
     
     var myNavController: UINavigationController?
     
@@ -44,11 +42,20 @@ class EventFirstVC: EventBaseVC {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+       // arrHolidays =
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextFirst(notification:)), name: Notification.Name("NotificationTextFirst"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearFirst(notification:)), name: Notification.Name("NotificationClearFirst"), object: nil)
+        fetchEvents(year: 2017)
     }
     
+    func increaseEvents(year: Int) {
+        EventManager.shared.fetchEvents(eventType: .all, year: year) { (events) in
+            self.events += events
+            //self.allEvents += self.events
+            self.tblParshiyot.reloadData()
+        }
+    }
     
     @objc func filterTextFirst(notification: Notification)
     {
@@ -69,9 +76,15 @@ class EventFirstVC: EventBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        tableFooterView?.loadMoreTapped(UIButton())
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
-        EventManager.shared.fetchEvents { (events) in
-            self.events = events
+        eventType = EventType.all
+    }
+    
+    func fetchEvents(year:Int){
+        EventManager.shared.fetchEvents(eventType: .all, year: year) { (events) in
+            self.events += events
+          //  self.allEvents += self.events
             self.tblParshiyot.reloadData()
         }
     }
