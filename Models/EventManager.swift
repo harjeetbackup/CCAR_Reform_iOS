@@ -46,6 +46,13 @@ class EventManager: NSObject {
                     let items = RLEvent.modelsFromDictionaryArray(array:array)
                     if eventType == .all {
                         self.currentEvents = items
+                        for item in items {
+                           if let cat = item.category {
+                                if cat == "omer" {
+                                    item.link = "http://www.hebcal.com/holidays/lag-baomer"
+                                }
+                            }
+                        }
                         completion(self.currentEvents)
                     }
                     if eventType == .parshat {
@@ -66,6 +73,7 @@ class EventManager: NSObject {
                                     return true
                                 }
                                 if cat == "omer" {
+                                    event.link = "http://www.hebcal.com/holidays/lag-baomer"
                                     return true
                                 }
                                 if cat == "roshchodesh" {

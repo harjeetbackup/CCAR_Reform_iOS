@@ -10,7 +10,6 @@ import UIKit
 
 
 class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-    
 
     @IBOutlet internal var tblParshiyot: UITableView!
      var events = [RLEvent]()
@@ -22,7 +21,11 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
    
      override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableFooterView = FooterView.footerView()
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70))
+//        self.tableFooterView?.frame = view.bounds
+        self.tableFooterView?.loadDelegate = self as? LoadDelegate
+        self.tblParshiyot.tableFooterView = tableFooterView
      }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,13 +49,13 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         if let type = searchType {
             if type == .all {
-                cell.event = allEvents[indexPath.row] as? RLEvent
+                cell.event = allEvents[indexPath.row]
             }
             if type == .parshat {
-                cell.event = allParshath[indexPath.row] as? RLEvent
+                cell.event = allParshath[indexPath.row]
             }
             if type == .holiday {
-                cell.event = allHolidays[indexPath.row] as? RLEvent
+                cell.event = allHolidays[indexPath.row] 
             }
             if type == .none {
                 cell.event = events[indexPath.row]
@@ -87,15 +90,5 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
         self.present(vc, animated: false, completion: nil)
     }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        tableFooterView = FooterView.footerView()
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70))
-        self.tableFooterView?.frame = view.bounds
-        
-        self.tableFooterView?.loadDelegate = self as? LoadDelegate
-        return tableFooterView
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 70
-    }
+   
 }
