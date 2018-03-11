@@ -29,6 +29,18 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
         
         fetchEvents(year: 2017)
     }
+    
+    override func filterAsPerType() {
+        self.filteredEvents = events.filter({ (event) -> Bool in
+            if let cat = event.category {
+                if cat == "holiday" {
+                    return true
+                }
+            }
+            return false
+        })
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableFooterView?.loadMoreTapped(UIButton())
@@ -42,7 +54,7 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
         let str = notification.object.unsafelyUnwrapped
         let characters = String(describing: str)
         if events.count != 0 {
-            allHolidays = events.filter({(event : RLEvent) -> Bool in
+            self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in
                 return (event.title?.contains(characters))!
             })
             searchType = EventType.holiday
@@ -52,24 +64,12 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
     
     @objc func filterClearThird(notification: Notification)
     {
+        filterAsPerType()
         searchType = EventType.none
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         tblParshiyot.reloadData()
     }
     
-    
-    func fetchEvents(year:Int){
-        EventManager.shared.fetchEvents(eventType: .holiday, year: year) { (events) in
-            self.events += events
-            self.tblParshiyot.reloadData()
-        }
-    }
-    func increaseEvents(year: Int) {
-        EventManager.shared.fetchEvents(eventType: .holiday, year: year) { (events) in
-            self.events += events
-            self.tblParshiyot.reloadData()
-        }
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let nav = segue.destination as? UINavigationController,
@@ -77,7 +77,6 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
         {
             classBVC.delegate = self as? GLViewPagerViewControllerDelegate
         }
-        
     }
 }
 

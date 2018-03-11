@@ -26,8 +26,18 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextSecond(notification:)), name: Notification.Name("NotificationTextSecond"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearSecond(notification:)), name: Notification.Name("NotificationClearSecond"), object: nil)
-        fetchEvents(year: 2017)
         searchType = EventType.none
+    }
+    
+    override func filterAsPerType() {
+        self.filteredEvents = events.filter({ (event) -> Bool in
+            if let cat = event.category {
+                if cat == "parashat" {
+                    return true
+                }
+            }
+            return false
+        })
     }
     
     @objc func filterTextSecond(notification: Notification)
@@ -35,7 +45,9 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
         let str = notification.object.unsafelyUnwrapped
         let characters = String(describing: str)
         if events.count != 0 {
-            allParshath = events.filter({(event : RLEvent) -> Bool in
+
+            
+            self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in
                 return (event.title?.contains(characters))!
             })
             searchType = EventType.parshat
@@ -45,6 +57,7 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
     
     @objc func filterClearSecond(notification: Notification)
     {
+        filterAsPerType()
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         searchType = EventType.none
         tblParshiyot.reloadData()
@@ -57,19 +70,6 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
         eventType = EventType.parshat
         searchType = EventType.none
         self.tblParshiyot.reloadData()
-    }
-    func increaseEvents(year: Int) {
-        EventManager.shared.fetchEvents(eventType: .parshat, year: year) { (events) in
-            self.events += events
-            self.tblParshiyot.reloadData()
-        }
-    }
-    
-    func fetchEvents(year:Int){
-        EventManager.shared.fetchEvents(eventType: .parshat, year: year) { (events) in
-            self.events += events
-            self.tblParshiyot.reloadData()
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

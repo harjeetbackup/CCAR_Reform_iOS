@@ -31,20 +31,16 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
         fetchEvents(year: 2017)
     }
     
-    func increaseEvents(year: Int) {
-        EventManager.shared.fetchEvents(eventType: .all, year: year) { (events) in
-            self.events += events
-            //self.allEvents += self.events
-            self.tblParshiyot.reloadData()
-        }
+    override func filterAsPerType() {
+        // No need to filter
+        self.filteredEvents = self.events
     }
     
-    @objc func filterTextFirst(notification: Notification)
-    {
+    @objc func filterTextFirst(notification: Notification) {
     let str = notification.object.unsafelyUnwrapped
     let characters = String(describing: str)
         if events.count != 0 {
-            allEvents = events.filter({(event : RLEvent) -> Bool in
+            self.filteredEvents = events.filter({(event : RLEvent) -> Bool in
                 return (event.title?.contains(characters))!
             })
             searchType = EventType.all
@@ -54,6 +50,7 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
     
     @objc func filterClearFirst(notification: Notification)
     {
+        filterAsPerType()
         searchType = EventType.none
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         self.tblParshiyot.reloadData()
@@ -66,13 +63,6 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
         eventType = EventType.all
         searchType = EventType.none
         self.tblParshiyot.reloadData()
-    }
-    
-    func fetchEvents(year:Int){
-        EventManager.shared.fetchEvents(eventType: .all, year: year) { (events) in
-            self.events += events
-            self.tblParshiyot.reloadData()
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
