@@ -907,7 +907,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         else if _currentPageIndex == 2
         {
             NotificationCenter.default.post(name: Notification.Name("NotificationTextThird"), object:mySearchBar.text)
-            //            delegateThird?.filterTextThird!(searchText: mySearchBar.text)
         }
         else
         {

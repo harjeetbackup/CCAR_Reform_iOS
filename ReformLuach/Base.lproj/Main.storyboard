@@ -2214,8 +2214,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-Mj-L9x">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="460" id="Odb-up-cIs"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="hMU-rJ-er0" customClass="customCell" customModule="ReformLuach" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -2281,11 +2285,11 @@
                             <constraint firstItem="7Po-Mj-L9x" firstAttribute="top" secondItem="o9G-5K-FN6" secondAttribute="top" id="5uL-VM-l0j"/>
                             <constraint firstItem="7Po-Mj-L9x" firstAttribute="leading" secondItem="o9G-5K-FN6" secondAttribute="leading" id="7gr-w7-WQk"/>
                             <constraint firstAttribute="trailing" secondItem="7Po-Mj-L9x" secondAttribute="trailing" id="qdO-EN-Bgi"/>
-                            <constraint firstItem="TGq-Pr-PYQ" firstAttribute="top" secondItem="7Po-Mj-L9x" secondAttribute="bottom" id="rUy-Gu-ZgU"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="tblParshiyot" destination="7Po-Mj-L9x" id="G2h-vO-OKx"/>
                     </connections>
@@ -2307,8 +2311,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PNA-e5-1uu">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="460" id="SBz-oJ-K5d"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="NOe-FQ-FF0" customClass="customCell" customModule="ReformLuach" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -2371,7 +2378,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cLG-26-Dyc" firstAttribute="top" secondItem="PNA-e5-1uu" secondAttribute="bottom" id="0Ic-zz-PwE"/>
                             <constraint firstAttribute="trailing" secondItem="PNA-e5-1uu" secondAttribute="trailing" id="5mY-zC-sqW"/>
                             <constraint firstItem="PNA-e5-1uu" firstAttribute="top" secondItem="HrE-RA-Qhx" secondAttribute="top" id="ber-8w-XOn"/>
                             <constraint firstItem="PNA-e5-1uu" firstAttribute="leading" secondItem="HrE-RA-Qhx" secondAttribute="leading" id="pcK-zj-nDg"/>
@@ -2400,8 +2406,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FB1-Om-2pJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="460"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="460" id="WtI-Sr-w8t"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="dqf-JK-W8y" customClass="customCell" customModule="ReformLuach" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -2465,7 +2474,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ugv-mr-8yO" firstAttribute="top" secondItem="FB1-Om-2pJ" secondAttribute="bottom" id="Cgy-fq-8Rv"/>
                             <constraint firstItem="FB1-Om-2pJ" firstAttribute="leading" secondItem="yTC-fN-ekl" secondAttribute="leading" id="JVk-O0-wnh"/>
                             <constraint firstItem="FB1-Om-2pJ" firstAttribute="top" secondItem="yTC-fN-ekl" secondAttribute="top" id="Lyl-yb-0dP"/>
                             <constraint firstAttribute="trailing" secondItem="FB1-Om-2pJ" secondAttribute="trailing" id="OJ8-i1-33b"/>
@@ -2479,7 +2487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3H-rP-M5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2825" y="-879"/>
+            <point key="canvasLocation" x="2824.8000000000002" y="-879.31034482758628"/>
         </scene>
         <!--Detail Screen-->
         <scene sceneID="LAN-vM-Xgy">

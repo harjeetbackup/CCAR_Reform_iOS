@@ -12,15 +12,12 @@ import EventKit
 import EventKitUI
 
 
-//import AddCustomEvent
-
 
 //class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 //    @IBOutlet weak var CalendarType: UITableView!
     @IBOutlet weak var btnSwitch: UISwitch!
-    
     @IBOutlet weak var btnMajorHoliday: UIButton!
     @IBOutlet weak var btnMinorHoliday: UIButton!
     @IBOutlet weak var btnRoshHoliday: UIButton!
@@ -64,12 +61,9 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var arrModernHolidays = NSArray()
     var arrCustomEventList = NSArray()
 
-//    var names = ["Major Holiday","Minor Holiday","Rosh Chodesh","Weekly Parshiyot","Sefirat Ha'Omer"]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         btnSwitch .setOn(false, animated: true)
-//       CalendarType.isHidden = true;
     
         event = EKEvent(eventStore: eventStore)
 
@@ -588,7 +582,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 for dicc in itemsToAddInCalender {
                     
                     txtEventName = String (describing: dicc["Subject"]!)
-                    txtStartDate = String (describing: dicc["Start Date"]!)
+                    if let txt = dicc["Start Date"]{
+                        txtStartDate = txt as! String
+                    }else if let txt1 = dicc["Start_Date"]{
+                        txtStartDate = txt1 as! String
+                    }
                     let datevalue = dateFormatter.date(from: txtStartDate)
                     let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
                     
@@ -627,8 +625,8 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                         }
                     }
                 }
+            }
         }
-    }
     
     @IBAction func btnAddCustomEvent(_ sender: UIButton)
     {

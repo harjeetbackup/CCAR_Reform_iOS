@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let drawerController = KYDrawerController(drawerDirection: .right, drawerWidth: 260.0)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        _ = Date.getCurrentYear(Date())
         // Override point for customization after application launch.
         openSettings(true)
        Fabric.with([Crashlytics.self])
