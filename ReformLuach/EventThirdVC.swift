@@ -35,6 +35,10 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
             if let cat = event.category {
                 if cat == "holiday" {
                     return true
+                } else if cat == "roshchodesh" {
+                    return true
+                } else if cat == "omer"{
+                    return true
                 }
             }
             return false
