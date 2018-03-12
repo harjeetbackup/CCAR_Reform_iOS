@@ -65,7 +65,6 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        tableFooterView?.loadMoreTapped(UIButton())
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.parshat
         searchType = EventType.none

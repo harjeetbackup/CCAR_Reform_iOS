@@ -28,7 +28,6 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextFirst(notification:)), name: Notification.Name("NotificationTextFirst"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearFirst(notification:)), name: Notification.Name("NotificationClearFirst"), object: nil)
-        fetchEvents(year: 2017)
     }
     
     override func filterAsPerType() {
@@ -58,7 +57,6 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        tableFooterView?.loadMoreTapped(UIButton())
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.all
         searchType = EventType.none

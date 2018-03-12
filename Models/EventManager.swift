@@ -41,7 +41,7 @@ class EventManager: NSObject {
     func fetchEvents(eventType:EventType,year:Int,_ completion: @escaping(([RLEvent]) -> Void)) {
         setCalenderType()
         
-        if yearLoaded <= year {
+        if yearLoaded < year {
             
             //set this so that it should not go inside again
             yearLoaded = year

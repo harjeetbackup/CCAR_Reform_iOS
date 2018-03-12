@@ -21,6 +21,15 @@ extension String {
     func spellChanged() -> String {
         var name = self;
         name = name.replacingOccurrences(of: "Chanukah: 8th Day", with: "Chanukah 8 Weekday")
+        name = name.replacingOccurrences(of: "", with: "")
+        name = name.replacingOccurrences(of: "", with: "")
+        name = name.replacingOccurrences(of: "", with: "")
+        name = name.replacingOccurrences(of: "", with: "")
+        name = name.replacingOccurrences(of: "", with: "")
+        name = name.replacingOccurrences(of: "", with: "")
+        name = name.replacingOccurrences(of: "", with: "")
+        name = name.replacingOccurrences(of: "", with: "")
+        
         return name
     }
     
