@@ -18,7 +18,6 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
     var  data:[[String:String]] = []
     var  columnTitles:[String] = []
 
-    
     internal var _title : NSString = "Page Zero"
     internal var _setupSubViews:Bool = false
     
