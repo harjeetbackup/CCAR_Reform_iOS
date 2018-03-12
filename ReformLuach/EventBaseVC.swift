@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MBProgressHUD
+
 
 class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
@@ -48,7 +50,9 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func fetchEvents(year: Int) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         EventManager.shared.fetchEvents(eventType: .all, year: year) { (events) in
+            MBProgressHUD.hide(for: self.view, animated: true)
             self.events = events
             self.filterAsPerType();
             self.tblParshiyot.reloadData()
