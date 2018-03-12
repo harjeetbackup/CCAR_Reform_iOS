@@ -473,7 +473,6 @@
                         <outlet property="btnOmerHoliday" destination="o67-It-itc" id="BlT-KW-jRo"/>
                         <outlet property="btnRoshHoliday" destination="A6H-Xp-p6q" id="CIM-uy-xEq"/>
                         <outlet property="btnSpecialShabbatot" destination="yw3-n0-Lhg" id="j1J-cI-pO0"/>
-                        <outlet property="btnSwitch" destination="3vv-EO-wrA" id="2oB-qE-JKW"/>
                         <outlet property="btnWeeklyHoliday" destination="Cdu-Bi-RFU" id="3YF-RT-5Mm"/>
                         <outlet property="buttonView" destination="AT9-rY-KNY" id="UzW-ve-b38"/>
                         <outlet property="srrlView" destination="yXX-Ty-nmQ" id="pAa-Hr-Jpl"/>

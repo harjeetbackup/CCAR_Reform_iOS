@@ -18,6 +18,7 @@
 		6D720365204F0FB300EE68C5 /* RLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720363204F0FB200EE68C5 /* RLEvent.swift */; };
 		6D720366204F0FB300EE68C5 /* Leyning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720364204F0FB300EE68C5 /* Leyning.swift */; };
 		6D720368204F135600EE68C5 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720367204F135600EE68C5 /* EventManager.swift */; };
+		6D7DD8192056B5FF00E7355C /* UIViewController+AlertAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DD8182056B5FE00E7355C /* UIViewController+AlertAdditions.swift */; };
 		6DFB63F9205594780064D3C5 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB63F8205594780064D3C5 /* String+Additions.swift */; };
 		DFC1F9C5F5BC62723F01F7F8 /* Pods_ReformLuach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136CED33E51658820C2CFA39 /* Pods_ReformLuach.framework */; };
 		E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E60975341FC4026900A14BBC /* CHCSVParser.m */; };
@@ -359,6 +360,7 @@
 		6D720363204F0FB200EE68C5 /* RLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLEvent.swift; sourceTree = "<group>"; };
 		6D720364204F0FB300EE68C5 /* Leyning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leyning.swift; sourceTree = "<group>"; };
 		6D720367204F135600EE68C5 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		6D7DD8182056B5FE00E7355C /* UIViewController+AlertAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AlertAdditions.swift"; sourceTree = "<group>"; };
 		6DFB63F8205594780064D3C5 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		B59595497D1E28EBFB87DEFC /* Pods-ReformLuach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReformLuach.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReformLuach/Pods-ReformLuach.release.xcconfig"; sourceTree = "<group>"; };
 		E60974FB1FC3FC9500A14BBC /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
@@ -748,6 +750,7 @@
 			isa = PBXGroup;
 			children = (
 				6DFB63F8205594780064D3C5 /* String+Additions.swift */,
+				6D7DD8182056B5FE00E7355C /* UIViewController+AlertAdditions.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1656,6 +1659,7 @@
 				6D720368204F135600EE68C5 /* EventManager.swift in Sources */,
 				E6FE53AF1F837807008844BE /* GLViewPagerViewController.swift in Sources */,
 				E687009D1F4EA55300CB897D /* SkyFloatingLabelTextField.swift in Sources */,
+				6D7DD8192056B5FF00E7355C /* UIViewController+AlertAdditions.swift in Sources */,
 				E6AB61731F4C6AAC00161250 /* TabBar.swift in Sources */,
 				E68A0D9F1FC03FC800CCBA76 /* EventDataService1.swift in Sources */,
 				E68A0D9D1FC0399E00CCBA76 /* CoreDataStack1.swift in Sources */,

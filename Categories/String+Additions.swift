@@ -64,7 +64,7 @@ extension String {
         name = name.replacingOccurrences(of: "Parashat Nitzavim", with: "N'tzavim")
         name = name.replacingOccurrences(of: "Parashat Shoftim", with: "Shabbat_Shoftim")
         name = name.replacingOccurrences(of: "Parashat Re'eh", with: "Shabbat_Re'eh")
-         name = name.replacingOccurrences(of: "Parashat Eikev", with: "Eikev")
+        name = name.replacingOccurrences(of: "Parashat Eikev", with: "Eikev")
         name = name.replacingOccurrences(of: "Parashat Vayakhel-Pekudei", with: "Vayak'heil/P'kudei")
         name = name.replacingOccurrences(of: "Parashat Ha'Azinu", with: "Shabbat_Ha'azinu")
         name = name.replacingOccurrences(of: "Parashat Chukat", with: "Chukat")
@@ -74,14 +74,14 @@ extension String {
         name = name.replacingOccurrences(of: "Parashat Tazria-Metzora", with: "Tazria/M'tzora")
         name = name.replacingOccurrences(of: "Parashat Achrei Mot-Kedoshim", with: "Acharei Mot/K'doshim")
         name = name.replacingOccurrences(of: "Parashat Korach", with: "Korach")
-         name = name.replacingOccurrences(of: "Parashat Behar-Bechukotai", with: "B'har-B'chukotai")
+        name = name.replacingOccurrences(of: "Parashat Behar-Bechukotai", with: "B'har-B'chukotai")
         name = name.replacingOccurrences(of: "Parashat Nitzavim-Vayeilech", with: "Nitzavim/Vayeilech")
-             name = name.replacingOccurrences(of: "Parashat Matot-Masei", with: "Matot/Mas'ei")
-      
+        name = name.replacingOccurrences(of: "Parashat Matot-Masei", with: "Matot/Mas'ei")
         
-//     ===================  Parishoyot end  ===========================
         
-       
+        //     ===================  Parishoyot end  ===========================
+        
+        
         name = name.replacingOccurrences(of: "Chukat-Balak", with: "Chukat/Balak")
         name = name.replacingOccurrences(of: "Erev Rosh Hashana", with: "Erev_Rosh_Hashanah_Friday")
         name = name.replacingOccurrences(of: "Erev Sukkot", with: "Erev Sukkot Friday")

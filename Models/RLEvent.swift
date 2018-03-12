@@ -19,6 +19,8 @@ public class RLEvent {
 	public var link : String?
 	public var leyning : Leyning?
 	public var title : String?
+    public var subcat : String?
+    public var memo : String?
 
 /**
     Returns an array of models based on given dictionary.
@@ -58,6 +60,8 @@ public class RLEvent {
 		link = dictionary["link"] as? String
 		if (dictionary["leyning"] != nil) { leyning = Leyning(dictionary: dictionary["leyning"] as! NSDictionary) }
 		title = dictionary["title"] as? String
+        subcat = dictionary["subcat"] as? String
+        memo = dictionary["memo"] as? String
 	}
 
 }
