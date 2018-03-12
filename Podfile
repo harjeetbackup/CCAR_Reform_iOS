@@ -14,5 +14,6 @@ target 'ReformLuach' do
 	pod 'Fabric'
 	pod 'Crashlytics'
     pod 'KYDrawerController'
+    pod 'MBProgressHUD'
 end
 

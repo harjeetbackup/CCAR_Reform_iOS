@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "80E82033888E3DE32C283142C11A7962"
+               BlueprintIdentifier = "F6079858CE696DB0CB27036C421C1470"
                BuildableName = "Pods_ReformLuach.framework"
                BlueprintName = "Pods-ReformLuach"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "80E82033888E3DE32C283142C11A7962"
+            BlueprintIdentifier = "F6079858CE696DB0CB27036C421C1470"
             BuildableName = "Pods_ReformLuach.framework"
             BlueprintName = "Pods-ReformLuach"
             ReferencedContainer = "container:Pods.xcodeproj">
