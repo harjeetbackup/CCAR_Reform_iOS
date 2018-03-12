@@ -17,7 +17,7 @@ import EventKitUI
 class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 //    @IBOutlet weak var CalendarType: UITableView!
-    @IBOutlet weak var btnSwitch: UISwitch!
+    @IBOutlet weak var btnSwitch: UIButton!
     @IBOutlet weak var btnMajorHoliday: UIButton!
     @IBOutlet weak var btnMinorHoliday: UIButton!
     @IBOutlet weak var btnRoshHoliday: UIButton!
@@ -63,7 +63,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnSwitch .setOn(false, animated: true)
     
         event = EKEvent(eventStore: eventStore)
 
@@ -456,15 +455,12 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    @IBAction func SyncData(_ sender: UISwitch)
+    @IBAction func SyncData(_ sender: UIButton)
     {
-        if btnSwitch .isOn
-        {
             
            
             if btnMajorHoliday.tag == 201 || btnMinorHoliday.tag == 202 || btnRoshHoliday.tag == 203 || btnWeeklyHoliday.tag == 204 || btnOmerHoliday.tag == 205 || btnSpecialShabbatot.tag == 206 || btnModernHolidays.tag == 207 || btnCustomRepeatedEvents.tag == 208
             {
-               btnSwitch .setOn(true, animated: true)
               self.view.makeToast("Please wait, syncing Calender", duration: 2.0, position: .center, title: "", image: nil, style:.init(), completion: nil)
                 actionAddEvent();
             }
