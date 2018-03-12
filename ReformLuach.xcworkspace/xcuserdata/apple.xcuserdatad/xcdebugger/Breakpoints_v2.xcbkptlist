@@ -10,22 +10,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Categories/String+Additions.swift"
-            timestampString = "542554285.9857301"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "spellChanged()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Categories/String+Additions.swift"
             timestampString = "542554285.987617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -42,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReformLuach/EventBaseVC.swift"
-            timestampString = "542553111.361572"
+            timestampString = "542558146.920419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "52"
@@ -70,16 +54,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReformLuach/CalenderSyncVC.swift"
-            timestampString = "542556429.71235"
+            timestampString = "542558146.9206131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "SyncData(_:)"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            landmarkName = "actionAddEvent()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +74,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ReformLuach/CalenderSyncVC.swift"
-            timestampString = "542556445.933326"
+            timestampString = "542558146.921315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
-            landmarkName = "actionAddEvent()"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
+            landmarkName = "syncWithCalender(itemsToAddInCalender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReformLuach/CalenderSyncVC.swift"
+            timestampString = "542558146.921787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
+            landmarkName = "syncWithCalender(itemsToAddInCalender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

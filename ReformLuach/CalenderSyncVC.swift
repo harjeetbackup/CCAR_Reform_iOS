@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import EventKit
 import EventKitUI
+import MBProgressHUD
 
 class EventListCell: UITableViewCell
 {
@@ -40,7 +41,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBOutlet weak var HeaderImage: UIImageView!
-
+    
     var event: EKEvent!
 
     let eventStore = EKEventStore()
@@ -296,8 +297,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
             if btnMajorHoliday.tag == 201 || btnMinorHoliday.tag == 202 || btnRoshHoliday.tag == 203 || btnWeeklyHoliday.tag == 204 || btnOmerHoliday.tag == 205 || btnSpecialShabbatot.tag == 206 || btnModernHolidays.tag == 207 || btnCustomRepeatedEvents.tag == 208
             {
-                self.view.makeToast("Please wait, syncing Calender", duration: 2.0, position: .center, title: "", image: nil, style:.init(), completion: nil)
-                actionAddEvent();
+                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                hud.label.text = "Dowloading events to device calender"
+                EventManager.shared.fetchEvents(eventType: .all, year: yearCount, {_ in
+                    self.actionAddEvent();
+                })
             }
             else
             {
@@ -445,7 +449,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         var txtStartDate = String()
         var txtEventName = String()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-mm-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         var strGetEventTitle = String()
         var strGetEventDate = Date()
         
@@ -458,8 +462,8 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 txtEventName = dicc.title ?? ""
                 txtStartDate = dicc.date ?? ""
                 
-                let datevalue = dateFormatter.date(from: txtStartDate)
-                let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
+                let datevalue = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
+                let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24*2)
                 
                 let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
                 let events = self.eventStore.events(matching: predicate) as [EKEvent]
@@ -470,7 +474,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     strGetEventTitle = event.title;
                     strGetEventDate = event.startDate;
                 }
-                if strGetEventTitle == txtEventName && strGetEventDate == datevalue
+                if strGetEventTitle == "txtEventName" && strGetEventDate == datevalue
                 {
                     
                 }
@@ -495,6 +499,10 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                         return
                     }
                 }
+            }
+            
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
             }
         }
     }

@@ -24,7 +24,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         tableFooterView = FooterView.footerView()
         self.tableFooterView?.loadDelegate = self as? LoadDelegate
         self.tblParshiyot.tableFooterView = tableFooterView
-        EventManager.shared.fetchEvents(eventType: .all, year: 2017) { (events) in
+        EventManager.shared.fetchEvents(eventType: .all, year: yearCount) { (events) in
             self.events = events
             self.filterAsPerType();
             self.tblParshiyot.reloadData()

@@ -12,7 +12,10 @@ protocol LoadDelegate:NSObjectProtocol {
     func fetchEvents(year:Int)
 }
 
-var yearCount = 2017
+let date = Date()
+let calendar = Calendar.current
+let year = calendar.component(.year, from: date)
+var yearCount = year
 
 class FooterView: UIView {
     var loadDelegate: LoadDelegate?
