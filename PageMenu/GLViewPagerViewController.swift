@@ -158,8 +158,8 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     @objc func SearchBarClear(notification: Notification)
     {
-        mySearchBar.text = ""
-        mySearchBar.text = nil
+//        mySearchBar.text = ""
+//        mySearchBar.text = nil
     }
     
     
