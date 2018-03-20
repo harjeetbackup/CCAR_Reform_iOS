@@ -21,7 +21,12 @@ class customCell: UITableViewCell
     }
     
     func configure() {
-        lblEvntDate.text =  event?.date
-        lblEvntTitle.text = event?.title
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let showDate = inputFormatter.date(from: (event?.date)!)
+        inputFormatter.dateFormat = "MM/dd/yyyy"
+        let resultString = inputFormatter.string(from: showDate!)
+        lblEvntDate.text =  resultString
+        lblEvntTitle.text = event?.title?.spellChangedForTitle()
     }
 }

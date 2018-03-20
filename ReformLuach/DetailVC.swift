@@ -11,6 +11,7 @@ import UIKit
 class DetailVC: UIViewController {
     
     var eventUrl: String?
+    var day : Int?
     @IBOutlet weak var eventDetails: UIWebView!
     
     override func viewDidLoad(){
@@ -27,6 +28,6 @@ class DetailVC: UIViewController {
     }
 
     @IBAction func btnActionBAck(_ sender: UIButton) {
-        self .dismiss(animated: false, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 }
