@@ -32,7 +32,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func loadEvents(){
-
         EventManager.shared.fetchEvents(eventType: .all, year: yearCount) { (events) in
             self.events = events
             self.filterAsPerType();

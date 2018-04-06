@@ -72,11 +72,12 @@ class EventManager: NSObject {
             }
             
         } else {
-            completion(self.events)
+            if self.events.count != 0 {
+                completion(self.events)
+            }
         }
     }
 
-    
     func loadEvents(url: String, completion: @escaping(([RLEvent]) -> Void)) {
         
         Alamofire.request(url, method: .get, parameters:nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
