@@ -277,15 +277,27 @@ extension String {
         name = name.replacingOccurrences(of: "Parashat Chukat-Balak", with: "Parashat Chukat/Balak")
         name = name.replacingOccurrences(of: "Parashat Matot-Masei", with: "Parashat Matot/Mas-ei")
         name = name.replacingOccurrences(of: "Parashat Nitzavim-Vayeilech", with: "Parashat Nitzavim/Vayeilech")
+        name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta’anit Bechorot")
+
 
 //=======================================================================================================
         
-        name = name.replacingOccurrences(of: "Erev Rosh Hashana", with: "Erev Rosh Hashanah Friday")
+//        if name == "Erev Pesach" && day! == 6 {
+//
+//            name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta'anit Bechorot Friday")
+//        }else{
+//
+//            name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta’anit Bechorot")
+//
+//        }
+//
+        
+        
+       // name = name.replacingOccurrences(of: "Erev Rosh Hashana", with: "Erev Rosh Hashanah Friday")
         name = name.replacingOccurrences(of: "Erev Sukkot", with: "Erev Sukkot Friday")
-        name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta'anit Bechorot Friday")
         name = name.replacingOccurrences(of: "Erev Shavuot", with: "Erev Shavuot Friday")
         name = name.replacingOccurrences(of: "Erev Yom Kippur", with: "Erev Yom Kippur Friday")
-        name = name.replacingOccurrences(of: "Pesach VI (CH\'\'M)", with: "Pesach Chol HaMoed Day 5 Friday")
+       // name = name.replacingOccurrences(of: "Pesach VI (CH\'\'M)", with: "Pesach Chol HaMoed Day 5 Friday")
         
 // ================== FRIDAY_TRANSLATIONS ==============================================================
         
@@ -293,7 +305,7 @@ extension String {
         name = name.replacingOccurrences(of: "Tu BiShvat", with: "Tu B'Sh'vat")
         name = name.replacingOccurrences(of: "Tzom Tammuz", with: "Shiva Asar b'Tammuz")
         name = name.replacingOccurrences(of: "Tish'a B'Av", with: "Tisha B'Av")
-        name = name.replacingOccurrences(of: "Erev Tish'a B'Av", with: "Erev Tisha b'Av")
+        name = name.replacingOccurrences(of: "Erev Tisha B\'Av", with: "Erev Tisha b'Av")
         
         name = name.replacingOccurrences(of: "Erev Rosh Hashana", with: "Erev Rosh Hashanah Weekday")
         name = name.replacingOccurrences(of: "Rosh Hashana", with: "Rosh Hashanah 1")
@@ -301,7 +313,6 @@ extension String {
         name = name.replacingOccurrences(of: "Yom HaShoah", with: "Yom HaShoah V'hag'vurah")
         name = name.replacingOccurrences(of: "Yom HaAtzma'ut", with: "Yom Ha'atzma'ut")
         name = name.replacingOccurrences(of: "Lag BaOmer", with: "Lag Ba'Omer")
-        name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta’anit Bechorot")
         name = name.replacingOccurrences(of: "Shmini Atzeret", with: "Sh'mini Atzeret/Simchat Torah")
         name = name.replacingOccurrences(of: "Sukkot II (CH''M)", with: "Sukkot 2 Weekday")
         name = name.replacingOccurrences(of: "Sukkot III (CH''M)", with: "Sukkot 3 Weekday")

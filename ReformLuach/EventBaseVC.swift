@@ -41,6 +41,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]
+        
         return cell
     }
     
@@ -57,7 +58,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     
     func getDayOfWeek(today:String)->Int {
-        
         let formatter  = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let todayDate = formatter.date(from: today)!
