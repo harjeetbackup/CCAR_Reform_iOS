@@ -115,6 +115,10 @@ class SettingVC: UIViewController
             self .dismiss(animated: true, completion: nil)
         }
         
+        
+        EventManager.shared.events.removeAll()
+        EventManager.shared.setCalenderType()
+        EventManager.shared.yearLoaded = 0
         NotificationCenter.default.post(name: NotificationCalenderChange, object: nil)
     }
     

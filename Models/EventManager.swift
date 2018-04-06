@@ -25,7 +25,13 @@ enum EventType {
 var eventType: EventType?
 class EventManager: NSObject {
   
-    static let shared: EventManager = EventManager()
+    static let shared: EventManager = {
+        
+        let obj = EventManager()
+        obj.setCalenderType()
+        return obj
+    }()
+    
     var israelEvents = [RLEvent]()
     var disporaEvents = [RLEvent]()
     var ReformEvents = [RLEvent]()
@@ -39,30 +45,51 @@ class EventManager: NSObject {
     let kDisporaCalenderURL = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=on&min=on&mod=on&nx=on&year=2017&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
     
     func fetchEvents(eventType:EventType,year:Int,_ completion: @escaping(([RLEvent]) -> Void)) {
-        setCalenderType()
         
         if yearLoaded < year {
             
             //set this so that it should not go inside again
             yearLoaded = year
             
-            Alamofire.request(eventUrl(year: year), method: .get, parameters:nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
-                if let json = response.result.value as? [String: Any] {
-                    if let array = json["items"] as? NSArray {
-                        let items = RLEvent.modelsFromDictionaryArray(array:array)
-                        self.events = self.events + items
+            if selectedCalender == .reform {
+                
+                let isrealHolidaysUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=on&maj=on&min=on&mod=on&nx=on&year=\(year)&month=x&ss=on&mf=on&c=off&geo=none&m=50&s=off&o=on"
+                
+               let diasporaTorahUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=off&min=off&mod=off&nx=off&year=\(year)&month=x&ss=off&mf=off&c=off&geo=none&m=50&s=on&o=off"
+                
+                loadEvents(url: isrealHolidaysUrl, completion: { (isrealHolidaysUrlitems) in
+                    self.events = self.events + isrealHolidaysUrlitems
+                    self.loadEvents(url: diasporaTorahUrl, completion: { (diasporaTorahUrlitems) in
+                        self.events = self.events + diasporaTorahUrlitems
                         completion(self.events)
-                    }
-                }
+                    })
+                })
+            } else {
+                self.loadEvents(url: eventUrl(year: year), completion: { (items) in
+                    self.events = self.events + items
+                    completion(self.events)
+                })
             }
+            
         } else {
-            completion(events)
+            completion(self.events)
         }
     }
 
     
-    func setCalenderType() {
+    func loadEvents(url: String, completion: @escaping(([RLEvent]) -> Void)) {
         
+        Alamofire.request(url, method: .get, parameters:nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            if let json = response.result.value as? [String: Any] {
+                if let array = json["items"] as? NSArray {
+                    let items = RLEvent.modelsFromDictionaryArray(array:array)
+                    completion(items)
+                }
+            }
+        }
+    }
+
+    func setCalenderType() {
         let calender = UserDefaults.standard.string(forKey: kSelectedCalender)
         if calender == "ISEARL" {
             selectedCalender = .israel
@@ -73,12 +100,8 @@ class EventManager: NSObject {
         } else {
             selectedCalender = .israel
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(EventManager.calenderChanged), name: NotificationCalenderChange, object: nil)
     }
-    
-    func calenderChanged() {
-    }
+
         
     func eventUrl(year:Int) -> String {
         

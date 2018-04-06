@@ -26,8 +26,6 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextThird(notification:)), name: Notification.Name("NotificationTextThird"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearThird(notification:)), name: Notification.Name("NotificationClearThird"), object: nil)
-        
-        fetchEvents(year: 2017)
     }
     
     override func filterAsPerType() {

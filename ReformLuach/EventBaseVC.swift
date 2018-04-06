@@ -27,6 +27,12 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         tableFooterView = FooterView.footerView()
         self.tableFooterView?.loadDelegate = self as? LoadDelegate
         self.tblParshiyot.tableFooterView = tableFooterView
+        loadEvents()
+        NotificationCenter.default.addObserver(self, selector: #selector(EventBaseVC.loadEvents), name: NotificationCalenderChange, object: nil)
+    }
+    
+    func loadEvents(){
+
         EventManager.shared.fetchEvents(eventType: .all, year: yearCount) { (events) in
             self.events = events
             self.filterAsPerType();
