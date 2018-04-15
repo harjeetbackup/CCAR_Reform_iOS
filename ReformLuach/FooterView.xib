@@ -27,7 +27,7 @@
                         <color key="titleColor" red="0.12549019607843137" green="0.72941176470588232" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="loadMoreTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="M5o-dK-UCQ"/>
+                        <action selector="loadMoreTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="S5w-k3-EmN"/>
                     </connections>
                 </button>
             </subviews>

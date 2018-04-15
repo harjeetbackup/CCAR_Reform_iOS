@@ -28,7 +28,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         tableFooterView = FooterView.footerView()
         self.tableFooterView?.loadMoreDelegate = self
         self.tblParshiyot.tableFooterView = tableFooterView
-        self.tblParshiyot.contentInset.bottom += tableFooterView?.frame.size.height ?? 0
+        self.tblParshiyot.contentInset.bottom += tableFooterView!.frame.size.height
         loadEvents()
         NotificationCenter.default.addObserver(self, selector: #selector(EventBaseVC.newEventsDidLoaded), name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
     }
@@ -41,11 +41,12 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             self.filterAsPerType();
             self.tblParshiyot.reloadData()
             self.scrollToCurrentDate()
+            self.tblParshiyot?.layoutSubviews()
         }
     }
     
     func loadMoreEvents(year: Int) {
-        self.view.showHud("Loading..")
+        self.view.showHud("Loading \(year) events")
         EventManager.shared.fetchEvents(year: year) { (events) in
             self.view.hideHud()
             self.events = events
@@ -53,7 +54,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             self.tblParshiyot.reloadData()
         }
     }
-    
+
     func scrollToCurrentDate() {
             let dateFarmater = DateFormatter()
             dateFarmater.dateFormat = "yyyy-MM-dd"
@@ -92,6 +93,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.filterAsPerType();
         self.scrollToCurrentDate()
     }
     
@@ -102,7 +104,9 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]
-        
+        if filteredEvents.count > 1 && indexPath.row == (filteredEvents.count - 1) {
+            loadMoreEvents(year: EventManager.shared.yearLoaded + 1)
+        }
         return cell
     }
     

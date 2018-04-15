@@ -482,7 +482,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogg-9N-DuD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="-218.1409295352324"/>
+            <point key="canvasLocation" x="812" y="-87"/>
         </scene>
         <!--Add Custom Event-->
         <scene sceneID="dzn-ar-D9j">
@@ -1579,7 +1579,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QN0-Z4-0mW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1533.5999999999999" y="-218.1409295352324"/>
+            <point key="canvasLocation" x="1534" y="-88"/>
         </scene>
         <!--Setting VC-->
         <scene sceneID="6tB-jD-YKT">
@@ -1798,7 +1798,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ged-Iw-2eU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2367" y="-214"/>
+            <point key="canvasLocation" x="2182" y="-123"/>
         </scene>
         <!--Custom Event List-->
         <scene sceneID="ayR-9f-xdz">
@@ -2204,8 +2204,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-Mj-L9x">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="hMU-rJ-er0" customClass="customCell" customModule="ReformLuach" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="56"/>

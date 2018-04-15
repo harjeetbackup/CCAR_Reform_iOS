@@ -13,14 +13,16 @@ let dateFormater = DateFormatter()
 extension EventManager {
     
     func applyReformLogic(events: [RLEvent]) -> [RLEvent] {
-//        var reformEvents = events
-//        let ev = RLEvent.init(dictionary: NSDictionary())
-//        ev?.title = "Prabhu"
-//        reformEvents.insert(ev!, at: 1)
-        
+        self.applyPesachEventLogic(events: events)
+        self.applyShavuotEventLogic(events: events)
+        self.applyAchareiMotEventLogic(events: events)
+        return events
+    }
+    
+    func applyPesachEventLogic(events: [RLEvent]) {
         var pesachEvent: RLEvent? = nil
         var nextWeekDateStr: String? = nil
-        // ------------ Loop ---------------
+        
         for ev in events {
             if let title = ev.title, title == "Pesach VIII" && ev.yomtov == true {
                 pesachEvent = ev
@@ -28,7 +30,14 @@ extension EventManager {
                     dateFormater.dateFormat = "yyyy-MM-dd"
                     if let eventDate = dateFormater.date(from: eventDateStr) {
                         if let nextWeekDate = Calendar.current.date(byAdding: Calendar.Component.day, value: 7, to: eventDate) {
-                            nextWeekDateStr = dateFormater.string(from: nextWeekDate)
+                            
+                            // Checking for Saturday
+                            if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian) {
+                                let weekday = gregorianCalendar.component(.weekday, from: nextWeekDate)
+                                if weekday == 7 { // 7 Means Saturday
+                                    nextWeekDateStr = dateFormater.string(from: nextWeekDate)
+                                }
+                            }
                         }
                     }
                 }
@@ -39,12 +48,78 @@ extension EventManager {
                 let ed = ev.date, let dateToComaper = nextWeekDateStr,
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
-                pEvent.title = "Parashat Shmini"
-                ev.title = "Parashat Shmini II"
+            pEvent.title = "Parashat Shmini"
+            ev.title = "Parashat Shmini II"
             
         }
-        //------------ Loop End ---------------
-        return events
+    }
+    
+    func applyShavuotEventLogic(events: [RLEvent]) {
+        var pesachEvent: RLEvent? = nil
+        var nextWeekDateStr: String? = nil
+        
+        for ev in events {
+            if let title = ev.title, title == "Shavuot II" && ev.yomtov == true {
+                pesachEvent = ev
+                if let eventDateStr = ev.date {
+                    dateFormater.dateFormat = "yyyy-MM-dd"
+                    if let eventDate = dateFormater.date(from: eventDateStr) {
+                        if let nextWeekDate = Calendar.current.date(byAdding: Calendar.Component.day, value: 7, to: eventDate) {
+                            
+                            // Checking for Saturday
+                            if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian) {
+                                let weekday = gregorianCalendar.component(.weekday, from: nextWeekDate)
+                                if weekday == 7 { // 7 Means Saturday
+                                    nextWeekDateStr = dateFormater.string(from: nextWeekDate)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // Next level Check:
+            
+            guard let ed = ev.date, let dateToComaper = nextWeekDateStr,
+                ed == dateToComaper, let pEvent = pesachEvent else { continue }
+            
+            pEvent.title = "Naso I"
+            ev.title = "Naso II"
+        }
+    }
+    
+    func applyAchareiMotEventLogic(events: [RLEvent]) {
+        var pesachEvent: RLEvent? = nil
+        var nextWeekDateStr: String? = nil
+        
+        for ev in events {
+            if let title = ev.title, title == "Pesach VIII" && ev.yomtov == true {
+                pesachEvent = ev
+                if let eventDateStr = ev.date {
+                    dateFormater.dateFormat = "yyyy-MM-dd"
+                    if let eventDate = dateFormater.date(from: eventDateStr) {
+                        if let nextWeekDate = Calendar.current.date(byAdding: Calendar.Component.day, value: 7, to: eventDate) {
+                            
+                            // Checking for Saturday
+                            if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian) {
+                                let weekday = gregorianCalendar.component(.weekday, from: nextWeekDate)
+                                if weekday == 7 { // 7 Means Saturday
+                                    nextWeekDateStr = dateFormater.string(from: nextWeekDate)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // Next level Check:
+            
+            guard let title = ev.title, title == "Parashat Shmini",
+                let ed = ev.date, let dateToComaper = nextWeekDateStr,
+                ed == dateToComaper, let pEvent = pesachEvent else { continue }
+            
+            pEvent.title = "Acharei Mot I"
+            ev.title = "Acharei Mot II"
+            
+        }
     }
 }
 
