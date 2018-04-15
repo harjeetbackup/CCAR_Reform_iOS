@@ -12,7 +12,7 @@ import CSV
 import SwiftyJSON
 import Alamofire
 
-class EventFirstVC: EventBaseVC,LoadDelegate {
+class EventFirstVC: EventBaseVC {
     
     var myNavController: UINavigationController?
     var  data:[[String:String]] = []
@@ -55,11 +55,11 @@ class EventFirstVC: EventBaseVC,LoadDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.all
         searchType = EventType.none
         self.tblParshiyot.reloadData()
+        super.viewWillAppear(animated)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

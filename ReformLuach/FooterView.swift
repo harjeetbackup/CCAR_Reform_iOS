@@ -8,25 +8,18 @@
 
 import UIKit
 
-protocol LoadDelegate:NSObjectProtocol {
-    func fetchEvents(year:Int)
+protocol FooterViewDelegate:NSObjectProtocol {
+    func loadMoreEvents(year:Int)
 }
 
-let date = Date()
-let calendar = Calendar.current
-let year = calendar.component(.year, from: date)
-var yearCount = year
-
 class FooterView: UIView {
-    var loadDelegate: LoadDelegate?
+    var loadMoreDelegate: FooterViewDelegate?
     static func footerView() -> FooterView {
         let view = Bundle.main.loadNibNamed("FooterView", owner: self, options: nil)![0] as! FooterView
         return view
     }
-    
 
     @IBAction func loadMoreTapped(_ sender: UIButton) {
-        yearCount = yearCount + 1
-        loadDelegate?.fetchEvents(year: yearCount)
+        loadMoreDelegate?.loadMoreEvents(year: EventManager.shared.yearLoaded + 1)
     }
 }

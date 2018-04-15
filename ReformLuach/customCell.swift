@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let inputFormatter = DateFormatter()
+
 class customCell: UITableViewCell
 {
 
@@ -21,12 +23,13 @@ class customCell: UITableViewCell
     }
     
     func configure() {
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd"
-        let showDate = inputFormatter.date(from: (event?.date)!)
-        inputFormatter.dateFormat = "MM/dd/yyyy"
-        let resultString = inputFormatter.string(from: showDate!)
-        lblEvntDate.text =  resultString
+        if let eventDate = event?.date {
+            inputFormatter.dateFormat = "yyyy-MM-dd"
+            let showDate = inputFormatter.date(from: eventDate)
+            inputFormatter.dateFormat = "MM/dd/yyyy"
+            let resultString = inputFormatter.string(from: showDate!)
+            lblEvntDate.text =  resultString
+        }
         lblEvntTitle.text = event?.title?.spellChangedForTitle()
     }
 }

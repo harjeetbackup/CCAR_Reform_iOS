@@ -299,7 +299,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             {
                 let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 hud.label.text = "Dowloading events to device calender"
-                EventManager.shared.fetchEvents(eventType: .all, year: yearCount, {_ in
+                EventManager.shared.fetchEvents( year: EventManager.shared.currentYear(), { _ in
                     self.actionAddEvent();
                 })
             }

@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class EventThirdVC: EventBaseVC,LoadDelegate {
+class EventThirdVC: EventBaseVC {
     
     var myNavController: UINavigationController?
     var  data:[[String:String]] = []
@@ -44,11 +44,11 @@ class EventThirdVC: EventBaseVC,LoadDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.holiday
         searchType = EventType.none
         self.tblParshiyot.reloadData()
+        super.viewWillAppear(animated)
     }
     @objc func filterTextThird(notification: Notification)
     {

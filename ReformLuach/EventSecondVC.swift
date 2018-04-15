@@ -11,7 +11,7 @@ import Foundation
 import CSV
 import SwiftyJSON
 
-class EventSecondVC: EventBaseVC,LoadDelegate {
+class EventSecondVC: EventBaseVC {
     
     var myNavController: UINavigationController?    
     var  data:[[String:String]] = []
@@ -45,8 +45,6 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
         let str = notification.object.unsafelyUnwrapped
         let characters = String(describing: str)
         if events.count != 0 {
-
-            
             self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in
                 return (event.title?.contains(characters))!
             })
@@ -64,11 +62,11 @@ class EventSecondVC: EventBaseVC,LoadDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         eventType = EventType.parshat
         searchType = EventType.none
         self.tblParshiyot.reloadData()
+        super.viewWillAppear(animated)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

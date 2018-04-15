@@ -9,7 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 import Foundation
- 
+
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 public class RLEvent {
@@ -21,6 +21,7 @@ public class RLEvent {
 	public var title : String?
     public var subcat : String?
     public var memo : String?
+    public var yomtov = false
 
 /**
     Returns an array of models based on given dictionary.
@@ -62,6 +63,7 @@ public class RLEvent {
 		title = dictionary["title"] as? String
         subcat = dictionary["subcat"] as? String
         memo = dictionary["memo"] as? String
+        yomtov = dictionary["yomtov"] as? Bool ?? false
 	}
 
 }

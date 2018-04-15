@@ -13,12 +13,13 @@
 		189CBEDC20510737004C5D95 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189CBEDB20510737004C5D95 /* FooterView.xib */; };
 		189CBEDE2051089F004C5D95 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CBEDD2051089F004C5D95 /* FooterView.swift */; };
 		189CBEE0205115C3004C5D95 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CBEDF205115C3004C5D95 /* Date.swift */; };
-		18A74F08202B2E0800448349 /* UIView + Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A74F07202B2E0800448349 /* UIView + Addition.swift */; };
 		6D019276204F203B0055EFC5 /* EventBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D019275204F203B0055EFC5 /* EventBaseVC.swift */; };
 		6D720365204F0FB300EE68C5 /* RLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720363204F0FB200EE68C5 /* RLEvent.swift */; };
 		6D720366204F0FB300EE68C5 /* Leyning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720364204F0FB300EE68C5 /* Leyning.swift */; };
 		6D720368204F135600EE68C5 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720367204F135600EE68C5 /* EventManager.swift */; };
 		6D7DD8192056B5FF00E7355C /* UIViewController+AlertAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7DD8182056B5FE00E7355C /* UIViewController+AlertAdditions.swift */; };
+		6DC06CF5208216380087EC7A /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC06CF4208216380087EC7A /* UIView+Additions.swift */; };
+		6DC06CF72082311D0087EC7A /* EventManager+ReformLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC06CF62082311D0087EC7A /* EventManager+ReformLogic.swift */; };
 		6DFB63F9205594780064D3C5 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB63F8205594780064D3C5 /* String+Additions.swift */; };
 		DFC1F9C5F5BC62723F01F7F8 /* Pods_ReformLuach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136CED33E51658820C2CFA39 /* Pods_ReformLuach.framework */; };
 		E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E60975341FC4026900A14BBC /* CHCSVParser.m */; };
@@ -354,13 +355,14 @@
 		189CBEDB20510737004C5D95 /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
 		189CBEDD2051089F004C5D95 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		189CBEDF205115C3004C5D95 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		18A74F07202B2E0800448349 /* UIView + Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Addition.swift"; sourceTree = "<group>"; };
 		4320001A992EE7D92470BBF4 /* Pods_ReformLuachUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReformLuachUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D019275204F203B0055EFC5 /* EventBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBaseVC.swift; sourceTree = "<group>"; };
 		6D720363204F0FB200EE68C5 /* RLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLEvent.swift; sourceTree = "<group>"; };
 		6D720364204F0FB300EE68C5 /* Leyning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leyning.swift; sourceTree = "<group>"; };
 		6D720367204F135600EE68C5 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		6D7DD8182056B5FE00E7355C /* UIViewController+AlertAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+AlertAdditions.swift"; sourceTree = "<group>"; };
+		6DC06CF4208216380087EC7A /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		6DC06CF62082311D0087EC7A /* EventManager+ReformLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventManager+ReformLogic.swift"; sourceTree = "<group>"; };
 		6DFB63F8205594780064D3C5 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		B59595497D1E28EBFB87DEFC /* Pods-ReformLuach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReformLuach.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReformLuach/Pods-ReformLuach.release.xcconfig"; sourceTree = "<group>"; };
 		E60974FB1FC3FC9500A14BBC /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
@@ -705,7 +707,6 @@
 		18A74F06202B2D0E00448349 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				18A74F07202B2E0800448349 /* UIView + Addition.swift */,
 				189CBEDF205115C3004C5D95 /* Date.swift */,
 			);
 			path = Extension;
@@ -742,6 +743,7 @@
 				6D720363204F0FB200EE68C5 /* RLEvent.swift */,
 				6D720364204F0FB300EE68C5 /* Leyning.swift */,
 				6D720367204F135600EE68C5 /* EventManager.swift */,
+				6DC06CF62082311D0087EC7A /* EventManager+ReformLogic.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -749,6 +751,7 @@
 		6DFB63F72055945F0064D3C5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				6DC06CF4208216380087EC7A /* UIView+Additions.swift */,
 				6DFB63F8205594780064D3C5 /* String+Additions.swift */,
 				6D7DD8182056B5FE00E7355C /* UIViewController+AlertAdditions.swift */,
 			);
@@ -1619,7 +1622,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 93c02ff1dfacbe6f940df58bc495e746f8ea3848 01a01204c7a87abca055f98ed7c10b6178bf491927b0453da36b5115187a7cdc";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 956b994af50d54bc7b2728a79c4dbae09edbeefc b5cfcbc476582b34f3f4b1ae33ac1bbf56e765bea90069edbfb44b39c73027ee";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1632,6 +1635,7 @@
 				E687009E1F4EA55300CB897D /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				E6FE53B11F8379A6008844BE /* EventFirstVC.swift in Sources */,
 				E6FE53B51F837A31008844BE /* EventThirdVC.swift in Sources */,
+				6DC06CF5208216380087EC7A /* UIView+Additions.swift in Sources */,
 				E6AB61261F4C69EB00161250 /* Event.swift in Sources */,
 				E63224B51FD0426D00C6BB38 /* DetailVC.swift in Sources */,
 				E63523E61FBF10C700EE6E6C /* CustomEventList.swift in Sources */,
@@ -1639,7 +1643,6 @@
 				E68A0D711FC013D700CCBA76 /* customData.xcdatamodeld in Sources */,
 				1862887320275D0C003047F0 /* Utils.swift in Sources */,
 				E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */,
-				18A74F08202B2E0800448349 /* UIView + Addition.swift in Sources */,
 				E64786A51FF691DD00D1B734 /* NewAddCustomEventsVC.swift in Sources */,
 				E6526EA51F4D96C500E970AB /* CalenderSyncVC.swift in Sources */,
 				6D720365204F0FB300EE68C5 /* RLEvent.swift in Sources */,
@@ -1665,6 +1668,7 @@
 				E68A0D9D1FC0399E00CCBA76 /* CoreDataStack1.swift in Sources */,
 				E6526EA31F4D5ADD00E970AB /* ShareObject.swift in Sources */,
 				6D720366204F0FB300EE68C5 /* Leyning.swift in Sources */,
+				6DC06CF72082311D0087EC7A /* EventManager+ReformLogic.swift in Sources */,
 				E6A1F60A1FBB02BF00C070CB /* AddCustomEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

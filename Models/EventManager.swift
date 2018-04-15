@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 let NotificationCalenderChange = NSNotification.Name.init("NotificationCalenderChange")
-
+let NotificationCalenderChangeNewEventsDidLoaded = NSNotification.Name.init("NotificationCalenderChangeNewEventsDidLoaded")
 enum CalenderType {
     case israel;
     case dispora;
@@ -23,18 +23,16 @@ enum EventType {
     case none;
 }
 var eventType: EventType?
+
 class EventManager: NSObject {
   
     static let shared: EventManager = {
-        
         let obj = EventManager()
         obj.setCalenderType()
+        NotificationCenter.default.addObserver(obj, selector: #selector(EventManager.calenderDidChange), name: NotificationCalenderChange, object: nil)
         return obj
     }()
-    
-    var israelEvents = [RLEvent]()
-    var disporaEvents = [RLEvent]()
-    var ReformEvents = [RLEvent]()
+
     var events = [RLEvent]()
     var selectedCalender : CalenderType = .reform
     var yearLoaded = 0
@@ -44,7 +42,7 @@ class EventManager: NSObject {
     
     let kDisporaCalenderURL = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=on&min=on&mod=on&nx=on&year=2017&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
     
-    func fetchEvents(eventType:EventType,year:Int,_ completion: @escaping(([RLEvent]) -> Void)) {
+    func fetchEvents(year:Int, _ completion: @escaping(([RLEvent]) -> Void)) {
         
         if yearLoaded < year {
             
@@ -58,11 +56,17 @@ class EventManager: NSObject {
                let diasporaTorahUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=off&min=off&mod=off&nx=off&year=\(year)&month=x&ss=off&mf=off&c=off&geo=none&m=50&s=on&o=off"
                 
                 loadEvents(url: isrealHolidaysUrl, completion: { (isrealHolidaysUrlitems) in
-                    self.events = self.events + isrealHolidaysUrlitems
+                    
+                    self.events = self.events + self.applyReformLogic(events: isrealHolidaysUrlitems)
                     self.loadEvents(url: diasporaTorahUrl, completion: { (diasporaTorahUrlitems) in
-                        self.events = self.events + diasporaTorahUrlitems
+                        self.events = self.events + self.applyReformLogic(events: diasporaTorahUrlitems)
                         completion(self.events)
                     })
+                })
+            } else if selectedCalender == .dispora {
+                self.loadEvents(url: eventUrl(year: year), completion: { (items) in
+                    self.events = self.events + items
+                    completion(self.events)
                 })
             } else {
                 self.loadEvents(url: eventUrl(year: year), completion: { (items) in
@@ -72,9 +76,7 @@ class EventManager: NSObject {
             }
             
         } else {
-            if self.events.count != 0 {
-                completion(self.events)
-            }
+            completion(self.events)
         }
     }
 
@@ -87,6 +89,15 @@ class EventManager: NSObject {
                     completion(items)
                 }
             }
+        }
+    }
+    
+    func calenderDidChange() {
+        EventManager.shared.events.removeAll()
+        EventManager.shared.setCalenderType()
+        EventManager.shared.yearLoaded = 0
+        self.fetchEvents(year: currentYear()) { _ in
+            NotificationCenter.default.post(name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
         }
     }
 
@@ -115,7 +126,11 @@ class EventManager: NSObject {
         }
         // TODO: Need to work on this
         return "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=on&maj=on&min=on&mod=on&nx=on&year=" + showYear + "&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
-        
     }
-
+    
+    func currentYear() -> Int {
+        let date = Date()
+        let calendar = Calendar.current
+        return calendar.component(.year, from: date)
+    }
 }
