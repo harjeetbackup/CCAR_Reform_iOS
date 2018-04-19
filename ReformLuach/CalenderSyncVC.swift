@@ -534,8 +534,9 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.backgroundColor = UIColor.clear
         
         let dicc = arrCustomEventList[indexPath.row] as! [String : Any]
-        
-        cell.lblTitle.text = String (describing: dicc["eventTitle"]!)
+        if let title = dicc["eventTitle"] as? String {
+            cell.lblTitle.text = title
+        }
         cell.btnCross.tag = indexPath.row
         cell.btnCross.setImage(UIImage(named: "cross") , for: UIControlState.normal)
         cell.btnCross.isUserInteractionEnabled = true
