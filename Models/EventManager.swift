@@ -55,12 +55,26 @@ class EventManager: NSObject {
                 
                let diasporaTorahUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=off&min=off&mod=off&nx=off&year=\(year)&month=x&ss=off&mf=off&c=off&geo=none&m=50&s=on&o=off"
                 
+                let diasporaTorahSpecialUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=on&min=off&mod=off&nx=off&year=\(year)&month=x&ss=off&mf=off&c=off&geo=none&m=0&s=off&o=off"
+                
                 loadEvents(url: isrealHolidaysUrl, completion: { (isrealHolidaysUrlitems) in
                     
-                    self.events = self.events + self.applyReformLogic(events: isrealHolidaysUrlitems)
+                    var currentYearEvents = isrealHolidaysUrlitems
                     self.loadEvents(url: diasporaTorahUrl, completion: { (diasporaTorahUrlitems) in
-                        self.events = self.events + self.applyReformLogic(events: diasporaTorahUrlitems)
-                        completion(self.events)
+                        let dEvents = diasporaTorahUrlitems
+                        currentYearEvents = currentYearEvents + diasporaTorahUrlitems
+                        
+                        self.loadEvents(url: diasporaTorahSpecialUrl, completion: { (specialItems) in
+                            
+                            var specialDiasporaEvents =  specialItems + dEvents
+                            // Sort
+                            specialDiasporaEvents = self.sortedCurrentYearEvents(specialDiasporaEvents)
+                            
+                            currentYearEvents = currentYearEvents + self.applyReformLogic(events: specialDiasporaEvents);
+                            currentYearEvents = self.sortedCurrentYearEvents(currentYearEvents)
+                            self.events = self.events + currentYearEvents
+                            completion(self.events)
+                        })
                     })
                 })
             } else if selectedCalender == .dispora {
@@ -78,6 +92,25 @@ class EventManager: NSObject {
         } else {
             completion(self.events)
         }
+    }
+    
+    func sortedCurrentYearEvents(_ events:[RLEvent]) -> [RLEvent] {
+        let currentYearEvents = events.sorted { (ev1, ev2) -> Bool in
+            
+            if let date1Str = ev1.date, let date2Str = ev2.date {
+                dateFormater.dateFormat = "yyyy-MM-dd"
+                if let date1 = dateFormater.date(from: date1Str), let date2 = dateFormater.date(from: date2Str) {
+                    if date1.compare(date2) != .orderedDescending {
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+            }
+            return false
+        }
+        
+        return currentYearEvents
     }
 
     func loadEvents(url: String, completion: @escaping(([RLEvent]) -> Void)) {

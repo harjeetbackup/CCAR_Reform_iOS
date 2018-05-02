@@ -13,17 +13,20 @@ let dateFormater = DateFormatter()
 extension EventManager {
     
     func applyReformLogic(events: [RLEvent]) -> [RLEvent] {
-        self.applyPesachEventLogic(events: events)
-        self.applyShavuotEventLogic(events: events)
-        self.applyAchareiMotEventLogic(events: events)
-        return events
+        var specialEvents = [RLEvent]()
+        specialEvents = specialEvents + self.applyPesachEventLogic(events: events)
+        specialEvents = specialEvents + self.applyShavuotEventLogic(events: events)
+        specialEvents = specialEvents + self.applyAchareiMotEventLogic(events: events)
+        return specialEvents
     }
     
-    func applyPesachEventLogic(events: [RLEvent]) {
+    func applyPesachEventLogic(events: [RLEvent]) -> [RLEvent] {
+        var specialEvents = [RLEvent]()
         var pesachEvent: RLEvent? = nil
         var nextWeekDateStr: String? = nil
         
         for ev in events {
+            print(ev.title ?? "nil")
             if let title = ev.title, title == "Pesach VIII" && ev.yomtov == true {
                 pesachEvent = ev
                 if let eventDateStr = ev.date {
@@ -48,13 +51,15 @@ extension EventManager {
                 let ed = ev.date, let dateToComaper = nextWeekDateStr,
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
-            pEvent.title = "Parashat Shmini"
+            pEvent.title = "Parashat Shmini I"
             ev.title = "Parashat Shmini II"
-            
+            specialEvents.append(pEvent)
         }
+        return specialEvents
     }
     
-    func applyShavuotEventLogic(events: [RLEvent]) {
+    func applyShavuotEventLogic(events: [RLEvent])  -> [RLEvent] {
+        var specialEvents = [RLEvent]()
         var pesachEvent: RLEvent? = nil
         var nextWeekDateStr: String? = nil
         
@@ -84,10 +89,13 @@ extension EventManager {
             
             pEvent.title = "Naso I"
             ev.title = "Naso II"
+            specialEvents.append(pEvent)
         }
+        return specialEvents
     }
     
-    func applyAchareiMotEventLogic(events: [RLEvent]) {
+    func applyAchareiMotEventLogic(events: [RLEvent]) -> [RLEvent]  {
+        var specialEvents = [RLEvent]()
         var pesachEvent: RLEvent? = nil
         var nextWeekDateStr: String? = nil
         
@@ -112,14 +120,15 @@ extension EventManager {
             }
             // Next level Check:
             
-            guard let title = ev.title, title == "Parashat Shmini",
+            guard let title = ev.title, title == "Parashat Achrei Mot",
                 let ed = ev.date, let dateToComaper = nextWeekDateStr,
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
-            pEvent.title = "Acharei Mot I"
-            ev.title = "Acharei Mot II"
-            
+            pEvent.title = "Parashat Achrei Mot I"
+            ev.title = "Parashat Achrei Mot II"
+            specialEvents.append(pEvent)
         }
+        return specialEvents
     }
 }
 
