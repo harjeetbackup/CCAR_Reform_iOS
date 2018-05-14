@@ -119,7 +119,7 @@
 		E610FD831FD9638E00495DA6 /* Yom_Yerushalayim.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCE81FD9635700495DA6 /* Yom_Yerushalayim.html */; };
 		E610FD841FD9638E00495DA6 /* Pesach_Chol_Hamoed_Day_5_Weekday.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCE91FD9635800495DA6 /* Pesach_Chol_Hamoed_Day_5_Weekday.html */; };
 		E610FD851FD9638E00495DA6 /* Purim.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCEA1FD9635900495DA6 /* Purim.html */; };
-		E610FD861FD9638E00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Saturday.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCEB1FD9635A00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Saturday.html */; };
+		E610FD861FD9638E00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCEB1FD9635A00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Shabbat.html */; };
 		E610FD871FD9638E00495DA6 /* Shabbat_Toldot.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCEC1FD9635A00495DA6 /* Shabbat_Toldot.html */; };
 		E610FD881FD9638E00495DA6 /* Rosh_Hashanah_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCED1FD9635B00495DA6 /* Rosh_Hashanah_1.html */; };
 		E610FD891FD9638E00495DA6 /* Shabbat_Ha'azinu-Shabbat_Shuva.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FCEE1FD9635C00495DA6 /* Shabbat_Ha'azinu-Shabbat_Shuva.html */; };
@@ -469,7 +469,7 @@
 		E610FCE81FD9635700495DA6 /* Yom_Yerushalayim.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Yom_Yerushalayim.html; sourceTree = "<group>"; };
 		E610FCE91FD9635800495DA6 /* Pesach_Chol_Hamoed_Day_5_Weekday.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Pesach_Chol_Hamoed_Day_5_Weekday.html; sourceTree = "<group>"; };
 		E610FCEA1FD9635900495DA6 /* Purim.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Purim.html; sourceTree = "<group>"; };
-		E610FCEB1FD9635A00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Saturday.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Shabbat_Chol_Hamoed_Sukkot_Saturday.html; sourceTree = "<group>"; };
+		E610FCEB1FD9635A00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Shabbat.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Shabbat_Chol_Hamoed_Sukkot_Shabbat.html; sourceTree = "<group>"; };
 		E610FCEC1FD9635A00495DA6 /* Shabbat_Toldot.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Shabbat_Toldot.html; sourceTree = "<group>"; };
 		E610FCED1FD9635B00495DA6 /* Rosh_Hashanah_1.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Rosh_Hashanah_1.html; sourceTree = "<group>"; };
 		E610FCEE1FD9635C00495DA6 /* Shabbat_Ha'azinu-Shabbat_Shuva.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "Shabbat_Ha'azinu-Shabbat_Shuva.html"; sourceTree = "<group>"; };
@@ -1010,7 +1010,7 @@
 				E610FD1D1FD9638000495DA6 /* Shabbat_Chayei_Sara.html */,
 				E610FCDE1FD9635000495DA6 /* Shabbat_Chol_HaMoed_Pesach.html */,
 				E610FCB51FD9633100495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Friday.html */,
-				E610FCEB1FD9635A00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Saturday.html */,
+				E610FCEB1FD9635A00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Shabbat.html */,
 				E610FC9C1FD9631E00495DA6 /* Shabbat_Chukat-Balak.html */,
 				E610FCA01FD9632100495DA6 /* Shabbat_Chukat.html */,
 				E610FD221FD9638400495DA6 /* Shabbat_D'varim-Shabbat_Chazon.html */,
@@ -1419,7 +1419,7 @@
 				E610FD831FD9638E00495DA6 /* Yom_Yerushalayim.html in Resources */,
 				E610FD841FD9638E00495DA6 /* Pesach_Chol_Hamoed_Day_5_Weekday.html in Resources */,
 				E610FD851FD9638E00495DA6 /* Purim.html in Resources */,
-				E610FD861FD9638E00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Saturday.html in Resources */,
+				E610FD861FD9638E00495DA6 /* Shabbat_Chol_Hamoed_Sukkot_Shabbat.html in Resources */,
 				E610FD871FD9638E00495DA6 /* Shabbat_Toldot.html in Resources */,
 				E610FD881FD9638E00495DA6 /* Rosh_Hashanah_1.html in Resources */,
 				E610FD891FD9638E00495DA6 /* Shabbat_Ha'azinu-Shabbat_Shuva.html in Resources */,

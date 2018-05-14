@@ -46,7 +46,7 @@ class EventSecondVC: EventBaseVC {
         let characters = String(describing: str)
         if events.count != 0 {
             self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in
-                return (event.title?.contains(characters))!
+                return (event.spellChangedTitle?.contains(characters))!
             })
             searchType = EventType.parshat
             self.tblParshiyot.reloadData()

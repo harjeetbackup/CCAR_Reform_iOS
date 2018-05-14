@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         openSettings(true)
        Fabric.with([Crashlytics.self])
-            
 
         if UserDefaults.standard.object(forKey: "CCTYPE") != nil
         {

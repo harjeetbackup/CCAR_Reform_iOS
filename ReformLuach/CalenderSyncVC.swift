@@ -452,9 +452,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         dateFormatter.dateFormat = "yyyy-MM-dd"
         var strGetEventTitle = String()
         var strGetEventDate = Date()
-        
-        
-        
+
         DispatchQueue.global(qos: .background).async {
             
             for dicc in itemsToAddInCalender {
@@ -462,10 +460,14 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 txtEventName = dicc.title ?? ""
                 txtStartDate = dicc.date ?? ""
                 
-                let datevalue = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24)
-                let datevalue1 = dateFormatter.date(from: txtStartDate)?.addingTimeInterval(60*60*24*2)
+                txtEventName = txtEventName.spellChangedForTitle()
                 
-                let predicate = self.eventStore.predicateForEvents(withStart: datevalue!, end: datevalue1!, calendars: self.calendars)
+                guard let datevalue = dateFormatter.date(from: txtStartDate),
+                    let datevalue1 = dateFormatter.date(from: txtStartDate) else {
+                    continue
+                }
+                
+                let predicate = self.eventStore.predicateForEvents(withStart: datevalue, end: datevalue1, calendars: self.calendars)
                 let events = self.eventStore.events(matching: predicate) as [EKEvent]
                 
                 print("Events: \(events)")
@@ -483,8 +485,8 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     let event:EKEvent = EKEvent(eventStore: self.eventStore)
                     event.title = txtEventName
                     event.isAllDay = true
-                    event.startDate = datevalue!
-                    event.endDate = datevalue1!
+                    event.startDate = datevalue
+                    event.endDate = datevalue1
                     if let description = dicc.memo {
                         event.notes = description
                     }

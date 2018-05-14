@@ -38,7 +38,8 @@ class SettingVC: UIViewController
     
     @IBAction func btnActionBAck(_ sender: UIButton)
     {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        //self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLayoutSubviews()
@@ -94,7 +95,6 @@ class SettingVC: UIViewController
             btnReform.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
             btnIsreal.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
             btnDiaspora.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
-            self .dismiss(animated: true, completion: nil)
         }
         else if sender.tag == 502
         {
@@ -103,7 +103,6 @@ class SettingVC: UIViewController
             btnReform.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
             btnIsreal.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
             btnDiaspora.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
-            self .dismiss(animated: true, completion: nil)
         }
         else if sender.tag == 503
         {
@@ -112,7 +111,6 @@ class SettingVC: UIViewController
             btnReform.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
             btnIsreal.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
             btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
-            self .dismiss(animated: true, completion: nil)
         }
         
         UserDefaults.standard.synchronize()

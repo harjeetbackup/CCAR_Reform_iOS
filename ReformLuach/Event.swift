@@ -22,21 +22,10 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
     var controller1: EventFirstVC?
     var controller2: EventSecondVC?
     var controller3: EventThirdVC?
-
-    var vvv : GLViewPagerViewController!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-      
-//        let button = UIButton(type: .roundedRect)
-//        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
-//        button.setTitle("Crash", for: [])
-//        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
-//        view.addSubview(button)
- 
 
         self.navigationItem.title = "Paged Tabs"
         self.setDataSource(newDataSource: self)
@@ -59,12 +48,13 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
             controller2 = mainStoryboard.instantiateViewController(withIdentifier: "EventSecondVC") as? EventSecondVC
             controller3 = mainStoryboard.instantiateViewController(withIdentifier: "EventThirdVC") as? EventThirdVC
         }
+        
         controller1?.myNavController = navigationController
-        
+        controller1?.pagerViewController = self;
         controller2?.myNavController = navigationController
-        
+        controller2?.pagerViewController = self;
         controller3?.myNavController = navigationController
-
+        controller3?.pagerViewController = self;
         
         self.viewControllers =
             [

@@ -20,6 +20,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     var tableFooterView: FooterView?
     var searchType:EventType?
     var isScrolledToCurrentDate = false
+    var pagerViewController: GLViewPagerViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +95,10 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.filterAsPerType();
-        self.scrollToCurrentDate()
+        self.pagerViewController?.mySearchBar.text = ""
+        searchType = EventType.none
+        NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
+        self.tblParshiyot.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,7 +108,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]
-        if filteredEvents.count > 1 && indexPath.row == (filteredEvents.count - 1) {
+        if filteredEvents.count > 1 && indexPath.row == (filteredEvents.count - 1) && searchType == EventType.none {
             loadMoreEvents(year: EventManager.shared.yearLoaded + 1)
         }
         return cell

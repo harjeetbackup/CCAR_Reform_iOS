@@ -106,7 +106,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     internal var contentViewControllers:[UIViewController] = []
     internal var contentViews:[UIView] = []
     internal var tabViews:[UIView] = []
-    private var mySearchBar: UISearchBar!
+    public var mySearchBar: UISearchBar!
     
     // MARK: - const
     let  kTabTagBegin:Int = 0xA0
@@ -197,14 +197,22 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         subbView.addSubview(imageView)
         
         //        let Heb_day:UILabel = UILabel.init()
-        Heb_day.frame = CGRect(x:0, y:IS_IPAD ? 40 : 35, width:self.view.frame.width, height:IS_IPAD ? 70 : 45);
-        
+        Heb_day.frame = CGRect(x:40, y:IS_IPAD ? 40 : 35, width:self.view.frame.width - 80, height:IS_IPAD ? 70 : 45);
         let strHoliday = UserDefaults.standard.string(forKey: "CurrentHoliday")
         Heb_day.text = strHoliday
         Heb_day.textAlignment = NSTextAlignment.center
         Heb_day.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 55.0 : 35.0)
         Heb_day.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Heb_day)
+        
+        var frame = Heb_day.frame;
+        frame.origin.x = self.view.frame.width - 40;
+        frame.size.width = 40;
+        frame.size.height = 40;
+        let button = UIButton.init(frame: frame)
+        button.setImage(#imageLiteral(resourceName: "settings"), for: .normal)
+        button.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
+        self.view.addSubview(button)
         
         //        let Heb_Year:UILabel = UILabel.init()
         Heb_Year.frame = CGRect(x:0, y:Heb_day.frame.origin.y + Heb_day.frame.size.height, width:self.view.frame.width/2-10, height:IS_IPAD ? 50 : 40);
@@ -279,8 +287,12 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         subbView.addSubview(mySearchBar)
         mySearchBar.bringSubview(toFront: imageView)
         
-        
-        
+    }
+    
+    func settingsTapped(){
+        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
+        let settingViewController: SettingVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
+        self.present(settingViewController, animated: true, completion: nil)
     }
     
     

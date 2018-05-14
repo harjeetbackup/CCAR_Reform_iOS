@@ -122,14 +122,7 @@ class Today: UIViewController {
                     let str2  = String (describing: dic["hy"]!)
                     self.lblDate?.text = str
                     self.lblMonth?.text = str1
-              //      ============================
 
-//                    if str1 == "Shemot"{
-//                         self.lblMonth?.text = "Sh'mot"
-//                    }else {
-//                        self.lblMonth?.text = str1
-//                    }
-            //      ============================
 
                     
                     self.lblYear?.text = str2
@@ -146,7 +139,7 @@ class Today: UIViewController {
                         }
                         self.lblday?.text = arrEvent[0]//
                     }
-    
+                    self.lblday?.text = self.lblday?.text?.spellChangedForTitle()
                     let strdd = (self.lblYear?.text!)
                     let strHH = String(self.strYear)
                     
@@ -332,31 +325,8 @@ class Today: UIViewController {
         strYear = calendar.component(.year, from: date)
         strMonth = calendar.component(.month, from: date)
         strDate = calendar.component(.day, from: date)
-        
-        
-//        dayView?.layer.cornerRadius = (dayView?.frame.size.height)!/2;
-//        dayView?.layer.borderColor = UIColor.white.cgColor;
-//        dayView?.layer.borderWidth = 1;
-//        dayView?.layer.masksToBounds = true;
-        
-//        lblDate?.layer.cornerRadius = (lblDate?.frame.size.height)!/2;
-//        lblDate?.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8324027032);
-//        lblDate?.layer.borderWidth = 3;
-//        lblDate?.layer.masksToBounds = true;
-        
-//        let format1 = DateFormatter()
-//        format1.timeZone = NSTimeZone(name: "he_IL") as TimeZone!
-//        format1.dateFormat = "dd MMM, yyyy HH:mm"
-//        let stringDate: String = format1.string(from: Date())
-//        print("defaultDate: \(stringDate)")
-//        
-//        print("\(NSTimeZone.abbreviationDictionary)")
-       
-       
-        
+
         loaddata()
-       
-//        let strHoliday = UserDefaults.standard.string(forKey: "monthImageNo")
     }
     
     
@@ -387,10 +357,7 @@ class Today: UIViewController {
     override func  viewWillLayoutSubviews()
     {
         super.viewWillLayoutSubviews()
-//        dayView?.layer.cornerRadius = (dayView?.frame.size.height)!/2;
-//        dayView?.layer.borderColor = UIColor.white.cgColor;
-//        dayView?.layer.borderWidth = 1;
-//        dayView?.layer.masksToBounds = true;
+
         lblDate?.layer.cornerRadius = (lblDate?.frame.size.height)!/2;
         lblDate?.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8324027032);
         lblDate?.layer.borderWidth = 3;
@@ -408,12 +375,5 @@ class Today: UIViewController {
         
         myBackGraound(strmonth: strMonth)
     }
-//    func myLayouy()
-//    {
-//        dayView?.layer.cornerRadius = (dayView?.frame.size.height)!/2;
-//        dayView?.layer.borderColor = UIColor.white.cgColor;
-//        dayView?.layer.borderWidth = 1;
-//        dayView?.layer.masksToBounds = true;
-//    }
 }
 

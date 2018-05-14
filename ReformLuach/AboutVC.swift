@@ -141,10 +141,7 @@ class AboutVC: UIViewController, UIScrollViewDelegate
     
     @IBAction func btnActionSetting(_ sender: UIButton)
     {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-        let settingViewController: SettingVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
-       //AppDelegate.shared().drawerController.setDrawerState(.opened, animated: false)
-     self.navigationController?.pushViewController(settingViewController, animated: true)
+
    
     }
 
