@@ -24,7 +24,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tblParshiyot.estimatedRowHeight = 60.0
+        tblParshiyot.estimatedRowHeight = 100.0
         tblParshiyot.rowHeight = UITableViewAutomaticDimension
         tableFooterView = FooterView.footerView()
         self.tableFooterView?.loadMoreDelegate = self
@@ -32,6 +32,9 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.tblParshiyot.contentInset.bottom += tableFooterView!.frame.size.height
         loadEvents()
         NotificationCenter.default.addObserver(self, selector: #selector(EventBaseVC.newEventsDidLoaded), name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
+        
+        let nib = UINib.init(nibName: "CustomCell", bundle: nil)
+        self.tblParshiyot.register(nib, forCellReuseIdentifier: "CustomCell")
     }
     
     func loadEvents() {
@@ -106,7 +109,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]
         if filteredEvents.count > 1 && indexPath.row == (filteredEvents.count - 1) && searchType == EventType.none {
             loadMoreEvents(year: EventManager.shared.yearLoaded + 1)

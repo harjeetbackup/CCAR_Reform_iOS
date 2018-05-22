@@ -14,6 +14,7 @@
 		189CBEDE2051089F004C5D95 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CBEDD2051089F004C5D95 /* FooterView.swift */; };
 		189CBEE0205115C3004C5D95 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189CBEDF205115C3004C5D95 /* Date.swift */; };
 		6D019276204F203B0055EFC5 /* EventBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D019275204F203B0055EFC5 /* EventBaseVC.swift */; };
+		6D263DA220AC8CE500FE8819 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D263DA120AC8CE500FE8819 /* CustomCell.xib */; };
 		6D720365204F0FB300EE68C5 /* RLEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720363204F0FB200EE68C5 /* RLEvent.swift */; };
 		6D720366204F0FB300EE68C5 /* Leyning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720364204F0FB300EE68C5 /* Leyning.swift */; };
 		6D720368204F135600EE68C5 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D720367204F135600EE68C5 /* EventManager.swift */; };
@@ -357,6 +358,7 @@
 		189CBEDF205115C3004C5D95 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4320001A992EE7D92470BBF4 /* Pods_ReformLuachUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReformLuachUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D019275204F203B0055EFC5 /* EventBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBaseVC.swift; sourceTree = "<group>"; };
+		6D263DA120AC8CE500FE8819 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		6D720363204F0FB200EE68C5 /* RLEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLEvent.swift; sourceTree = "<group>"; };
 		6D720364204F0FB300EE68C5 /* Leyning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leyning.swift; sourceTree = "<group>"; };
 		6D720367204F135600EE68C5 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
@@ -851,6 +853,7 @@
 				E6526EA81F4D971600E970AB /* AboutVC.swift */,
 				E63523E31FBEEE8B00EE6E6C /* SettingVC.swift */,
 				E63B180B1FB1C53900793CA7 /* customCell.swift */,
+				6D263DA120AC8CE500FE8819 /* CustomCell.xib */,
 				E63224B41FD0426D00C6BB38 /* DetailVC.swift */,
 				E66A86AC1FDBB8F600E5B988 /* DetailViewFromTodayVC.swift */,
 				E6B12FFE1FD7D8EF00A763D7 /* Toast.swift */,
@@ -1399,6 +1402,7 @@
 				E610FD6F1FD9638E00495DA6 /* Pesach_Chol_Hamoed_Day_3.html in Resources */,
 				E610FD701FD9638E00495DA6 /* Yom_Ha'atzma'ut.html in Resources */,
 				E610FD711FD9638E00495DA6 /* Shabbat_Sh'mini.html in Resources */,
+				6D263DA220AC8CE500FE8819 /* CustomCell.xib in Resources */,
 				E610FD721FD9638E00495DA6 /* B'dikat_and_Biur_Chametz.html in Resources */,
 				E610FD731FD9638E00495DA6 /* Shabbat_Parah.html in Resources */,
 				E610FD741FD9638E00495DA6 /* Shabbat_Matot-Mas'ei.html in Resources */,

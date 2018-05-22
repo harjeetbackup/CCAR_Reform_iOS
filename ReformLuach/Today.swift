@@ -147,6 +147,7 @@ class Today: UIViewController {
                     
                     UserDefaults.standard.setValue( self.lblday?.text, forKey: "CurrentHoliday")
                     UserDefaults.standard.setValue(sttt , forKey: "CurrentYear")
+                    UserDefaults.standard.synchronize()
 
                 }
                 break

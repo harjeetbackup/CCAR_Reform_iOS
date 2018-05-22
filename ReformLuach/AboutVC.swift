@@ -11,7 +11,7 @@ import UIKit
 import KYDrawerController
 
 
-class AboutVC: UIViewController, UIScrollViewDelegate
+class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate
 {
     @IBOutlet weak var AboutHeaderImage: UIImageView!
     
@@ -26,12 +26,12 @@ class AboutVC: UIViewController, UIScrollViewDelegate
     
     @IBOutlet weak var myScrl: UIScrollView!
     
-     @IBOutlet weak var about_title: UILabel!
+    @IBOutlet weak var about_title: UILabel!
     
     @IBOutlet weak var about_Data: UILabel!
     
     @IBOutlet weak var aboutData_Height: NSLayoutConstraint!
-   
+    
     @IBOutlet weak var aboutData_Width: NSLayoutConstraint!
     
     @IBOutlet weak var otherCCAT_Title: UILabel!
@@ -42,14 +42,14 @@ class AboutVC: UIViewController, UIScrollViewDelegate
     
     
     @IBOutlet weak var CCARIAMGE: UIView!
-     @IBOutlet weak var CCARIAMGE_Height: NSLayoutConstraint!
+    @IBOutlet weak var CCARIAMGE_Height: NSLayoutConstraint!
     
     @IBOutlet weak var otherCCAT_Data2: UILabel!
     
-//    
+    //
     @IBOutlet weak var otherCCAT_Data2_Height: NSLayoutConstraint!
     
-
+    
     @IBOutlet weak var AboutTextView: UITextView!
     
     
@@ -58,7 +58,7 @@ class AboutVC: UIViewController, UIScrollViewDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-//        myLayout()
+        //        myLayout()
         
         let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
         left.direction = .left
@@ -67,6 +67,14 @@ class AboutVC: UIViewController, UIScrollViewDelegate
         let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         right.direction = .right
         self.view.addGestureRecognizer(right)
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        self.view.showHud()
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.view.hideHud()
     }
     
     
@@ -87,13 +95,15 @@ class AboutVC: UIViewController, UIScrollViewDelegate
     
     override func viewWillAppear(_ animated: Bool)
     {
-//        let url = Bundle.main.url(forResource: "About", withExtension:"html")
-
-//        let url = Bundle.main.url().URLForResource("About", withExtension:"html")
+        //        let url = Bundle.main.url(forResource: "About", withExtension:"html")
+        
+        //        let url = Bundle.main.url().URLForResource("About", withExtension:"html")
         let localfilePath = Bundle.main.url(forResource: "About", withExtension: "html");
         let myRequest = NSURLRequest(url: localfilePath!);
         About_details.loadRequest(myRequest as URLRequest);
-//        myLayout()
+        About_details.delegate = self;
+        About_details.backgroundColor = UIColor.white
+        //        myLayout()
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
     }
@@ -101,31 +111,16 @@ class AboutVC: UIViewController, UIScrollViewDelegate
     func myBackGraound(strmonth: NSInteger)
     {
         let strimagename = "commanHeader" + "\(strmonth)"
-       AboutHeaderImage.image = UIImage(named: strimagename)
+        AboutHeaderImage.image = UIImage(named: strimagename)
         
     }
     
     func myLayout()
     {
-//        aboutData_Width.constant = self.view.frame.size.width-30
-//
-//        aboutData_Height.constant = heightForView(text: about_Data.text!, font: UIFont(name: "Roboto-Light", size: IS_IPAD ? 16 : 14)!, width: self.view.frame.size.width-30) + 10
-//
-//        otherCCAT_Data1_Height.constant = heightForView(text: otherCCAT_Data1.text!, font: UIFont(name: "Roboto-Light", size: IS_IPAD ? 16 : 14)!, width: self.view.frame.size.width-30) + 10
-//
-//        otherCCAT_Data2_Height.constant = heightForView(text: otherCCAT_Data2.text!, font: UIFont(name: "Roboto-Light", size: IS_IPAD ? 16 : 14)!, width: self.view.frame.size.width-30) + 10
-//
-//        CCARIAMGE_Height.constant = (self.view.frame.size.width-30) * 0.49
-//
-//
-//
-//        lblAboutData.font = UIFont(name: "Roboto-Light", size: IS_IPAD ? 16 : 14)
-//        lblOthetCCARData.font = UIFont(name: "Roboto-Light", size: IS_IPAD ? 16 : 14)
-//        lblOtherCCARData2.font = UIFont(name: "Roboto-Light", size: IS_IPAD ? 16 : 14)
         
     }
-
-
+    
+    
     
     func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
@@ -141,10 +136,10 @@ class AboutVC: UIViewController, UIScrollViewDelegate
     
     @IBAction func btnActionSetting(_ sender: UIButton)
     {
-
-   
+        
+        
     }
-
+    
     
 }
 

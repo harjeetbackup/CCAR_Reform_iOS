@@ -16,6 +16,7 @@ class customCell: UITableViewCell
 
     @IBOutlet weak var lblEvntTitle: UILabel!
     @IBOutlet weak var lblEvntDate: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     var event: RLEvent? = nil {
         didSet {
             configure()
@@ -29,6 +30,13 @@ class customCell: UITableViewCell
             inputFormatter.dateFormat = "MM/dd/yyyy"
             let resultString = inputFormatter.string(from: showDate!)
             lblEvntDate.text =  resultString
+            subTitleLabel.text = event?.subTitle
+            if event?.subTitle != nil {
+                self.backgroundColor = UIColor.yellow.withAlphaComponent(0.33)
+            } else {
+                self.backgroundColor = UIColor.white
+            }
+            
         }
         lblEvntTitle.text = event?.title?.spellChangedForTitle()
     }

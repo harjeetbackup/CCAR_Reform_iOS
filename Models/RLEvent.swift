@@ -8,19 +8,35 @@ public class RLEvent {
 	public var link : String?
 	public var leyning : Leyning?
 	public var title : String?
+    public var subTitle : String?
     public var spellChangedTitle : String?
     public var subcat : String?
     public var memo : String?
     public var yomtov = false
 
+    
 
     public class func modelsFromDictionaryArray(array:NSArray) -> [RLEvent]
     {
         var models:[RLEvent] = []
+        var specialEvent: RLEvent?
         for item in array
         {
-            models.append(RLEvent(dictionary: item as! NSDictionary)!)
+            let event = RLEvent(dictionary: item as! NSDictionary)!
+            
+            if isSpecialDay(event: event) == true {
+                specialEvent = event // Wait for next.
+            } else if isComparableDay(event: event) == true {
+                if let str = specialEvent?.spellChangedTitle {
+                    event.subTitle = "* The Haftarah for \(str) should be read."
+                }
+            }
+            
+            models.append(event)
         }
+        
+        
+        
         return models
     }
 
@@ -37,5 +53,24 @@ public class RLEvent {
         memo = dictionary["memo"] as? String
         yomtov = dictionary["yomtov"] as? Bool ?? false
 	}
+    
+    private class func isSpecialDay(event: RLEvent) -> Bool {
+        if let str = event.spellChangedTitle {
+            if (str == "Shabbat Parah" || str == "Shabbat Sh'kalim" || str == "Shabbat Hagadol" || str == "Shabbat Zachor" || str == "Shabbat Hachodesh") {
+                return true
+            }
+        }
+        return false
+    }
+    
+    private class func isComparableDay(event: RLEvent) -> Bool {
+        if let str = event.spellChangedTitle {
+            if (str.hasPrefix("Parashat") || str.hasPrefix("parashat")) {
+                return true
+            }
+        }
+        return false
+    }
+
 
 }
