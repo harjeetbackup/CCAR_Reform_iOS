@@ -52,7 +52,11 @@ class EventThirdVC: EventBaseVC {
     }
     @objc func filterTextThird(notification: Notification)
     {
-        let str = notification.object.unsafelyUnwrapped
+        var str = notification.object.unsafelyUnwrapped
+        if str is String {
+            let str1 = str as! String
+            str  = str1.replacingOccurrences(of: "’", with: "'")
+        }
         let characters = String(describing: str)
         if events.count != 0 {
             self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in

@@ -395,7 +395,14 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         if self.btnWeeklyHoliday.tag == 204 {
-            //TODO: Need to work on this
+            itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
+                if let cat = event.category {
+                    if cat == "parashat" {
+                        return true
+                    }
+                }
+                return false
+            })
         }
         
         if self.btnOmerHoliday.tag == 205 {

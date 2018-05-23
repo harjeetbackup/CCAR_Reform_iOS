@@ -14,8 +14,6 @@ public class RLEvent {
     public var memo : String?
     public var yomtov = false
 
-    
-
     public class func modelsFromDictionaryArray(array:NSArray) -> [RLEvent]
     {
         var models:[RLEvent] = []
@@ -71,6 +69,29 @@ public class RLEvent {
         }
         return false
     }
-
+    
+    func dayOfTheWeek() -> Int {
+        if let eventDateStr = self.date {
+            dateFormater.dateFormat = "yyyy-MM-dd"
+            if let eventDate = dateFormater.date(from: eventDateStr) {
+                if let nextWeekDate = Calendar.current.date(byAdding: Calendar.Component.day, value: 7, to: eventDate) {
+                    
+                    if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian) {
+                        let weekday = gregorianCalendar.component(.weekday, from: nextWeekDate)
+                        return weekday
+                    }
+                }
+            }
+        }
+        return 1
+    }
+    
+    public func inSaturday() -> Bool {
+        return self.dayOfTheWeek() == 7
+    }
+    
+    public func inFriday() -> Bool {
+        return self.dayOfTheWeek() == 6
+    }
 
 }

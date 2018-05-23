@@ -1231,7 +1231,6 @@
 				TargetAttributes = {
 					E6AB611D1F4C69EB00161250 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = MTLWNYBR52;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -1838,7 +1837,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MTLWNYBR52;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReformLuach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1861,7 +1860,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Central Conference of American Rabbis (MTLWNYBR52)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MTLWNYBR52;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReformLuach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

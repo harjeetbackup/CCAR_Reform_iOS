@@ -119,6 +119,7 @@ class EventManager: NSObject {
             if let json = response.result.value as? [String: Any] {
                 if let array = json["items"] as? NSArray {
                     let items = RLEvent.modelsFromDictionaryArray(array:array)
+                    print(array)
                     completion(items)
                 }
             }

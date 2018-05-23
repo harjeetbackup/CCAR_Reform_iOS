@@ -191,8 +191,9 @@ class DetailViewFromTodayVC: UIViewController {
                 let myRequest = NSURLRequest(url: localfilePath!);
                 eventDetails.loadRequest(myRequest as URLRequest);
             }
-            else if eventNameFromToday.range(of:"Parashat Nasso") != nil
+            else if eventNameFromToday.range(of:"Parashat Naso") != nil
             {
+                
                 let localfilePath = Bundle.main.url(forResource: "Naso", withExtension: "html");
                 let myRequest = NSURLRequest(url: localfilePath!);
                 eventDetails.loadRequest(myRequest as URLRequest);

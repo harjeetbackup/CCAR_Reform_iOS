@@ -34,7 +34,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         NotificationCenter.default.addObserver(self, selector: #selector(EventBaseVC.newEventsDidLoaded), name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
         
         let nib = UINib.init(nibName: "CustomCell", bundle: nil)
-        self.tblParshiyot.register(nib, forCellReuseIdentifier: "CustomCell")
+        self.tblParshiyot.register(nib, forCellReuseIdentifier: "customCell")
     }
     
     func loadEvents() {
@@ -105,11 +105,12 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(filteredEvents.count)
         return filteredEvents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! customCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]
         if filteredEvents.count > 1 && indexPath.row == (filteredEvents.count - 1) && searchType == EventType.none {
             loadMoreEvents(year: EventManager.shared.yearLoaded + 1)
@@ -124,7 +125,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         print(event.title as Any)
         day = getDayOfWeek(today: event.date!)
         print(day as Any)
-        vc.eventUrl = event.title?.html()
+        vc.eventUrl = event.title?.html(event)
         self.present(vc, animated: false, completion: nil)
     }
     
