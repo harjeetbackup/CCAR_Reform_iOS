@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CustomCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" rowHeight="37" id="CtE-xW-cX7" customClass="customCell" customModule="ReformLuach" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CustomCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" rowHeight="38" id="CtE-xW-cX7" customClass="customCell" customModule="ReformLuach" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="430" height="61"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CtE-xW-cX7" id="3ia-vf-Wic">
@@ -41,7 +41,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* Some condition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4r-T6-o4u">
                         <rect key="frame" x="20" y="42" width="82" height="12"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="12" id="XLS-dF-djd"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="12" id="xB0-GM-PNA"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -53,7 +53,7 @@
                     <constraint firstAttribute="trailing" secondItem="1qm-zc-fCF" secondAttribute="trailing" constant="12" id="FBb-1S-Ub0"/>
                     <constraint firstItem="8T0-MD-R1n" firstAttribute="top" secondItem="3ia-vf-Wic" secondAttribute="top" constant="10" id="LhV-ET-Z2t"/>
                     <constraint firstItem="8T0-MD-R1n" firstAttribute="leading" secondItem="3ia-vf-Wic" secondAttribute="leading" constant="20" id="UoT-Xz-Oz9"/>
-                    <constraint firstAttribute="bottom" secondItem="u4r-T6-o4u" secondAttribute="bottom" constant="6.5" id="UqL-BB-MM1"/>
+                    <constraint firstAttribute="bottom" secondItem="u4r-T6-o4u" secondAttribute="bottom" constant="6" id="UqL-BB-MM1"/>
                     <constraint firstItem="u4r-T6-o4u" firstAttribute="top" secondItem="8T0-MD-R1n" secondAttribute="bottom" constant="8" id="i4y-vz-Uof"/>
                     <constraint firstItem="u4r-T6-o4u" firstAttribute="leading" secondItem="3ia-vf-Wic" secondAttribute="leading" constant="20" id="j6u-aJ-IWn"/>
                     <constraint firstItem="1qm-zc-fCF" firstAttribute="leading" secondItem="8T0-MD-R1n" secondAttribute="trailing" constant="20" id="tkf-A5-Rct"/>

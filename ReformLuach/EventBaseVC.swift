@@ -83,7 +83,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             }
             
             guard let localIndex = index else { return }
-            
             let indePath = IndexPath.init(row: localIndex, section: 0)
             self.tblParshiyot.scrollToRow(at: indePath, at: .top, animated: false)
     }
@@ -105,7 +104,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(filteredEvents.count)
         return filteredEvents.count
     }
     

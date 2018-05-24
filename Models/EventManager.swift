@@ -72,6 +72,7 @@ class EventManager: NSObject {
                             
                             currentYearEvents = currentYearEvents + self.applyReformLogic(events: specialDiasporaEvents);
                             currentYearEvents = self.sortedCurrentYearEvents(currentYearEvents)
+                            self.applySubTitleLogic(currentYearEvents)
                             self.events = self.events + currentYearEvents
                             completion(self.events)
                         })
@@ -80,11 +81,13 @@ class EventManager: NSObject {
             } else if selectedCalender == .dispora {
                 self.loadEvents(url: eventUrl(year: year), completion: { (items) in
                     self.events = self.events + items
+                    self.applySubTitleLogic(self.events)
                     completion(self.events)
                 })
             } else {
                 self.loadEvents(url: eventUrl(year: year), completion: { (items) in
                     self.events = self.events + items
+                    self.applySubTitleLogic(self.events)
                     completion(self.events)
                 })
             }

@@ -23,6 +23,7 @@
 		6DC06CF72082311D0087EC7A /* EventManager+ReformLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC06CF62082311D0087EC7A /* EventManager+ReformLogic.swift */; };
 		6DFB63F9205594780064D3C5 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB63F8205594780064D3C5 /* String+Additions.swift */; };
 		DFC1F9C5F5BC62723F01F7F8 /* Pods_ReformLuach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136CED33E51658820C2CFA39 /* Pods_ReformLuach.framework */; };
+		E2AF0F2420B68F4800A05BC7 /* EventManager+SubtitleLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */; };
 		E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E60975341FC4026900A14BBC /* CHCSVParser.m */; };
 		E610FC871FD93EB800495DA6 /* Rosh_Chodesh_Adar_I.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FC821FD93EAD00495DA6 /* Rosh_Chodesh_Adar_I.html */; };
 		E610FC881FD93EB800495DA6 /* Rosh_Chodesh_II_or_One_Day_Rosh_Chodesh_Weekday.html in Resources */ = {isa = PBXBuildFile; fileRef = E610FC831FD93EAE00495DA6 /* Rosh_Chodesh_II_or_One_Day_Rosh_Chodesh_Weekday.html */; };
@@ -367,6 +368,7 @@
 		6DC06CF62082311D0087EC7A /* EventManager+ReformLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventManager+ReformLogic.swift"; sourceTree = "<group>"; };
 		6DFB63F8205594780064D3C5 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		B59595497D1E28EBFB87DEFC /* Pods-ReformLuach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReformLuach.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReformLuach/Pods-ReformLuach.release.xcconfig"; sourceTree = "<group>"; };
+		E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventManager+SubtitleLogic.swift"; sourceTree = "<group>"; };
 		E60974FB1FC3FC9500A14BBC /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
 		E60974FC1FC3FC9500A14BBC /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
 		E60974FF1FC3FC9500A14BBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -746,6 +748,7 @@
 				6D720364204F0FB300EE68C5 /* Leyning.swift */,
 				6D720367204F135600EE68C5 /* EventManager.swift */,
 				6DC06CF62082311D0087EC7A /* EventManager+ReformLogic.swift */,
+				E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1231,6 +1234,7 @@
 				TargetAttributes = {
 					E6AB611D1F4C69EB00161250 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = MTLWNYBR52;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -1644,6 +1648,7 @@
 				E63523E61FBF10C700EE6E6C /* CustomEventList.swift in Sources */,
 				189CBEE0205115C3004C5D95 /* Date.swift in Sources */,
 				E68A0D711FC013D700CCBA76 /* customData.xcdatamodeld in Sources */,
+				E2AF0F2420B68F4800A05BC7 /* EventManager+SubtitleLogic.swift in Sources */,
 				1862887320275D0C003047F0 /* Utils.swift in Sources */,
 				E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */,
 				E64786A51FF691DD00D1B734 /* NewAddCustomEventsVC.swift in Sources */,
@@ -1837,7 +1842,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MTLWNYBR52;
 				INFOPLIST_FILE = ReformLuach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1860,7 +1865,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Central Conference of American Rabbis (MTLWNYBR52)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MTLWNYBR52;
 				INFOPLIST_FILE = ReformLuach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
