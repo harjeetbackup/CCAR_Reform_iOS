@@ -42,21 +42,22 @@ public class RLEvent {
     
     func isSpecialDayForSubTitle() -> Bool {
         if let str = self.spellChangedTitle {
-            if (str == "Shabbat Parah" || str == "Shabbat Sh'kalim" || str == "Shabbat HaGadol" || str == "Shabbat Zachor" || str == "Shabbat HaChodesh") {
+            if (str == "Shabbat Parah" || str == "Shabbat Sh'kalim" || str == "Shabbat HaGadol" || str == "Shabbat Zachor" || str == "Shabbat HaChodesh" || str == "Shabbat Shuva" || str == "Shabbat Chanukah") {
                 return true
             }
         }
         return false
     }
     
-    func isComparableDayForSubTitle() -> (Bool,RLEvent) {
+    func isComparableDayForSubTitle() -> Bool {
         if let str = self.spellChangedTitle {
             if (str.hasPrefix("Parashat") || str.hasPrefix("parashat")) {
-                return (true,self)
+                return true
             }
         }
-        return (false , self)
+        return false
     }
+    
     
     func dayOfTheWeek() -> Int {
         if let eventDateStr = self.date {

@@ -13,22 +13,23 @@ extension EventManager {
     func applySubTitleLogic(_ events:[RLEvent]){
         
         var specialEvent : RLEvent?
-        var isComparable : Bool?
         var comparableEvent : RLEvent?
         for event in events {
+            
             if event.isSpecialDayForSubTitle() {
                 specialEvent = event
             }
-            if event.isComparableDayForSubTitle().0{
-                comparableEvent = event.isComparableDayForSubTitle().1
-                isComparable = true
+            if event.isComparableDayForSubTitle(){
+                comparableEvent = event
             }
-            if specialEvent != nil && isComparable == true {
+            
+            if specialEvent != nil && comparableEvent != nil {
                 if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
-                        if let specialEventTitle = comparableEvent?.title {
-                            specialEvent?.subTitle = "The Haftarah \(specialEventTitle.spellChangedForTitle()) should be read."
+                        if let title = specialEvent?.title?.spellChangedForTitle() {
+                            comparableEvent?.subTitle = "The Haftarah \(title) should be read."
+                            specialEvent?.subTitle = ""
                             specialEvent = nil
-
+                            comparableEvent = nil
                         }
                     }
                 }

@@ -27,6 +27,11 @@ extension String {
             name = name.replacingOccurrences(of: "Sukkot_1_Weekday", with: "Sukkot_1_Shabbat")
             name = name.replacingOccurrences(of: "Yom_Kippur", with: "Yom_Kippur_Shabbat")
             name = name.replacingOccurrences(of: "Shavuot", with: "Shavuot_Shabbat")
+            //TODO : No file
+            name = name.replacingOccurrences(of: "Sh'mini_Atzeret-Simchat_Torah", with: "Sh'mini_Atzeret-Simchat_Torah_Shabbat")
+//            if (name == " Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
+//                name = "Chol_Hamoed_Sukkot_Shabbat"
+//           }
             
         } else if event.inFriday() {
             name = name.replacingOccurrences(of: "Erev_Pesach-Ta'anit_Bechorot", with: "Erev_Pesach-Ta'anit_Bechorot_Friday")
@@ -37,8 +42,9 @@ extension String {
             name = name.replacingOccurrences(of: "Erev_Yom_Kippur", with: "Erev_Yom_Kippur_Friday")
             name = name.replacingOccurrences(of: "Pesach_Chol_Hamoed_Day_5_Weekday", with: "Pesach_Chol_Hamoed_Day_5_Friday")
             name = name.replacingOccurrences(of: "Erev_Rosh_Hashanah_Weekday", with: "Erev_Rosh_Hashanah_Friday")
-            
-            //TODO FRIDAY LOGIC
+            if (name == " Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
+                name = "Shabbat_Chol_Hamoed_Sukkot_Friday"
+            }
         }
         return name
     }
