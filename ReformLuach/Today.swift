@@ -148,6 +148,7 @@ class Today: UIViewController {
                     UserDefaults.standard.setValue( self.lblday?.text, forKey: "CurrentHoliday")
                     UserDefaults.standard.setValue(sttt , forKey: "CurrentYear")
                     UserDefaults.standard.synchronize()
+                    NotificationCenter.default.post(name: Notification.Name("NotificationSetDateHoliday"), object:nil)
 
                 }
                 break

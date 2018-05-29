@@ -42,7 +42,7 @@ public class RLEvent {
     
     func isSpecialDayForSubTitle() -> Bool {
         if let str = self.spellChangedTitle {
-            if (str == "Shabbat Parah" || str == "Shabbat Sh'kalim" || str == "Shabbat HaGadol" || str == "Shabbat Zachor" || str == "Shabbat HaChodesh" || str == "Shabbat Shuva" || str == "Shabbat Chanukah") {
+            if (str == "Shabbat Parah" || str == "Shabbat Sh'kalim" || str == "Shabbat HaGadol" || str == "Shabbat Zachor" || str == "Shabbat HaChodesh" || str == "Shabbat Shuva" || str == "Shabbat Chanukah") || str.hasPrefix("Chanukah") {
                 return true
             }
         }
@@ -52,6 +52,15 @@ public class RLEvent {
     func isComparableDayForSubTitle() -> Bool {
         if let str = self.spellChangedTitle {
             if (str.hasPrefix("Parashat") || str.hasPrefix("parashat")) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func isThreeEventsOfSpecialDayForSubTitle() -> Bool{
+        if let str = self.spellChangedTitle {
+            if (str.hasPrefix("Rosh Chodesh")){
                 return true
             }
         }

@@ -14,6 +14,7 @@ extension EventManager {
         
         var specialEvent : RLEvent?
         var comparableEvent : RLEvent?
+        var threeSpecialEvent : RLEvent?
         for event in events {
             
             if event.isSpecialDayForSubTitle() {
@@ -25,16 +26,38 @@ extension EventManager {
             
             if specialEvent != nil && comparableEvent != nil {
                 if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
-                        if let title = specialEvent?.title?.spellChangedForTitle() {
-                            comparableEvent?.subTitle = "The Haftarah \(title) should be read."
-                            specialEvent?.subTitle = ""
-                            specialEvent = nil
-                            comparableEvent = nil
-                        }
+                    if let title = specialEvent?.title?.spellChangedForTitle() {
+                        comparableEvent?.subTitle = "The Haftarah \(title) should be read."
+                        specialEvent?.subTitle = ""
+                        specialEvent = nil
+                        comparableEvent = nil
                     }
                 }
-               // specialEvent = nil
             }
         }
+        for event in events {
+            
+            if event.isSpecialDayForSubTitle() {
+                specialEvent = event
+            }
+            if event.isComparableDayForSubTitle() {
+                comparableEvent = event
+            }
+            if event.isThreeEventsOfSpecialDayForSubTitle() {
+                threeSpecialEvent = event
+            }
+            if specialEvent != nil && comparableEvent != nil && threeSpecialEvent != nil {
+                if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) && Calendar.current.isDate(threeSpecialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
+                    if let title = specialEvent?.title?.spellChangedForTitle() {
+                        comparableEvent?.subTitle = "The Haftarah \(title) should be read."
+                        specialEvent?.subTitle = ""
+                        threeSpecialEvent?.subTitle = "The Haftarah \(title) should be read."
+                        specialEvent = nil
+                        comparableEvent = nil
+                        threeSpecialEvent = nil
+                    }
+                }
+            }
+        }
+    }
 }
-
