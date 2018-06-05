@@ -41,13 +41,7 @@ public enum GLTabAnimationType:Int
     @objc optional func widthForTabIndex(_ viewPager: GLViewPagerViewController, index: Int) -> CGFloat
 }
 
-
-
-
-
 open class GLViewPagerViewController: UIViewController, UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIScrollViewDelegate, UISearchBarDelegate {
-    
-    
     // MARK: - public properties
     open var dataSource: GLViewPagerViewControllerDataSource?
     
@@ -94,7 +88,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     internal var tabContentView: UIScrollView = UIScrollView()
     internal var indicatorView: UIView = UIView();
     
-    
     // MARK: - cache properties
     internal var _needsReload: Bool = false
     internal var leftTabOffsetWidth: CGFloat = 0
@@ -112,7 +105,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     let  kTabTagBegin:Int = 0xA0
     let  kTabHeight:CGFloat = 44.0
     
-    
     struct _datasourceHas{
         static var numberOfTabsForViewPager:Bool =  false
         static var viewForTabIndex:Bool = false
@@ -127,12 +119,10 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     }
     
     // MARK: - Life cycle
-    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.commonInit()
     }
-    
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -141,32 +131,18 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     override open func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override open func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.SearchBarClear(notification:)), name: Notification.Name("NotificationClearSearcBar"), object: nil)
+      NotificationCenter.default.addObserver(self, selector: #selector(self.SearchBarClear(notification:)), name: Notification.Name("NotificationClearSearcBar"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.setDateHoliday), name: Notification.Name("NotificationSetDateHoliday"), object: nil)
-        
-        
-        // Do any additional setup after loading the view.
     }
-    
     
     @objc func SearchBarClear(notification: Notification)
     {
-        //        mySearchBar.text = ""
-        //        mySearchBar.text = nil
-    }
-    
-    
-    override open func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        mySearchBar.text = nil
     }
     
     override open func loadView()
@@ -188,13 +164,10 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         //        var imageView : UIImageView
         self.imageView  = UIImageView(frame:CGRect(x:0, y:0, width:self.view.frame.width, height:IS_IPAD ? 210 : 180));
         //        self.imageView  = UIImageView(frame:self.subbView.bounds);
-        
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         let strimagename = "EventHeader" + "\(strImageMoth)"
         //        let strimagename = "Sync_Header" + "\(strImageMoth)"
         imageView.image = UIImage(named: strimagename)
-        
-        
         subbView.addSubview(imageView)
         
         //        let Heb_day:UILabel = UILabel.init()
@@ -203,7 +176,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         Heb_day.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 55.0 : 35.0)
         Heb_day.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Heb_day)
-        
         var frame = Heb_day.frame;
         frame.origin.x = self.view.frame.width - 40;
         frame.size.width = 40;
@@ -277,8 +249,8 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         // add searchBar to the view.
         subbView.addSubview(mySearchBar)
         mySearchBar.bringSubview(toFront: imageView)
-        
     }
+    
     @objc func setDateHoliday(){
         let strHoliday = UserDefaults.standard.string(forKey: "CurrentHoliday")
         Heb_day.text = strHoliday
@@ -297,7 +269,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     override open func viewWillLayoutSubviews() {
         self ._reloadDataIfNeed()
         self ._layoutSubviews()
-        
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
     }
@@ -308,7 +279,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         //        let strimagename = "Sync_Header" + "\(strImageMoth)"
         self.imageView.image = UIImage(named: strimagename)
         self.imageView.contentMode = .scaleToFill
-        
     }
     
     override open func viewWillAppear(_ animated: Bool)
@@ -738,7 +708,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     func _caculateTabViewFrame(tabIndex:Int) -> CGRect {
         var frameOfTabView:CGRect = CGRect.zero
-        
         if self.fixTabWidth {
             if self.supportArabic {
                 frameOfTabView.origin.x = self.tabContentView.contentSize.width - ( CGFloat(tabIndex) * self.tabWidth  + (CGFloat(tabIndex) * self.padding) + self.trailingPadding) - self.tabWidth
@@ -836,7 +805,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         }
     }
     
-    
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
         if searchText == nil || searchText == ""
@@ -861,7 +829,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     {
         return true;
     }
-    
     
     public func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
     {

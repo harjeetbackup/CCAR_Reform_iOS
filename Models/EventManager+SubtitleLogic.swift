@@ -27,7 +27,7 @@ extension EventManager {
             if specialEvent != nil && comparableEvent != nil {
                 if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
                     if let title = specialEvent?.title?.spellChangedForTitle() {
-                        comparableEvent?.subTitle = "The Haftarah \(title) should be read."
+                        comparableEvent?.subTitle = "The Haftarah for \(title) should be read."
                         specialEvent?.subTitle = ""
                         specialEvent = nil
                         comparableEvent = nil
