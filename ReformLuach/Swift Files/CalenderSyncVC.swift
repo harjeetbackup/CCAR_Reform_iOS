@@ -27,28 +27,18 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var btnOmerHoliday: UIButton!
     @IBOutlet weak var btnSpecialShabbatot: UIButton!
     @IBOutlet weak var btnModernHolidays: UIButton!
-    
     @IBOutlet weak var btnCustomRepeatedEvents: UIButton!
-    
     @IBOutlet weak var btnAdd: UIButton!
-    
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var tblView: UITableView!
-    
     @IBOutlet weak var srrlView: UIScrollView?
-    
     @IBOutlet weak var view_WidthCons: NSLayoutConstraint!
-    
-    
     @IBOutlet weak var HeaderImage: UIImageView!
     
     var event: EKEvent!
-
     let eventStore = EKEventStore()
     var calendars: [EKCalendar]?
-    
     var eventDetailsArray = [AnyHashable]()
-    
     var arrMajorHoliday = NSArray()
     var arrMinorHoliday = NSArray()
     var arrRoshChodesh = NSArray()
@@ -62,30 +52,19 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         event = EKEvent(eventStore: eventStore)
-        
-
         view_WidthCons.constant = self.view.frame.size.width
-        
-        
         btnAdd?.layer.cornerRadius = 5;
         btnAdd?.layer.borderColor = UIColor.black.cgColor;
         btnAdd?.layer.borderWidth = 1;
         btnAdd?.layer.masksToBounds = true;
-        
         self.buttonView .addSubview(tblView)
-        
-        
         let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
         left.direction = .left
         self.view.addGestureRecognizer(left)
-        
         let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         right.direction = .right
         self.view.addGestureRecognizer(right)
-        
     }
-    
-    
     
     func swipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
@@ -110,16 +89,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool)
     {
         checkCalendarAuthorizationStatus()
-        
         tblView.frame = CGRect(x: 40, y: 320, width: buttonView.frame.size.width-40, height: 180)
-        
         tblView.isScrollEnabled = true
         tblView.isUserInteractionEnabled = true
-        
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
-        
-        
         if UserDefaults.standard.object(forKey: "CustomLst") != nil
         {
             let userdefaults = UserDefaults.standard
@@ -358,11 +332,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func actionAddEvent()
     {
         var itemsToAddInCalender = [RLEvent] ()
-        
         let events = EventManager.shared.events
         
         if self.btnMajorHoliday.tag == 201 {
             itemsToAddInCalender = events.filter({ (event) -> Bool in
+                print(event.category)
                 if let cat = event.category, let subcat = event.subcat {
                     if cat == "holiday" && subcat == "major" {
                         return true
@@ -374,6 +348,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if self.btnMinorHoliday.tag == 202 {
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
+                print(event.category)
                 if let cat = event.category, let subcat = event.subcat {
                     if cat == "holiday" && subcat == "minor" {
                         return true
@@ -385,6 +360,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if self.btnRoshHoliday.tag == 203 {
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
+                print(event.category)
                 if let cat = event.category{
                     if cat == "roshchodesh" {
                         return true
@@ -396,6 +372,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if self.btnWeeklyHoliday.tag == 204 {
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
+                print(event.category)
                 if let cat = event.category {
                     if cat == "parashat" {
                         return true
@@ -407,6 +384,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if self.btnOmerHoliday.tag == 205 {
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
+                print(event.category)
                 if let cat = event.category {
                     if cat == "omer" {
                         return true
@@ -417,18 +395,22 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         if self.btnSpecialShabbatot.tag == 206 {
+            
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
+                print(event.category)
                 if let cat = event.category {
                     if cat == "shabbat" {
                         return true
                     }
                 }
                 return false
-            })        }
+            })
+        }
         
         if self.btnModernHolidays.tag == 207 {
             
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
+                print(event.category)
                 if let cat = event.category, let subcat = event.subcat {
                     if cat == "holiday" && subcat == "modern" {
                         return true

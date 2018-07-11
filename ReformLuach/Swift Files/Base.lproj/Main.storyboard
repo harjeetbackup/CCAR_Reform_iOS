@@ -28,7 +28,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Calender Sync-->
+        <!--Calendar Sync-->
         <scene sceneID="bZN-6z-Qsu">
             <objects>
                 <viewController storyboardIdentifier="CalenderSyncVC" id="ggM-Yb-ROW" customClass="CalenderSyncVC" customModule="ReformLuach" customModuleProvider="target" sceneMemberID="viewController">
@@ -459,7 +459,7 @@
                             <constraint firstItem="cBL-dA-LfH" firstAttribute="top" secondItem="wQ9-HP-Xer" secondAttribute="top" id="xVr-Rg-9tG"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calender Sync" image="Calander Sync" id="GsX-c7-7Ka">
+                    <tabBarItem key="tabBarItem" title="Calendar Sync" image="Calander Sync" id="GsX-c7-7Ka">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-4"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
