@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Major Holidays",
+    "category": "holiday",
+    "subCategory": "major"
+  },
+  {
+    "title": "Minor Holidays",
+    "category": "holiday",
+    "subCategory": "minor"
+  },
+  {
+    "title": "Rosh Chodesh",
+    "category": "roshchodesh",
+    "subCategory": ""
+  },
+  {
+    "title": "Weekly Parshiyot",
+    "category": "parashat",
+    "subCategory": ""
+  },
+  {
+    "title": "Sefirat Ha'Omer",
+    "category": "omer",
+    "subCategory": ""
+  },
+  {
+    "title": "Special Shabbatot",
+    "category": "holiday",
+    "subCategory": "shabbat"
+  },
+  {
+    "title": "Modern Holidays",
+    "category": "holiday",
+    "subCategory": "modern"
+  }
+]

@@ -18,10 +18,10 @@ class CalendarManager: NSObject {
         }
         return object
     }()
-    public var calendarSyncEvents: [CalendarSyncEvent]?
+    public var calendarSyncEvents: [SyncDataSouce]?
     
     public func setWith(array: [NSDictionary]) {
-        calendarSyncEvents = CalendarSyncEvent.modelsFromDictionaryArray(array: array as NSArray)
+
     }
     
     public func saveWith(array: [NSDictionary]) {
