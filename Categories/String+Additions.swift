@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     func html(_ event: RLEvent) -> String? {
-        var name = self;
+        var name = self
         name = name.spellChanged()
         name = name.removeSpecialChars()
         name = name.applyFridaySatudayLogic(event)
@@ -21,7 +21,7 @@ extension String {
     }
     
     func applyFridaySatudayLogic(_ event: RLEvent) -> String {
-        var name = self;
+        var name = self
         if event.inSaturday() {
             name = name.replacingOccurrences(of: "Pesach_Day_1_Weekday", with: "Pesach_Day_1_Shabbat")
             name = name.replacingOccurrences(of: "Pesach_Day_7", with: "Pesach_Day_7_Shabbat")
@@ -36,7 +36,7 @@ extension String {
                 name = "Chol_Hamoed_Sukkot_Shabbat"
            }
             //here name is "Chanukah_*_Weekday"
-            if (name == "Chanukah_2nd_Night" || name == "Chanukah_3rd_Night" || name == "Chanukah_4th_Night" || name == "Chanukah_5th_Night" || name == "Chanukah_6th_Night" || name == "Chanukah_7th_Night" || name == "Chanukah_8th_Night" || name == "Chanukah_8th_Day") {
+            if (name == "Chanukah_2_Weekday" || name == "Chanukah_3_Weekday" || name == "Chanukah_4_Weekday" || name == "Chanukah_5_Weekday" || name == "Chanukah_6_Weekday" || name == "Chanukah_7_Weekday" || name == "Chanukah_8_Weekday" || name == "Chanukah_8th_Day") {
                 name = "Shabbat_Chanukah"
             }
         } else if event.inFriday() {
