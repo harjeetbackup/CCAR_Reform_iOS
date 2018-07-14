@@ -34,6 +34,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var srrlView: UIScrollView?
     @IBOutlet weak var view_WidthCons: NSLayoutConstraint!
     @IBOutlet weak var HeaderImage: UIImageView!
+    @IBOutlet var yearDisplaySegmentedControl: UISegmentedControl!
     
     var event: EKEvent!
     let eventStore = EKEventStore()
@@ -47,10 +48,12 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var arrSpecialShabbatot = NSArray()
     var arrModernHolidays = NSArray()
     var arrCustomEventList = NSArray()
+    var yearSelected: String? = "0"
+    var calendarSyncEvent: CalendarSyncEvent?
+    var params = [[String:Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         event = EKEvent(eventStore: eventStore)
         view_WidthCons.constant = self.view.frame.size.width
         btnAdd?.layer.cornerRadius = 5;
@@ -64,6 +67,38 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         right.direction = .right
         self.view.addGestureRecognizer(right)
+        yearDisplaySegmentedControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
+        configYearSegmentedControl()
+        
+    }
+    
+    func configYearSegmentedControl() {
+        let date = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: date)
+        yearDisplaySegmentedControl.setTitle("\(currentYear)", forSegmentAt: 0)
+        yearDisplaySegmentedControl.setTitle("\(currentYear + 1)", forSegmentAt: 1)
+        yearDisplaySegmentedControl.setTitle("\(currentYear + 2)", forSegmentAt: 2)
+        yearDisplaySegmentedControl.setTitle("\(currentYear + 3)", forSegmentAt: 3)
+    }
+    
+    func selectionDidChange(_ sender: UISegmentedControl) {
+        let index = yearDisplaySegmentedControl.selectedSegmentIndex
+        yearSelected = yearDisplaySegmentedControl.titleForSegment(at: index)
+        print(yearSelected as Any)
+//        if let calendarEvents = UserDefaults.standard.array(forKey: "calendarSyncedEvents") as? [[String: Any]] {
+//            print(calendarEvents)
+//            for item in calendarEvents {
+//                print(item["year"])
+//                let moderHoliday = item["modern_holidays"] as? String
+//                let year = item["year"] as? String
+//                let indexValue = index as? String
+//                if year == indexValue && moderHoliday == "true" {
+//                    btnModernHolidays.isEnabled = false
+//                    btnModernHolidays.setImage(UIImage(named: "Calender_select"), for: .normal)
+//                }
+//            }
+//        }
     }
     
     func swipeLeft() {
@@ -75,35 +110,28 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle
-    {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    override func viewDidLayoutSubviews()
-    {
+    override func viewDidLayoutSubviews() {
         srrlView?.contentSize = CGSize(width: self.view.frame.size.width, height: 505)
         
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus()
         tblView.frame = CGRect(x: 40, y: 320, width: buttonView.frame.size.width-40, height: 180)
         tblView.isScrollEnabled = true
         tblView.isUserInteractionEnabled = true
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
-        if UserDefaults.standard.object(forKey: "CustomLst") != nil
-        {
+        if UserDefaults.standard.object(forKey: "CustomLst") != nil {
             let userdefaults = UserDefaults.standard
             arrCustomEventList = userdefaults.array(forKey: "CustomLst")! as NSArray
-            if arrCustomEventList.count > 0
-            {
+            if arrCustomEventList.count > 0 {
                 tblView.isHidden = false
-            }
-            else
-            {
+            } else {
                 tblView.isHidden = true
             }
             tblView.reloadData()
@@ -118,135 +146,97 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func exportButtonTapped(_ sender: Any) {
     }
-
-    @IBAction func btnMajorHoliday(_ sender: UIButton)
-    {
-        if btnMajorHoliday.tag == 101
-        {
+    
+    @IBAction func btnMajorHoliday(_ sender: UIButton) {
+        if btnMajorHoliday.tag == 101 {
             loadMajorHoliday()
             btnMajorHoliday.tag = 201
             btnMajorHoliday.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnMajorHoliday.tag = 101
             btnMajorHoliday.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
-        
     }
     
-    @IBAction func btnMinorHoliday(_ sender: UIButton)
-    {
-        if btnMinorHoliday.tag == 102
-        {
+    @IBAction func btnMinorHoliday(_ sender: UIButton) {
+        if btnMinorHoliday.tag == 102 {
             btnMinorHoliday.tag = 202
             btnMinorHoliday.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnMinorHoliday.tag = 102
             btnMinorHoliday.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
     }
     
-    @IBAction func btnRoshHoliday(_ sender: UIButton)
-    {
-        if btnRoshHoliday.tag == 103
-        {
+    @IBAction func btnRoshHoliday(_ sender: UIButton) {
+        if btnRoshHoliday.tag == 103 {
             btnRoshHoliday.tag = 203
             btnRoshHoliday.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnRoshHoliday.tag = 103
             btnRoshHoliday.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
     }
     
-    @IBAction func btnWeeklyHoliday(_ sender: UIButton)
-    {
-        if btnWeeklyHoliday.tag == 104
-        {
+    @IBAction func btnWeeklyHoliday(_ sender: UIButton) {
+        if btnWeeklyHoliday.tag == 104 {
             btnWeeklyHoliday.tag = 204
             btnWeeklyHoliday.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnWeeklyHoliday.tag = 104
             btnWeeklyHoliday.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
     }
     
-    @IBAction func btnOmerHoliday(_ sender: UIButton)
-    {
-        if btnOmerHoliday.tag == 105
-        {
+    @IBAction func btnOmerHoliday(_ sender: UIButton) {
+        if btnOmerHoliday.tag == 105 {
             btnOmerHoliday.tag = 205
             btnOmerHoliday.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnOmerHoliday.tag = 105
             btnOmerHoliday.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
     }
     
-    @IBAction func btnSpecialShabbatot(_ sender: UIButton)
-    {
-        if btnSpecialShabbatot.tag == 106
-        {
+    @IBAction func btnSpecialShabbatot(_ sender: UIButton) {
+        if btnSpecialShabbatot.tag == 106 {
             btnSpecialShabbatot.tag = 206
             btnSpecialShabbatot.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnSpecialShabbatot.tag = 106
             btnSpecialShabbatot.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
     }
     
     
-    @IBAction func btnModernHolidays(_ sender: UIButton)
-    {
-        if btnModernHolidays.tag == 107
-        {
+    @IBAction func btnModernHolidays(_ sender: UIButton) {
+        if btnModernHolidays.tag == 107 {
             btnModernHolidays.tag = 207
             btnModernHolidays.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnModernHolidays.tag = 107
             btnModernHolidays.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
     }
     
-    @IBAction func btnCustomHolidays(_ sender: UIButton)
-    {
+    @IBAction func btnCustomHolidays(_ sender: UIButton) {
         if btnCustomRepeatedEvents.tag == 108
         {
             loadCustomEvents()
             btnCustomRepeatedEvents.tag = 208
             btnCustomRepeatedEvents.setImage(UIImage(named: "Calender_select"), for: .normal)
-        }
-        else
-        {
+        } else {
             btnCustomRepeatedEvents.tag = 108
             btnCustomRepeatedEvents.setImage(UIImage(named: "Calender_Unselect"), for: .normal)
         }
     }
     
-    
-    
-    func loadMajorHoliday()
-    {
-        if let path = Bundle.main.url(forResource: "Major_Holidays", withExtension: "json")
-        {
+    func loadMajorHoliday() {
+        if let path = Bundle.main.url(forResource: "Major_Holidays", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: path, options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                
-                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>,
-                    let person = jsonResult["result"] as? [Any]
+                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>,let person = jsonResult["result"] as? [Any]
                 {
                     arrMajorHoliday = person as NSArray
                 }
@@ -254,63 +244,42 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 // handle error
             }
         }
-        
     }
     
-    func loadCustomEvents()
-    {
-        if UserDefaults.standard.object(forKey: "CustomLst") != nil
-        {
+    func loadCustomEvents() {
+        if UserDefaults.standard.object(forKey: "CustomLst") != nil {
             let userdefaults = UserDefaults.standard
             arrCustomEventList = userdefaults.array(forKey: "CustomLst")! as NSArray
         }
     }
     
-    
-    @IBAction func SyncData(_ sender: UIButton)
-    {
-            if btnMajorHoliday.tag == 201 || btnMinorHoliday.tag == 202 || btnRoshHoliday.tag == 203 || btnWeeklyHoliday.tag == 204 || btnOmerHoliday.tag == 205 || btnSpecialShabbatot.tag == 206 || btnModernHolidays.tag == 207 || btnCustomRepeatedEvents.tag == 208
-            {
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = "Dowloading events to device calender"
-                EventManager.shared.fetchEvents( year: EventManager.shared.currentYear(), { _ in
-                    self.actionAddEvent();
-                })
-            }
-            else
-            {
-                showAlert("Please select any one of the option to download the envents to your calender.")
-                return;
-            }
-        }
-    
-    
-    
-    
-    func checkCalendarAuthorizationStatus()
-    {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-        
-        switch (status)
-        {
-        case EKAuthorizationStatus.notDetermined:
-            // This happens on first-run
-            requestAccessToCalendar()
-        case EKAuthorizationStatus.authorized:
-            // Things are in line with being able to show the calendars in the table view
-            loadCalendars()
-        //            refreshTableView()
-        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied: break
-            // We need to help them give us permission
-            //            needPermissionView.fadeIn()
+    @IBAction func SyncData(_ sender: UIButton) {
+        if btnMajorHoliday.tag == 201 || btnMinorHoliday.tag == 202 || btnRoshHoliday.tag == 203 || btnWeeklyHoliday.tag == 204 || btnOmerHoliday.tag == 205 || btnSpecialShabbatot.tag == 206 || btnModernHolidays.tag == 207 || btnCustomRepeatedEvents.tag == 208 {
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = "Dowloading events to device calender"
+            EventManager.shared.fetchEvents( year: EventManager.shared.currentYear(), { _ in
+                self.actionAddEvent();
+            })
+        } else {
+            showAlert("Please select any one of the option to download the envents to your calender.")
+            return;
         }
     }
     
-    func requestAccessToCalendar()
-    {
+    func checkCalendarAuthorizationStatus() {
+        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
+        switch (status) {
+        case EKAuthorizationStatus.notDetermined:
+            requestAccessToCalendar()
+        case EKAuthorizationStatus.authorized:
+            loadCalendars()
+        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied: break
+        }
+    }
+    
+    func requestAccessToCalendar() {
         eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
-            
             if accessGranted == true {
                 DispatchQueue.main.async(execute: {
                     self.loadCalendars()
@@ -324,13 +293,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
-    func loadCalendars()
-    {
+    func loadCalendars() {
         self.calendars = eventStore.calendars(for: EKEntityType.event)
     }
     
-    func actionAddEvent()
-    {
+    func actionAddEvent() {
         var itemsToAddInCalender = [RLEvent] ()
         let events = EventManager.shared.events
         
@@ -395,11 +362,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         if self.btnSpecialShabbatot.tag == 206 {
-            
+            // Todo: added shabbat as subcat
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
                 print(event.category)
-                if let cat = event.category {
-                    if cat == "shabbat" {
+                if let cat = event.category, let subcat = event.subcat {
+                    if cat == "holiday" && subcat == "shabbat" {
                         return true
                     }
                 }
@@ -408,11 +375,10 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         if self.btnModernHolidays.tag == 207 {
-            
             itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
-                print(event.category)
                 if let cat = event.category, let subcat = event.subcat {
                     if cat == "holiday" && subcat == "modern" {
+                        
                         return true
                     }
                 }
@@ -420,57 +386,42 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             })        }
         
         if self.btnCustomRepeatedEvents.tag == 208 {
-            
             var customEvents = [RLEvent]()
             for dict in arrCustomEventList {
                 let event = RLEvent.init(dictionary: dict as! NSDictionary)
                 customEvents.append(event!)
             }
-             itemsToAddInCalender = itemsToAddInCalender + customEvents
+            itemsToAddInCalender = itemsToAddInCalender + customEvents
         }
-        
         syncWithCalender(itemsToAddInCalender: itemsToAddInCalender)
     }
     
-    
     func syncWithCalender(itemsToAddInCalender: [RLEvent]) {
-        
         var txtStartDate = String()
         var txtEventName = String()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         var strGetEventTitle = String()
         var strGetEventDate = Date()
-
         DispatchQueue.global(qos: .background).async {
-            
             for dicc in itemsToAddInCalender {
-                
                 txtEventName = dicc.title ?? ""
                 txtStartDate = dicc.date ?? ""
-                
                 txtEventName = txtEventName.spellChangedForTitle()
-                
                 guard let datevalue = dateFormatter.date(from: txtStartDate),
                     let datevalue1 = dateFormatter.date(from: txtStartDate) else {
-                    continue
+                        continue
                 }
-                
                 let predicate = self.eventStore.predicateForEvents(withStart: datevalue, end: datevalue1, calendars: self.calendars)
                 let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                
                 print("Events: \(events)")
                 for event in events
                 {   event.isAllDay = true
                     strGetEventTitle = event.title;
                     strGetEventDate = event.startDate;
                 }
-                if strGetEventTitle == "txtEventName" && strGetEventDate == datevalue
-                {
-                    
-                }
-                else
-                {
+                if strGetEventTitle == "txtEventName" && strGetEventDate == datevalue {
+                } else {
                     let event:EKEvent = EKEvent(eventStore: self.eventStore)
                     event.title = txtEventName
                     event.isAllDay = true
@@ -491,39 +442,30 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                 }
             }
-            
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
             }
         }
     }
     
-    @IBAction func btnAddCustomEvent(_ sender: UIButton)
-    {
+    @IBAction func btnAddCustomEvent(_ sender: UIButton) {
         UserDefaults.standard.set("", forKey: "Conv_Date")
         UserDefaults.standard.set("", forKey: "Conv_Month")
         UserDefaults.standard.set("", forKey: "Conv_Year")
         UserDefaults.standard.set("", forKey: "Conv_SunSet")
-        
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
         let settingViewController: NewAddCustomEventsVC = mainStoryboard.instantiateViewController(withIdentifier: "NewAddCustomEventsVC") as! NewAddCustomEventsVC
-        
         self .present(settingViewController, animated: true, completion: nil)
-        
     }
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrCustomEventList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "EventListCell"
-        
         let cell: EventListCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? EventListCell
         cell.backgroundColor = UIColor.clear
-        
         let dicc = arrCustomEventList[indexPath.row] as! [String : Any]
         if let title = dicc["eventTitle"] as? String {
             cell.lblTitle.text = title
@@ -533,39 +475,24 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.btnCross.isUserInteractionEnabled = true
         //        cell.btnCross.isHidden = true;
         cell.isUserInteractionEnabled = true
-        
         cell.btnCross.addTarget(self, action: #selector(pressButton(_:)), for: .touchUpInside)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40;//Choose your custom row height
     }
     
-    func pressButton(_ button: UIButton)
-    {
-        
+    func pressButton(_ button: UIButton) {
         let objCMutableArray = NSMutableArray(array: arrCustomEventList)
         objCMutableArray.removeObject(at: button.tag)
         arrCustomEventList = (objCMutableArray as NSArray)
-        
         UserDefaults.standard.set(arrCustomEventList, forKey: "CustomLst")
-        
-        if arrCustomEventList.count > 0
-        {
+        if arrCustomEventList.count > 0 {
             tblView.isHidden = false
-        }
-        else
-        {
+        } else {
             tblView.isHidden = true
         }
-        
         tblView.reloadData()
     }
 }
-
-
-
-
-

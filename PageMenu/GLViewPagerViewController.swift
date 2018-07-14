@@ -17,15 +17,10 @@ public enum GLIndicatorType:Int
 
 public enum GLTabAnimationType:Int
 {
-    /* no animation */
     case GLTabAnimationType_None = 0
-    /* animation while scrolling */
     case GLTabAnimationType_WhileScrolling = 1
-    /* animation when ending */
     case GLTabAnimationType_End = 2
 }
-
-
 
 // MARK: - Protocols 
 @objc public protocol GLViewPagerViewControllerDataSource:NSObjectProtocol {
@@ -44,41 +39,23 @@ public enum GLTabAnimationType:Int
 open class GLViewPagerViewController: UIViewController, UIPageViewControllerDataSource,UIPageViewControllerDelegate,UIScrollViewDelegate, UISearchBarDelegate {
     // MARK: - public properties
     open var dataSource: GLViewPagerViewControllerDataSource?
-    
     open var delegate: GLViewPagerViewControllerDelegate?
-    
     open var subbView: UIView = UIView();
-    
     open var indicatorColor: UIColor = UIColor.red
-    
     open var fixTabWidth: Bool = false
-    
     open var tabWidth:CGFloat = 128.0
-    
     open var tabHeight:CGFloat = 44.0
-    
     open var indicatorHeight:CGFloat = 2.0
-    
     open var indicatorWidth:CGFloat = 128.0
-    
     open var fixIndicatorWidth:Bool = false
-    
     open var padding:CGFloat = 0.0
-    
     open var leadingPadding:CGFloat = 0.0
-    
     open var trailingPadding:CGFloat = 0.0
-    
     open var defaultDisplayPageIndex = 0
-    
     open var animationTabDuration:CGFloat = 0.3
-    
     open var tabAnimationType:GLTabAnimationType = GLTabAnimationType.GLTabAnimationType_None
-    
     open var supportArabic:Bool = false
-    
     open var imageView : UIImageView = UIImageView();
-    
     open var Heb_day:UILabel = UILabel.init()
     open var Heb_Year:UILabel = UILabel.init()
     open var Eng_date:UILabel = UILabel.init()
@@ -171,11 +148,14 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         subbView.addSubview(imageView)
         
         //        let Heb_day:UILabel = UILabel.init()
+        Heb_day.isUserInteractionEnabled = true
         Heb_day.frame = CGRect(x:40, y:IS_IPAD ? 40 : 35, width:self.view.frame.width - 80, height:IS_IPAD ? 70 : 45);
         Heb_day.textAlignment = NSTextAlignment.center
         Heb_day.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 55.0 : 35.0)
         Heb_day.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Heb_day)
+        let tapOnEventName = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        Heb_day.addGestureRecognizer(tapOnEventName)
         var frame = Heb_day.frame;
         frame.origin.x = self.view.frame.width - 40;
         frame.size.width = 40;
@@ -186,14 +166,17 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         self.view.addSubview(button)
         
         //        let Heb_Year:UILabel = UILabel.init()
+        Heb_Year.isUserInteractionEnabled = true
         Heb_Year.frame = CGRect(x:0, y:Heb_day.frame.origin.y + Heb_day.frame.size.height, width:self.view.frame.width/2-10, height:IS_IPAD ? 50 : 40);
         Heb_Year.textAlignment = NSTextAlignment.right
         Heb_Year.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 27.0 : 20.0)
-        
         Heb_Year.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Heb_Year)
+         let tapOnYear = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        Heb_Year.addGestureRecognizer(tapOnYear)
         
         //        let Eng_date:UILabel = UILabel.init()
+        Eng_date.isUserInteractionEnabled = true
         Eng_date.frame = CGRect(x:Heb_Year.frame.origin.x + Heb_Year.frame.size.width + 20, y: Heb_day.frame.origin.y + Heb_day.frame.size.height, width:self.view.frame.width/2-10, height:IS_IPAD ? 50 : 40);
         
         //        Eng_date.text = "September 30";
@@ -201,9 +184,11 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         Eng_date.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 27.0 : 20.0)
         Eng_date.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Eng_date)
-        
+        let tapOnMonthDate = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
+        Eng_date.addGestureRecognizer(tapOnMonthDate)
         var dotView: UIView
         dotView = UIView(frame:CGRect(x:self.view.frame.width/2-10, y: Heb_day.frame.origin.y + Heb_day.frame.size.height, width:20, height:IS_IPAD ? 50 : 40));
+        
         self.view.addSubview(dotView)
         
         var dotView1: UIView
@@ -214,7 +199,6 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         //        dotView1.layer.mask = true;
         dotView.addSubview(dotView1)
         
-        // make UISearchBar instance
         mySearchBar = UISearchBar()
         mySearchBar.delegate = self
         mySearchBar.frame = CGRect(x: 0, y: subbView.frame.size.height-55, width: self.view.frame.size.width, height: 55)
@@ -234,9 +218,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         // set Default bar status.
         mySearchBar.searchBarStyle = UISearchBarStyle.default
         mySearchBar.returnKeyType = UIReturnKeyType.search
-        
-        // set title
-        
+    
         // set placeholder
         mySearchBar.placeholder = "Search"
         
@@ -249,6 +231,10 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         // add searchBar to the view.
         subbView.addSubview(mySearchBar)
         mySearchBar.bringSubview(toFront: imageView)
+    }
+    
+    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
+        NotificationCenter.default.post(name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
     }
     
     @objc func setDateHoliday(){

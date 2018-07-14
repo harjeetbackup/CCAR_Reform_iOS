@@ -35,6 +35,10 @@ extension String {
             if (name == " Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
                 name = "Chol_Hamoed_Sukkot_Shabbat"
            }
+            //here name is "Chanukah_*_Weekday"
+            if (name == "Chanukah_2nd_Night" || name == "Chanukah_3rd_Night" || name == "Chanukah_4th_Night" || name == "Chanukah_5th_Night" || name == "Chanukah_6th_Night" || name == "Chanukah_7th_Night" || name == "Chanukah_8th_Night" || name == "Chanukah_8th_Day") {
+                name = "Shabbat_Chanukah"
+            }
         } else if event.inFriday() {
             name = name.replacingOccurrences(of: "Erev_Pesach-Ta'anit_Bechorot", with: "Erev_Pesach-Ta'anit_Bechorot_Friday")
             name = name.replacingOccurrences(of: "Erev_Rosh_Chodesh_Weekday", with: "Erev_Rosh_Chodesh_Friday")
@@ -44,7 +48,7 @@ extension String {
             name = name.replacingOccurrences(of: "Erev_Yom_Kippur", with: "Erev_Yom_Kippur_Friday")
             name = name.replacingOccurrences(of: "Pesach_Chol_Hamoed_Day_5_Weekday", with: "Pesach_Chol_Hamoed_Day_5_Friday")
             name = name.replacingOccurrences(of: "Erev_Rosh_Hashanah_Weekday", with: "Erev_Rosh_Hashanah_Friday")
-            if (name == " Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
+            if (name == "Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
                 name = "Shabbat_Chol_Hamoed_Sukkot_Friday"
             }
         }

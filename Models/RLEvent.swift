@@ -13,6 +13,7 @@ public class RLEvent {
     public var subcat : String?
     public var memo : String?
     public var yomtov = false
+    public var isFromSpecialSubtitle: Bool?
 
     public class func modelsFromDictionaryArray(array:NSArray) -> [RLEvent]
     {
@@ -66,7 +67,16 @@ public class RLEvent {
         }
         return false
     }
-    
+    // TODO check chanukah 2nd candels or night
+    func isSukkotAndChanukahSaturdayEventSpecialDayForSubTitle() -> Bool {
+        if let str = self.spellChangedTitle {
+            print(str)
+            if (str == "Sukkot 2 Weekday" || str == "Sukkot 3 Weekday" || str == "Sukkot 4 Weekday" || str == "Sukkot 5 Weekday" || str == "Sukkot 6 Weekday" || str == "Chanukah: 2 Candles" || str == "Chanukah: 3 Candles" || str == "Chanukah: 4 Candles" || str == "Chanukah: 5 Candles" || str == "Chanukah: 6 Candles" || str == "Chanukah: 7 Candles" || str == "Chanukah: 8 Candles" || str == "Chanukah 8 Weekday") {
+                return true
+            }
+        }
+        return false
+    }
     
     func dayOfTheWeek() -> Int {
         if let eventDateStr = self.date {
