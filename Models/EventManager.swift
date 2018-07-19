@@ -34,26 +34,32 @@ class EventManager: NSObject {
     }()
 
     var events = [RLEvent]()
+    var yearSyncfilteredItems = [RLEvent]()
     var selectedCalender : CalenderType = .reform
     var yearLoaded = 0
+    var yearLoadedFromSync = [String]()
     
     let kSelectedCalender = "CCTYPE"
     let kIsraelCalenderURL = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=on&maj=on&min=on&mod=on&nx=on&year=2017&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
     
     let kDisporaCalenderURL = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=on&min=on&mod=on&nx=on&year=2017&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
     
-    func fetchEvents(year:Int, _ completion: @escaping(([RLEvent]) -> Void)) {
+    func fetchEvents(year:Int, isFromEventsTab:Bool, yearSelectedForSync: [String], _ completion: @escaping(([RLEvent]) -> Void)) {
         
         if yearLoaded < year {
-            
             //set this so that it should not go inside again
-            yearLoaded = year
+            
+            if isFromEventsTab == true {
+                yearLoaded = year
+            } else {
+                yearLoadedFromSync = yearSelectedForSync
+            }
             
             if selectedCalender == .reform {
                 
                 let isrealHolidaysUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=on&maj=on&min=on&mod=on&nx=on&year=\(year)&month=x&ss=on&mf=on&c=off&geo=none&m=50&s=off&o=on"
                 
-               let diasporaTorahUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=off&min=off&mod=off&nx=off&year=\(year)&month=x&ss=off&mf=off&c=off&geo=none&m=50&s=on&o=off"
+                let diasporaTorahUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=off&min=off&mod=off&nx=off&year=\(year)&month=x&ss=off&mf=off&c=off&geo=none&m=50&s=on&o=off"
                 
                 let diasporaTorahSpecialUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=on&min=off&mod=off&nx=off&year=\(year)&month=x&ss=off&mf=off&c=off&geo=none&m=0&s=off&o=off"
                 
@@ -119,11 +125,27 @@ class EventManager: NSObject {
     func loadEvents(url: String, completion: @escaping(([RLEvent]) -> Void)) {
         
         Alamofire.request(url, method: .get, parameters:nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            print("url:\(url)")
             if let json = response.result.value as? [String: Any] {
                 if let array = json["items"] as? NSArray {
                     let items = RLEvent.modelsFromDictionaryArray(array:array)
-                    print(array)
-                    completion(items)
+                    let filteredItems = items.filter({ (event) -> Bool in
+                        if event.title == "Sigd" {
+                            return false
+                        } else {
+                            return true
+                        }
+                    })
+//                    for year in self.yearLoadedFromSync {
+//                        self.yearSyncfilteredItems = filteredItems.filter({ (event) -> Bool in
+//                            if "\(event.date?.getYear())" == year {
+//                                return false
+//                            } else {
+//                                return true
+//                            }
+//                        })
+//                    }
+                        completion(filteredItems)
                 }
             }
         }
@@ -133,7 +155,7 @@ class EventManager: NSObject {
         EventManager.shared.events.removeAll()
         EventManager.shared.setCalenderType()
         EventManager.shared.yearLoaded = 0
-        self.fetchEvents(year: currentYear()) { _ in
+        self.fetchEvents(year: currentYear(), isFromEventsTab: true, yearSelectedForSync: []) { _ in
             NotificationCenter.default.post(name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
         }
     }
@@ -169,5 +191,15 @@ class EventManager: NSObject {
         let date = Date()
         let calendar = Calendar.current
         return calendar.component(.year, from: date)
+    }
+    
+}
+extension String {
+    func getYear() -> Int {
+        let calendar = Calendar.current
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: self)
+        return calendar.component(.year, from: date!)
     }
 }

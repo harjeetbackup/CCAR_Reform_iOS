@@ -25,6 +25,14 @@
 		DFC1F9C5F5BC62723F01F7F8 /* Pods_ReformLuach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136CED33E51658820C2CFA39 /* Pods_ReformLuach.framework */; };
 		E22F875E20F88E8400621ACA /* SyncDataSouce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22F875D20F88E8400621ACA /* SyncDataSouce.swift */; };
 		E22F876020F88FC000621ACA /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22F875F20F88FC000621ACA /* CalendarManager.swift */; };
+		E24FE54520FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE54420FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html */; };
+		E24FE55620FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55420FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html */; };
+		E24FE55720FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55520FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html */; };
+		E24FE55B20FF6DDD0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55A20FF6DDD0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html */; };
+		E24FE55D20FF6E1B0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55C20FF6E1A0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah.html */; };
+		E24FE55F20FF6E3E0077BDB7 /* Shavuot_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55E20FF6E3E0077BDB7 /* Shavuot_Shabbat.html */; };
+		E24FE56120FF6E580077BDB7 /* Shavuot.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE56020FF6E580077BDB7 /* Shavuot.html */; };
+		E24FE56320FF6EA60077BDB7 /* Pesach_Day_7.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE56220FF6EA60077BDB7 /* Pesach_Day_7.html */; };
 		E2AF0F2420B68F4800A05BC7 /* EventManager+SubtitleLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */; };
 		E2B174A420C265D40009F5DB /* Sukkot_5_Weekday.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173BF20C265A50009F5DB /* Sukkot_5_Weekday.html */; };
 		E2B174A520C265D40009F5DB /* Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173C020C265A50009F5DB /* Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html */; };
@@ -36,7 +44,6 @@
 		E2B174AB20C265D40009F5DB /* Shabbat_B'har-B'chukotai.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173C620C265A60009F5DB /* Shabbat_B'har-B'chukotai.html */; };
 		E2B174AC20C265D40009F5DB /* Tazria.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173C720C265A60009F5DB /* Tazria.html */; };
 		E2B174AD20C265D40009F5DB /* Chanukah_1_Weekday.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173C820C265A60009F5DB /* Chanukah_1_Weekday.html */; };
-		E2B174AE20C265D40009F5DB /* Sh'mini_Atzeret-Simchat_Torah.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173C920C265A60009F5DB /* Sh'mini_Atzeret-Simchat_Torah.html */; };
 		E2B174AF20C265D40009F5DB /* Shabbat_Toldot.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173CA20C265A70009F5DB /* Shabbat_Toldot.html */; };
 		E2B174B020C265D40009F5DB /* Pesach_Chol_Hamoed_Day_3.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173CB20C265A70009F5DB /* Pesach_Chol_Hamoed_Day_3.html */; };
 		E2B174B120C265D40009F5DB /* Vayak’heil-P’kudei.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173CC20C265A70009F5DB /* Vayak’heil-P’kudei.html */; };
@@ -89,7 +96,6 @@
 		E2B174E020C265D40009F5DB /* Shabbat_T'rumah.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173FB20C265B00009F5DB /* Shabbat_T'rumah.html */; };
 		E2B174E120C265D40009F5DB /* Asara_B'Tevet.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173FC20C265B00009F5DB /* Asara_B'Tevet.html */; };
 		E2B174E220C265D40009F5DB /* Ki_Tisa.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173FD20C265B00009F5DB /* Ki_Tisa.html */; };
-		E2B174E320C265D40009F5DB /* Shavuot.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173FE20C265B00009F5DB /* Shavuot.html */; };
 		E2B174E420C265D40009F5DB /* V'zot_Hab'rachah.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173FF20C265B00009F5DB /* V'zot_Hab'rachah.html */; };
 		E2B174E520C265D40009F5DB /* Shabbat_Matot.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1740020C265B10009F5DB /* Shabbat_Matot.html */; };
 		E2B174E620C265D40009F5DB /* Tol'dot.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1740120C265B10009F5DB /* Tol'dot.html */; };
@@ -124,9 +130,6 @@
 		E2B1750320C265D40009F5DB /* B'har-B'chukotai.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1741E20C265B70009F5DB /* B'har-B'chukotai.html */; };
 		E2B1750420C265D40009F5DB /* Rosh_Hashanah_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1741F20C265B70009F5DB /* Rosh_Hashanah_1.html */; };
 		E2B1750520C265D40009F5DB /* Shabbat_Mas'ei.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1742020C265B70009F5DB /* Shabbat_Mas'ei.html */; };
-		E2B1750620C265D40009F5DB /* Shavuot_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1742120C265B70009F5DB /* Shavuot_Shabbat.html */; };
-		E2B1750720C265D40009F5DB /* Pesach_Day_1_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1742220C265B70009F5DB /* Pesach_Day_1_Shabbat.html */; };
-		E2B1750820C265D40009F5DB /* Pesach_Day_7_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1742320C265B80009F5DB /* Pesach_Day_7_Shabbat.html */; };
 		E2B1750920C265D40009F5DB /* Shabbat_Ha'azinu.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1742420C265B80009F5DB /* Shabbat_Ha'azinu.html */; };
 		E2B1750A20C265D40009F5DB /* Shabbat_Eikev.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1742520C265B80009F5DB /* Shabbat_Eikev.html */; };
 		E2B1750B20C265D40009F5DB /* Aseret_Y'mei_T'shuva.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1742620C265B80009F5DB /* Aseret_Y'mei_T'shuva.html */; };
@@ -200,7 +203,6 @@
 		E2B1754F20C265D40009F5DB /* Vayeishev.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1746A20C265C70009F5DB /* Vayeishev.html */; };
 		E2B1755020C265D40009F5DB /* Vayigash.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1746B20C265C70009F5DB /* Vayigash.html */; };
 		E2B1755120C265D40009F5DB /* Chanukah_Candlelighting.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1746C20C265C70009F5DB /* Chanukah_Candlelighting.html */; };
-		E2B1755220C265D40009F5DB /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1746D20C265C70009F5DB /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html */; };
 		E2B1755320C265D40009F5DB /* R'eih.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1746E20C265C70009F5DB /* R'eih.html */; };
 		E2B1755420C265D40009F5DB /* Shabbat_Vayishlach.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1746F20C265C80009F5DB /* Shabbat_Vayishlach.html */; };
 		E2B1755520C265D40009F5DB /* Chanukah_8_Weekday.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1747020C265C80009F5DB /* Chanukah_8_Weekday.html */; };
@@ -249,11 +251,10 @@
 		E2B1758020C265D40009F5DB /* Vayeira.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1749B20C265D10009F5DB /* Vayeira.html */; };
 		E2B1758120C265D40009F5DB /* B'reishit.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1749C20C265D20009F5DB /* B'reishit.html */; };
 		E2B1758220C265D40009F5DB /* Yom_Yerushalayim.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1749D20C265D20009F5DB /* Yom_Yerushalayim.html */; };
-		E2B1758320C265D40009F5DB /* Pesach_Day_7.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1749E20C265D20009F5DB /* Pesach_Day_7.html */; };
 		E2B1758420C265D40009F5DB /* Chukat.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1749F20C265D20009F5DB /* Chukat.html */; };
-		E2B1758520C265D40009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh _Tevet_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A020C265D30009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh _Tevet_1.html */; };
-		E2B1758620C265D40009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh _Tevet_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A120C265D30009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh _Tevet_1.html */; };
-		E2B1758720C265D40009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh _Tevet_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A220C265D30009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh _Tevet_1.html */; };
+		E2B1758520C265D40009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh_Tevet_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A020C265D30009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh_Tevet_1.html */; };
+		E2B1758620C265D40009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh_Tevet_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A120C265D30009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh_Tevet_1.html */; };
+		E2B1758720C265D40009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh_Tevet_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A220C265D30009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh_Tevet_1.html */; };
 		E2B1758820C265D40009F5DB /* Shabbat_Korach.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A320C265D30009F5DB /* Shabbat_Korach.html */; };
 		E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E60975341FC4026900A14BBC /* CHCSVParser.m */; };
 		E610FC8D1FD944B600495DA6 /* Jewish_holiday_Israel.json in Resources */ = {isa = PBXBuildFile; fileRef = E610FC8C1FD944B500495DA6 /* Jewish_holiday_Israel.json */; };
@@ -379,6 +380,14 @@
 		B59595497D1E28EBFB87DEFC /* Pods-ReformLuach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReformLuach.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReformLuach/Pods-ReformLuach.release.xcconfig"; sourceTree = "<group>"; };
 		E22F875D20F88E8400621ACA /* SyncDataSouce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDataSouce.swift; sourceTree = "<group>"; };
 		E22F875F20F88FC000621ACA /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		E24FE54420FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Rosh_Chodesh_Adar_II.html; sourceTree = "<group>"; };
+		E24FE55420FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_7_Shabbat.html; sourceTree = "<group>"; };
+		E24FE55520FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_1_Shabbat.html; sourceTree = "<group>"; };
+		E24FE55A20FF6DDD0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Sh'mini_Atzeret-Simchat_Torah_Shabbat.html"; sourceTree = "<group>"; };
+		E24FE55C20FF6E1A0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Sh'mini_Atzeret-Simchat_Torah.html"; sourceTree = "<group>"; };
+		E24FE55E20FF6E3E0077BDB7 /* Shavuot_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shavuot_Shabbat.html; sourceTree = "<group>"; };
+		E24FE56020FF6E580077BDB7 /* Shavuot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shavuot.html; sourceTree = "<group>"; };
+		E24FE56220FF6EA60077BDB7 /* Pesach_Day_7.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_7.html; sourceTree = "<group>"; };
 		E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventManager+SubtitleLogic.swift"; sourceTree = "<group>"; };
 		E2B173BF20C265A50009F5DB /* Sukkot_5_Weekday.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Sukkot_5_Weekday.html; sourceTree = "<group>"; };
 		E2B173C020C265A50009F5DB /* Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html"; sourceTree = "<group>"; };
@@ -390,7 +399,6 @@
 		E2B173C620C265A60009F5DB /* Shabbat_B'har-B'chukotai.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Shabbat_B'har-B'chukotai.html"; sourceTree = "<group>"; };
 		E2B173C720C265A60009F5DB /* Tazria.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Tazria.html; sourceTree = "<group>"; };
 		E2B173C820C265A60009F5DB /* Chanukah_1_Weekday.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_1_Weekday.html; sourceTree = "<group>"; };
-		E2B173C920C265A60009F5DB /* Sh'mini_Atzeret-Simchat_Torah.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Sh'mini_Atzeret-Simchat_Torah.html"; sourceTree = "<group>"; };
 		E2B173CA20C265A70009F5DB /* Shabbat_Toldot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shabbat_Toldot.html; sourceTree = "<group>"; };
 		E2B173CB20C265A70009F5DB /* Pesach_Chol_Hamoed_Day_3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Chol_Hamoed_Day_3.html; sourceTree = "<group>"; };
 		E2B173CC20C265A70009F5DB /* Vayak’heil-P’kudei.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Vayak’heil-P’kudei.html"; sourceTree = "<group>"; };
@@ -443,7 +451,6 @@
 		E2B173FB20C265B00009F5DB /* Shabbat_T'rumah.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Shabbat_T'rumah.html"; sourceTree = "<group>"; };
 		E2B173FC20C265B00009F5DB /* Asara_B'Tevet.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Asara_B'Tevet.html"; sourceTree = "<group>"; };
 		E2B173FD20C265B00009F5DB /* Ki_Tisa.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Ki_Tisa.html; sourceTree = "<group>"; };
-		E2B173FE20C265B00009F5DB /* Shavuot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shavuot.html; sourceTree = "<group>"; };
 		E2B173FF20C265B00009F5DB /* V'zot_Hab'rachah.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "V'zot_Hab'rachah.html"; sourceTree = "<group>"; };
 		E2B1740020C265B10009F5DB /* Shabbat_Matot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shabbat_Matot.html; sourceTree = "<group>"; };
 		E2B1740120C265B10009F5DB /* Tol'dot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Tol'dot.html"; sourceTree = "<group>"; };
@@ -478,9 +485,6 @@
 		E2B1741E20C265B70009F5DB /* B'har-B'chukotai.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "B'har-B'chukotai.html"; sourceTree = "<group>"; };
 		E2B1741F20C265B70009F5DB /* Rosh_Hashanah_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Rosh_Hashanah_1.html; sourceTree = "<group>"; };
 		E2B1742020C265B70009F5DB /* Shabbat_Mas'ei.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Shabbat_Mas'ei.html"; sourceTree = "<group>"; };
-		E2B1742120C265B70009F5DB /* Shavuot_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shavuot_Shabbat.html; sourceTree = "<group>"; };
-		E2B1742220C265B70009F5DB /* Pesach_Day_1_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_1_Shabbat.html; sourceTree = "<group>"; };
-		E2B1742320C265B80009F5DB /* Pesach_Day_7_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_7_Shabbat.html; sourceTree = "<group>"; };
 		E2B1742420C265B80009F5DB /* Shabbat_Ha'azinu.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Shabbat_Ha'azinu.html"; sourceTree = "<group>"; };
 		E2B1742520C265B80009F5DB /* Shabbat_Eikev.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shabbat_Eikev.html; sourceTree = "<group>"; };
 		E2B1742620C265B80009F5DB /* Aseret_Y'mei_T'shuva.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Aseret_Y'mei_T'shuva.html"; sourceTree = "<group>"; };
@@ -554,7 +558,6 @@
 		E2B1746A20C265C70009F5DB /* Vayeishev.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Vayeishev.html; sourceTree = "<group>"; };
 		E2B1746B20C265C70009F5DB /* Vayigash.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Vayigash.html; sourceTree = "<group>"; };
 		E2B1746C20C265C70009F5DB /* Chanukah_Candlelighting.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_Candlelighting.html; sourceTree = "<group>"; };
-		E2B1746D20C265C70009F5DB /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Sh'mini_Atzeret-Simchat_Torah_Shabbat.html"; sourceTree = "<group>"; };
 		E2B1746E20C265C70009F5DB /* R'eih.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "R'eih.html"; sourceTree = "<group>"; };
 		E2B1746F20C265C80009F5DB /* Shabbat_Vayishlach.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shabbat_Vayishlach.html; sourceTree = "<group>"; };
 		E2B1747020C265C80009F5DB /* Chanukah_8_Weekday.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_8_Weekday.html; sourceTree = "<group>"; };
@@ -603,11 +606,10 @@
 		E2B1749B20C265D10009F5DB /* Vayeira.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Vayeira.html; sourceTree = "<group>"; };
 		E2B1749C20C265D20009F5DB /* B'reishit.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "B'reishit.html"; sourceTree = "<group>"; };
 		E2B1749D20C265D20009F5DB /* Yom_Yerushalayim.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Yom_Yerushalayim.html; sourceTree = "<group>"; };
-		E2B1749E20C265D20009F5DB /* Pesach_Day_7.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_7.html; sourceTree = "<group>"; };
 		E2B1749F20C265D20009F5DB /* Chukat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chukat.html; sourceTree = "<group>"; };
-		E2B174A020C265D30009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh _Tevet_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Chanukah_6_Weekday_Rosh_Chodesh _Tevet_1.html"; sourceTree = "<group>"; };
-		E2B174A120C265D30009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh _Tevet_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Chanukah_7_Weekday_Rosh_Chodesh _Tevet_1.html"; sourceTree = "<group>"; };
-		E2B174A220C265D30009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh _Tevet_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Chanukah_8_Weekday_Rosh_Chodesh _Tevet_1.html"; sourceTree = "<group>"; };
+		E2B174A020C265D30009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh_Tevet_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_6_Weekday_Rosh_Chodesh_Tevet_1.html; sourceTree = "<group>"; };
+		E2B174A120C265D30009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh_Tevet_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_7_Weekday_Rosh_Chodesh_Tevet_1.html; sourceTree = "<group>"; };
+		E2B174A220C265D30009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh_Tevet_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_8_Weekday_Rosh_Chodesh_Tevet_1.html; sourceTree = "<group>"; };
 		E2B174A320C265D30009F5DB /* Shabbat_Korach.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shabbat_Korach.html; sourceTree = "<group>"; };
 		E60974FB1FC3FC9500A14BBC /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
 		E60974FC1FC3FC9500A14BBC /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
@@ -842,11 +844,11 @@
 				E2B173F420C265AE0009F5DB /* Chanukah_5_Weekday_Erev_Rosh_Chodesh _Tevet.html */,
 				E2B1742720C265B80009F5DB /* Chanukah_5_Weekday.html */,
 				E2B173F520C265AE0009F5DB /* Chanukah_6_Weekday_Erev_Rosh_Chodesh _Tevet.html */,
-				E2B174A020C265D30009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh _Tevet_1.html */,
+				E2B174A020C265D30009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh_Tevet_1.html */,
 				E2B1742920C265B90009F5DB /* Chanukah_6_Weekday.html */,
-				E2B174A120C265D30009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh _Tevet_1.html */,
+				E2B174A120C265D30009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh_Tevet_1.html */,
 				E2B1745320C265C20009F5DB /* Chanukah_7_Weekday.html */,
-				E2B174A220C265D30009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh _Tevet_1.html */,
+				E2B174A220C265D30009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh_Tevet_1.html */,
 				E2B1747020C265C80009F5DB /* Chanukah_8_Weekday.html */,
 				E2B1746C20C265C70009F5DB /* Chanukah_Candlelighting.html */,
 				E2B1749720C265D00009F5DB /* Chayei_Sara.html */,
@@ -903,18 +905,19 @@
 				E2B1744520C265BF0009F5DB /* Pesach_Chol_Hamoed_Day_2.html */,
 				E2B173CB20C265A70009F5DB /* Pesach_Chol_Hamoed_Day_3.html */,
 				E2B1742B20C265B90009F5DB /* Pesach_Chol_Hamoed_Day_4.html */,
+				E24FE56220FF6EA60077BDB7 /* Pesach_Day_7.html */,
+				E24FE55520FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html */,
+				E24FE55420FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html */,
 				E2B1744420C265BE0009F5DB /* Pesach_Chol_Hamoed_Day_5_Friday.html */,
 				E2B173C320C265A60009F5DB /* Pesach_Chol_Hamoed_Day_5_Weekday.html */,
-				E2B1742220C265B70009F5DB /* Pesach_Day_1_Shabbat.html */,
 				E2B1749420C265CF0009F5DB /* Pesach_Day_1_Weekday.html */,
-				E2B1742320C265B80009F5DB /* Pesach_Day_7_Shabbat.html */,
-				E2B1749E20C265D20009F5DB /* Pesach_Day_7.html */,
 				E2B1744920C265BF0009F5DB /* Pesach_Sheini.html */,
 				E2B1745C20C265C40009F5DB /* Pinchas.html */,
 				E2B1743E20C265BD0009F5DB /* Purim_Katan.html */,
 				E2B173F220C265AE0009F5DB /* Purim.html */,
 				E2B1746E20C265C70009F5DB /* R'eih.html */,
 				E2B1741720C265B50009F5DB /* Rosh_Chodesh_Adar_I.html */,
+				E24FE54420FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html */,
 				E2B1748A20C265CD0009F5DB /* Rosh_Chodesh_Av.html */,
 				E2B173EE20C265AD0009F5DB /* Rosh_Chodesh_Elul.html */,
 				E2B1747D20C265CA0009F5DB /* Rosh_Chodesh_I_Weekday.html */,
@@ -922,8 +925,7 @@
 				E2B1741F20C265B70009F5DB /* Rosh_Hashanah_1.html */,
 				E2B1743020C265BA0009F5DB /* Rosh_Hashanah_2.html */,
 				E2B173D120C265A70009F5DB /* Sh'lach_L'cha.html */,
-				E2B1746D20C265C70009F5DB /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html */,
-				E2B173C920C265A60009F5DB /* Sh'mini_Atzeret-Simchat_Torah.html */,
+				E24FE55A20FF6DDD0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html */,
 				E2B1740720C265B20009F5DB /* Sh'mini_I.html */,
 				E2B1745B20C265C40009F5DB /* Sh'mini_II.html */,
 				E2B1745720C265C30009F5DB /* Sh'mini.html */,
@@ -1002,8 +1004,9 @@
 				E2B1746F20C265C80009F5DB /* Shabbat_Vayishlach.html */,
 				E2B1747E20C265CA0009F5DB /* Shabbat_Yitro.html */,
 				E2B173E020C265AA0009F5DB /* Shabbat_Zachor.html */,
-				E2B1742120C265B70009F5DB /* Shavuot_Shabbat.html */,
-				E2B173FE20C265B00009F5DB /* Shavuot.html */,
+				E24FE55C20FF6E1A0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah.html */,
+				E24FE56020FF6E580077BDB7 /* Shavuot.html */,
+				E24FE55E20FF6E3E0077BDB7 /* Shavuot_Shabbat.html */,
 				E2B1740E20C265B30009F5DB /* Shiva_Asar_b'Tammuz.html */,
 				E2B1741420C265B50009F5DB /* Shof'tim.html */,
 				E2B1742D20C265BA0009F5DB /* Shushan_Purim.html */,
@@ -1324,6 +1327,7 @@
 				6D263DA220AC8CE500FE8819 /* CustomCell.xib in Resources */,
 				E610FC931FD9496400495DA6 /* torah-israel.json in Resources */,
 				E2B1757220C265D40009F5DB /* Shabbat_Vayeishev_on_Chanukah_Day_2.html in Resources */,
+				E24FE56320FF6EA60077BDB7 /* Pesach_Day_7.html in Resources */,
 				E2B1752820C265D40009F5DB /* Shabbat_V'etchanan-Nachamu.html in Resources */,
 				E610FC911FD9493E00495DA6 /* torah-diaspora.json in Resources */,
 				E2B1753420C265D40009F5DB /* Shabbat_Pinchas.html in Resources */,
@@ -1353,8 +1357,8 @@
 				E2B1752A20C265D40009F5DB /* Pesach_Chol_Hamoed_Day_2.html in Resources */,
 				E2B174B620C265D40009F5DB /* Sh'lach_L'cha.html in Resources */,
 				E2B1753320C265D40009F5DB /* Haazinu.html in Resources */,
+				E24FE55F20FF6E3E0077BDB7 /* Shavuot_Shabbat.html in Resources */,
 				E2B1751D20C265D40009F5DB /* Shabbat_Emor.html in Resources */,
-				E2B174AE20C265D40009F5DB /* Sh'mini_Atzeret-Simchat_Torah.html in Resources */,
 				E2B174B020C265D40009F5DB /* Pesach_Chol_Hamoed_Day_3.html in Resources */,
 				6DA2C33820FA0D9500C33C30 /* SyncType.json in Resources */,
 				E2B174F720C265D40009F5DB /* Erev_Yom_Kippur.html in Resources */,
@@ -1370,7 +1374,6 @@
 				E2B1757720C265D40009F5DB /* Erev_Rosh_Hashanah_Weekday.html in Resources */,
 				E2B1755620C265D40009F5DB /* K'doshim.html in Resources */,
 				E2B174BB20C265D40009F5DB /* Shabbat_Bamidbar.html in Resources */,
-				E2B1750820C265D40009F5DB /* Pesach_Day_7_Shabbat.html in Resources */,
 				E6EC813D1FC5548A00406361 /* Rosh_Chodush.json in Resources */,
 				E2B1753C20C265D40009F5DB /* Sh'mini.html in Resources */,
 				E2B174E020C265D40009F5DB /* Shabbat_T'rumah.html in Resources */,
@@ -1382,6 +1385,7 @@
 				E2B1752420C265D40009F5DB /* Shabbat_Tazria.html in Resources */,
 				E2B1753E20C265D40009F5DB /* Ki_Tavo.html in Resources */,
 				E2B1751A20C265D40009F5DB /* Ki_Teitzei.html in Resources */,
+				E24FE55720FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html in Resources */,
 				E2B1757320C265D40009F5DB /* D'varim.html in Resources */,
 				E2B1753820C265D40009F5DB /* Chanukah_7_Weekday.html in Resources */,
 				E2B1756520C265D40009F5DB /* Shabbat_K'doshim.html in Resources */,
@@ -1390,7 +1394,7 @@
 				E2B1757520C265D40009F5DB /* B'chukotai.html in Resources */,
 				E6AB61691F4C6A9500161250 /* Roboto-CondensedItalic.ttf in Resources */,
 				E2B1753520C265D40009F5DB /* Shabbat_Rosh_Chodesh_II_or_One_Day_Rosh_Chodesh.html in Resources */,
-				E2B1758620C265D40009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh _Tevet_1.html in Resources */,
+				E2B1758620C265D40009F5DB /* Chanukah_7_Weekday_Rosh_Chodesh_Tevet_1.html in Resources */,
 				E2B174C820C265D40009F5DB /* Shabbat_B'reishit.html in Resources */,
 				E2B174D220C265D40009F5DB /* Nitzavim-Vayeilech.html in Resources */,
 				E6AB616A1F4C6A9500161250 /* Roboto-Italic.ttf in Resources */,
@@ -1407,8 +1411,8 @@
 				E2B174D920C265D40009F5DB /* Chanukah_5_Weekday_Erev_Rosh_Chodesh _Tevet.html in Resources */,
 				E2B174C920C265D40009F5DB /* Erev_Shavuot.html in Resources */,
 				E2B1750120C265D40009F5DB /* Shabbat_Re'eh.html in Resources */,
+				E24FE55620FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html in Resources */,
 				E2B1750F20C265D40009F5DB /* Erev_Tisha_b'Av.html in Resources */,
-				E2B1755220C265D40009F5DB /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html in Resources */,
 				E2B1752B20C265D40009F5DB /* Chanukah_2_Weekday.html in Resources */,
 				E2B1755B20C265D40009F5DB /* Shabbat_M'tzora.html in Resources */,
 				E2B174EF20C265D40009F5DB /* Chanukah_3_Weekday.html in Resources */,
@@ -1453,7 +1457,6 @@
 				E2B1751020C265D40009F5DB /* Pesach_Chol_Hamoed_Day_4.html in Resources */,
 				E2B1757020C265D40009F5DB /* Sukkot_1_Weekday.html in Resources */,
 				E2B1758420C265D40009F5DB /* Chukat.html in Resources */,
-				E2B1750720C265D40009F5DB /* Pesach_Day_1_Shabbat.html in Resources */,
 				E2B1756D20C265D40009F5DB /* Shabbat_Va'eira.html in Resources */,
 				E2B1756120C265D40009F5DB /* Shabbat_Balak.html in Resources */,
 				E2B1755A20C265D40009F5DB /* Acharei_Mot_I.html in Resources */,
@@ -1463,11 +1466,11 @@
 				E2B174D020C265D40009F5DB /* Shabbat_Chanukah_Rosh_Chodesh.html in Resources */,
 				E2B1754D20C265D40009F5DB /* Korach.html in Resources */,
 				E2B174DF20C265D40009F5DB /* Shabbat_Vay'chi.html in Resources */,
+				E24FE54520FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html in Resources */,
 				E2B1754220C265D40009F5DB /* Shabbat_Vayikra.html in Resources */,
 				E2B174CB20C265D40009F5DB /* Shabbat_Bo.html in Resources */,
 				E2B1753B20C265D40009F5DB /* Chol_Hamoed_Sukkot_Shabbat.html in Resources */,
 				E2B1756B20C265D40009F5DB /* Shabbat_Sh'kalim.html in Resources */,
-				E2B174E320C265D40009F5DB /* Shavuot.html in Resources */,
 				E2B1757E20C265D40009F5DB /* Shabbat_Mishpatim.html in Resources */,
 				E2B174E820C265D40009F5DB /* Acharei_Mot_II.html in Resources */,
 				E2B174C720C265D40009F5DB /* Chanukah_4_Weekday.html in Resources */,
@@ -1476,14 +1479,14 @@
 				E6AB61641F4C6A9500161250 /* Roboto-Bold.ttf in Resources */,
 				E2B174C420C265D40009F5DB /* Erev_Sukkot.html in Resources */,
 				E2B1756320C265D40009F5DB /* Shabbat_Yitro.html in Resources */,
-				E2B1758320C265D40009F5DB /* Pesach_Day_7.html in Resources */,
 				E2B174A520C265D40009F5DB /* Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html in Resources */,
 				E2B174B820C265D40009F5DB /* Sh'mot.html in Resources */,
 				E6AB61651F4C6A9500161250 /* Roboto-BoldCondensed.ttf in Resources */,
+				E24FE56120FF6E580077BDB7 /* Shavuot.html in Resources */,
 				E6AB61631F4C6A9500161250 /* Roboto-BlackItalic.ttf in Resources */,
-				E2B1758720C265D40009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh _Tevet_1.html in Resources */,
+				E2B1758720C265D40009F5DB /* Chanukah_8_Weekday_Rosh_Chodesh_Tevet_1.html in Resources */,
 				E6AB616B1F4C6A9500161250 /* Roboto-Light.ttf in Resources */,
-				E2B1758520C265D40009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh _Tevet_1.html in Resources */,
+				E2B1758520C265D40009F5DB /* Chanukah_6_Weekday_Rosh_Chodesh_Tevet_1.html in Resources */,
 				E2B1750520C265D40009F5DB /* Shabbat_Mas'ei.html in Resources */,
 				E2B174F920C265D40009F5DB /* Shof'tim.html in Resources */,
 				E2B174DB20C265D40009F5DB /* Shabbat_Vayeitzei.html in Resources */,
@@ -1495,7 +1498,6 @@
 				E6AB61291F4C69EB00161250 /* Main.storyboard in Resources */,
 				E2B1754F20C265D40009F5DB /* Vayeishev.html in Resources */,
 				E2B174B720C265D40009F5DB /* Hoshana_Raba.html in Resources */,
-				E2B1750620C265D40009F5DB /* Shavuot_Shabbat.html in Resources */,
 				E2B174F020C265D40009F5DB /* Matot.html in Resources */,
 				E2B174D120C265D40009F5DB /* Yom_Kippur.html in Resources */,
 				E2B1750320C265D40009F5DB /* B'har-B'chukotai.html in Resources */,
@@ -1510,6 +1512,7 @@
 				E2B1752C20C265D40009F5DB /* Counting_the_Omer.html in Resources */,
 				E2B1755520C265D40009F5DB /* Chanukah_8_Weekday.html in Resources */,
 				E2B174AC20C265D40009F5DB /* Tazria.html in Resources */,
+				E24FE55D20FF6E1B0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah.html in Resources */,
 				E6AB61711F4C6A9500161250 /* Roboto-ThinItalic.ttf in Resources */,
 				E2B1752520C265D40009F5DB /* Shabbat_Tzav.html in Resources */,
 				E2B174B520C265D40009F5DB /* Bo.html in Resources */,
@@ -1523,6 +1526,7 @@
 				E2B1757A20C265D40009F5DB /* Shabbat_HaChodesh.html in Resources */,
 				E2B1751420C265D40009F5DB /* Shabbat_Rosh_Chodesh_I.html in Resources */,
 				E2B1752E20C265D40009F5DB /* Pesach_Sheini.html in Resources */,
+				E24FE55B20FF6DDD0077BDB7 /* Sh'mini_Atzeret-Simchat_Torah_Shabbat.html in Resources */,
 				E2B174AB20C265D40009F5DB /* Shabbat_B'har-B'chukotai.html in Resources */,
 				E2B174FB20C265D40009F5DB /* Pesach_Chol_Hamoed_Day_1.html in Resources */,
 				E2B1750020C265D40009F5DB /* Erev_Rosh_Chodesh_Weekday.html in Resources */,

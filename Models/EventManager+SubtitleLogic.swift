@@ -29,8 +29,6 @@ extension EventManager {
                     if let title = specialEvent?.title?.spellChangedForTitle() {
                         comparableEvent?.subTitle = "The Haftarah for \(title) should be read."
                         specialEvent?.subTitle = ""
-                        specialEvent?.isFromSpecialSubtitle = true
-                        comparableEvent?.isFromSpecialSubtitle = true
                         specialEvent = nil
                         comparableEvent = nil
                     }
@@ -54,9 +52,6 @@ extension EventManager {
                         comparableEvent?.subTitle = "The Haftarah for \(title) should be read."
                         specialEvent?.subTitle = ""
                         threeSpecialEvent?.subTitle = "The Haftarah for \(title) should be read."
-                        specialEvent?.isFromSpecialSubtitle = true
-                        comparableEvent?.isFromSpecialSubtitle = true
-                        threeSpecialEvent?.isFromSpecialSubtitle = true
                         specialEvent = nil
                         comparableEvent = nil
                         threeSpecialEvent = nil
@@ -111,14 +106,5 @@ extension EventManager {
     
     func addSubtitleForEvents(subtitleName: String?, event: RLEvent?) {
         event?.subTitle = subtitleName
-        if let eventTitle = event?.subTitle?.hasPrefix("Chanukah:") {
-            if eventTitle == true {
-                event?.isFromSpecialSubtitle = true
-                event?.isFromSpecialSubtitle = true
-            } else {
-                event?.isFromSpecialSubtitle = false
-                event?.isFromSpecialSubtitle = false
-            }
-        }
     }
 }

@@ -31,12 +31,8 @@ class customCell: UITableViewCell
             let resultString = inputFormatter.string(from: showDate!)
             lblEvntDate.text =  resultString
             subTitleLabel?.text = event?.subTitle
-            if event?.isFromSpecialSubtitle == true {
-                if event?.subTitle != nil {
-                    self.backgroundColor = UIColor.yellow.withAlphaComponent(0.33)
-                } else {
-                    self.backgroundColor = UIColor.white
-                }
+            if event?.subTitle != nil {
+                self.backgroundColor = UIColor.yellow.withAlphaComponent(0.33)
             } else {
                 self.backgroundColor = UIColor.white
             }

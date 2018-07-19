@@ -1,3 +1,4 @@
+
 //
 //  EventBaseVCViewController.swift
 //  ReformLuach
@@ -17,9 +18,11 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     var events = [RLEvent]()
     var filteredEvents = [RLEvent]()
+    var nextEvent: RLEvent?
     var tableFooterView: FooterView?
     var searchType : EventType? = .none
     var isScrolledToCurrentDate = false
+    var lastLoadedYear: Int = 0
     var pagerViewController: GLViewPagerViewController?
     
     override func viewDidLoad() {
@@ -36,6 +39,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let nib = UINib.init(nibName: "CustomCell", bundle: nil)
         self.tblParshiyot.register(nib, forCellReuseIdentifier: "customCell")
         searchType = EventType.none
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,9 +47,10 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func loadEvents() {
         self.view.showHud("Loading..")
-        EventManager.shared.fetchEvents(year: EventManager.shared.currentYear()) { (events) in
+        EventManager.shared.fetchEvents(year: EventManager.shared.currentYear(), isFromEventsTab:true, yearSelectedForSync: []) { (events) in
             self.view.hideHud()
             self.events = events
+            self.lastLoadedYear = EventManager.shared.currentYear()
             self.filterAsPerType();
             self.tblParshiyot.reloadData()
             self.scrollToCurrentDate()
@@ -55,9 +60,10 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func loadMoreEvents(year: Int) {
         self.view.showHud("Loading \(year) events")
-        EventManager.shared.fetchEvents(year: year) { (events) in
+        EventManager.shared.fetchEvents(year: year, isFromEventsTab: true, yearSelectedForSync: []) { (events) in
             self.view.hideHud()
             self.events = events
+            self.lastLoadedYear = year
             self.filterAsPerType();
             self.tblParshiyot.reloadData()
         }
@@ -101,7 +107,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredEvents.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]
@@ -110,29 +116,32 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
         return cell
     }
-
-func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-    let vc: DetailVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
-    let event = filteredEvents[indexPath.row]
-    print(event.title as Any)
-    day = getDayOfWeek(today: event.date!)
-    vc.eventUrl = event.title?.html(event)
-    self.present(vc, animated: false, completion: nil)
-}
-
-
-func getDayOfWeek(today:String)->Int {
-    let formatter  = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    let todayDate = formatter.date(from: today)!
-    let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-    let myComponents = myCalendar.components(.weekday, from: todayDate)
-    let weekDay = myComponents.weekday
-    return weekDay!
-}
-
-func filterAsPerType() {
-    // Child class needs to implement
-}
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
+        let vc: DetailVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
+        let event = filteredEvents[indexPath.row]
+        let characters = "Rosh Chodesh Tevet"
+        let roshEvents = events.filter({(rEvent : RLEvent) -> Bool in
+            return (rEvent.spellChangedTitle?.contains(characters))!
+        })
+        let allEvents = roshEvents
+        day = getDayOfWeek(today: event.date!)
+        vc.eventUrl = event.title?.html(event, allEvents)
+        self.present(vc, animated: false, completion: nil)
+    }
+    
+    func getDayOfWeek(today:String)->Int {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let todayDate = formatter.date(from: today)!
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let myComponents = myCalendar.components(.weekday, from: todayDate)
+        let weekDay = myComponents.weekday
+        return weekDay!
+    }
+    
+    func filterAsPerType() {
+        // Child class needs to implement
+    }
 }

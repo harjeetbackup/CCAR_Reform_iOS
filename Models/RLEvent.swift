@@ -10,10 +10,10 @@ public class RLEvent {
 	public var title : String?
     public var subTitle : String?
     public var spellChangedTitle : String?
+    public var spellChanged: String?
     public var subcat : String?
     public var memo : String?
     public var yomtov = false
-    public var isFromSpecialSubtitle: Bool?
 
     public class func modelsFromDictionaryArray(array:NSArray) -> [RLEvent]
     {
@@ -36,6 +36,7 @@ public class RLEvent {
 		if (dictionary["leyning"] != nil) { leyning = Leyning(dictionary: dictionary["leyning"] as! NSDictionary) }
 		title = dictionary["title"] as? String
         spellChangedTitle = title?.spellChangedForTitle()
+        spellChanged = title?.spellChanged()
         subcat = dictionary["subcat"] as? String
         memo = dictionary["memo"] as? String
         yomtov = dictionary["yomtov"] as? Bool ?? false
@@ -77,6 +78,25 @@ public class RLEvent {
         }
         return false
     }
+    
+    func chanukahNextDayAndTodayLogic() -> Bool {
+        if let str = self.spellChanged {
+            if (str == "Chanukah_6_Weekday" || str == "Chanukah_7_Weekday" || str == "Chanukah_8_Weekday" || str == "Chanukah 8 Weekday") {
+                return true
+            }
+        }
+        return false
+    }
+
+    func roshChodeshNextDayAndTodayLogic() -> Bool {
+        if let str = self.spellChanged {
+            if (str == "Rosh_Chodesh_I_Weekday") {
+                return true
+            }
+        }
+        return false
+    }
+    
     
     func dayOfTheWeek() -> Int {
         if let eventDateStr = self.date {

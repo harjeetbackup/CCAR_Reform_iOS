@@ -36,15 +36,21 @@ class SyncType: NSObject, NSCoding {
         aCoder.encode(syncState.rawValue, forKey: "syncState")
     }
     
-    func eventToSync(_ completion: @escaping(([RLEvent]) -> Void)) {
+    func eventToSync(selectedYears: [String], _ completion: @escaping(([RLEvent]) -> Void)) {
         guard let year = Int((dataSource?.year)!) else { return }
-        EventManager.shared.fetchEvents( year: year, { events in
+        EventManager.shared.fetchEvents( year: year,isFromEventsTab:false, yearSelectedForSync: selectedYears, { events in
            let itemsToAddInCalender = events.filter({ (event) -> Bool in
                 print(event.category ?? "")
-                guard let cat = event.category, let subcat = event.subcat else { return false}
-                if self.subCategory == ""  && cat == self.category {
+            let calendar = Calendar.current
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let date = dateFormatter.date(from: event.date!)
+            let eventYear = calendar.component(.year, from: date!)
+                guard let cat = event.category, let subcat = event.subcat else { return false }
+                print(eventYear)
+                if self.subCategory == ""  && cat == self.category && eventYear == year {
                     return true
-                } else if cat == self.category && subcat == self.subCategory {
+                } else if cat == self.category && subcat == self.subCategory && eventYear == year {
                     return true
                 }
                 return false

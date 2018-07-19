@@ -25,6 +25,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     let eventStore = EKEventStore()
     var calendars: [EKCalendar]?
     var eventDetailsArray = [AnyHashable]()
+    var syncedYear = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,7 +142,10 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         for dataSource in dataSources {
             for type in dataSource.syncTypes {
                 if type.syncState == .progress {
-                    type.eventToSync({ [weak self] (events) in
+                    if syncedYear.contains(dataSource.year) == false {
+                        syncedYear.append(dataSource.year)
+                    }
+                    type.eventToSync(selectedYears: syncedYear, { [weak self] (events) in
                         self?.syncWithCalender(itemsToAddInCalender: events, forType: type)
                     })
                 }
