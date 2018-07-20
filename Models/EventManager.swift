@@ -34,27 +34,21 @@ class EventManager: NSObject {
     }()
 
     var events = [RLEvent]()
-    var yearSyncfilteredItems = [RLEvent]()
+    var yearsLoaded: Set = Set<Int>()
     var selectedCalender : CalenderType = .reform
     var yearLoaded = 0
-    var yearLoadedFromSync = [String]()
     
     let kSelectedCalender = "CCTYPE"
     let kIsraelCalenderURL = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=on&maj=on&min=on&mod=on&nx=on&year=2017&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
     
     let kDisporaCalenderURL = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=off&maj=on&min=on&mod=on&nx=on&year=2017&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
     
-    func fetchEvents(year:Int, isFromEventsTab:Bool, yearSelectedForSync: [String], _ completion: @escaping(([RLEvent]) -> Void)) {
+    func fetchEvents(year:Int, _ completion: @escaping(([RLEvent]) -> Void)) {
         
         if yearLoaded < year {
             //set this so that it should not go inside again
-            
-            if isFromEventsTab == true {
-                yearLoaded = year
-            } else {
-                yearLoadedFromSync = yearSelectedForSync
-            }
-            
+            yearLoaded = year
+            yearsLoaded.insert(year)
             if selectedCalender == .reform {
                 
                 let isrealHolidaysUrl = "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=on&maj=on&min=on&mod=on&nx=on&year=\(year)&month=x&ss=on&mf=on&c=off&geo=none&m=50&s=off&o=on"
@@ -136,16 +130,7 @@ class EventManager: NSObject {
                             return true
                         }
                     })
-//                    for year in self.yearLoadedFromSync {
-//                        self.yearSyncfilteredItems = filteredItems.filter({ (event) -> Bool in
-//                            if "\(event.date?.getYear())" == year {
-//                                return false
-//                            } else {
-//                                return true
-//                            }
-//                        })
-//                    }
-                        completion(filteredItems)
+                    completion(filteredItems)
                 }
             }
         }
@@ -155,7 +140,7 @@ class EventManager: NSObject {
         EventManager.shared.events.removeAll()
         EventManager.shared.setCalenderType()
         EventManager.shared.yearLoaded = 0
-        self.fetchEvents(year: currentYear(), isFromEventsTab: true, yearSelectedForSync: []) { _ in
+        self.fetchEvents(year: currentYear()) { _ in
             NotificationCenter.default.post(name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
         }
     }
@@ -191,15 +176,5 @@ class EventManager: NSObject {
         let date = Date()
         let calendar = Calendar.current
         return calendar.component(.year, from: date)
-    }
-    
-}
-extension String {
-    func getYear() -> Int {
-        let calendar = Calendar.current
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: self)
-        return calendar.component(.year, from: date!)
     }
 }

@@ -98,10 +98,10 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataSource = dataSources[selectedYearIndex]
         let syncType = dataSource.syncTypes[indexPath.row]
-        if syncType.syncState == .progress {
+        if syncType.syncState == .selected {
             syncType.syncState = .none
         } else {
-            syncType.syncState = .progress
+            syncType.syncState = .selected
         }
         tableView.reloadRows(at: [indexPath], with: .none)
     }
@@ -137,16 +137,15 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     @IBAction func SyncData(_ sender: UIButton) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = "Dowloading events to device calender"
         for dataSource in dataSources {
             for type in dataSource.syncTypes {
-                if type.syncState == .progress {
-                    if syncedYear.contains(dataSource.year) == false {
-                        syncedYear.append(dataSource.year)
-                    }
-                    type.eventToSync(selectedYears: syncedYear, { [weak self] (events) in
-                        self?.syncWithCalender(itemsToAddInCalender: events, forType: type)
+                if type.syncState == .selected {
+                    type.eventStore = self.eventStore
+                    type.calendars = self.calendars
+                    type.syncState = .inProgress
+                    self.tableView.reloadData()
+                    type.sync({ completed in
+                        self.tableView.reloadData()
                     })
                 }
             }
@@ -171,11 +170,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             if accessGranted == true {
                 DispatchQueue.main.async(execute: {
                     self.loadCalendars()
-                    //                    self.refreshTableView()
-                })
-            } else {
-                DispatchQueue.main.async(execute: {
-                    //                    self.needPermissionView.fadeIn()
                 })
             }
         })
@@ -183,61 +177,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func loadCalendars() {
         self.calendars = eventStore.calendars(for: EKEntityType.event)
-    }
-    
-    
-    func syncWithCalender(itemsToAddInCalender: [RLEvent], forType: SyncType) {
-        var txtStartDate = String()
-        var txtEventName = String()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        var strGetEventTitle = String()
-        var strGetEventDate = Date()
-        DispatchQueue.global(qos: .background).async {
-            for dicc in itemsToAddInCalender {
-                txtEventName = dicc.title ?? ""
-                txtStartDate = dicc.date ?? ""
-                txtEventName = txtEventName.spellChangedForTitle()
-                guard let datevalue = dateFormatter.date(from: txtStartDate),
-                    let datevalue1 = dateFormatter.date(from: txtStartDate) else {
-                        continue
-                }
-                let predicate = self.eventStore.predicateForEvents(withStart: datevalue, end: datevalue1, calendars: self.calendars)
-                let events = self.eventStore.events(matching: predicate) as [EKEvent]
-                print("Events: \(events)")
-                for event in events
-                {   event.isAllDay = true
-                    strGetEventTitle = event.title;
-                    strGetEventDate = event.startDate;
-                }
-                if strGetEventTitle == "txtEventName" && strGetEventDate == datevalue {
-                } else {
-                    let event:EKEvent = EKEvent(eventStore: self.eventStore)
-                    event.title = txtEventName
-                    event.isAllDay = true
-                    event.startDate = datevalue
-                    event.endDate = datevalue1
-                    if let description = dicc.memo {
-                        event.notes = description
-                    }
-                    event.calendar = self.eventStore.defaultCalendarForNewEvents
-                    do {
-                        try self.eventStore.save(event, span: .thisEvent)
-                    }
-                    catch let e as NSError
-                    {
-                        print("calendar sync error")
-                        print(e.description)
-                        return
-                    }
-                }
-            }
-            DispatchQueue.main.async {
-                forType.syncState = .completed
-                self.tableView.reloadData()
-                MBProgressHUD.hide(for: self.view, animated: true)
-            }
-        }
     }
     
     deinit {
@@ -250,132 +189,4 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         userDefaults.set(encodedData, forKey: kSyncDataSourceKey)
         userDefaults.synchronize()
     }
-    
-    
-    
-    /*
-    
-    func actionAddEvent() {
-        var itemsToAddInCalender = [RLEvent] ()
-        let events = EventManager.shared.events
-        
-        if self.btnMajorHoliday.tag == 201 {
-            itemsToAddInCalender = events.filter({ (event) -> Bool in
-                print(event.category)
-                if let cat = event.category, let subcat = event.subcat {
-                    if cat == "holiday" && subcat == "major" {
-                        return true
-                    }
-                }
-                return false
-            })
-        }
-        
-        if self.btnMinorHoliday.tag == 202 {
-            itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
-                print(event.category)
-                if let cat = event.category, let subcat = event.subcat {
-                    if cat == "holiday" && subcat == "minor" {
-                        return true
-                    }
-                }
-                return false
-            })
-        }
-        
-        if self.btnRoshHoliday.tag == 203 {
-            itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
-                print(event.category)
-                if let cat = event.category{
-                    if cat == "roshchodesh" {
-                        return true
-                    }
-                }
-                return false
-            })
-        }
-        
-        if self.btnWeeklyHoliday.tag == 204 {
-            itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
-                print(event.category)
-                if let cat = event.category {
-                    if cat == "parashat" {
-                        return true
-                    }
-                }
-                return false
-            })
-        }
-        
-        if self.btnOmerHoliday.tag == 205 {
-            itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
-                print(event.category)
-                if let cat = event.category {
-                    if cat == "omer" {
-                        return true
-                    }
-                }
-                return false
-            })
-        }
-        
-        if self.btnSpecialShabbatot.tag == 206 {
-            // Todo: added shabbat as subcat
-            itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
-                print(event.category)
-                if let cat = event.category, let subcat = event.subcat {
-                    if cat == "holiday" && subcat == "shabbat" {
-                        return true
-                    }
-                }
-                return false
-            })
-        }
-        
-        if self.btnModernHolidays.tag == 207 {
-            itemsToAddInCalender = itemsToAddInCalender + events.filter({ (event) -> Bool in
-                if let cat = event.category, let subcat = event.subcat {
-                    if cat == "holiday" && subcat == "modern" {
-                        
-                        return true
-                    }
-                }
-                return false
-            })        }
-        
-        if self.btnCustomRepeatedEvents.tag == 208 {
-            var customEvents = [RLEvent]()
-            for dict in arrCustomEventList {
-                let event = RLEvent.init(dictionary: dict as! NSDictionary)
-                customEvents.append(event!)
-            }
-            itemsToAddInCalender = itemsToAddInCalender + customEvents
-        }
-        syncWithCalender(itemsToAddInCalender: itemsToAddInCalender)
-    }
-
-    
-    @IBAction func btnAddCustomEvent(_ sender: UIButton) {
-        UserDefaults.standard.set("", forKey: "Conv_Date")
-        UserDefaults.standard.set("", forKey: "Conv_Month")
-        UserDefaults.standard.set("", forKey: "Conv_Year")
-        UserDefaults.standard.set("", forKey: "Conv_SunSet")
-        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
-        let settingViewController: NewAddCustomEventsVC = mainStoryboard.instantiateViewController(withIdentifier: "NewAddCustomEventsVC") as! NewAddCustomEventsVC
-        self .present(settingViewController, animated: true, completion: nil)
-    }
-    
-    func pressButton(_ button: UIButton) {
-        let objCMutableArray = NSMutableArray(array: arrCustomEventList)
-        objCMutableArray.removeObject(at: button.tag)
-        arrCustomEventList = (objCMutableArray as NSArray)
-        UserDefaults.standard.set(arrCustomEventList, forKey: "CustomLst")
-        if arrCustomEventList.count > 0 {
-            tblView.isHidden = false
-        } else {
-            tblView.isHidden = true
-        }
-        tblView.reloadData()
-    }
-    */
 }

@@ -47,7 +47,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func loadEvents() {
         self.view.showHud("Loading..")
-        EventManager.shared.fetchEvents(year: EventManager.shared.currentYear(), isFromEventsTab:true, yearSelectedForSync: []) { (events) in
+        EventManager.shared.fetchEvents(year: EventManager.shared.currentYear()) { (events) in
             self.view.hideHud()
             self.events = events
             self.lastLoadedYear = EventManager.shared.currentYear()
@@ -60,7 +60,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func loadMoreEvents(year: Int) {
         self.view.showHud("Loading \(year) events")
-        EventManager.shared.fetchEvents(year: year, isFromEventsTab: true, yearSelectedForSync: []) { (events) in
+        EventManager.shared.fetchEvents(year: year) { (events) in
             self.view.hideHud()
             self.events = events
             self.lastLoadedYear = year
