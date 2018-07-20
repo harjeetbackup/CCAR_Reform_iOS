@@ -81,7 +81,7 @@ public class RLEvent {
     
     func chanukahNextDayAndTodayLogic() -> Bool {
         if let str = self.spellChanged {
-            if (str == "Chanukah_6_Weekday" || str == "Chanukah_7_Weekday" || str == "Chanukah_8_Weekday" || str == "Chanukah 8 Weekday") {
+            if (str == "Chanukah_6th_Night" || str == "Chanukah_7th_Night" || str == "Chanukah_8th_Night" || str == "Chanukah_8th_Day") {
                 return true
             }
         }

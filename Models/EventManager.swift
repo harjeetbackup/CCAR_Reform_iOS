@@ -123,17 +123,51 @@ class EventManager: NSObject {
             if let json = response.result.value as? [String: Any] {
                 if let array = json["items"] as? NSArray {
                     let items = RLEvent.modelsFromDictionaryArray(array:array)
-                    let filteredItems = items.filter({ (event) -> Bool in
+                    var filteredItems = items.filter({ (event) -> Bool in
                         if event.title == "Sigd" {
                             return false
                         } else {
                             return true
                         }
                     })
+                    
+                    for event in filteredItems {
+                        if let event1 = event.title, let event1Date = event.date {
+                            if event1.hasPrefix("Rosh Chodesh") {
+                                let rDate = self.getPreviousDay(dateInString: event1Date)
+                                let roshEvent = RLEvent(dictionary: NSDictionary())
+                                roshEvent?.title = "Erev Rosh Chodesh Weekday"
+                                roshEvent?.date = rDate
+                                print("erev date \(roshEvent?.date)")
+                                if let index = self.getEventIndex(filteredEvents: filteredItems, event: event) {
+                                    if index == 0 {
+                                        filteredItems.insert(roshEvent!, at: index)
+                                    } else {
+                                        filteredItems.insert(roshEvent!, at: index - 1)
+                                    }
+                                } else {
+                                    print("index failed to get")
+                                }
+                            } else {
+                                continue
+                            }
+                        } else {
+                            
+                        }
+                    }
                     completion(filteredItems)
                 }
             }
         }
+    }
+    func getEventIndex(filteredEvents:[RLEvent],event:RLEvent) -> Int? {
+        return filteredEvents.index(where: { (event1) -> Bool in
+            if event1.title == event.title {
+                return true
+            } else {
+                return false
+            }
+        })
     }
     
     func calenderDidChange() {
@@ -172,9 +206,39 @@ class EventManager: NSObject {
         return "http://www.hebcal.com/hebcal/?v=1&cfg=json&i=on&maj=on&min=on&mod=on&nx=on&year=" + showYear + "&month=x&ss=on&mf=on&c=off&geo=none&m=0&s=on&o=on"
     }
     
+    
+    
     func currentYear() -> Int {
         let date = Date()
         let calendar = Calendar.current
         return calendar.component(.year, from: date)
     }
+    
+    func getPreviousDay(dateInString: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = formatter.date(from: dateInString)
+        let prev = date?.getPreviousDate(date: date!)
+        return formatter.string(from: prev!)
+    }
 }
+
+extension Date {
+   
+    func getPreviousDate(date :Date) -> Date {
+        let calendar = NSCalendar.current
+        return calendar.date(byAdding: .day, value: -1, to: date)!
+    }
+}
+
+
+//extension Date {
+//
+//    var noon: Date {
+//            return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+//        }
+//    var yesterday: Date {
+//        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+//    }
+//}
+

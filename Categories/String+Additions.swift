@@ -10,24 +10,29 @@ import Foundation
 
 extension String {
     
-    func html(_ event: RLEvent, _ allEvents: [RLEvent]) -> String? {
+    func html(_ event: RLEvent, allEvents: [RLEvent], nextEvent: RLEvent) -> String? {
         var name = self
         print(name)
         name = name.applyFridaySatudayLogic(event)
         print(name)
         if event.chanukahNextDayAndTodayLogic(){
-            if let string = applyChanukahTodayOrNextDayLogic(event, allEvents) {
+            if let string = applyChanukahTodayLogic(event, allEvents) {
+                name = string
+            }
+            if let string = applyChanukahNextDayLogic(event, allEvents) {
                 name = string
             }
         }
         name = name.spellChanged()
         name = name.removeSpecialChars()
         print(name)
+        //name = name.applyNextDayRoshEventLogic(event, nextEvent: nextEvent)
+        print(name)
         let url = Bundle.main.url(forResource: name, withExtension: "html")
         return url?.absoluteString
     }
     
-    func applyChanukahTodayOrNextDayLogic(_ event: RLEvent, _ nextEvent: [RLEvent]) -> String? {
+    func applyChanukahTodayLogic(_ event: RLEvent, _ nextEvent: [RLEvent]) -> String? {
         var name = self
         var comparableEvent : RLEvent?
         if event.title != "Rosh Chodesh Tevet" {
@@ -35,10 +40,6 @@ extension String {
                 if let date = anyEvent.date {
                     if event.date?.localizedStandardContains(date) == true && anyEvent.roshChodeshNextDayAndTodayLogic() && event.chanukahNextDayAndTodayLogic() {
                         comparableEvent = anyEvent
-                    } else if let eventDate = event.date, let nextDayEventDate = anyEvent.date {
-                        if eventDate != nextDayEventDate && anyEvent.roshChodeshNextDayAndTodayLogic()  && event.chanukahNextDayAndTodayLogic() {
-                            comparableEvent = anyEvent
-                        }
                     }
                 }
             }
@@ -46,11 +47,47 @@ extension String {
         if comparableEvent != nil {
             name = name.spellChanged()
             if comparableEvent?.title != nil {
-                name = name.replacingOccurrences(of: "Chanukah_7_Weekday", with: "Chanukah_7_Weekday_Rosh_Chodesh_Tevet_1")
-                name = name.replacingOccurrences(of: "Chanukah_8_Weekday", with: "Chanukah_8_Weekday_Rosh_Chodesh_Tevet_1")
-                name = name.replacingOccurrences(of: "Chanukah_6_Weekday", with: "Chanukah_6_Weekday_Rosh_Chodesh_Tevet_1")
-                //Chanukah 8th Day Rosh Chodesh Tevet 1
+                name = name.replacingOccurrences(of: "Chanukah_7th_Night", with: "Chanukah_7th_Night_Rosh_Chodesh_Tevet_1")
+                name = name.replacingOccurrences(of: "Chanukah_8th_Night", with: "Chanukah_8th_Night_Rosh_Chodesh_Tevet_1")
+                name = name.replacingOccurrences(of: "Chanukah_8th_Day", with: "Chanukah_8th_Day_Rosh_Chodesh_Tevet_1")
                 comparableEvent = nil
+            }
+        }
+        return name
+    }
+    
+    func applyChanukahNextDayLogic(_ event: RLEvent, _ nextEvent: [RLEvent]) -> String? {
+        var name = self
+        var comparableEvent : RLEvent?
+        if event.title != "Rosh Chodesh Tevet" {
+            for anyEvent in nextEvent {
+                if let eventDate = event.date, let nextDayEventDate = anyEvent.date {
+                    if eventDate != nextDayEventDate && anyEvent.roshChodeshNextDayAndTodayLogic()  && event.chanukahNextDayAndTodayLogic() {
+                        comparableEvent = anyEvent
+                    }
+                }
+            }
+        }
+        if comparableEvent != nil {
+            name = name.spellChanged()
+            if comparableEvent?.title != nil {
+                name = name.replacingOccurrences(of: "Chanukah_7th_Night", with: "Chanukah_7th_Night_Erev_Rosh_Chodesh_Tevet")
+                name = name.replacingOccurrences(of: "Chanukah_6th_Night", with: "Chanukah_6th_Night_Erev_Rosh_Chodesh_Tevet")
+                comparableEvent = nil
+            }
+        }
+        return name
+    }
+    
+    func applyNextDayRoshEventLogic(_ event: RLEvent, nextEvent: RLEvent) -> String {
+        var name = self
+        if let nextEventTittle = nextEvent.title {
+            if (nextEventTittle.hasPrefix("Rosh Chodesh")) {
+                if nextEvent.inFriday() {
+                    name = name.replacingOccurrences(of: name, with: "Erev_Rosh_Chodesh_Weekday")
+                } else {
+                    name = name.replacingOccurrences(of: name, with: "Erev_Rosh_Chodesh_Friday")
+                }
             }
         }
         return name
@@ -71,7 +108,7 @@ extension String {
             if (name == " Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
                 name = "Chol_Hamoed_Sukkot_Shabbat"
             }
-            if (name == "Chanukah_2_Weekday" || name == "Chanukah_3_Weekday" || name == "Chanukah_4_Weekday" || name == "Chanukah_5_Weekday" || name == "Chanukah_6_Weekday" || name == "Chanukah_7_Weekday" || name == "Chanukah_8_Weekday" || name == "Chanukah_8th_Day") {
+            if (name == "Chanukah_2nd_Night" || name == "Chanukah_3rd_Night" || name == "Chanukah_4th_Night" || name == "Chanukah_5th_Night" || name == "Chanukah_6th_Night" || name == "Chanukah_7th_Night" || name == "Chanukah_8th_Night" || name == "Chanukah_8th_Day") {
                 name = "Shabbat_Chanukah"
             }
         } else if event.inFriday() {
@@ -92,9 +129,10 @@ extension String {
     
     func spellChanged() -> String {
         var name = self;
+        name = name.replacingOccurrences(of: "Erev Rosh Chodesh Weekday", with: "Erev_Rosh_Chodesh_Weekday")
         name = name.replacingOccurrences(of: "Parashat Vayakhel-Pekudei", with: "Shabbat_Vayakheil-P'kudei")
         name = name.replacingOccurrences(of: "Parashat Achrei Mot-Kedoshim", with: "Shabbat_Acharei_Mot-K'doshim")
-        name = name.replacingOccurrences(of: "Chanukah: 8th Day", with: "Chanukah 8 Weekday")
+        name = name.replacingOccurrences(of: "Chanukah: 8th Day", with: "Chanukah_8th_Day")
         name = name.replacingOccurrences(of: "Parashat Bereshit", with: "B'reishit")
         name = name.replacingOccurrences(of: "Parashat Noach", with: "Noach")
         name = name.replacingOccurrences(of: "Parashat Lech-Lecha", with: "Lech L'cha")
@@ -182,14 +220,14 @@ extension String {
         name = name.replacingOccurrences(of: "Sukkot VII (Hoshana Raba)", with: "Hoshana Raba")
         name = name.replacingOccurrences(of: "Sukkot I", with: "Sukkot_1_Weekday")
         name = name.replacingOccurrences(of: "Pesach Sheni", with: "Pesach Sheini")
-       
+        
         name = name.replacingOccurrences(of: "Pesach II (CH''M)", with: "Pesach Chol Hamoed Day 1")
         name = name.replacingOccurrences(of: "Pesach III (CH''M)", with: "Pesach Chol Hamoed Day 2")
         name = name.replacingOccurrences(of: "Pesach IV (CH''M)", with: "Pesach Chol Hamoed Day 3")
         name = name.replacingOccurrences(of: "Pesach V (CH''M)", with: "Pesach Chol Hamoed Day 4")
         name = name.replacingOccurrences(of: "Pesach VI (CH''M)", with: "Pesach Chol HaMoed Day 5 Weekday")
         name = name.replacingOccurrences(of: "Pesach VII", with: "Pesach_Day_7")
-         name = name.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Weekday")
+        name = name.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Weekday")
         name = name.replacingOccurrences(of: "Chanukah: 1 Candle", with: "Erev Chanukah")
         name = name.replacingOccurrences(of: "Yom HaAliyah", with: "Yom_HaZikaron")
         name = name.replacingOccurrences(of: "Shabbat Shuva", with: "Shabbat_Ha'azinu-Shabbat_Shuva")
@@ -262,13 +300,13 @@ extension String {
         name = name.replacingOccurrences(of: "Rosh Chodesh Sivan", with: "Rosh_Chodesh_I_Weekday")
         name = name.replacingOccurrences(of: "Rosh Chodesh Kislev", with: "Rosh_Chodesh_I_Weekday")
         name = name.replacingOccurrences(of: "Rosh Chodesh Tevet", with: "Rosh_Chodesh_I_Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 2 Candles", with: "Chanukah_2_Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 3 Candles", with: "Chanukah_3_Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 4 Candles", with: "Chanukah_4_Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 5 Candles", with: "Chanukah_5_Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 6 Candles", with: "Chanukah_6_Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 7 Candles", with: "Chanukah_7_Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 8 Candles", with: "Chanukah_8_Weekday")
+        name = name.replacingOccurrences(of: "Chanukah: 2 Candles", with: "Chanukah_2nd_Night")
+        name = name.replacingOccurrences(of: "Chanukah: 3 Candles", with: "Chanukah_3rd_Night")
+        name = name.replacingOccurrences(of: "Chanukah: 4 Candles", with: "Chanukah_4th_Night")
+        name = name.replacingOccurrences(of: "Chanukah: 5 Candles", with: "Chanukah_5th_Night")
+        name = name.replacingOccurrences(of: "Chanukah: 6 Candles", with: "Chanukah_6th_Night")
+        name = name.replacingOccurrences(of: "Chanukah: 7 Candles", with: "Chanukah_7th_Night")
+        name = name.replacingOccurrences(of: "Chanukah: 8 Candles", with: "Chanukah_8th_Night")
         name = name.replacingOccurrences(of: "Shabbat Chazon", with: "Shabbat_D'varim-Shabbat_Chazon")
         name = name.replacingOccurrences(of: "Shabbat Nachamu", with: "Shabbat_V'etchanan-Nachamu")
         // =========================================================================================
@@ -288,6 +326,7 @@ extension String {
         var name = self;
         //==============================     Parashat     ============================================
         
+        name = name.replacingOccurrences(of: "Erev Rosh Chodesh Weekday", with: "Erev Rosh Chodesh Weekday")
         name = name.replacingOccurrences(of: "Parashat Bereshit", with: "Parashat B'reishit")
         name = name.replacingOccurrences(of: "Parashat Lech-Lecha", with: "Parashat Lech L'cha")
         name = name.replacingOccurrences(of: "Parashat Vayera", with: "Parashat Vayeira")
@@ -340,7 +379,9 @@ extension String {
         name = name.replacingOccurrences(of: "Yom HaShoah", with: "Yom HaShoah V'hag'vurah")
         name = name.replacingOccurrences(of: "Yom HaAtzma'ut", with: "Yom Ha'atzma'ut")
         name = name.replacingOccurrences(of: "Lag BaOmer", with: "Lag Ba'Omer")
-        name = name.replacingOccurrences(of: "Shmini Atzeret", with: "Sh'mini Atzeret/Simchat Torah")
+        if EventManager.shared.selectedCalender.hashValue == 2 {
+            name = name.replacingOccurrences(of: "Shmini Atzeret", with: "Sh'mini Atzeret/Simchat Torah")
+        }
         name = name.replacingOccurrences(of: "Sukkot II (CH''M)", with: "Sukkot 2 Weekday")
         name = name.replacingOccurrences(of: "Sukkot III (CH''M)", with: "Sukkot 3 Weekday")
         name = name.replacingOccurrences(of: "Sukkot IV (CH''M)", with: "Sukkot 4 Weekday")
