@@ -50,7 +50,7 @@ class SyncType: NSObject, NSCoding {
     
     func sync(_ completion: @escaping((_ completed: Bool) -> Void)) {
         guard let year = Int((dataSource?.year)!) else { return }
-        EventManager.shared.fetchEvents( year: year, { events in
+        EventManager.shared.fetchEventsFor( year: year, { events in
             let itemsToAddInCalender = events.filter({ (event) -> Bool in
                 let calendar = Calendar.current
                 let dateFormatter = DateFormatter()

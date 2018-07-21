@@ -132,8 +132,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rSF-rE-Bql">
+                                                    <rect key="frame" x="340" y="18" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="OwR-dZ-did"/>
+                                                        <constraint firstAttribute="height" constant="20" id="mVP-rz-dWF"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="rSF-rE-Bql" firstAttribute="trailing" secondItem="L4V-ab-ujL" secondAttribute="trailingMargin" id="6QE-7y-Y4Z"/>
+                                                <constraint firstItem="rSF-rE-Bql" firstAttribute="centerY" secondItem="L4V-ab-ujL" secondAttribute="centerY" id="FbG-pR-W0W"/>
                                                 <constraint firstItem="W7G-q1-2S8" firstAttribute="leading" secondItem="L4V-ab-ujL" secondAttribute="leading" constant="16" id="FqE-Z5-QLJ"/>
                                                 <constraint firstItem="Fhg-12-Lzx" firstAttribute="leading" secondItem="W7G-q1-2S8" secondAttribute="trailing" constant="8" id="Yul-bs-OWl"/>
                                                 <constraint firstItem="W7G-q1-2S8" firstAttribute="centerY" secondItem="L4V-ab-ujL" secondAttribute="centerY" id="dIZ-rM-mnJ"/>
@@ -143,6 +152,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="activityIndicatorView" destination="rSF-rE-Bql" id="32v-Z6-k99"/>
                                             <outlet property="selectionImageView" destination="W7G-q1-2S8" id="6ga-cY-mD7"/>
                                             <outlet property="titleLabel" destination="Fhg-12-Lzx" id="zmm-G4-F1Y"/>
                                         </connections>

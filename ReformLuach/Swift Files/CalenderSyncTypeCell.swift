@@ -11,19 +11,26 @@ import UIKit
 class CalenderSyncTypeCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectionImageView: UIImageView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     var syncType: SyncType? {
         didSet {
             self.backgroundColor = UIColor.white
             self.isUserInteractionEnabled = true
+            self.activityIndicatorView.isHidden = true
             titleLabel.text = syncType?.title
+            titleLabel.textColor = UIColor.black
+            
             if syncType?.syncState == .completed {
                 selectionImageView.image = #imageLiteral(resourceName: "Calender_select")
                 selectionImageView.alpha = 0.5
+                titleLabel.textColor = UIColor.gray
             } else if syncType?.syncState == .selected {
                 selectionImageView.image = #imageLiteral(resourceName: "Calender_select")
                 selectionImageView.alpha = 1
             } else if syncType?.syncState == .inProgress {
-                self.backgroundColor = UIColor.lightGray
+                self.activityIndicatorView.isHidden = false
+                self.activityIndicatorView.startAnimating()
+                self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
                 self.isUserInteractionEnabled = false
             } else {
                 selectionImageView.image = #imageLiteral(resourceName: "Calender_Unselect")
