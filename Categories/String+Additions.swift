@@ -10,50 +10,24 @@ import Foundation
 
 extension String {
     
-    func html(_ event: RLEvent, allEvents: [RLEvent], nextEvent: RLEvent) -> String? {
+    func html(_ event: RLEvent, allEvents: [RLEvent]) -> String? {
         var name = self
-        print(name)
         name = name.applyFridaySatudayLogic(event)
-        print(name)
-        if event.chanukahNextDayAndTodayLogic(){
-            if let string = applyChanukahTodayLogic(event, allEvents) {
+        if event.chanukahNextDayLogic(){
+            if let string = applyChanukahNextDayLogic(event, allEvents) {
                 name = string
             }
-            if let string = applyChanukahNextDayLogic(event, allEvents) {
+        }
+        if event.chanukahTodayLogic() {
+            if let string = applyChanukahTodayLogic(event, allEvents) {
                 name = string
             }
         }
         name = name.spellChanged()
         name = name.removeSpecialChars()
         print(name)
-        //name = name.applyNextDayRoshEventLogic(event, nextEvent: nextEvent)
-        print(name)
         let url = Bundle.main.url(forResource: name, withExtension: "html")
         return url?.absoluteString
-    }
-    
-    func applyChanukahTodayLogic(_ event: RLEvent, _ nextEvent: [RLEvent]) -> String? {
-        var name = self
-        var comparableEvent : RLEvent?
-        if event.title != "Rosh Chodesh Tevet" {
-            for anyEvent in nextEvent {
-                if let date = anyEvent.date {
-                    if event.date?.localizedStandardContains(date) == true && anyEvent.roshChodeshNextDayAndTodayLogic() && event.chanukahNextDayAndTodayLogic() {
-                        comparableEvent = anyEvent
-                    }
-                }
-            }
-        }
-        if comparableEvent != nil {
-            name = name.spellChanged()
-            if comparableEvent?.title != nil {
-                name = name.replacingOccurrences(of: "Chanukah_7th_Night", with: "Chanukah_7th_Night_Rosh_Chodesh_Tevet_1")
-                name = name.replacingOccurrences(of: "Chanukah_8th_Night", with: "Chanukah_8th_Night_Rosh_Chodesh_Tevet_1")
-                name = name.replacingOccurrences(of: "Chanukah_8th_Day", with: "Chanukah_8th_Day_Rosh_Chodesh_Tevet_1")
-                comparableEvent = nil
-            }
-        }
-        return name
     }
     
     func applyChanukahNextDayLogic(_ event: RLEvent, _ nextEvent: [RLEvent]) -> String? {
@@ -62,7 +36,7 @@ extension String {
         if event.title != "Rosh Chodesh Tevet" {
             for anyEvent in nextEvent {
                 if let eventDate = event.date, let nextDayEventDate = anyEvent.date {
-                    if eventDate != nextDayEventDate && anyEvent.roshChodeshNextDayAndTodayLogic()  && event.chanukahNextDayAndTodayLogic() {
+                    if nextDayEventDate > eventDate && anyEvent.roshChodeshNextDayAndTodayLogic()  && event.chanukahNextDayLogic() {
                         comparableEvent = anyEvent
                     }
                 }
@@ -79,15 +53,25 @@ extension String {
         return name
     }
     
-    func applyNextDayRoshEventLogic(_ event: RLEvent, nextEvent: RLEvent) -> String {
+    func applyChanukahTodayLogic(_ event: RLEvent, _ nextEvent: [RLEvent]) -> String? {
         var name = self
-        if let nextEventTittle = nextEvent.title {
-            if (nextEventTittle.hasPrefix("Rosh Chodesh")) {
-                if nextEvent.inFriday() {
-                    name = name.replacingOccurrences(of: name, with: "Erev_Rosh_Chodesh_Weekday")
-                } else {
-                    name = name.replacingOccurrences(of: name, with: "Erev_Rosh_Chodesh_Friday")
+        var comparableEvent : RLEvent?
+        if event.title != "Rosh Chodesh Tevet" {
+            for anyEvent in nextEvent {
+                if let date = anyEvent.date {
+                    if event.date?.localizedStandardContains(date) == true && anyEvent.roshChodeshNextDayAndTodayLogic() && event.chanukahTodayLogic() {
+                        comparableEvent = anyEvent
+                    }
                 }
+            }
+        }
+        if comparableEvent != nil {
+            name = name.spellChanged()
+            if comparableEvent?.title != nil {
+                name = name.replacingOccurrences(of: "Chanukah_7th_Night", with: "Chanukah_7th_Night_Rosh_Chodesh_Tevet_1")
+                name = name.replacingOccurrences(of: "Chanukah_8th_Night", with: "Chanukah_8th_Night_Rosh_Chodesh_Tevet_1")
+                name = name.replacingOccurrences(of: "Chanukah_8th_Day", with: "Chanukah_8th_Day_Rosh_Chodesh_Tevet_1")
+                comparableEvent = nil
             }
         }
         return name

@@ -147,7 +147,8 @@ class EventManager: NSObject {
                                 let roshEvent = RLEvent(dictionary: NSDictionary())
                                 roshEvent?.title = "Erev Rosh Chodesh Weekday"
                                 roshEvent?.date = rDate
-                                print("erev date \(roshEvent?.date)")
+                                roshEvent?.spellChangedTitle = "Erev Rosh Chodesh Weekday"
+                                roshEvent?.spellChanged = "Erev Rosh Chodesh Weekday"
                                 if let index = self.getEventIndex(filteredEvents: filteredItems, event: event) {
                                     if index == 0 {
                                         filteredItems.insert(roshEvent!, at: index)
@@ -161,8 +162,8 @@ class EventManager: NSObject {
                                 continue
                             }
                         } else {
-                            
-                        }
+
+                      }
                     }
                     completion(filteredItems)
                 }

@@ -5,7 +5,7 @@
     "subCategory": "major"
   },
   {
-    "title": "Minor Holidays",
+    "title": "Minor Holidays  (Tu B'Sh'vat, Lag Ba'Omer,...)",
     "category": "holiday",
     "subCategory": "minor"
   },
@@ -25,12 +25,12 @@
     "subCategory": ""
   },
   {
-    "title": "Special Shabbatot",
+    "title": "Special Shabbatot  (Shabbat Sh'kalim, Zachor,...)",
     "category": "holiday",
-    "subCategory": "shabbat"
+    "subCategory": ""
   },
   {
-    "title": "Modern Holidays",
+    "title": "Modern Holidays    (Yom HaShoah V'hag'vurah, Yom Ha'atzma'ut,...)",
     "category": "holiday",
     "subCategory": "modern"
   }

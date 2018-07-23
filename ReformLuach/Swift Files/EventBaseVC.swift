@@ -121,14 +121,13 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
         let vc: DetailVC = mainStoryboard.instantiateViewController(withIdentifier: "DetailVC") as! DetailVC
         let event = filteredEvents[indexPath.row]
-        let nextEvent = filteredEvents[indexPath.row + 1]
         let roshTitle = "Rosh Chodesh Tevet"
         let roshEvents = events.filter({(rEvent : RLEvent) -> Bool in
             return roshTitle == rEvent.spellChangedTitle
         })
         let allEvents = roshEvents
         day = getDayOfWeek(today: event.date!)
-        vc.eventUrl = event.title?.html(event, allEvents: allEvents, nextEvent: nextEvent)
+        vc.eventUrl = event.title?.html(event, allEvents: allEvents)
         self.present(vc, animated: false, completion: nil)
     }
     
