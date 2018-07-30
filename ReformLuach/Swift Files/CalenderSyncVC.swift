@@ -14,7 +14,7 @@ import MBProgressHUD
 
 let kSyncDataSourceKey = "kSyncDataSourceKey"
 
-class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CalendarTypeName {
+class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var HeaderImage: UIImageView!
@@ -22,9 +22,9 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var calenderTypeButton: UIButton!
     @IBOutlet var calenderTypeIndicator: UILabel!
     var selectedYearIndex = 0
+ 
     var dataSources = [SyncDataSouce]()
-    var calTypeName: String?
-    
+    var calType = [CalendarSelectedType]()
     var event: EKEvent!
     let eventStore = EKEventStore()
     var calendars: [EKCalendar]?
@@ -40,16 +40,13 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         right.direction = .right
         self.view.addGestureRecognizer(right)
+        calenderTypeIndicator.text = calTypeName
         yearDisplaySegmentedControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
         configYearSegmentedControl()
         loadSavedSyncDataSources()
         NotificationCenter.default.addObserver(self, selector: #selector(saveDataSources), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
     }
-    
-    func nameOfTheCalendarType(name: String) {
-        calenderTypeIndicator.text = name.first?.description
-    }
-    
+  
     func loadSavedSyncDataSources() {
         guard let decoded  = UserDefaults.standard.object(forKey: kSyncDataSourceKey) as? Data else { return }
         guard let dataSourcesItems = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? [SyncDataSouce] else { return }
@@ -65,18 +62,17 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let url = Bundle.main.url(forResource: "SyncType", withExtension: "json") else { return }
         guard let data = try? Data(contentsOf: url) else { return }
         guard let syncTypes = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [[String:String]] else { return }
-        
-        for count in 0...3 {
-            let year = "\(currentYear + count)"
-            yearDisplaySegmentedControl.setTitle(year, forSegmentAt: count)
-            let source = SyncDataSouce()
-            source.year = year
-            guard let types = syncTypes else { return }
-            for type in types {
-                source.syncTypes.append(SyncType(dict: type, source: source))
+            for count in 0...3 {
+                let year = "\(currentYear + count)"
+                yearDisplaySegmentedControl.setTitle(year, forSegmentAt: count)
+                let source = SyncDataSouce()
+                source.year = year
+                guard let types = syncTypes else { return }
+                for type in types {
+                    source.syncTypes.append(SyncType(dict: type, source: source))
+                }
+                dataSources.append(source)
             }
-            dataSources.append(source)
-        }
         tableView.reloadData()
     }
     
@@ -128,6 +124,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        calenderTypeIndicator.text = calTypeName
         checkCalendarAuthorizationStatus()
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
@@ -147,7 +144,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func calenderTypeButtonTapped(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
         let settingViewController: SettingVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
-        settingViewController.delegate = self
         self.present(settingViewController, animated: true, completion: nil)
     }
     

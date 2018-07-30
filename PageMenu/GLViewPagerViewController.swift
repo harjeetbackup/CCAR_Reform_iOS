@@ -81,6 +81,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     // MARK: - const
     let  kTabTagBegin:Int = 0xA0
     let  kTabHeight:CGFloat = 44.0
+    let label = UILabel()
     
     struct _datasourceHas{
         static var numberOfTabsForViewPager:Bool =  false
@@ -157,13 +158,18 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         let tapOnEventName = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
         Heb_day.addGestureRecognizer(tapOnEventName)
         var frame = Heb_day.frame;
-        frame.origin.x = self.view.frame.width - 40;
+        frame.origin.x = self.view.frame.width - 50;
         frame.size.width = 40;
         frame.size.height = 40;
         let button = UIButton.init(frame: frame)
-        button.setImage(#imageLiteral(resourceName: "settings"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "calender_Icon"), for: .normal)
         button.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
         self.view.addSubview(button)
+        label.frame = CGRect.init(x: 14, y: 20, width: 14, height: 14)
+        label.text = calTypeName
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        button.addSubview(label)
         
         //        let Heb_Year:UILabel = UILabel.init()
         Heb_Year.isUserInteractionEnabled = true
@@ -269,6 +275,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     override open func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
         let strHoliday = UserDefaults.standard.string(forKey: "CurrentHoliday")

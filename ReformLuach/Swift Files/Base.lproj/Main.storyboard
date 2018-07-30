@@ -63,7 +63,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vv-EO-wrA">
-                                        <rect key="frame" x="315" y="43" width="30" height="30"/>
+                                        <rect key="frame" x="329" y="43" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="0ZZ-62-rlE"/>
                                             <constraint firstAttribute="width" constant="30" id="m6j-8d-QFH"/>
@@ -97,8 +97,8 @@
                                             <action selector="SyncData:" destination="ggM-Yb-ROW" eventType="touchUpInside" id="oaQ-LU-cDr"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZw-Dd-Wrq">
-                                        <rect key="frame" x="325" y="53" width="10" height="10"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZw-Dd-Wrq">
+                                        <rect key="frame" x="339" y="58" width="10" height="10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="7sE-M4-vdB"/>
                                             <constraint firstAttribute="width" constant="10" id="Yfy-Rh-QVR"/>
@@ -110,20 +110,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="RZw-Dd-Wrq" firstAttribute="centerX" secondItem="3vv-EO-wrA" secondAttribute="centerX" id="0s9-Bs-PLF"/>
                                     <constraint firstAttribute="bottom" secondItem="Aiu-DM-lzz" secondAttribute="bottom" id="1ZA-99-kLz"/>
                                     <constraint firstAttribute="trailing" secondItem="Aiu-DM-lzz" secondAttribute="trailing" id="2Yo-uq-6KW"/>
+                                    <constraint firstItem="RZw-Dd-Wrq" firstAttribute="centerX" secondItem="3vv-EO-wrA" secondAttribute="centerX" id="314-gL-IkW"/>
                                     <constraint firstAttribute="height" constant="220" id="3DM-RH-NcW"/>
                                     <constraint firstItem="ZoK-VE-sHA" firstAttribute="leading" secondItem="4V9-gy-tGl" secondAttribute="trailing" constant="8" id="5Jn-JO-gkD"/>
+                                    <constraint firstItem="RZw-Dd-Wrq" firstAttribute="top" secondItem="3vv-EO-wrA" secondAttribute="top" constant="15" id="DJN-FD-aHu"/>
                                     <constraint firstItem="4V9-gy-tGl" firstAttribute="top" secondItem="5id-nD-pK5" secondAttribute="bottom" constant="20" id="FaA-48-Oxs"/>
                                     <constraint firstItem="5id-nD-pK5" firstAttribute="leading" secondItem="cBL-dA-LfH" secondAttribute="leading" constant="35" id="H9C-N4-TKw"/>
-                                    <constraint firstItem="RZw-Dd-Wrq" firstAttribute="centerY" secondItem="3vv-EO-wrA" secondAttribute="centerY" id="N12-nC-4Qg"/>
                                     <constraint firstItem="ZoK-VE-sHA" firstAttribute="centerY" secondItem="4V9-gy-tGl" secondAttribute="centerY" id="P3y-CD-1Q5"/>
+                                    <constraint firstItem="ZoK-VE-sHA" firstAttribute="trailing" secondItem="3vv-EO-wrA" secondAttribute="trailing" id="Sgg-N8-9hE"/>
                                     <constraint firstItem="Aiu-DM-lzz" firstAttribute="leading" secondItem="cBL-dA-LfH" secondAttribute="leading" id="TJQ-FR-Igh"/>
                                     <constraint firstItem="Aiu-DM-lzz" firstAttribute="top" secondItem="3vv-EO-wrA" secondAttribute="bottom" constant="-73" id="ZDs-bf-3QV"/>
                                     <constraint firstItem="6wC-qS-sdi" firstAttribute="top" secondItem="cBL-dA-LfH" secondAttribute="top" constant="40" id="aga-oc-tPe"/>
                                     <constraint firstAttribute="bottom" secondItem="4V9-gy-tGl" secondAttribute="bottom" constant="10" id="d55-t2-ahM"/>
-                                    <constraint firstItem="3vv-EO-wrA" firstAttribute="leading" secondItem="6wC-qS-sdi" secondAttribute="trailing" constant="-60" id="dg7-C3-zkK"/>
                                     <constraint firstAttribute="trailing" secondItem="ZoK-VE-sHA" secondAttribute="trailing" constant="16" id="e70-Sz-hhg"/>
                                     <constraint firstItem="Aiu-DM-lzz" firstAttribute="top" secondItem="cBL-dA-LfH" secondAttribute="top" id="l5d-uV-0mm"/>
                                     <constraint firstAttribute="trailing" secondItem="5id-nD-pK5" secondAttribute="trailing" constant="35" id="lhX-sK-EiQ"/>
@@ -3475,7 +3475,7 @@
         <image name="Sync_Header1" width="320" height="147"/>
         <image name="Today" width="30" height="30"/>
         <image name="btnBack" width="48" height="48"/>
-        <image name="calender_Icon" width="25" height="25"/>
+        <image name="calender_Icon" width="90" height="90"/>
         <image name="commanHeader1" width="320" height="69"/>
         <image name="cross" width="40" height="40"/>
         <image name="dismiss" width="42" height="42"/>

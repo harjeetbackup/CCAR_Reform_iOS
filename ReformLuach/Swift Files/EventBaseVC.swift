@@ -43,6 +43,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        pagerViewController?.label.text = calTypeName
     }
     
     func loadEvents() {

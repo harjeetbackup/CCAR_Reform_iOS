@@ -200,12 +200,16 @@ class EventManager: NSObject {
     func setCalenderType() {
         let calender = UserDefaults.standard.string(forKey: kSelectedCalender)
         if calender == "ISEARL" {
+            calTypeName = "I"
             selectedCalender = .israel
         } else if calender == "REFORM" {
+            calTypeName = "R"
             selectedCalender = .reform
         } else if calender == "DIASPORA" {
+            calTypeName = "D"
             selectedCalender = .dispora
         } else {
+            calTypeName = "I"
             selectedCalender = .israel
         }
     }

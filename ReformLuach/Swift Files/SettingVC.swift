@@ -8,9 +8,6 @@
 
 import UIKit
 import Foundation
-protocol CalendarTypeName: class {
-    func nameOfTheCalendarType(name: String)
-}
 
 class SettingVC: UIViewController {
 
@@ -21,8 +18,6 @@ class SettingVC: UIViewController {
     @IBOutlet weak var HeaderImage: UIImageView!
     @IBOutlet weak var btnBack: UIButton!
     var claType: String!
-    var delegate: CalendarTypeName?
-    var calName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +28,6 @@ class SettingVC: UIViewController {
     }
     
     @IBAction func btnActionBAck(_ sender: UIButton) {
-         delegate?.nameOfTheCalendarType(name: calName)
         self.dismiss(animated: true, completion: nil)
         //self.navigationController?.popViewController(animated: true)
     }
@@ -47,13 +41,13 @@ class SettingVC: UIViewController {
             UserDefaults.standard.setValue("\(ad)", forKey: "CCTYPE")
         }
         if btnTagValue == "REFORM" {
-            calName = "REFORM"
+            calTypeName = "R"
             btnReform.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
         } else if btnTagValue == "ISEARL" {
-            calName = "ISEARL"
+            calTypeName = "I"
             btnIsreal.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
         } else if btnTagValue == "DIASPORA" {
-             calName = "DIASPORA"
+             calTypeName = "D"
             btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
         }
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
@@ -94,7 +88,6 @@ class SettingVC: UIViewController {
     }
     
     @IBAction func btnUpdate(_ sender: UIButton) {
-       
         self .dismiss(animated: true, completion: nil)
     }
 }
