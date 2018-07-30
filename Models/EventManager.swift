@@ -34,6 +34,7 @@ enum EventType {
     case none;
 }
 var eventType: EventType?
+var roshEventTitle: String?
 
 class EventManager: NSObject {
     
@@ -87,6 +88,8 @@ class EventManager: NSObject {
                         
                         currentYearEvents = currentYearEvents + self.applyReformLogic(events: specialDiasporaEvents);
                         currentYearEvents = self.sortedCurrentYearEvents(currentYearEvents)
+                        self.applySubtitleForsukkotAndChanukhaEvents(currentYearEvents)
+                        self.applySaturdayFridayTitleChangeLogic(currentYearEvents)
                         self.applySubTitleLogic(currentYearEvents)
                         completion(currentYearEvents)
                     })
@@ -94,16 +97,19 @@ class EventManager: NSObject {
             })
         } else if calenderType == .dispora {
             self.loadEvents(url: calenderType.url(year: year), completion: { (items) in
+                self.applySubtitleForsukkotAndChanukhaEvents(items)
                 self.applySubTitleLogic(items)
+                self.applySaturdayFridayTitleChangeLogic(items)
                 completion(items)
             })
         } else {
             self.loadEvents(url: calenderType.url(year: year), completion: { (items) in
+                self.applySubtitleForsukkotAndChanukhaEvents(items)
                 self.applySubTitleLogic(items)
+                self.applySaturdayFridayTitleChangeLogic(items)
                 completion(items)
             })
         }
-        
     }
     
     func sortedCurrentYearEvents(_ events:[RLEvent]) -> [RLEvent] {
@@ -121,7 +127,6 @@ class EventManager: NSObject {
             }
             return false
         }
-        
         return currentYearEvents
     }
     
@@ -150,20 +155,22 @@ class EventManager: NSObject {
                                 roshEvent?.spellChangedTitle = "Erev Rosh Chodesh Weekday"
                                 roshEvent?.spellChanged = "Erev Rosh Chodesh Weekday"
                                 if let index = self.getEventIndex(filteredEvents: filteredItems, event: event) {
-                                    if index == 0 {
-                                        filteredItems.insert(roshEvent!, at: index)
-                                    } else {
-                                        filteredItems.insert(roshEvent!, at: index - 1)
+                                    if roshEventTitle != event1 {
+                                        if index == 0 {
+                                            roshEventTitle = event1
+                                            filteredItems.insert(roshEvent!, at: index)
+                                        } else {
+                                            roshEventTitle = event1
+                                            filteredItems.insert(roshEvent!, at: index - 1)
+                                        }
                                     }
                                 } else {
-                                    print("index failed to get")
+                                    print("Index failed to get")
                                 }
                             } else {
                                 continue
                             }
-                        } else {
-
-                      }
+                        }
                     }
                     completion(filteredItems)
                 }

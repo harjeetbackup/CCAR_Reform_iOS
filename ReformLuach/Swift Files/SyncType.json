@@ -1,36 +1,50 @@
 [
   {
     "title": "Major Holidays",
+    "subTitle": "",
+    "additionalEvent": "",
     "category": "holiday",
     "subCategory": "major"
   },
   {
-    "title": "Minor Holidays  (Tu B'Sh'vat, Lag Ba'Omer,...)",
+    "title": "Minor Holidays",
+    "subTitle": "(Tu B'Sh'vat, Lag Ba'Omer,...)",
+    "additionalEvent": "",
     "category": "holiday",
     "subCategory": "minor"
   },
   {
     "title": "Rosh Chodesh",
+    "subTitle": "",
+    "additionalEvent": "",
     "category": "roshchodesh",
     "subCategory": ""
   },
   {
     "title": "Weekly Parshiyot",
+    "subTitle": "",
+    "additionalEvent": "",
     "category": "parashat",
     "subCategory": ""
   },
   {
     "title": "Sefirat Ha'Omer",
+    "subTitle": "",
+    "additionalEvent": "",
     "category": "omer",
     "subCategory": ""
   },
   {
-    "title": "Special Shabbatot  (Shabbat Sh'kalim, Zachor,...)",
+    "title": "Special Shabbatot",
+    "subTitle": "(Shabbat Sh'kalim, Zachor,...)",
+    "additionalEvent": "Erev Yom Kippur, Erev Sukkot",
     "category": "holiday",
-    "subCategory": ""
+    "subCategory": "shabbat"
   },
   {
-    "title": "Modern Holidays    (Yom HaShoah V'hag'vurah, Yom Ha'atzma'ut,...)",
+    "title": "Modern Holidays",
+    "subTitle": "(Yom HaShoah V'hag'vurah, Yom Ha'atzma'ut,...)",
+    "additionalEvent": "",
     "category": "holiday",
     "subCategory": "modern"
   }

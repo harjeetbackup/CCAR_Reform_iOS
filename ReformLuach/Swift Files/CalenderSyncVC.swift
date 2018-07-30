@@ -14,12 +14,16 @@ import MBProgressHUD
 
 let kSyncDataSourceKey = "kSyncDataSourceKey"
 
-class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CalendarTypeName {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var HeaderImage: UIImageView!
     @IBOutlet var yearDisplaySegmentedControl: UISegmentedControl!
+    @IBOutlet var calenderTypeButton: UIButton!
+    @IBOutlet var calenderTypeIndicator: UILabel!
     var selectedYearIndex = 0
     var dataSources = [SyncDataSouce]()
+    var calTypeName: String?
     
     var event: EKEvent!
     let eventStore = EKEventStore()
@@ -40,6 +44,10 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         configYearSegmentedControl()
         loadSavedSyncDataSources()
         NotificationCenter.default.addObserver(self, selector: #selector(saveDataSources), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
+    }
+    
+    func nameOfTheCalendarType(name: String) {
+        calenderTypeIndicator.text = name.first?.description
     }
     
     func loadSavedSyncDataSources() {
@@ -134,7 +142,14 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let strimagename = "Sync_Header" + "\(strmonth)"
         HeaderImage .image = UIImage(named: strimagename)
     }
-
+    
+    
+    @IBAction func calenderTypeButtonTapped(_ sender: Any) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
+        let settingViewController: SettingVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
+        settingViewController.delegate = self
+        self.present(settingViewController, animated: true, completion: nil)
+    }
     
     @IBAction func SyncData(_ sender: UIButton) {
         for dataSource in dataSources {

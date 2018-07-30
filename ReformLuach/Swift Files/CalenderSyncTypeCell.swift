@@ -12,12 +12,15 @@ class CalenderSyncTypeCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectionImageView: UIImageView!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet var subTitleLabel: UILabel!
     var syncType: SyncType? {
         didSet {
             self.backgroundColor = UIColor.white
             self.isUserInteractionEnabled = true
             self.activityIndicatorView.isHidden = true
             titleLabel.text = syncType?.title
+            subTitleLabel.text = syncType?.subTitle
+            subTitleLabel.textColor = UIColor.black
             titleLabel.textColor = UIColor.black
             
             if syncType?.syncState == .completed {

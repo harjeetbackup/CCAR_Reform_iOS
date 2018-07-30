@@ -48,6 +48,7 @@
 		E24FE55F20FF6E3E0077BDB7 /* Shavuot_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55E20FF6E3E0077BDB7 /* Shavuot_Shabbat.html */; };
 		E24FE56120FF6E580077BDB7 /* Shavuot.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE56020FF6E580077BDB7 /* Shavuot.html */; };
 		E24FE56320FF6EA60077BDB7 /* Pesach_Day_7.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE56220FF6EA60077BDB7 /* Pesach_Day_7.html */; };
+		E27CE1BF210982E400B1D9FE /* Shabbat_Shuva.html in Resources */ = {isa = PBXBuildFile; fileRef = E27CE1BE210982E400B1D9FE /* Shabbat_Shuva.html */; };
 		E2AF0F2420B68F4800A05BC7 /* EventManager+SubtitleLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */; };
 		E2B174A420C265D40009F5DB /* Sukkot_5_Weekday.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173BF20C265A50009F5DB /* Sukkot_5_Weekday.html */; };
 		E2B174A520C265D40009F5DB /* Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173C020C265A50009F5DB /* Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html */; };
@@ -405,6 +406,8 @@
 		E24FE55E20FF6E3E0077BDB7 /* Shavuot_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shavuot_Shabbat.html; sourceTree = "<group>"; };
 		E24FE56020FF6E580077BDB7 /* Shavuot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shavuot.html; sourceTree = "<group>"; };
 		E24FE56220FF6EA60077BDB7 /* Pesach_Day_7.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_7.html; sourceTree = "<group>"; };
+		E27CE1BD2108376600B1D9FE /* About-Reform-Luach-Info_updated.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "About-Reform-Luach-Info_updated.docx"; sourceTree = "<group>"; };
+		E27CE1BE210982E400B1D9FE /* Shabbat_Shuva.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shabbat_Shuva.html; sourceTree = "<group>"; };
 		E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventManager+SubtitleLogic.swift"; sourceTree = "<group>"; };
 		E2B173BF20C265A50009F5DB /* Sukkot_5_Weekday.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Sukkot_5_Weekday.html; sourceTree = "<group>"; };
 		E2B173C020C265A50009F5DB /* Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday.html"; sourceTree = "<group>"; };
@@ -988,6 +991,7 @@
 				E2B1741820C265B50009F5DB /* Shabbat_Sh'mini.html */,
 				E2B1743B20C265BC0009F5DB /* Shabbat_Sh'mot.html */,
 				E2B1748320C265CB0009F5DB /* Shabbat_Shoftim.html */,
+				E27CE1BE210982E400B1D9FE /* Shabbat_Shuva.html */,
 				E2B173FB20C265B00009F5DB /* Shabbat_T'rumah.html */,
 				E2B1745A20C265C40009F5DB /* Shabbat_T'tzaveh.html */,
 				E2B1748F20C265CE0009F5DB /* Shabbat_Tazria-M'tzora.html */,
@@ -1141,6 +1145,7 @@
 				E29C104820C1797C009CC2E9 /* Swift Files */,
 				E29C104920C17A0A009CC2E9 /* Html Files */,
 				E62D1BE01FD688530003180B /* About.html */,
+				E27CE1BD2108376600B1D9FE /* About-Reform-Luach-Info_updated.docx */,
 				E610FC921FD9496300495DA6 /* torah-israel.json */,
 				E610FC901FD9493E00495DA6 /* torah-diaspora.json */,
 				E635ABE21FC47A0700D8F30C /* Jewish_holiday.json */,
@@ -1394,6 +1399,7 @@
 				E2B1751A20C265D40009F5DB /* Ki_Teitzei.html in Resources */,
 				E24FE55720FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html in Resources */,
 				E2B1757320C265D40009F5DB /* D'varim.html in Resources */,
+				E27CE1BF210982E400B1D9FE /* Shabbat_Shuva.html in Resources */,
 				E2B1756520C265D40009F5DB /* Shabbat_K'doshim.html in Resources */,
 				E2B1757B20C265D40009F5DB /* B'shalach.html in Resources */,
 				189CBEDC20510737004C5D95 /* FooterView.xib in Resources */,

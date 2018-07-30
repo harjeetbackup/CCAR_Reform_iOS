@@ -19,6 +19,8 @@ enum SyncState: Int {
 class SyncType: NSObject, NSCoding {
     var syncState = SyncState.none
     var title = String()
+    var subTitle = String()
+    var additionalEvent = String()
     var category = String()
     var subCategory = String()
     weak var dataSource: SyncDataSouce?
@@ -27,6 +29,8 @@ class SyncType: NSObject, NSCoding {
     
     init(dict: [String:String], source: SyncDataSouce) {
         title = dict["title"] ?? ""
+        subTitle = dict["subTitle"] ?? ""
+        additionalEvent = dict["additionalEvent"] ?? ""
         category = dict["category"] ?? ""
         subCategory = dict["subCategory"] ?? ""
         dataSource = source
@@ -35,6 +39,8 @@ class SyncType: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         super.init()
         self.title = aDecoder.decodeObject(forKey: "title") as! String
+        self.subTitle = aDecoder.decodeObject(forKey: "subTitle") as! String
+        self.additionalEvent = aDecoder.decodeObject(forKey: "additionalEvent") as! String
         self.category = aDecoder.decodeObject(forKey: "category") as! String
         self.subCategory = aDecoder.decodeObject(forKey: "subCategory") as! String
         let state = aDecoder.decodeInteger(forKey:"syncState")
@@ -43,6 +49,8 @@ class SyncType: NSObject, NSCoding {
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(title, forKey: "title")
+        aCoder.encode(subTitle, forKey: "subTitle")
+        aCoder.encode(subTitle, forKey: "additionalEvent")
         aCoder.encode(category, forKey: "category")
         aCoder.encode(subCategory, forKey: "subCategory")
         aCoder.encode(syncState.rawValue, forKey: "syncState")
@@ -57,11 +65,13 @@ class SyncType: NSObject, NSCoding {
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let date = dateFormatter.date(from: event.date!)
                 let eventYear = calendar.component(.year, from: date!)
-                guard let cat = event.category, let subcat = event.subcat else { return false }
+                //guard let cat = event.category, let subcat = event.subcat else { return false }
                 print(eventYear)
-                if self.subCategory == ""  && cat == self.category && eventYear == year {
+                if self.subCategory == ""  && event.category == self.category && eventYear == year {
                     return true
-                } else if cat == self.category && subcat == self.subCategory && eventYear == year {
+                } else if event.category == self.category && event.subcat == self.subCategory && eventYear == year {
+                    return true
+                } else if event.subcat == nil && self.additionalEvent != "" && event.category == self.category && eventYear == year {
                     return true
                 }
                 return false
