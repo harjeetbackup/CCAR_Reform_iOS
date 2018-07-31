@@ -27,7 +27,11 @@ extension EventManager {
             if specialEvent != nil && comparableEvent != nil {
                 if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
                     if let title = specialEvent?.title?.spellChangedForTitle() {
-                        comparableEvent?.subTitle = "The Haftarah for \(title) should be read."
+                        var title1 = title
+                        if (title == "Chanukah: 2 Candles" || title == "Chanukah: 3 Candles" || title == "Chanukah: 4 Candles" || title == "Chanukah: 5 Candles" || title == "Chanukah: 6 Candles" || title == "Chanukah: 7 Candles" || title == "Chanukah: 8 Candles" || title == "Chanukah: 8th Day") {
+                            title1 = "Shabbat Chanukah"
+                        }
+                        comparableEvent?.subTitle = "The Haftarah for \(title1) should be read."
                         specialEvent?.subTitle = ""
                         specialEvent = nil
                         comparableEvent = nil
@@ -49,9 +53,13 @@ extension EventManager {
             if specialEvent != nil && comparableEvent != nil && threeSpecialEvent != nil {
                 if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) && Calendar.current.isDate(threeSpecialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
                     if let title = specialEvent?.title?.spellChangedForTitle() {
-                        comparableEvent?.subTitle = "The Haftarah for \(title) should be read."
+                        var title1 = title
+                        if (title == "Chanukah: 2 Candles" || title == "Chanukah: 3 Candles" || title == "Chanukah: 4 Candles" || title == "Chanukah: 5 Candles" || title == "Chanukah: 6 Candles" || title == "Chanukah: 7 Candles" || title == "Chanukah: 8 Candles" || title == "Chanukah: 8th Day") {
+                            title1 = "Shabbat Chanukah"
+                        }
+                        comparableEvent?.subTitle = "The Haftarah for \(title1) should be read."
                         specialEvent?.subTitle = ""
-                        threeSpecialEvent?.subTitle = "The Haftarah for \(title) should be read."
+                        threeSpecialEvent?.subTitle = "The Haftarah for \(title1) should be read."
                         specialEvent = nil
                         comparableEvent = nil
                         threeSpecialEvent = nil

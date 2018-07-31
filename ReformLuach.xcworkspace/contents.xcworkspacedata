@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/niranjan/Documents/Ayush Technologies/Customers/Reform_launch/ReformLuach/Swift Files/Constants.swift">
-   </FileRef>
-   <FileRef
       location = "group:ReformLuach.xcodeproj">
    </FileRef>
    <FileRef
