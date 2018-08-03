@@ -16,6 +16,8 @@ let kSyncDataSourceKey = "kSyncDataSourceKey"
 
 class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet var eventsSyncButton: UIButton!
+    @IBOutlet var footerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var HeaderImage: UIImageView!
     @IBOutlet var yearDisplaySegmentedControl: UISegmentedControl!
@@ -42,6 +44,8 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addGestureRecognizer(right)
         calenderTypeIndicator.text = calTypeName
         yearDisplaySegmentedControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
+        eventsSyncButton.clipsToBounds = true
+        eventsSyncButton.layer.cornerRadius = 4
         configYearSegmentedControl()
         loadSavedSyncDataSources()
         NotificationCenter.default.addObserver(self, selector: #selector(saveDataSources), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)

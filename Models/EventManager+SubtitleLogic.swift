@@ -77,7 +77,7 @@ extension EventManager {
             }
             // TODO check chanukah 2nd candels or night
             if let sukkotAndChanukhaEvents = specialEvent {
-                if sukkotAndChanukhaEvents.inSaturday() {
+                if sukkotAndChanukhaEvents.inSaturday() || sukkotAndChanukhaEvents.inFriday(){
                     if let title = sukkotAndChanukhaEvents.title?.spellChangedForTitle() {
                         switch title {
                         case "Sukkot 2 Weekday":
@@ -129,16 +129,17 @@ extension EventManager {
     
     func changeTitleName(_ event: RLEvent,eventTitle: String ) -> String {
         var title = eventTitle
-        print(title)
-        //Spell changed for title is not applyed here checking the events title directly coming from server
+        //Spell changed for title is not applied here checking the events title directly coming from server
         if event.inSaturday() {
             title = title.replacingOccurrences(of: "Shavuot I", with: "Shavuot Shabbat")
-            title = title.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Shabbat")
+            if title == "Pesach I" {
+                title = title.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Shabbat")
+            }
             title = title.replacingOccurrences(of: "Pesach VII", with: "Pesach Day 7 Shabbat")
             title = title.replacingOccurrences(of: "Sukkot I", with: "Sukkot 1 Shabbat")
             title = title.replacingOccurrences(of: "Shmini Atzeret", with: "Sh'mini Atzeret-Simchat Torah Shabbat")
             title = title.replacingOccurrences(of: "Rosh Chodesh I Weekday", with: "Shabbat Rosh Chodesh I")
-            title = title.replacingOccurrences(of: "Rosh_Chodesh_II_or_One_Day_Rosh_Chodesh_Weekday", with: "Shabbat Rosh Chodesh II or One Day Rosh Chodesh")
+            title = title.replacingOccurrences(of: "Rosh Chodesh II or One Day Rosh Chodesh Weekday", with: "Shabbat Rosh Chodesh II or One Day Rosh Chodesh")
             if (title == "Sukkot II (CH''M)" || title == "Sukkot III (CH''M)" || title == "Sukkot IV (CH''M)" || title == "Sukkot V (CH''M)" || title == "Sukkot VI (CH''M)") {
                 title = "Chol Hamoed Sukkot Shabbat"
             }

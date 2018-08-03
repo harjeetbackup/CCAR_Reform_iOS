@@ -88,24 +88,24 @@ class EventManager: NSObject {
                         
                         currentYearEvents = currentYearEvents + self.applyReformLogic(events: specialDiasporaEvents);
                         currentYearEvents = self.sortedCurrentYearEvents(currentYearEvents)
+                        self.applySubTitleLogic(currentYearEvents)
                         self.applySubtitleForsukkotAndChanukhaEvents(currentYearEvents)
                         self.applySaturdayFridayTitleChangeLogic(currentYearEvents)
-                        self.applySubTitleLogic(currentYearEvents)
                         completion(currentYearEvents)
                     })
                 })
             })
         } else if calenderType == .dispora {
             self.loadEvents(url: calenderType.url(year: year), completion: { (items) in
-                self.applySubtitleForsukkotAndChanukhaEvents(items)
                 self.applySubTitleLogic(items)
+                self.applySubtitleForsukkotAndChanukhaEvents(items)
                 self.applySaturdayFridayTitleChangeLogic(items)
                 completion(items)
             })
         } else {
             self.loadEvents(url: calenderType.url(year: year), completion: { (items) in
-                self.applySubtitleForsukkotAndChanukhaEvents(items)
                 self.applySubTitleLogic(items)
+                self.applySubtitleForsukkotAndChanukhaEvents(items)
                 self.applySaturdayFridayTitleChangeLogic(items)
                 completion(items)
             })
@@ -235,4 +235,3 @@ extension Date {
         return calendar.date(byAdding: .day, value: -1, to: date)!
     }
 }
-

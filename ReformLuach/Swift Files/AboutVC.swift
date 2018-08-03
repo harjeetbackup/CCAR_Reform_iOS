@@ -13,6 +13,7 @@ import KYDrawerController
 class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate {
     @IBOutlet weak var AboutHeaderImage: UIImageView!
     @IBOutlet weak var lblAboutData: UILabel!
+    @IBOutlet var aboutWebView: UIWebView!
     @IBOutlet weak var lblOthetCCARData: UILabel!
     @IBOutlet weak var lblOtherCCARData2: UILabel!
     @IBOutlet weak var myScL: UIView!
@@ -28,12 +29,9 @@ class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate {
     @IBOutlet weak var CCARIAMGE_Height: NSLayoutConstraint!
     @IBOutlet weak var otherCCAT_Data2: UILabel!
     @IBOutlet weak var otherCCAT_Data2_Height: NSLayoutConstraint!
-    @IBOutlet weak var AboutTextView: UITextView!
-    @IBOutlet weak var About_details: UIWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        myLayout()
         let left = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft))
         left.direction = .left
         self.view.addGestureRecognizer(left)
@@ -43,12 +41,34 @@ class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate {
         self.view.addGestureRecognizer(right)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let localfilePath = Bundle.main.url(forResource: "About", withExtension: "html")
+        let myRequest = NSURLRequest(url: localfilePath!)
+        aboutWebView.loadRequest(myRequest as URLRequest)
+        aboutWebView.delegate = self
+        aboutWebView.backgroundColor = UIColor.white
+        let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
+        myBackGraound(strmonth: strImageMoth)
+    }
+    
     func webViewDidStartLoad(_ webView: UIWebView) {
         self.view.showHud()
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         self.view.hideHud()
+    }
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.linkClicked {
+            if let reformLink = request.url {
+                if UIApplication.shared.canOpenURL(reformLink) {
+                    UIApplication.shared.open(reformLink, options: [:], completionHandler: nil)
+                }
+            }
+            return false
+        }
+        return true
     }
     
     func swipeLeft() {
@@ -64,24 +84,11 @@ class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate {
         return .lightContent
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //        let url = Bundle.main.url(forResource: "About", withExtension:"html")
-        
-        //        let url = Bundle.main.url().URLForResource("About", withExtension:"html")
-        let localfilePath = Bundle.main.url(forResource: "About", withExtension: "html");
-        let myRequest = NSURLRequest(url: localfilePath!);
-        About_details.loadRequest(myRequest as URLRequest);
-        About_details.delegate = self;
-        About_details.backgroundColor = UIColor.white
-        let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
-        myBackGraound(strmonth: strImageMoth)
-    }
-    
     func myBackGraound(strmonth: NSInteger) {
         let strimagename = "commanHeader" + "\(strmonth)"
         AboutHeaderImage.image = UIImage(named: strimagename)
     }
-  
+    
     func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat {
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
@@ -92,9 +99,3 @@ class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate {
         return label.frame.height
     }
 }
-
-
-
-
-
-

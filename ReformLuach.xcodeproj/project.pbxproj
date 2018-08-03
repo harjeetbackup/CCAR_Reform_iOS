@@ -39,7 +39,6 @@
 		E20309032101E95B00C89C93 /* Chanukah_7th_Night_Erev_Rosh_Chodesh_Tevet.html in Resources */ = {isa = PBXBuildFile; fileRef = E20308F52101E95A00C89C93 /* Chanukah_7th_Night_Erev_Rosh_Chodesh_Tevet.html */; };
 		E20309042101E95B00C89C93 /* Chanukah_7th_Night_Rosh_Chodesh_Tevet_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E20308F62101E95A00C89C93 /* Chanukah_7th_Night_Rosh_Chodesh_Tevet_1.html */; };
 		E22F875E20F88E8400621ACA /* SyncDataSouce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22F875D20F88E8400621ACA /* SyncDataSouce.swift */; };
-		E22F876020F88FC000621ACA /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22F875F20F88FC000621ACA /* CalendarManager.swift */; };
 		E24FE54520FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE54420FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html */; };
 		E24FE55620FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55420FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html */; };
 		E24FE55720FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E24FE55520FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html */; };
@@ -398,7 +397,6 @@
 		E20308F52101E95A00C89C93 /* Chanukah_7th_Night_Erev_Rosh_Chodesh_Tevet.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_7th_Night_Erev_Rosh_Chodesh_Tevet.html; sourceTree = "<group>"; };
 		E20308F62101E95A00C89C93 /* Chanukah_7th_Night_Rosh_Chodesh_Tevet_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chanukah_7th_Night_Rosh_Chodesh_Tevet_1.html; sourceTree = "<group>"; };
 		E22F875D20F88E8400621ACA /* SyncDataSouce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDataSouce.swift; sourceTree = "<group>"; };
-		E22F875F20F88FC000621ACA /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		E24FE54420FF48920077BDB7 /* Rosh_Chodesh_Adar_II.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Rosh_Chodesh_Adar_II.html; sourceTree = "<group>"; };
 		E24FE55420FF6D6B0077BDB7 /* Pesach_Day_7_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_7_Shabbat.html; sourceTree = "<group>"; };
 		E24FE55520FF6D6B0077BDB7 /* Pesach_Day_1_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Day_1_Shabbat.html; sourceTree = "<group>"; };
@@ -778,7 +776,6 @@
 				6D720367204F135600EE68C5 /* EventManager.swift */,
 				6DC06CF62082311D0087EC7A /* EventManager+ReformLogic.swift */,
 				E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */,
-				E22F875F20F88FC000621ACA /* CalendarManager.swift */,
 				E22F875D20F88E8400621ACA /* SyncDataSouce.swift */,
 				6D4DDE382101A57F00560933 /* SyncType.swift */,
 			);
@@ -1710,7 +1707,6 @@
 				E6526EA71F4D96F100E970AB /* DateConverterVC.swift in Sources */,
 				E687009E1F4EA55300CB897D /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				E6FE53B11F8379A6008844BE /* EventFirstVC.swift in Sources */,
-				E22F876020F88FC000621ACA /* CalendarManager.swift in Sources */,
 				E6FE53B51F837A31008844BE /* EventThirdVC.swift in Sources */,
 				6DC06CF5208216380087EC7A /* UIView+Additions.swift in Sources */,
 				E6AB61261F4C69EB00161250 /* Event.swift in Sources */,
@@ -1916,6 +1912,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = MTLWNYBR52;
 				INFOPLIST_FILE = ReformLuach/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

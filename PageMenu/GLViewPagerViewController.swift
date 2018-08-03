@@ -152,23 +152,26 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         Heb_day.isUserInteractionEnabled = true
         Heb_day.frame = CGRect(x:40, y:IS_IPAD ? 40 : 35, width:self.view.frame.width - 80, height:IS_IPAD ? 70 : 45);
         Heb_day.textAlignment = NSTextAlignment.center
-        Heb_day.font = UIFont(name: "Roboto-Thin", size: IS_IPAD ? 55.0 : 35.0)
+        Heb_day.font = UIFont(name: "Roboto-Light", size: IS_IPAD ? 55.0 : 35.0)
         Heb_day.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(Heb_day)
         let tapOnEventName = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
         Heb_day.addGestureRecognizer(tapOnEventName)
         var frame = Heb_day.frame;
         frame.origin.x = self.view.frame.width - 50;
-        frame.size.width = 40;
-        frame.size.height = 40;
-        let button = UIButton.init(frame: frame)
+        frame.size.width = 30;
+        frame.size.height = 30;
+        let button = UIButton()
+        button.frame = CGRect(x:self.view.frame.width - 46, y:IS_IPAD ? 50 : 40, width: 30, height: 30)
         button.setImage(#imageLiteral(resourceName: "calender_Icon"), for: .normal)
         button.addTarget(self, action: #selector(settingsTapped), for: .touchUpInside)
         self.view.addSubview(button)
-        label.frame = CGRect.init(x: 14, y: 20, width: 14, height: 14)
+        label.frame = CGRect.init(x: 8, y: 12, width: 14, height: 14)
+
         label.text = calTypeName
         label.textAlignment = .center
         label.textColor = UIColor.white
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         button.addSubview(label)
         
         //        let Heb_Year:UILabel = UILabel.init()
