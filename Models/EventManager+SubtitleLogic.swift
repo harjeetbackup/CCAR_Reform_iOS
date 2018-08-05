@@ -77,7 +77,7 @@ extension EventManager {
             }
             // TODO check chanukah 2nd candels or night
             if let sukkotAndChanukhaEvents = specialEvent {
-                if sukkotAndChanukhaEvents.inSaturday() || sukkotAndChanukhaEvents.inFriday(){
+                if sukkotAndChanukhaEvents.inSaturday() || sukkotAndChanukhaEvents.inFriday() {
                     if let title = sukkotAndChanukhaEvents.title?.spellChangedForTitle() {
                         switch title {
                         case "Sukkot 2 Weekday":
@@ -90,6 +90,14 @@ extension EventManager {
                             addSubtitleForEvents(subtitleName: "Sukkot 5", event: sukkotAndChanukhaEvents)
                         case "Sukkot 6 Weekday":
                             addSubtitleForEvents(subtitleName: "Sukkot 6", event: sukkotAndChanukhaEvents)
+                        default:
+                            break
+                        }
+                    }
+                }
+                if sukkotAndChanukhaEvents.inSaturday() {
+                    if let title = sukkotAndChanukhaEvents.title?.spellChangedForTitle() {
+                        switch title {
                         case "Chanukah: 2 Candles":
                             addSubtitleForEvents(subtitleName: "Chanukah: 2nd Night", event: sukkotAndChanukhaEvents)
                         case "Chanukah: 3 Candles":
