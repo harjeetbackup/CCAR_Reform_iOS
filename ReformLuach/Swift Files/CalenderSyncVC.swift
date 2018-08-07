@@ -46,8 +46,14 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         yearDisplaySegmentedControl.addTarget(self, action: #selector(selectionDidChange(_:)), for: .valueChanged)
         eventsSyncButton.clipsToBounds = true
         eventsSyncButton.layer.cornerRadius = 4
+        let spacing = 10
+        eventsSyncButton.imageEdgeInsets =
+            UIEdgeInsets.init(top: 1, left: 114, bottom: 1, right: CGFloat(spacing))
+        eventsSyncButton.titleEdgeInsets =
+            UIEdgeInsets.init(top: 0, left: -20, bottom: 0, right: 50)
         configYearSegmentedControl()
         loadSavedSyncDataSources()
+        print(UIScreen.main.bounds.size.height)
         NotificationCenter.default.addObserver(self, selector: #selector(saveDataSources), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
     }
   

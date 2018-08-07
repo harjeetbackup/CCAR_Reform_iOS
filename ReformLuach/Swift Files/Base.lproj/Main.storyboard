@@ -46,7 +46,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sync_Header1" translatesAutoresizingMaskIntoConstraints="NO" id="Aiu-DM-lzz">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar  Sync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-qS-sdi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar Sync" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-qS-sdi">
                                         <rect key="frame" x="0.0" y="40" width="375" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="1ZL-Ta-3eZ"/>
@@ -56,8 +56,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5id-nD-pK5">
-                                        <rect key="frame" x="16" y="95" width="343" height="66"/>
-                                        <string key="text">Calendar sync places the following Jewish yearly events directly on your device's calendar app. Select check boxes below, and then tap Sync Events button.</string>
+                                        <rect key="frame" x="16" y="91" width="343" height="74"/>
+                                        <string key="text">Calendar sync places the following Jewish yearly events directly on your device's calendar app. Select check boxes below, and then tap the download button.</string>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -104,7 +104,7 @@
                                     <constraint firstItem="RZw-Dd-Wrq" firstAttribute="centerX" secondItem="3vv-EO-wrA" secondAttribute="centerX" id="314-gL-IkW"/>
                                     <constraint firstAttribute="height" constant="220" id="3DM-RH-NcW"/>
                                     <constraint firstItem="RZw-Dd-Wrq" firstAttribute="top" secondItem="3vv-EO-wrA" secondAttribute="top" constant="15" id="DJN-FD-aHu"/>
-                                    <constraint firstItem="4V9-gy-tGl" firstAttribute="top" secondItem="5id-nD-pK5" secondAttribute="bottom" constant="20" id="FaA-48-Oxs"/>
+                                    <constraint firstItem="4V9-gy-tGl" firstAttribute="top" secondItem="5id-nD-pK5" secondAttribute="bottom" constant="16" id="FaA-48-Oxs"/>
                                     <constraint firstItem="3vv-EO-wrA" firstAttribute="trailing" secondItem="4V9-gy-tGl" secondAttribute="trailing" id="Gs8-G4-cWS"/>
                                     <constraint firstItem="5id-nD-pK5" firstAttribute="leading" secondItem="cBL-dA-LfH" secondAttribute="leading" constant="16" id="H9C-N4-TKw"/>
                                     <constraint firstAttribute="trailing" secondItem="4V9-gy-tGl" secondAttribute="trailing" constant="16" id="Pia-TA-bCw"/>
@@ -117,7 +117,7 @@
                                     <constraint firstAttribute="trailing" secondItem="5id-nD-pK5" secondAttribute="trailing" constant="16" id="lhX-sK-EiQ"/>
                                     <constraint firstItem="4V9-gy-tGl" firstAttribute="leading" secondItem="cBL-dA-LfH" secondAttribute="leading" constant="16" id="mD4-V7-cRw"/>
                                     <constraint firstItem="6wC-qS-sdi" firstAttribute="leading" secondItem="cBL-dA-LfH" secondAttribute="leading" id="mny-yy-tHt"/>
-                                    <constraint firstItem="5id-nD-pK5" firstAttribute="top" secondItem="6wC-qS-sdi" secondAttribute="bottom" constant="20" id="uAi-de-yuE"/>
+                                    <constraint firstItem="5id-nD-pK5" firstAttribute="top" secondItem="6wC-qS-sdi" secondAttribute="bottom" constant="16" id="uAi-de-yuE"/>
                                     <constraint firstAttribute="trailing" secondItem="6wC-qS-sdi" secondAttribute="trailing" id="yme-AK-AC0"/>
                                 </constraints>
                             </view>
@@ -201,15 +201,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6A-uX-IbF">
                                 <rect key="frame" x="16" y="562" width="343" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LM6-aj-AKj">
-                                        <rect key="frame" x="71.5" y="2" width="200" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LM6-aj-AKj">
+                                        <rect key="frame" x="92" y="2" width="160" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="Sik-Ad-o9W"/>
+                                            <constraint firstAttribute="width" constant="160" id="Sik-Ad-o9W"/>
                                             <constraint firstAttribute="height" constant="40" id="caO-Kn-P4e"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <state key="normal" title="Sync Events">
+                                        <state key="normal" title="Download" image="download-arrow">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -3504,6 +3504,7 @@
         <image name="commanHeader1" width="320" height="69"/>
         <image name="cross" width="40" height="40"/>
         <image name="dismiss" width="42" height="42"/>
+        <image name="download-arrow" width="30" height="30"/>
         <image name="ima_DateConverter" width="295" height="280"/>
         <image name="imageView:AZq-mj-bso:image" width="30" height="30">
             <mutableData key="keyedArchiveRepresentation">
