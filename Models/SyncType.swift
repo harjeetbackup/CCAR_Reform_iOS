@@ -75,6 +75,10 @@ class SyncType: NSObject, NSCoding {
                     return true
                 } else if event.subcat == nil && self.additionalEvent != "" && event.category == self.category && eventYear == year {
                     return true
+                } else if event.subcat != nil && event.category == self.category && eventYear == year {
+                    if self.additionalEvent.contains(event.subcat!) {
+                        return true
+                    }
                 }
                 return false
             })

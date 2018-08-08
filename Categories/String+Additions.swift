@@ -359,7 +359,7 @@ extension String {
         name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta’anit Bechorot")
         name = name.replacingOccurrences(of: "Shabbat Shekalim", with: "Shabbat Sh'kalim")
         name = name.replacingOccurrences(of: "Tu BiShvat", with: "Tu B'Sh'vat")
-        name = name.replacingOccurrences(of: "Tzom Tammuz", with: "Shiva Asar b'Tammuz")
+        name = name.replacingOccurrences(of: "Tzom Tammuz", with: "Shivah Asar b'Tammuz")
         name = name.replacingOccurrences(of: "Tish'a B'Av", with: "Tisha B'Av")
         name = name.replacingOccurrences(of: "Erev Tisha B\'Av", with: "Erev Tisha b'Av")
         name = name.replacingOccurrences(of: "Erev Rosh Hashana", with: "Erev Rosh Hashana Weekday")
