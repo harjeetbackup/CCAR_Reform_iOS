@@ -48,7 +48,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         eventsSyncButton.layer.cornerRadius = 4
         let spacing = 10
         eventsSyncButton.imageEdgeInsets =
-            UIEdgeInsets.init(top: 1, left: 114, bottom: 1, right: CGFloat(spacing))
+            UIEdgeInsets.init(top: 2, left: 114, bottom: 2, right: CGFloat(spacing))
         eventsSyncButton.titleEdgeInsets =
             UIEdgeInsets.init(top: 0, left: -20, bottom: 0, right: 50)
         configYearSegmentedControl()
@@ -206,6 +206,13 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func saveDataSources() {
         let userDefaults = UserDefaults.standard
+        for items in dataSources {
+            for syncItem in  items.syncTypes{
+                if syncItem.syncState == .inProgress{
+                    syncItem.syncState = .none
+                }
+            }
+        }
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: dataSources)
         userDefaults.set(encodedData, forKey: kSyncDataSourceKey)
         userDefaults.synchronize()
