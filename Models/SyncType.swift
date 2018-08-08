@@ -53,6 +53,9 @@ class SyncType: NSObject, NSCoding {
         aCoder.encode(subTitle, forKey: "additionalEvent")
         aCoder.encode(category, forKey: "category")
         aCoder.encode(subCategory, forKey: "subCategory")
+        if syncState == .inProgress {
+            syncState = .none
+        }
         aCoder.encode(syncState.rawValue, forKey: "syncState")
     }
     
