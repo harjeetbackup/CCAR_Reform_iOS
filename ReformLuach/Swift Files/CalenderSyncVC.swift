@@ -24,8 +24,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var calenderTypeButton: UIButton!
     @IBOutlet var calenderTypeIndicator: UILabel!
     var selectedYearIndex = 0
- 
-    var calType = [CalendarSelectedType]()
     var calenders = [String: [SyncDataSouce]]()
     var event: EKEvent!
     let eventStore = EKEventStore()
