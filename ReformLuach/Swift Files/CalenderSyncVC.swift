@@ -25,11 +25,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var calenderTypeIndicator: UILabel!
     var selectedYearIndex = 0
  
-    var dataSources = [SyncDataSouce]()
     var calType = [CalendarSelectedType]()
+    var calenders = [String: [SyncDataSouce]]()
     var event: EKEvent!
     let eventStore = EKEventStore()
-    var calendars: [EKCalendar]?
+    var ekCalendar: [EKCalendar]?
     var eventDetailsArray = [AnyHashable]()
     var syncedYear = [String]()
     
@@ -59,8 +59,8 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   
     func loadSavedSyncDataSources() {
         guard let decoded  = UserDefaults.standard.object(forKey: kSyncDataSourceKey) as? Data else { return }
-        guard let dataSourcesItems = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? [SyncDataSouce] else { return }
-        dataSources = dataSourcesItems
+        guard let cals = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? [String: [SyncDataSouce]] else { return }
+        calenders = cals
         tableView.reloadData()
     }
     
@@ -72,6 +72,9 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         guard let url = Bundle.main.url(forResource: "SyncType", withExtension: "json") else { return }
         guard let data = try? Data(contentsOf: url) else { return }
         guard let syncTypes = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [[String:String]] else { return }
+        let calTypes: [CalenderType] = [.israel, .reform, .dispora]
+        for calType in calTypes {
+            var years = [SyncDataSouce]()
             for count in 0...3 {
                 let year = "\(currentYear + count)"
                 yearDisplaySegmentedControl.setTitle(year, forSegmentAt: count)
@@ -81,8 +84,10 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 for type in types {
                     source.syncTypes.append(SyncType(dict: type, source: source))
                 }
-                dataSources.append(source)
+                years.append(source)
             }
+            calenders[calType.rawValue] = years
+        }
         tableView.reloadData()
     }
     
@@ -92,26 +97,30 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let dataSource = dataSources[selectedYearIndex]
-        return dataSource.syncTypes.count
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
+        let year = years![selectedYearIndex]
+        return year.syncTypes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CalenderSyncTypeCell", for: indexPath) as! CalenderSyncTypeCell
-        let dataSource = dataSources[selectedYearIndex]
-        cell.syncType = dataSource.syncTypes[indexPath.row]
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
+        let year = years![selectedYearIndex]
+        cell.syncType = year.syncTypes[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        let dataSource = dataSources[selectedYearIndex]
-        let syncType = dataSource.syncTypes[indexPath.row]
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
+        let year = years![selectedYearIndex]
+        let syncType = year.syncTypes[indexPath.row]
         return syncType.syncState != .completed
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dataSource = dataSources[selectedYearIndex]
-        let syncType = dataSource.syncTypes[indexPath.row]
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
+        let year = years![selectedYearIndex]
+        let syncType = year.syncTypes[indexPath.row]
         if syncType.syncState == .selected {
             syncType.syncState = .none
         } else {
@@ -134,10 +143,12 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         calenderTypeIndicator.text = calTypeName
         checkCalendarAuthorizationStatus()
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
+        tableView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -158,11 +169,12 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func SyncData(_ sender: UIButton) {
-        for dataSource in dataSources {
+        let year = calenders[EventManager.shared.selectedCalender.rawValue]
+        for dataSource in year! {
             for type in dataSource.syncTypes {
                 if type.syncState == .selected {
                     type.eventStore = self.eventStore
-                    type.calendars = self.calendars
+                    type.calendars = self.ekCalendar
                     type.syncState = .inProgress
                     self.tableView.reloadData()
                     type.sync({ completed in
@@ -197,7 +209,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadCalendars() {
-        self.calendars = eventStore.calendars(for: EKEntityType.event)
+        self.ekCalendar = eventStore.calendars(for: EKEntityType.event)
     }
     
     deinit {
@@ -206,14 +218,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func saveDataSources() {
         let userDefaults = UserDefaults.standard
-//        for items in dataSources {
-//            for syncItem in  items.syncTypes{
-//                if syncItem.syncState == .inProgress{
-//                    syncItem.syncState = .none
-//                }
-//            }
-//        }
-        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: dataSources)
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: calenders)
         userDefaults.set(encodedData, forKey: kSyncDataSourceKey)
         userDefaults.synchronize()
     }
