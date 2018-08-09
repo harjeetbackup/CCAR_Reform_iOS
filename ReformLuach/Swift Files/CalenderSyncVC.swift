@@ -26,7 +26,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var selectedYearIndex = 0
  
     var calType = [CalendarSelectedType]()
-    var calenders = [CalenderType: [SyncDataSouce]]()
+    var calenders = [String: [SyncDataSouce]]()
     var event: EKEvent!
     let eventStore = EKEventStore()
     var ekCalendar: [EKCalendar]?
@@ -59,7 +59,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
   
     func loadSavedSyncDataSources() {
         guard let decoded  = UserDefaults.standard.object(forKey: kSyncDataSourceKey) as? Data else { return }
-        guard let cals = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? [CalenderType: [SyncDataSouce]] else { return }
+        guard let cals = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? [String: [SyncDataSouce]] else { return }
         calenders = cals
         tableView.reloadData()
     }
@@ -86,7 +86,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 years.append(source)
             }
-            calenders[calType] = years
+            calenders[calType.rawValue] = years
         }
         tableView.reloadData()
     }
@@ -97,28 +97,28 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let years = calenders[EventManager.shared.selectedCalender]
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
         let year = years![selectedYearIndex]
         return year.syncTypes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CalenderSyncTypeCell", for: indexPath) as! CalenderSyncTypeCell
-        let years = calenders[EventManager.shared.selectedCalender]
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
         let year = years![selectedYearIndex]
         cell.syncType = year.syncTypes[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        let years = calenders[EventManager.shared.selectedCalender]
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
         let year = years![selectedYearIndex]
         let syncType = year.syncTypes[indexPath.row]
         return syncType.syncState != .completed
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let years = calenders[EventManager.shared.selectedCalender]
+        let years = calenders[EventManager.shared.selectedCalender.rawValue]
         let year = years![selectedYearIndex]
         let syncType = year.syncTypes[indexPath.row]
         if syncType.syncState == .selected {
@@ -143,10 +143,12 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         calenderTypeIndicator.text = calTypeName
         checkCalendarAuthorizationStatus()
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
+        tableView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -167,7 +169,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func SyncData(_ sender: UIButton) {
-        let year = calenders[EventManager.shared.selectedCalender]
+        let year = calenders[EventManager.shared.selectedCalender.rawValue]
         for dataSource in year! {
             for type in dataSource.syncTypes {
                 if type.syncState == .selected {

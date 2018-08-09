@@ -11,10 +11,10 @@ import Alamofire
 
 let NotificationCalenderChange = NSNotification.Name.init("NotificationCalenderChange")
 let NotificationCalenderChangeNewEventsDidLoaded = NSNotification.Name.init("NotificationCalenderChangeNewEventsDidLoaded")
-enum CalenderType {
-    case israel;
-    case dispora;
-    case reform;
+enum CalenderType: String {
+    case israel = "israel";
+    case dispora = "dispora";
+    case reform = "reform";
     
     func url(year:Int) -> String {
         let showYear = String(year)
