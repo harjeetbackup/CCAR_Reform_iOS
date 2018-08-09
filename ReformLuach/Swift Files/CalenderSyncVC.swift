@@ -206,13 +206,13 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func saveDataSources() {
         let userDefaults = UserDefaults.standard
-        for items in dataSources {
-            for syncItem in  items.syncTypes{
-                if syncItem.syncState == .inProgress{
-                    syncItem.syncState = .none
-                }
-            }
-        }
+//        for items in dataSources {
+//            for syncItem in  items.syncTypes{
+//                if syncItem.syncState == .inProgress{
+//                    syncItem.syncState = .none
+//                }
+//            }
+//        }
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: dataSources)
         userDefaults.set(encodedData, forKey: kSyncDataSourceKey)
         userDefaults.synchronize()
