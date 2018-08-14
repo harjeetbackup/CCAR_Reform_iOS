@@ -32,6 +32,7 @@ class EventSecondVC: EventBaseVC {
         self.filteredEvents = events.filter({ (event) -> Bool in
             if let cat = event.category {
                 if cat == "parashat" {
+                    print(event.title)
                     return true
                 }
             }

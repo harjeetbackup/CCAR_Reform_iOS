@@ -28,7 +28,7 @@ extension EventManager {
                 if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
                     if let title = specialEvent?.title?.spellChangedForTitle() {
                         var title1 = title
-                        if (title == "Chanukah: 2 Candles" || title == "Chanukah: 3 Candles" || title == "Chanukah: 4 Candles" || title == "Chanukah: 5 Candles" || title == "Chanukah: 6 Candles" || title == "Chanukah: 7 Candles" || title == "Chanukah: 8 Candles" || title == "Chanukah: 8th Day") {
+                        if (title == "Chanukah: 2nd Night" || title == "Chanukah: 3rd Night" || title == "Chanukah: 4th Night" || title == "Chanukah: 5th Night" || title == "Chanukah: 6th Night" || title == "Chanukah: 7th Night" || title == "Chanukah: 8th Night" || title == "Chanukah: 8th Day") {
                             title1 = "Shabbat Chanukah"
                         }
                         comparableEvent?.subTitle = "The Haftarah for \(title1) should be read."
@@ -54,7 +54,7 @@ extension EventManager {
                 if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) && Calendar.current.isDate(threeSpecialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
                     if let title = specialEvent?.title?.spellChangedForTitle() {
                         var title1 = title
-                        if (title == "Chanukah: 2 Candles" || title == "Chanukah: 3 Candles" || title == "Chanukah: 4 Candles" || title == "Chanukah: 5 Candles" || title == "Chanukah: 6 Candles" || title == "Chanukah: 7 Candles" || title == "Chanukah: 8 Candles" || title == "Chanukah: 8th Day") {
+                        if (title == "Chanukah: 2nd Night" || title == "Chanukah: 3rd Night" || title == "Chanukah: 4th Night" || title == "Chanukah: 5th Night" || title == "Chanukah: 6th Night" || title == "Chanukah: 7th Night" || title == "Chanukah: 8th Night" || title == "Chanukah: 8th Day") {
                             title1 = "Shabbat Chanukah"
                         }
                         comparableEvent?.subTitle = "The Haftarah for \(title1) should be read."
@@ -75,7 +75,6 @@ extension EventManager {
             if event.isSukkotAndChanukahSaturdayEventSpecialDayForSubTitle() {
                 specialEvent = event
             }
-            // TODO check chanukah 2nd candels or night
             if let sukkotAndChanukhaEvents = specialEvent {
                 if sukkotAndChanukhaEvents.inSaturday() || sukkotAndChanukhaEvents.inFriday() {
                     if let title = sukkotAndChanukhaEvents.title?.spellChangedForTitle() {
@@ -98,19 +97,19 @@ extension EventManager {
                 if sukkotAndChanukhaEvents.inSaturday() {
                     if let title = sukkotAndChanukhaEvents.title?.spellChangedForTitle() {
                         switch title {
-                        case "Chanukah: 2 Candles":
+                        case "Chanukah: 2nd Night":
                             addSubtitleForEvents(subtitleName: "Chanukah: 2nd Night", event: sukkotAndChanukhaEvents)
-                        case "Chanukah: 3 Candles":
+                        case "Chanukah: 3rd Night":
                             addSubtitleForEvents(subtitleName: "Chanukah: 3rd Night", event: sukkotAndChanukhaEvents)
-                        case "Chanukah: 4 Candles":
+                        case "Chanukah: 4th Night":
                             addSubtitleForEvents(subtitleName: "Chanukah: 4th Night", event: sukkotAndChanukhaEvents)
-                        case "Chanukah: 5 Candles":
+                        case "Chanukah: 5th Night":
                             addSubtitleForEvents(subtitleName: "Chanukah: 5th Night", event: sukkotAndChanukhaEvents)
-                        case "Chanukah: 6 Candles":
+                        case "Chanukah: 6th Night":
                             addSubtitleForEvents(subtitleName: "Chanukah: 6th Night", event: sukkotAndChanukhaEvents)
-                        case "Chanukah: 7 Candles":
+                        case "Chanukah: 7th Night":
                             addSubtitleForEvents(subtitleName: "Chanukah: 7th Night", event: sukkotAndChanukhaEvents)
-                        case "Chanukah: 8 Candles":
+                        case "Chanukah: 8th Night":
                             addSubtitleForEvents(subtitleName: "Chanukah: 8th Night", event: sukkotAndChanukhaEvents)
                         case "Chanukah 8 Weekday":
                             addSubtitleForEvents(subtitleName: "Chanukah: Ends at Sundown", event: sukkotAndChanukhaEvents)
@@ -140,14 +139,16 @@ extension EventManager {
         //Spell changed for title is not applied here checking the events title directly coming from server
         if event.inSaturday() {
             title = title.replacingOccurrences(of: "Shavuot I", with: "Shavuot Shabbat")
-            if title == "Pesach I" {
-                title = title.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Shabbat")
-            }
-            title = title.replacingOccurrences(of: "Pesach VII", with: "Pesach Day 7 Shabbat")
             title = title.replacingOccurrences(of: "Sukkot I", with: "Sukkot 1 Shabbat")
             title = title.replacingOccurrences(of: "Shmini Atzeret", with: "Sh'mini Atzeret-Simchat Torah Shabbat")
             title = title.replacingOccurrences(of: "Rosh Chodesh I Weekday", with: "Shabbat Rosh Chodesh I")
             title = title.replacingOccurrences(of: "Rosh Chodesh II or One Day Rosh Chodesh Weekday", with: "Shabbat Rosh Chodesh II or One Day Rosh Chodesh")
+            if title == "Pesach I" {
+                title = title.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Shabbat")
+            }
+            if title == "Pesach VII" {
+                title = title.replacingOccurrences(of: "Pesach VII", with: "Pesach Day 7 Shabbat")
+            }
             if (title == "Sukkot II (CH''M)" || title == "Sukkot III (CH''M)" || title == "Sukkot IV (CH''M)" || title == "Sukkot V (CH''M)" || title == "Sukkot VI (CH''M)") {
                 title = "Chol Hamoed Sukkot Shabbat"
             }
@@ -155,7 +156,6 @@ extension EventManager {
                 title = "Shabbat Chanukah"
             }
         } else if event.inFriday() {
-            //Title is repeating
             title = title.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach Friday")
             title = title.replacingOccurrences(of: "Erev Rosh Chodesh Weekday", with: "Erev Rosh Chodesh Friday")
             //Anywhere Erev Sh'mini Atzeret/Simchat Torah is not coming only Sh'mini Atzeret/Simchat Torah is their
@@ -163,8 +163,10 @@ extension EventManager {
             title = title.replacingOccurrences(of: "Erev Shavuot", with: "Erev Shavuot Friday")
             title = title.replacingOccurrences(of: "Erev Sukkot", with: "Erev Sukkot Friday")
             title = title.replacingOccurrences(of: "Erev Yom Kippur", with: "Erev Yom Kippur Friday")
-            title = title.replacingOccurrences(of: "Pesach VI (CH''M)", with: "Pesach Chol Hamoed Day 5 Friday")
             title = title.replacingOccurrences(of: "Erev Rosh Hashana", with: "Erev Rosh Hashana Friday")
+            if title == "Pesach VI (CH''M)" {
+                title = title.replacingOccurrences(of: "Pesach VI (CH''M)", with: "Pesach Chol HaMoed Day 5 Friday")
+            }
             if (title == "Sukkot II (CH''M)" || title == "Sukkot III (CH''M)" || title == "Sukkot IV (CH''M)" || title == "Sukkot V (CH''M)" || title == "Sukkot VI (CH''M)") {
                 title = "Shabbat Chol Hamoed Sukkot Friday"
             }

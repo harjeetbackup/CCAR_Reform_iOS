@@ -57,7 +57,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5id-nD-pK5">
                                         <rect key="frame" x="16" y="91" width="343" height="74"/>
-                                        <string key="text">Calendar sync places the following Jewish yearly events directly on your device's calendar app. Select check boxes below, and then tap the download button.</string>
+                                        <string key="text">Calendar sync places the following Jewish yearly events directly in your device's calendar app, on your default calendar. Selected the check boxes below, and then tap download.</string>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

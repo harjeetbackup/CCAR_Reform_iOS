@@ -52,6 +52,8 @@ extension EventManager {
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
             pEvent.title = "Parashat Shmini I"
+            pEvent.category = "parashat"
+            pEvent.subcat = ""
             ev.title = "Parashat Shmini II"
             specialEvents.append(pEvent)
         }
@@ -125,6 +127,8 @@ extension EventManager {
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
             pEvent.title = "Parashat Achrei Mot I"
+            pEvent.category = "parashat"
+            pEvent.subcat = ""
             ev.title = "Parashat Achrei Mot II"
             specialEvents.append(pEvent)
         }

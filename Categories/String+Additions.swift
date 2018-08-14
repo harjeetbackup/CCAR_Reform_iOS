@@ -12,7 +12,6 @@ extension String {
     
     func html(_ event: RLEvent, allEvents: [RLEvent]) -> String? {
         var name = self
-        //name = name.applyFridaySatudayLogic(event)
         if event.chanukahNextDayLogic(){
             if let string = applyChanukahNextDayLogic(event, allEvents) {
                 name = string
@@ -77,40 +76,6 @@ extension String {
         return name
     }
     
-    func applyFridaySatudayLogic(_ event: RLEvent) -> String {
-        var name = self
-        name = name.spellChanged()
-        name = name.removeSpecialChars()
-        if event.inSaturday() {
-           // name = name.replacingOccurrences(of: "Pesach_Day_1_Weekday", with: "Pesach_Day_1_Shabbat")
-           // name = name.replacingOccurrences(of: "Pesach_Day_7", with: "Pesach_Day_7_Shabbat")
-            name = name.replacingOccurrences(of: "Sukkot_1_Weekday", with: "Sukkot_1_Shabbat")
-            name = name.replacingOccurrences(of: "Shavuot I", with: "Shavuot_Shabbat")
-            name = name.replacingOccurrences(of: "Sh'mini_Atzeret-Simchat_Torah", with: "Sh'mini_Atzeret-Simchat_Torah_Shabbat")
-            name = name.replacingOccurrences(of: "Rosh_Chodesh_I_Weekday", with: "Shabbat_Rosh_Chodesh_I")
-            name = name.replacingOccurrences(of: "Rosh_Chodesh_II_or_One_Day_Rosh_Chodesh_Weekday", with: "Shabbat_Rosh_Chodesh_II_or_One_Day_Rosh_Chodesh")
-            if (name == " Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
-                name = "Chol_Hamoed_Sukkot_Shabbat"
-            }
-            if (name == "Chanukah_2nd_Night" || name == "Chanukah_3rd_Night" || name == "Chanukah_4th_Night" || name == "Chanukah_5th_Night" || name == "Chanukah_6th_Night" || name == "Chanukah_7th_Night" || name == "Chanukah_8th_Night" || name == "Chanukah_8th_Day") {
-                name = "Shabbat_Chanukah"
-            }
-        } else if event.inFriday() {
-            name = name.replacingOccurrences(of: "Erev_Pesach-Ta'anit_Bechorot", with: "Erev_Pesach-Ta'anit_Bechorot_Friday")
-            name = name.replacingOccurrences(of: "Erev_Rosh_Chodesh_Weekday", with: "Erev_Rosh_Chodesh_Friday")
-            name = name.replacingOccurrences(of: "Erev_Sh'mini_Atzeret-Simchat_Torah", with: "Erev_Sh'mini_Atzeret-Erev_Simchat_Torah_Friday")
-            name = name.replacingOccurrences(of: "Erev_Shavuot", with: "Erev_Shavuot_Friday")
-            name = name.replacingOccurrences(of: "Erev_Sukkot", with: "Erev_Sukkot_Friday")
-            name = name.replacingOccurrences(of: "Erev_Yom_Kippur", with: "Erev_Yom_Kippur_Friday")
-            name = name.replacingOccurrences(of: "Pesach_Chol_Hamoed_Day_5_Weekday", with: "Pesach_Chol_Hamoed_Day_5_Friday")
-            name = name.replacingOccurrences(of: "Erev_Rosh_Hashanah_Weekday", with: "Erev_Rosh_Hashanah_Friday")
-            if (name == "Sukkot_2_Weekday" || name == "Sukkot_3_Weekday" || name == "Sukkot_4_Weekday" || name == "Sukkot_5_Weekday" || name == "Sukkot_6_Weekday") {
-                name = "Shabbat_Chol_Hamoed_Sukkot_Friday"
-            }
-        }
-        return name
-    }
-    
     func spellChanged() -> String {
         var name = self;
         name = name.replacingOccurrences(of: "Pesach_Day_7", with: "Pesach_Day_7_Shabbat")
@@ -148,9 +113,9 @@ extension String {
         name = name.replacingOccurrences(of: "Parashat Metzora", with: "M'tzora")
         name = name.replacingOccurrences(of: "Parashat Achrei Mot", with: "Acharei Mot")
         name = name.replacingOccurrences(of: "Parashat Kedoshim", with: "K'doshim")
+        name = name.replacingOccurrences(of: "Parashat Bechukotai", with: "B'chukotai")
         name = name.replacingOccurrences(of: "Parashat Behar-Bechukotai", with: "B'har/B'chukotai")
         name = name.replacingOccurrences(of: "Parashat Behar", with: "B'har")
-        name = name.replacingOccurrences(of: "Parashat Bechukotai", with: "B'chukotai")
         name = name.replacingOccurrences(of: "Parashat Bamidbar", with: "B'midbar")
         name = name.replacingOccurrences(of: "Parashat Nasso", with: "Naso")
         name = name.replacingOccurrences(of: "Parashat Beha'alotcha", with: "B'haalot'cha")
@@ -216,6 +181,7 @@ extension String {
         name = name.replacingOccurrences(of: "Pesach V (CH''M)", with: "Pesach Chol Hamoed Day 4")
         name = name.replacingOccurrences(of: "Pesach VI (CH''M)", with: "Pesach Chol HaMoed Day 5 Weekday")
         name = name.replacingOccurrences(of: "Pesach VII", with: "Pesach_Day_7")
+        
         name = name.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Weekday")
         name = name.replacingOccurrences(of: "Chanukah: 1 Candle", with: "Erev Chanukah")
         name = name.replacingOccurrences(of: "Yom HaAliyah", with: "Yom_HaZikaron")
@@ -317,6 +283,7 @@ extension String {
         //==============================     Parashat     ============================================
         
         name = name.replacingOccurrences(of: "Parashat Bereshit", with: "Parashat B'reishit")
+        name = name.replacingOccurrences(of: "Parashat Chayei Sara", with: "Parashat Chayei Sarah")
         name = name.replacingOccurrences(of: "Parashat Lech-Lecha", with: "Parashat Lech L'cha")
         name = name.replacingOccurrences(of: "Parashat Vayera", with: "Parashat Vayeira")
         name = name.replacingOccurrences(of: "Parashat Toldot", with: "Parashat Tol'dot")
@@ -329,19 +296,20 @@ extension String {
         name = name.replacingOccurrences(of: "Parashat Beshalach", with: "Parashat B'shalach")
         name = name.replacingOccurrences(of: "Parashat Terumah", with: "Parashat T'rumah")
         name = name.replacingOccurrences(of: "Parashat Tetzaveh", with: "Parashat T'tzaveh")
-        name = name.replacingOccurrences(of: "Parashat Vayakhel", with: "Parashat Vayak'heil")
         name = name.replacingOccurrences(of: "Parashat Pekudei", with: "Parashat P'kudei")
         name = name.replacingOccurrences(of: "Parashat Shmini", with: "Parashat Sh'mini")
         name = name.replacingOccurrences(of: "Parashat Metzora", with: "Parashat M'tzora")
         name = name.replacingOccurrences(of: "Parashat Achrei Mot", with: "Parashat Acharei Mot")
+        name = name.replacingOccurrences(of: "Parashat Acharei Mot-Kedoshim", with: "Parashat Acharei Mot/K'doshim")
         name = name.replacingOccurrences(of: "Parashat Kedoshim", with: "Parashat K'doshim")
+        name = name.replacingOccurrences(of: "Parashat Behar-Bechukotai", with: "Parashat B'har/B'chukotai")
         name = name.replacingOccurrences(of: "Parashat Behar", with: "Parashat B'har")
         name = name.replacingOccurrences(of: "Parashat Bechukotai", with: "Parashat B'chukotai")
         name = name.replacingOccurrences(of: "Parashat Bamidbar", with: "Parashat B'midbar")
         name = name.replacingOccurrences(of: "Parashat Nasso", with: "Parashat Naso")
         name = name.replacingOccurrences(of: "Parashat Beha'alotcha", with: "Parashat B'haalot'cha")
         name = name.replacingOccurrences(of: "Parashat Sh'lach", with: "Parashat Sh'lach L'cha")
-        name = name.replacingOccurrences(of: "Parashat Masei", with: "Parashat Mas-ei")
+        name = name.replacingOccurrences(of: "Parashat Masei", with: "Parashat Mas'ei")
         name = name.replacingOccurrences(of: "Parashat Devarim", with: "Parashat D'varim")
         name = name.replacingOccurrences(of: "Parashat Vaetchanan", with: "Parashat Va-et'chanan")
         name = name.replacingOccurrences(of: "Parashat Re'eh", with: "Parashat R'eih")
@@ -350,20 +318,23 @@ extension String {
         name = name.replacingOccurrences(of: "Parashat Ha'Azinu", with: "Parashat Haazinu")
         name = name.replacingOccurrences(of: "Parashat Vezot Haberakhah", with: "Parashat V'zot Hab'rachah")
         name = name.replacingOccurrences(of: "Parashat Vayakhel-Pekudei", with: "Parashat Vayak’heil/P’kudei")
+        name = name.replacingOccurrences(of: "Parashat Vayakhel", with: "Parashat Vayak'heil")
         name = name.replacingOccurrences(of: "Parashat Tazria-Metzora", with: "Parashat Tazria/M'tzora")
-        name = name.replacingOccurrences(of: "Parashat Achrei Mot-Kedoshim", with: "Parashat Acharei Mot/K'doshim")
-        name = name.replacingOccurrences(of: "Parashat Behar-Bechukotai", with: "Parashat B'har/B'chukotai")
         name = name.replacingOccurrences(of: "Parashat Chukat-Balak", with: "Parashat Chukat/Balak")
         name = name.replacingOccurrences(of: "Parashat Matot-Masei", with: "Parashat Matot/Mas-ei")
         name = name.replacingOccurrences(of: "Parashat Nitzavim-Vayeilech", with: "Parashat Nitzavim/Vayeilech")
+        
         name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta’anit Bechorot")
         name = name.replacingOccurrences(of: "Shabbat Shekalim", with: "Shabbat Sh'kalim")
         name = name.replacingOccurrences(of: "Tu BiShvat", with: "Tu B'Sh'vat")
         name = name.replacingOccurrences(of: "Tzom Tammuz", with: "Shivah Asar b'Tammuz")
         name = name.replacingOccurrences(of: "Tish'a B'Av", with: "Tisha B'Av")
         name = name.replacingOccurrences(of: "Erev Tisha B\'Av", with: "Erev Tisha b'Av")
-        name = name.replacingOccurrences(of: "Erev Rosh Hashana", with: "Erev Rosh Hashana Weekday")
-        name = name.replacingOccurrences(of: "Erev Rosh Hashana Weekday Friday", with: "Erev Rosh Hashana Friday")
+        name = name.replacingOccurrences(of: "Hashana", with: "Hashanah")
+        name = name.replacingOccurrences(of: "Erev Rosh Hashanah", with: "Erev Rosh Hashanah Weekday")
+        name = name.replacingOccurrences(of: "Erev Rosh Hashanah Weekday Friday", with: "Erev Rosh Hashanah Friday")
+        name = name.replacingOccurrences(of: "Rosh Hashana II", with: "Rosh Hashanah II")
+        
         name = name.replacingOccurrences(of: "Yom HaShoah", with: "Yom HaShoah V'hag'vurah")
         name = name.replacingOccurrences(of: "Yom HaAtzma'ut", with: "Yom Ha'atzma'ut")
         name = name.replacingOccurrences(of: "Lag BaOmer", with: "Lag Ba'Omer")
@@ -376,13 +347,22 @@ extension String {
         name = name.replacingOccurrences(of: "Sukkot V (CH''M)", with: "Sukkot 5 Weekday")
         name = name.replacingOccurrences(of: "Sukkot VI (CH''M)", with: "Sukkot 6 Weekday")
         name = name.replacingOccurrences(of: "Sukkot VII (Hoshana Raba)", with: "Hoshana Raba")
+        
         name = name.replacingOccurrences(of: "Pesach Sheni", with: "Pesach Sheini")
         name = name.replacingOccurrences(of: "Pesach II (CH''M)", with: "Pesach Chol Hamoed Day 1")
         name = name.replacingOccurrences(of: "Pesach III (CH''M)", with: "Pesach Chol Hamoed Day 2")
         name = name.replacingOccurrences(of: "Pesach IV (CH''M)", with: "Pesach Chol Hamoed Day 3")
         name = name.replacingOccurrences(of: "Pesach V (CH''M)", with: "Pesach Chol Hamoed Day 4")
-        name = name.replacingOccurrences(of: "Pesach VI (CH''M)", with: "Pesach Chol Hamoed Day 5 Weekday")
-        name = name.replacingOccurrences(of: "Chanukah: 1 Candle", with: "Erev Chanukah")
+        name = name.replacingOccurrences(of: "Pesach VI (CH''M)", with: "Pesach Chol HaMoed Day 5 Weekday")
+        
+        name = name.replacingOccurrences(of: "Chanukah: 2 Candles", with: "Chanukah: 2nd Night")
+        name = name.replacingOccurrences(of: "Chanukah: 3 Candles", with: "Chanukah: 3rd Night")
+        name = name.replacingOccurrences(of: "Chanukah: 4 Candles", with: "Chanukah: 4th Night")
+        name = name.replacingOccurrences(of: "Chanukah: 5 Candles", with: "Chanukah: 5th Night")
+        name = name.replacingOccurrences(of: "Chanukah: 6 Candles", with: "Chanukah: 6th Night")
+        name = name.replacingOccurrences(of: "Chanukah: 7 Candles", with: "Chanukah: 7th Night")
+        name = name.replacingOccurrences(of: "Chanukah: 8 Candles", with: "Chanukah: 8th Night")
+        name = name.replacingOccurrences(of: "Chanukah: 1 Candle", with: "Chanukah: 1st Night")
         name = name.replacingOccurrences(of: "Chanukah: 8th Day", with: "Chanukah 8 Weekday")
         return name
     }

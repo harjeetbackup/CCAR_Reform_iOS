@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailVC: UIViewController {
+class DetailVC: UIViewController, UIWebViewDelegate {
     
     var eventUrl: String?
     var day : Int?
@@ -16,6 +16,7 @@ class DetailVC: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        eventDetails.delegate = self
         if let urlStr = eventUrl {
            if let url = URL.init(string: urlStr) {
                 eventDetails.loadRequest(URLRequest(url: url))
@@ -25,6 +26,26 @@ class DetailVC: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        self.view.showHud()
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.view.hideHud()
+    }
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == UIWebViewNavigationType.linkClicked {
+            if let reformLink = request.url {
+                if UIApplication.shared.canOpenURL(reformLink) {
+                    UIApplication.shared.open(reformLink, options: [:], completionHandler: nil)
+                }
+            }
+            return false
+        }
+        return true
     }
 
     @IBAction func btnActionBAck(_ sender: UIButton) {
