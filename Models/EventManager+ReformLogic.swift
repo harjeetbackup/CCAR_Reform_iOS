@@ -52,6 +52,7 @@ extension EventManager {
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
             pEvent.title = "Parashat Shmini I"
+            pEvent.spellChangedTitle = "Parashat Sh'mini I"
             pEvent.category = "parashat"
             pEvent.subcat = ""
             ev.title = "Parashat Shmini II"
@@ -90,6 +91,8 @@ extension EventManager {
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
             pEvent.title = "Naso I"
+            pEvent.category = "parashat"
+            pEvent.spellChangedTitle = "Naso I"
             ev.title = "Naso II"
             specialEvents.append(pEvent)
         }
@@ -127,6 +130,7 @@ extension EventManager {
                 ed == dateToComaper, let pEvent = pesachEvent else { continue }
             
             pEvent.title = "Parashat Achrei Mot I"
+            pEvent.spellChangedTitle = "Parashat Acharei Mot I"
             pEvent.category = "parashat"
             pEvent.subcat = ""
             ev.title = "Parashat Achrei Mot II"

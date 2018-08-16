@@ -154,6 +154,7 @@ class EventManager: NSObject {
                                 roshEvent?.date = rDate
                                 roshEvent?.spellChangedTitle = "Erev Rosh Chodesh Weekday"
                                 roshEvent?.spellChanged = "Erev Rosh Chodesh Weekday"
+                                roshEvent?.category = "roshchodesh"
                                 if let index = self.getEventIndex(filteredEvents: filteredItems, event: event) {
                                     if roshEventTitle != event1 {
                                         if index == 0 {
