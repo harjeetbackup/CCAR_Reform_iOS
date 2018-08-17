@@ -174,7 +174,9 @@ extension String {
         name = name.replacingOccurrences(of: "Sukkot VII (Hoshana Raba)", with: "Hoshana Raba")
         name = name.replacingOccurrences(of: "Sukkot I", with: "Sukkot_1_Weekday")
         name = name.replacingOccurrences(of: "Pesach Sheni", with: "Pesach Sheini")
-        
+        //Pesach-VIII
+        name = name.replacingOccurrences(of: "Pesach VIII", with: "Pesach-VIII")
+        name = name.replacingOccurrences(of: "Pesach II", with: "Pesach-II")
         name = name.replacingOccurrences(of: "Pesach II (CH''M)", with: "Pesach Chol Hamoed Day 1")
         name = name.replacingOccurrences(of: "Pesach III (CH''M)", with: "Pesach Chol Hamoed Day 2")
         name = name.replacingOccurrences(of: "Pesach IV (CH''M)", with: "Pesach Chol Hamoed Day 3")
@@ -188,6 +190,7 @@ extension String {
         //name = name.replacingOccurrences(of: "Shabbat Shuva", with: "Shabbat_Ha'azinu-Shabbat_Shuva")
         name = name.replacingOccurrences(of: "Shabbat Shuva", with: "Shabbat_Shuva")
         //New added
+        name = name.replacingOccurrences(of: "Shavuot II", with: "Shavuot-II")
         name = name.replacingOccurrences(of: "Shavuot I", with: "Shavuot")
         
         // ================================Omer days============================================

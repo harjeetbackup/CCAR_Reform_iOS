@@ -261,6 +261,9 @@
 		E2B1758120C265D40009F5DB /* B'reishit.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1749C20C265D20009F5DB /* B'reishit.html */; };
 		E2B1758420C265D40009F5DB /* Chukat.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B1749F20C265D20009F5DB /* Chukat.html */; };
 		E2B1758820C265D40009F5DB /* Shabbat_Korach.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B174A320C265D30009F5DB /* Shabbat_Korach.html */; };
+		E2F8C9472126EFBE00E798B0 /* Pesach-VIII.html in Resources */ = {isa = PBXBuildFile; fileRef = E2F8C9462126EFBE00E798B0 /* Pesach-VIII.html */; };
+		E2F8C94A2126EFD100E798B0 /* Simchat_Torah.html in Resources */ = {isa = PBXBuildFile; fileRef = E2F8C9482126EFD000E798B0 /* Simchat_Torah.html */; };
+		E2F8C94B2126EFD100E798B0 /* Shavuot-II.html in Resources */ = {isa = PBXBuildFile; fileRef = E2F8C9492126EFD000E798B0 /* Shavuot-II.html */; };
 		E60975351FC4026900A14BBC /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E60975341FC4026900A14BBC /* CHCSVParser.m */; };
 		E610FC8D1FD944B600495DA6 /* Jewish_holiday_Israel.json in Resources */ = {isa = PBXBuildFile; fileRef = E610FC8C1FD944B500495DA6 /* Jewish_holiday_Israel.json */; };
 		E610FC8F1FD9475300495DA6 /* Rosh_Chodush_Israel.json in Resources */ = {isa = PBXBuildFile; fileRef = E610FC8E1FD9475200495DA6 /* Rosh_Chodush_Israel.json */; };
@@ -622,6 +625,9 @@
 		E2B1749C20C265D20009F5DB /* B'reishit.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "B'reishit.html"; sourceTree = "<group>"; };
 		E2B1749F20C265D20009F5DB /* Chukat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chukat.html; sourceTree = "<group>"; };
 		E2B174A320C265D30009F5DB /* Shabbat_Korach.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Shabbat_Korach.html; sourceTree = "<group>"; };
+		E2F8C9462126EFBE00E798B0 /* Pesach-VIII.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Pesach-VIII.html"; sourceTree = "<group>"; };
+		E2F8C9482126EFD000E798B0 /* Simchat_Torah.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Simchat_Torah.html; sourceTree = "<group>"; };
+		E2F8C9492126EFD000E798B0 /* Shavuot-II.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Shavuot-II.html"; sourceTree = "<group>"; };
 		E60974FB1FC3FC9500A14BBC /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
 		E60974FC1FC3FC9500A14BBC /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
 		E60974FF1FC3FC9500A14BBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -874,8 +880,11 @@
 				E2B1742C20C265B90009F5DB /* Noach.html */,
 				E2B173F020C265AD0009F5DB /* P'kudei.html */,
 				E2B1746620C265C60009F5DB /* Perl-Script-for-Reform-Luach-updated.txt */,
+				E2F8C9462126EFBE00E798B0 /* Pesach-VIII.html */,
 				E2B1745C20C265C40009F5DB /* Pinchas.html */,
 				E2B1746E20C265C70009F5DB /* R'eih.html */,
+				E2F8C9492126EFD000E798B0 /* Shavuot-II.html */,
+				E2F8C9482126EFD000E798B0 /* Simchat_Torah.html */,
 				E2B173D120C265A70009F5DB /* Sh'lach_L'cha.html */,
 				E2B1740720C265B20009F5DB /* Sh'mini_I.html */,
 				E2B1745B20C265C40009F5DB /* Sh'mini_II.html */,
@@ -1407,10 +1416,13 @@
 				E2B1752420C265D40009F5DB /* Shabbat_Tazria.html in Resources */,
 				E2B1753E20C265D40009F5DB /* Ki_Tavo.html in Resources */,
 				E2B1751A20C265D40009F5DB /* Ki_Teitzei.html in Resources */,
+				E2F8C9472126EFBE00E798B0 /* Pesach-VIII.html in Resources */,
 				E2B1757320C265D40009F5DB /* D'varim.html in Resources */,
 				E2B1756520C265D40009F5DB /* Shabbat_K'doshim.html in Resources */,
 				E2031E6721236903001A1EFE /* Yom_HaShoah_V'hag'vurah.html in Resources */,
 				E2B1757B20C265D40009F5DB /* B'shalach.html in Resources */,
+				E2F8C94A2126EFD100E798B0 /* Simchat_Torah.html in Resources */,
+				E2F8C94B2126EFD100E798B0 /* Shavuot-II.html in Resources */,
 				189CBEDC20510737004C5D95 /* FooterView.xib in Resources */,
 				E2B1757520C265D40009F5DB /* B'chukotai.html in Resources */,
 				E2031E2F21236903001A1EFE /* Pesach_Chol_Hamoed_Day_4.html in Resources */,
