@@ -129,6 +129,7 @@
 		E2031E6A21236903001A1EFE /* Yom_Kippur_Shabbat.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031E0221236903001A1EFE /* Yom_Kippur_Shabbat.html */; };
 		E2031E6B21236903001A1EFE /* Yom_Yerushalayim.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031E0321236903001A1EFE /* Yom_Yerushalayim.html */; };
 		E22F875E20F88E8400621ACA /* SyncDataSouce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22F875D20F88E8400621ACA /* SyncDataSouce.swift */; };
+		E2720ABC2127FAE0005A1432 /* Lech_L'cha.html in Resources */ = {isa = PBXBuildFile; fileRef = E2720ABB2127FADF005A1432 /* Lech_L'cha.html */; };
 		E2A7364E210F4D0000718D5A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A7364D210F4D0000718D5A /* Constants.swift */; };
 		E2AF0F2420B68F4800A05BC7 /* EventManager+SubtitleLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */; };
 		E2B174A720C265D40009F5DB /* Mikeitz.html in Resources */ = {isa = PBXBuildFile; fileRef = E2B173C220C265A60009F5DB /* Mikeitz.html */; };
@@ -492,6 +493,7 @@
 		E2031E0221236903001A1EFE /* Yom_Kippur_Shabbat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Yom_Kippur_Shabbat.html; sourceTree = "<group>"; };
 		E2031E0321236903001A1EFE /* Yom_Yerushalayim.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Yom_Yerushalayim.html; sourceTree = "<group>"; };
 		E22F875D20F88E8400621ACA /* SyncDataSouce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDataSouce.swift; sourceTree = "<group>"; };
+		E2720ABB2127FADF005A1432 /* Lech_L'cha.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Lech_L'cha.html"; sourceTree = "<group>"; };
 		E27CE1BD2108376600B1D9FE /* About-Reform-Luach-Info_updated.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "About-Reform-Luach-Info_updated.docx"; sourceTree = "<group>"; };
 		E2A7364D210F4D0000718D5A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2AF0F2320B68F4800A05BC7 /* EventManager+SubtitleLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventManager+SubtitleLogic.swift"; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 				E2B1743520C265BB0009F5DB /* Ki_Teitzei.html */,
 				E2B173FD20C265B00009F5DB /* Ki_Tisa.html */,
 				E2B1746820C265C60009F5DB /* Korach.html */,
+				E2720ABB2127FADF005A1432 /* Lech_L'cha.html */,
 				E2B173F720C265AF0009F5DB /* Leil_Selichot.html */,
 				E2B1743D20C265BD0009F5DB /* M'tzora.html */,
 				E2B1747320C265C80009F5DB /* Mas-ei.html */,
@@ -1466,6 +1469,7 @@
 				E2031E1521236903001A1EFE /* Chanukah_Candlelighting.html in Resources */,
 				E2031E5321236903001A1EFE /* Shavuot.html in Resources */,
 				E2031E1821236903001A1EFE /* Erev_Pesach-Ta'anit_Bechorot.html in Resources */,
+				E2720ABC2127FAE0005A1432 /* Lech_L'cha.html in Resources */,
 				E2031E6021236903001A1EFE /* Ta'anit_Bechorot.html in Resources */,
 				E2B1752F20C265D40009F5DB /* Shabbat_B'ha'alot'cha.html in Resources */,
 				E2B174B120C265D40009F5DB /* Vayak’heil-P’kudei.html in Resources */,

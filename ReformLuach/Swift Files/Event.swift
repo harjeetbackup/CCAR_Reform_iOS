@@ -99,7 +99,6 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
     func overrideswipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
-
     }
 
     func overrideSwipeRight() {
@@ -110,12 +109,6 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
     {
         return .lightContent
     }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-    }
-    
     
     // MARK: - GLViewPagerViewControllerDataSource
     func numberOfTabsForViewPager(_ viewPager: GLViewPagerViewController) -> Int

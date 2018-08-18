@@ -12,19 +12,11 @@ import MBProgressHUD
 
 extension UIView {
     
-    
     func takeScreenshot() -> UIImage {
-        
-        // Begin context
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
-        
-        // Draw view in that context
         drawHierarchy(in: self.bounds, afterScreenUpdates: true)
-        
-        // And finally, get image
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return image ?? UIImage()
     }
     
@@ -37,11 +29,11 @@ extension UIView {
         hud.label.text = title
     }
     
-    func hideHud(){
+    func hideHud() {
         MBProgressHUD.hide(for: self, animated: true)
     }
     
-    func shake(){
+    func shake() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.07
         animation.repeatCount = 2
@@ -56,19 +48,21 @@ extension UIView {
         self.layer.cornerRadius = self.layer.frame.height/2
         self.layer.borderColor = UIColor.clear.cgColor
     }
-    func applyCornerRadiusForButtons(){
+    
+    func applyCornerRadiusForButtons() {
         self.clipsToBounds = true
         self.layer.cornerRadius = 4
     }
-    func applyCornerRadiusForProfileImage(){
+    
+    func applyCornerRadiusForProfileImage() {
         self.clipsToBounds = true
         self.layer.cornerRadius = self.layer.frame.height/2
     }
+    
     func applyShadowWithCornerRadius() {
         self.layer.masksToBounds = false
         self.layer.cornerRadius = 6
         self.layer.borderColor = UIColor.clear.cgColor
-        
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.33
         self.layer.shadowOffset = CGSize(width: 1, height: -1)
@@ -89,25 +83,23 @@ extension UIView {
         self.layer.rasterizationScale = UIScreen.main.scale
     }
     
-    func makeRounded(){
-        //layer.cornerRadius = self.height/2
+    func makeRounded() {
         layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 1
         clipsToBounds = true
     }
-    func applyShadow(){
+    
+    func applyShadow() {
         layer.masksToBounds = false
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOpacity = 0.10
         layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowRadius = 1
-        //  userImageView.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
     }
     func dropShadow() {
         let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 274, height: self.frame.height))
-        
         self.layer.cornerRadius = 2
         self.layer.shadowColor = UIColor.white.cgColor
         self.layer.shadowOffset = CGSize(width: 30, height: 1);  //Here you control x and y
@@ -116,7 +108,8 @@ extension UIView {
         self.layer.masksToBounds =  false
         self.layer.shadowPath = shadowPath.cgPath
     }
-    func applyShadowWithCornerRadiusForClaimDeal(){
+    
+    func applyShadowWithCornerRadiusForClaimDeal() {
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.25
@@ -125,10 +118,9 @@ extension UIView {
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
-        
     }
     
-    func applyShadowWithCornerRadiusForViewReciept(){
+    func applyShadowWithCornerRadiusForViewReciept() {
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.15
@@ -137,6 +129,5 @@ extension UIView {
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
-        
     }
 }

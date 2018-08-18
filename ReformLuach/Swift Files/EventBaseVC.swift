@@ -35,12 +35,11 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         self.tblParshiyot.contentInset.bottom += tableFooterView!.frame.size.height
         loadEvents()
         NotificationCenter.default.addObserver(self, selector: #selector(EventBaseVC.newEventsDidLoaded), name: NotificationCalenderChangeNewEventsDidLoaded, object: nil)
-        
         let nib = UINib.init(nibName: "CustomCell", bundle: nil)
         self.tblParshiyot.register(nib, forCellReuseIdentifier: "customCell")
         searchType = EventType.none
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         pagerViewController?.label.text = calTypeName
@@ -74,7 +73,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let dateFarmater = DateFormatter()
         dateFarmater.dateFormat = "yyyy-MM-dd"
         let currentDate = Date()
-        
         var index: Int? = nil
         for event in self.filteredEvents {
             if let ed = event.date {

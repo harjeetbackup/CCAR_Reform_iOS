@@ -72,7 +72,7 @@ public class RLEvent {
     func isSukkotAndChanukahSaturdayEventSpecialDayForSubTitle() -> Bool {
         if let str = self.spellChangedTitle {
             print(str)
-            if (str == "Sukkot 2 Weekday" || str == "Sukkot 3 Weekday" || str == "Sukkot 4 Weekday" || str == "Sukkot 5 Weekday" || str == "Sukkot 6 Weekday" || str == "Chanukah: 2nd Night" || str == "Chanukah: 3rd Night" || str == "Chanukah: 4th Night" || str == "Chanukah: 5th Night" || str == "Chanukah: 6th Night" || str == "Chanukah: 7th Night" || str == "Chanukah: 8th Night" || str == "Chanukah: 8th Day") {
+            if (str == "Sukkot II" || str == "Sukkot 2 Weekday" || str == "Sukkot 3 Weekday" || str == "Sukkot 4 Weekday" || str == "Sukkot 5 Weekday" || str == "Sukkot 6 Weekday" || str == "Chanukah: 2nd Night" || str == "Chanukah: 3rd Night" || str == "Chanukah: 4th Night" || str == "Chanukah: 5th Night" || str == "Chanukah: 6th Night" || str == "Chanukah: 7th Night" || str == "Chanukah: 8th Night" || str == "Chanukah: 8th Day") {
                 return true
             }
         }

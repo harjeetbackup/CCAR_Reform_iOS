@@ -9,27 +9,23 @@
 import Foundation
 import UIKit
 
-extension UIViewController{
+extension UIViewController {
     
-    func showAlert(_ title: String){
+    func showAlert(_ title: String) {
         self.showAlert(title, message: "")
     }
     
-    func showAlert(_ title: String, message: String){
+    func showAlert(_ title: String, message: String) {
         self.showAlert(title, message: message, onDismiss: nil)
     }
     
-    func showAlert(_ title: String, message: String, onDismiss:(()->Void)?){
-        
+    func showAlert(_ title: String, message: String, onDismiss:(()->Void)?) {
         let alert = UIAlertController.init(title:title , message: message, preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: { (action) in
             onDismiss?()
         }))
-        
         self.present(alert, animated: true, completion: nil)
     }
-    
 }
 
 

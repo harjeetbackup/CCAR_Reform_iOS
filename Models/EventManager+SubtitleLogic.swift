@@ -79,6 +79,8 @@ extension EventManager {
                 if sukkotAndChanukhaEvents.inSaturday() || sukkotAndChanukhaEvents.inFriday() {
                     if let title = sukkotAndChanukhaEvents.title?.spellChangedForTitle() {
                         switch title {
+                        case "Sukkot II":
+                            addSubtitleForEvents(subtitleName: "Sukkot 2", event: sukkotAndChanukhaEvents)
                         case "Sukkot 2 Weekday":
                             addSubtitleForEvents(subtitleName: "Sukkot 2", event: sukkotAndChanukhaEvents)
                         case "Sukkot 3 Weekday":
@@ -138,18 +140,24 @@ extension EventManager {
         var title = eventTitle
         //Spell changed for title is not applied here checking the events title directly coming from server
         if event.inSaturday() {
-            title = title.replacingOccurrences(of: "Shavuot I", with: "Shavuot Shabbat")
-            title = title.replacingOccurrences(of: "Sukkot I", with: "Sukkot 1 Shabbat")
+            //title = title.replacingOccurrences(of: "Shavuot I", with: "Shavuot Shabbat")
+            //title = title.replacingOccurrences(of: "Sukkot I", with: "Sukkot 1 Shabbat")
             title = title.replacingOccurrences(of: "Shmini Atzeret", with: "Sh'mini Atzeret-Simchat Torah Shabbat")
             title = title.replacingOccurrences(of: "Rosh Chodesh I Weekday", with: "Shabbat Rosh Chodesh I")
             title = title.replacingOccurrences(of: "Rosh Chodesh II or One Day Rosh Chodesh Weekday", with: "Shabbat Rosh Chodesh II or One Day Rosh Chodesh")
+            if title == "Sukkot I" {
+                title = title.replacingOccurrences(of: "Sukkot I", with: "Sukkot 1 Shabbat")
+            }
+            if title == "Shavuot I" {
+                title = title.replacingOccurrences(of: "Shavuot I", with: "Shavuot Shabbat")
+            }
             if title == "Pesach I" {
                 title = title.replacingOccurrences(of: "Pesach I", with: "Pesach Day 1 Shabbat")
             }
             if title == "Pesach VII" {
                 title = title.replacingOccurrences(of: "Pesach VII", with: "Pesach Day 7 Shabbat")
             }
-            if (title == "Sukkot II (CH''M)" || title == "Sukkot III (CH''M)" || title == "Sukkot IV (CH''M)" || title == "Sukkot V (CH''M)" || title == "Sukkot VI (CH''M)") {
+            if (title == "Sukkot II" || title == "Sukkot II (CH''M)" || title == "Sukkot III (CH''M)" || title == "Sukkot IV (CH''M)" || title == "Sukkot V (CH''M)" || title == "Sukkot VI (CH''M)") {
                 title = "Chol Hamoed Sukkot Shabbat"
             }
             if (title == "Chanukah: 2 Candles" || title == "Chanukah: 3 Candles" || title == "Chanukah: 4 Candles" || title == "Chanukah: 5 Candles" || title == "Chanukah: 6 Candles" || title == "Chanukah: 7 Candles" || title == "Chanukah: 8 Candles" || title == "Chanukah: 8th Day") {
@@ -167,7 +175,7 @@ extension EventManager {
             if title == "Pesach VI (CH''M)" {
                 title = title.replacingOccurrences(of: "Pesach VI (CH''M)", with: "Pesach Chol HaMoed Day 5 Friday")
             }
-            if (title == "Sukkot II (CH''M)" || title == "Sukkot III (CH''M)" || title == "Sukkot IV (CH''M)" || title == "Sukkot V (CH''M)" || title == "Sukkot VI (CH''M)") {
+            if (title == "Sukkot II" || title == "Sukkot II (CH''M)" || title == "Sukkot III (CH''M)" || title == "Sukkot IV (CH''M)" || title == "Sukkot V (CH''M)" || title == "Sukkot VI (CH''M)") {
                 title = "Shabbat Chol Hamoed Sukkot Friday"
             }
         }
