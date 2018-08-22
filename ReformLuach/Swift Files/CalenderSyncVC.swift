@@ -175,8 +175,13 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     type.calendars = self.ekCalendar
                     type.syncState = .inProgress
                     self.tableView.reloadData()
-                    type.sync({ completed in
-                        self.tableView.reloadData()
+                    type.sync({ [weak self] completed in
+                        //if completed == true {
+                          self?.tableView.reloadData()
+                        //}
+//                        else {
+//                          self?.showAlert("Sorry, Something went wrong!", message: "Please try again after sometime")
+//                        }
                     })
                 }
             }

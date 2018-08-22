@@ -62,7 +62,6 @@
 		E2031E2721236903001A1EFE /* Erev_Yom_Kippur_Friday.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031DBF21236903001A1EFE /* Erev_Yom_Kippur_Friday.html */; };
 		E2031E2821236903001A1EFE /* Hoshana_Raba.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031DC021236903001A1EFE /* Hoshana_Raba.html */; };
 		E2031E2921236903001A1EFE /* Lag_Ba'Omer.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031DC121236903001A1EFE /* Lag_Ba'Omer.html */; };
-		E2031E2A21236903001A1EFE /* Leil_Selichot.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031DC221236903001A1EFE /* Leil_Selichot.html */; };
 		E2031E2B21236903001A1EFE /* Machar_Chodesh.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031DC321236903001A1EFE /* Machar_Chodesh.html */; };
 		E2031E2C21236903001A1EFE /* Pesach_Chol_Hamoed_Day_1.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031DC421236903001A1EFE /* Pesach_Chol_Hamoed_Day_1.html */; };
 		E2031E2D21236903001A1EFE /* Pesach_Chol_Hamoed_Day_2.html in Resources */ = {isa = PBXBuildFile; fileRef = E2031DC521236903001A1EFE /* Pesach_Chol_Hamoed_Day_2.html */; };
@@ -426,7 +425,6 @@
 		E2031DBF21236903001A1EFE /* Erev_Yom_Kippur_Friday.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Erev_Yom_Kippur_Friday.html; sourceTree = "<group>"; };
 		E2031DC021236903001A1EFE /* Hoshana_Raba.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Hoshana_Raba.html; sourceTree = "<group>"; };
 		E2031DC121236903001A1EFE /* Lag_Ba'Omer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Lag_Ba'Omer.html"; sourceTree = "<group>"; };
-		E2031DC221236903001A1EFE /* Leil_Selichot.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Leil_Selichot.html; path = "../Holidays - v7_aug 15th/Leil_Selichot.html"; sourceTree = "<group>"; };
 		E2031DC321236903001A1EFE /* Machar_Chodesh.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Machar_Chodesh.html; sourceTree = "<group>"; };
 		E2031DC421236903001A1EFE /* Pesach_Chol_Hamoed_Day_1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Chol_Hamoed_Day_1.html; sourceTree = "<group>"; };
 		E2031DC521236903001A1EFE /* Pesach_Chol_Hamoed_Day_2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Pesach_Chol_Hamoed_Day_2.html; sourceTree = "<group>"; };
@@ -1013,7 +1011,6 @@
 				E2031DB221236903001A1EFE /* Erev_Purim.html */,
 				E2031DC021236903001A1EFE /* Hoshana_Raba.html */,
 				E2031DC121236903001A1EFE /* Lag_Ba'Omer.html */,
-				E2031DC221236903001A1EFE /* Leil_Selichot.html */,
 				E2031DC321236903001A1EFE /* Machar_Chodesh.html */,
 				E2031DC421236903001A1EFE /* Pesach_Chol_Hamoed_Day_1.html */,
 				E2031DC521236903001A1EFE /* Pesach_Chol_Hamoed_Day_2.html */,
@@ -1526,7 +1523,6 @@
 				E2B174F920C265D40009F5DB /* Shof'tim.html in Resources */,
 				E2B174DB20C265D40009F5DB /* Shabbat_Vayeitzei.html in Resources */,
 				E2031E3421236903001A1EFE /* Pesach_Day_7.html in Resources */,
-				E2031E2A21236903001A1EFE /* Leil_Selichot.html in Resources */,
 				E2B1751C20C265D40009F5DB /* Tazria-M'tzora.html in Resources */,
 				E6AB616E1F4C6A9500161250 /* Roboto-MediumItalic.ttf in Resources */,
 				E6AB61291F4C69EB00161250 /* Main.storyboard in Resources */,

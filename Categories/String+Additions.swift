@@ -323,7 +323,8 @@ extension String {
         name = name.replacingOccurrences(of: "Parashat Chukat-Balak", with: "Parashat Chukat/Balak")
         name = name.replacingOccurrences(of: "Parashat Matot-Masei", with: "Parashat Matot/Mas-ei")
         name = name.replacingOccurrences(of: "Parashat Nitzavim-Vayeilech", with: "Parashat Nitzavim/Vayeilech")
-        
+        //CHECK: -Any event with "Selichot" should be changed to "S'lichot"
+        name = name.replacingOccurrences(of: "Leil Selichot", with: "Leil S'lichot")
         name = name.replacingOccurrences(of: "Erev Pesach", with: "Erev Pesach/Ta’anit Bechorot")
         name = name.replacingOccurrences(of: "Shabbat Shekalim", with: "Shabbat Sh'kalim")
         name = name.replacingOccurrences(of: "Tu BiShvat", with: "Tu B'Sh'vat")

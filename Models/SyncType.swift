@@ -107,12 +107,14 @@ class SyncType: NSObject, NSCoding {
                 let predicate = self.eventStore.predicateForEvents(withStart: datevalue, end: datevalue1, calendars: self.calendars)
                 let events = self.eventStore.events(matching: predicate) as [EKEvent]
                 print("Events: \(events)")
-                for event in events
-                {   event.isAllDay = true
+                
+                for event in events {
+                    event.isAllDay = true
                     strGetEventTitle = event.title;
                     strGetEventDate = event.startDate;
                 }
                 if strGetEventTitle == "txtEventName" && strGetEventDate == datevalue {
+                    
                 } else {
                     let event:EKEvent = EKEvent(eventStore: self.eventStore)
                     event.title = txtEventName
@@ -123,16 +125,18 @@ class SyncType: NSObject, NSCoding {
                         event.notes = description
                     }
                     event.calendar = self.eventStore.defaultCalendarForNewEvents
-                    do {
-                        try self.eventStore.save(event, span: .thisEvent)
-                    }
-                    catch let e as NSError
-                    {
-                        print("calendar sync error")
-                        print(e.description)
-                        completion(false)
-                        return
-                    }
+                    DispatchQueue.main.async {
+                        do {
+                            try self.eventStore.save(event, span: .thisEvent)
+                        }
+                        catch let e as NSError
+                        {
+                            print("calendar sync error")
+                            print(e.description)
+                            completion(false)
+                            return
+                        }
+                   }
                 }
             }
             DispatchQueue.main.async {
