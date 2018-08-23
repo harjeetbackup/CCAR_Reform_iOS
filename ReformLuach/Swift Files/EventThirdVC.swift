@@ -42,26 +42,16 @@ class EventThirdVC: EventBaseVC {
         })
     }
     
-    @objc func filterTextThird(notification: Notification)
-    {
-        var str = notification.object.unsafelyUnwrapped
-        if str is String {
-            let str1 = str as! String
-            str  = str1.replacingOccurrences(of: "’", with: "'")
-        }
-        let characters = String(describing: str)
-        if events.count != 0 {
-            self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in
-                return (event.spellChangedTitle?.contains(characters))!
-            })
-            searchType = EventType.holiday
-            self.tblParshiyot.reloadData()
-        }
+    @objc func filterTextThird(notification: Notification) {
+        searchType = EventType.holiday
+        let str = notification.object.unsafelyUnwrapped as? String
+        self.searchString = str?.replacingOccurrences(of: "’", with: "'")
     }
     
     @objc func filterClearThird(notification: Notification)
     {
         filterAsPerType()
+        self.searchString = nil
         searchType = EventType.none
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         tblParshiyot.reloadData()

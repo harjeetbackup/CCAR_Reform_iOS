@@ -12,7 +12,7 @@ import MBProgressHUD
 
 var day: Int?
 
-class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource, FooterViewDelegate  {
+class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet internal var tblParshiyot: UITableView!
     
@@ -21,6 +21,12 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     var nextEvent: RLEvent?
     var tableFooterView: FooterView?
     var searchType : EventType? = .none
+    var searchString: String? = nil {
+        didSet {
+            guard let str = searchString else { return }
+            searchFor(str)
+        }
+    }
     var isScrolledToCurrentDate = false
     var lastLoadedYear: Int = 0
     var pagerViewController: GLViewPagerViewController?
@@ -30,7 +36,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         tblParshiyot.estimatedRowHeight = 100.0
         tblParshiyot.rowHeight = UITableViewAutomaticDimension
         tableFooterView = FooterView.footerView()
-        self.tableFooterView?.loadMoreDelegate = self
         self.tblParshiyot.tableFooterView = tableFooterView
         self.tblParshiyot.contentInset.bottom += tableFooterView!.frame.size.height
         loadEvents()
@@ -60,11 +65,26 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func loadMoreEvents(year: Int) {
         self.view.showHud("Loading \(year) events")
-        EventManager.shared.getEvents(year: year) { (events) in
-            self.view.hideHud()
-            self.events = events
-            self.lastLoadedYear = year
-            self.filterAsPerType();
+        EventManager.shared.getEvents(year: year) { [weak self] (events) in
+            self?.view.hideHud()
+            self?.events = events
+            self?.lastLoadedYear = year
+            self?.filterAsPerType();
+            if let str = self?.searchString {
+                if self?.searchType != EventType.none {
+                    self?.searchFor(str)
+                }
+            }
+            self?.tblParshiyot.reloadData()
+        }
+    }
+    
+    private func searchFor(_ searchString: String) {
+        let characters = searchString.lowercased()
+        if events.count != 0 {
+            self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in
+                return (event.spellChangedTitle?.lowercased().contains(characters))!
+            })
             self.tblParshiyot.reloadData()
         }
     }
@@ -83,7 +103,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                         guard event.title != nil, event.date != nil else {
                             return false
                         }
-                        
                         return (event.title! == searchEvent.title && event.date! == searchEvent.date)
                     })
                     break
@@ -110,7 +129,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]
-        if filteredEvents.count > 1 && indexPath.row == (filteredEvents.count - 1) && searchType == EventType.none {
+        if filteredEvents.count >= 1 && indexPath.row == (filteredEvents.count - 1) {
             loadMoreEvents(year: EventManager.shared.yearLoaded + 1)
         }
         return cell

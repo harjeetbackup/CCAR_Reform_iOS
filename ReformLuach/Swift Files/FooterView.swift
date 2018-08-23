@@ -8,18 +8,9 @@
 
 import UIKit
 
-protocol FooterViewDelegate:NSObjectProtocol {
-    func loadMoreEvents(year:Int)
-}
-
 class FooterView: UITableViewHeaderFooterView {
-    var loadMoreDelegate: FooterViewDelegate?
     static func footerView() -> FooterView {
         let view = Bundle.main.loadNibNamed("FooterView", owner: self, options: nil)![0] as! FooterView
         return view
-    }
-
-    @IBAction func loadMoreTapped(_ sender: UIButton) {
-        //loadMoreDelegate?.loadMoreEvents(year: EventManager.shared.yearLoaded + 1)
     }
 }

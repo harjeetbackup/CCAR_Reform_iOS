@@ -19,8 +19,7 @@ class EventSecondVC: EventBaseVC {
     internal var _title : NSString = "Page Zero"
     internal var _setupSubViews:Bool = false
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextSecond(notification:)), name: Notification.Name("NotificationTextSecond"), object: nil)
         
@@ -39,26 +38,15 @@ class EventSecondVC: EventBaseVC {
         })
     }
     
-    @objc func filterTextSecond(notification: Notification)
-    {
-        var str = notification.object.unsafelyUnwrapped
-        if str is String {
-            let str1 = str as! String
-            str  = str1.replacingOccurrences(of: "’", with: "'")
-        }
-        let characters = String(describing: str)
-        if events.count != 0 {
-            self.filteredEvents = self.filteredEvents.filter({(event : RLEvent) -> Bool in
-                return (event.spellChangedTitle?.contains(characters))!
-            })
-            searchType = EventType.parshat
-            self.tblParshiyot.reloadData()
-        }
+    @objc func filterTextSecond(notification: Notification) {
+        searchType = EventType.parshat
+        let str = notification.object.unsafelyUnwrapped as? String
+        self.searchString = str?.replacingOccurrences(of: "’", with: "'")
     }
     
-    @objc func filterClearSecond(notification: Notification)
-    {
+    @objc func filterClearSecond(notification: Notification) {
         filterAsPerType()
+        self.searchString = nil
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         searchType = EventType.none
         tblParshiyot.reloadData()

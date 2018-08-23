@@ -22,7 +22,7 @@ class EventFirstVC: EventBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextFirst(notification:)), name: Notification.Name("NotificationTextFirst"), object: nil)
-       NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearFirst(notification:)), name: Notification.Name("NotificationClearFirst"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearFirst(notification:)), name: Notification.Name("NotificationClearFirst"), object: nil)
     }
     override func filterAsPerType() {
         // No need to filter
@@ -30,24 +30,15 @@ class EventFirstVC: EventBaseVC {
     }
     
     @objc func filterTextFirst(notification: Notification) {
-    var str = notification.object.unsafelyUnwrapped
-        if str is String {
-           let str1 = str as! String
-           str  = str1.replacingOccurrences(of: "’", with: "'")
-        }
-    let characters = String(describing: str)
-        if events.count != 0 {
-            self.filteredEvents = events.filter({(event : RLEvent) -> Bool in
-                return (event.spellChangedTitle?.contains(characters))!
-            })
-            searchType = EventType.all
-            self.tblParshiyot.reloadData()
-        }
+        searchType = EventType.all
+        let str = notification.object.unsafelyUnwrapped as? String
+        self.searchString = str?.replacingOccurrences(of: "’", with: "'")
     }
     
     @objc func filterClearFirst(notification: Notification) {
         filterAsPerType()
         searchType = EventType.none
+        self.searchString = nil
         NotificationCenter.default.post(name: Notification.Name("NotificationClearSearcBar"), object:nil)
         self.tblParshiyot.reloadData()
     }
