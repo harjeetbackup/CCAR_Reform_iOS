@@ -53,12 +53,9 @@ class EventSecondVC: EventBaseVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let nav = segue.destination as? UINavigationController,
-            let classBVC = nav.topViewController as? GLViewPagerViewController
-        {
+            let classBVC = nav.topViewController as? GLViewPagerViewController {
             classBVC.delegate = self as? GLViewPagerViewControllerDelegate
         }
-        
     }
 }

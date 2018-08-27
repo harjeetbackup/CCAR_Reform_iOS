@@ -51,10 +51,9 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             UIEdgeInsets.init(top: 0, left: -20, bottom: 0, right: 50)
         configYearSegmentedControl()
         loadSavedSyncDataSources()
-        print(UIScreen.main.bounds.size.height)
         NotificationCenter.default.addObserver(self, selector: #selector(saveDataSources), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
     }
-  
+    
     func loadSavedSyncDataSources() {
         guard let decoded  = UserDefaults.standard.object(forKey: kSyncDataSourceKey) as? Data else { return }
         guard let cals = NSKeyedUnarchiver.unarchiveObject(with: decoded) as? [String: [SyncDataSouce]] else { return }
@@ -66,7 +65,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let date = Date()
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: date)
-        
         guard let url = Bundle.main.url(forResource: "SyncType", withExtension: "json") else { return }
         guard let data = try? Data(contentsOf: url) else { return }
         guard let syncTypes = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [[String:String]] else { return }
@@ -159,7 +157,6 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         HeaderImage .image = UIImage(named: strimagename)
     }
     
-    
     @IBAction func calenderTypeButtonTapped(_ sender: Any) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
         let settingViewController: SettingVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
@@ -177,11 +174,11 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.tableView.reloadData()
                     type.sync({ [weak self] completed in
                         //if completed == true {
-                          self?.tableView.reloadData()
+                        self?.tableView.reloadData()
                         //}
-//                        else {
-//                          self?.showAlert("Sorry, Something went wrong!", message: "Please try again after sometime")
-//                        }
+                        //                        else {
+                        //                          self?.showAlert("Sorry, Something went wrong!", message: "Please try again after sometime")
+                        //                        }
                     })
                 }
             }

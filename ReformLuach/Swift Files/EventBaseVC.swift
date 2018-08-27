@@ -15,7 +15,6 @@ var day: Int?
 class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet internal var tblParshiyot: UITableView!
-    
     var events = [RLEvent]()
     var filteredEvents = [RLEvent]()
     var nextEvent: RLEvent?
@@ -109,7 +108,6 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 }
             }
         }
-        
         guard let localIndex = index else { return }
         let indePath = IndexPath.init(row: localIndex, section: 0)
         self.tblParshiyot.scrollToRow(at: indePath, at: .top, animated: false)
@@ -125,7 +123,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredEvents.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! customCell
         cell.event = filteredEvents[indexPath.row]

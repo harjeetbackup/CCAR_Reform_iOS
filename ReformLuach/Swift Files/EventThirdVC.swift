@@ -19,11 +19,9 @@ class EventThirdVC: EventBaseVC {
     internal var _title : NSString = "Page Zero"
     internal var _setupSubViews:Bool = false
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterTextThird(notification:)), name: Notification.Name("NotificationTextThird"), object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.filterClearThird(notification:)), name: Notification.Name("NotificationClearThird"), object: nil)
     }
     
@@ -48,8 +46,7 @@ class EventThirdVC: EventBaseVC {
         self.searchString = str?.replacingOccurrences(of: "’", with: "'")
     }
     
-    @objc func filterClearThird(notification: Notification)
-    {
+    @objc func filterClearThird(notification: Notification) {
         filterAsPerType()
         self.searchString = nil
         searchType = EventType.none
@@ -58,10 +55,8 @@ class EventThirdVC: EventBaseVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let nav = segue.destination as? UINavigationController,
-            let classBVC = nav.topViewController as? GLViewPagerViewController
-        {
+            let classBVC = nav.topViewController as? GLViewPagerViewController {
             classBVC.delegate = self as? GLViewPagerViewControllerDelegate
         }
     }

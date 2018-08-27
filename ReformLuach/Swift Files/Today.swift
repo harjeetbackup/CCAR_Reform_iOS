@@ -21,11 +21,11 @@ class Today: UIViewController {
     @IBOutlet weak var lblday:UILabel?
     @IBOutlet weak var dayView:UIView?
     @IBOutlet weak var lblmonthHeightCons: NSLayoutConstraint!
-    //    @IBOutlet weak var lblyearHeightCons: NSLayoutConstraint!
     @IBOutlet weak var lblFullDayHeightCons: NSLayoutConstraint!
     @IBOutlet weak var dateTrailingCons: NSLayoutConstraint!
     @IBOutlet weak var dateLeadingCons: NSLayoutConstraint!
     @IBOutlet weak var LBLMonthTop_cons: NSLayoutConstraint!
+    //@IBOutlet var ccarImageViewConstant: NSLayoutConstraint!
     
     var animating : Bool = false
     var strDate: NSInteger!
@@ -33,15 +33,8 @@ class Today: UIViewController {
     var strYear: NSInteger!
     var eventTitle : String? = nil
     
-    //    var dic: Dictionary<Key: Hashable, Any>!
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        //        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0);
-        //        self.navigationController?.navigationBar.barStyle = UIBarStyle.blackOpaque
-        //        self.navigationController?.navigationBar.barStyle = .default
-        //        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        //        self.navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
@@ -56,7 +49,6 @@ class Today: UIViewController {
     func swipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
-        
     }
     
     func swipeRight() {
@@ -67,8 +59,7 @@ class Today: UIViewController {
         return .lightContent
     }
     
-    func loaddata()
-    {
+    func loaddata() {
         let parameters:  [String:Any]  = [
             "gy": strYear,
             "gm": strMonth,
@@ -76,15 +67,10 @@ class Today: UIViewController {
             "g2h": "1",
             "cfg":"json",
             ]
-        //let url = URL(string: "http://www.hebcal.com/converter/?cfg=json&gy=2011&gm=6&gd=2&g2h=1")
-        //        let url = URL(string: "http://www.hebcal.com/converter/")
-        //        var statusCode: Int = 0
         Alamofire.request("http://www.hebcal.com/converter/", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            switch(response.result)
-            {
+            switch(response.result) {
             case .success(_):
-                if response.result.value != nil
-                {
+                if response.result.value != nil {
                     print(response.result.value!)
                     var dic = response.result.value as! [String : Any]
                     let str  =  String (describing: dic["hd"]!)
@@ -93,8 +79,7 @@ class Today: UIViewController {
                     self.lblDate?.text = str
                     self.lblMonth?.text = str1
                     self.lblYear?.text = str2
-                    if dic["events"] == nil
-                    {
+                    if dic["events"] == nil {
                         self.lblday?.text = ""
                     } else {
                         var arrEvent = dic["events"] as! [String]
@@ -121,34 +106,22 @@ class Today: UIViewController {
         }
     }
     
-    //    func performAction()
-    func animate()
-    {
-        let rotationAnimation=CABasicAnimation();
+    func animate() {
+        let rotationAnimation=CABasicAnimation()
         rotationAnimation.keyPath="transform.rotation.y"
-        let toValue = M_PI * 1.0 * 1 ;
-        // passing it a float
+        let toValue = M_PI * 1.0 * 1
         let someInterval = CFTimeInterval(0.50)
-        rotationAnimation.toValue=toValue;
-        rotationAnimation.duration=someInterval;
-        rotationAnimation.isCumulative=true;
-        rotationAnimation.repeatCount=1;
-        //        MyView.layer.add(rotationAnimation, forKey: "rotationAnimation")
+        rotationAnimation.toValue=toValue
+        rotationAnimation.duration=someInterval
+        rotationAnimation.isCumulative=true
+        rotationAnimation.repeatCount=1
         lblDate?.layer.add(rotationAnimation, forKey: "rotationAnimation")
     }
-    //    override func viewDidAppear(_ animated: Bool)
-    override func viewWillAppear(_ animated: Bool)
-    {
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
-        //        var image = UIImage(CGImage: backGroundImage.image!.CGImage, scale: 1.0, orientation: .DownMirrored)
-        //        let flippedImage = backGroundImage.imageFlippedForRightToLeftLayoutDirection()
-        //        backGroundImage.transform = CGAffineTransform(scaleX: -1, y: 1)
-        //        self.perform(#selector(performAction), with: nil, afterDelay: 2.0)
-        //        self.perform(#selector(animate), with: nil, afterDelay: 2.0)
-        
-        //        startSpinning()
         if IS_IPAD_PRO {
             lblDate?.font = UIFont(name: "Roboto-Thin", size: 270)
             lblMonth?.font = UIFont(name: "Roboto-Thin", size: 110)
@@ -156,14 +129,10 @@ class Today: UIViewController {
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 110)
             lblFulldate?.font = UIFont(name: "Roboto-Thin", size: 55)
             lblday?.font = UIFont(name: "Roboto-Thin", size: 55)
-            lblmonthHeightCons.constant = 110;
-            //            lblyearHeightCons.constant = 45;
-            lblFullDayHeightCons.constant = 80;
+            lblmonthHeightCons.constant = 110
+            lblFullDayHeightCons.constant = 80
             dateLeadingCons.constant = self.view.frame.size.width * 0.15
-            //            dayView?.layer.cornerRadius = (dayView?.frame.size.height)!/2;
-            //            dayView?.layer.borderColor = UIColor.white.cgColor;
-            //            dayView?.layer.borderWidth = 1;
-            //            dayView?.layer.masksToBounds = true;
+            dateTrailingCons.constant = self.view.frame.size.width * 0.15
         }
         if IS_IPAD {
             lblDate?.font = UIFont(name: "Roboto-Thin", size: 240)
@@ -171,50 +140,37 @@ class Today: UIViewController {
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 100)
             lblFulldate?.font = UIFont(name: "Roboto-Thin", size: 45)
             lblday?.font = UIFont(name: "Roboto-Thin", size: 45)
-            lblmonthHeightCons.constant = 100;
-            //            lblyearHeightCons.constant = 45;
-            lblFullDayHeightCons.constant = 70;
+            lblmonthHeightCons.constant = 100
+            lblFullDayHeightCons.constant = 70
             dateLeadingCons.constant = self.view.frame.size.width * 0.15
             dateTrailingCons.constant = self.view.frame.size.width * 0.15
-            //            dayView?.layer.cornerRadius = (dayView?.frame.size.height)!/2;
-            //            dayView?.layer.borderColor = UIColor.white.cgColor;
-            //            dayView?.layer.borderWidth = 1;
-            //            dayView?.layer.masksToBounds = true;
         } else if IS_IPHONE_5 || IS_IPHONE_4_OR_LESS {
             lblDate?.font = UIFont(name: "Roboto-Thin", size: 100)
             lblMonth?.font = UIFont(name: "Roboto-Thin", size: 50)
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 50)
-            lblmonthHeightCons.constant = 50;
-            //            lblyearHeightCons.constant = 45;
-            lblFullDayHeightCons.constant = 35;
+            lblmonthHeightCons.constant = 40
+            lblFullDayHeightCons.constant = 35
         } else if IS_IPHONE_6_7 {
             lblDate?.font = UIFont(name: "Roboto-Thin", size: 125)
             lblMonth?.font = UIFont(name: "Roboto-Thin", size: 55)
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 52)
-            lblmonthHeightCons.constant = 50;
-            //            lblyearHeightCons.constant = 55;
-            lblFullDayHeightCons.constant = 35;
+            lblmonthHeightCons.constant = 50
+            lblFullDayHeightCons.constant = 35
             LBLMonthTop_cons.constant = 15
-            dateLeadingCons.constant = self.view.frame.size.width * 0.08
-            dateTrailingCons.constant = self.view.frame.size.width * 0.08
         } else if IS_IPHONE_6P_7P {
             lblDate?.font = UIFont(name: "Roboto-Thin", size: 150)
             lblMonth?.font = UIFont(name: "Roboto-Thin", size: 65)
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 60)
-            lblmonthHeightCons.constant = 65;
-            //            lblyearHeightCons.constant = 70;
-            lblFullDayHeightCons.constant = 42;
+            lblmonthHeightCons.constant = 65
+            lblFullDayHeightCons.constant = 42
             LBLMonthTop_cons.constant = 17
-            dateLeadingCons.constant = self.view.frame.size.width * 0.08
-            dateTrailingCons.constant = self.view.frame.size.width * 0.08
         } else if IS_IPHONE_X {
             lblDate?.font = UIFont(name: "Roboto-Thin", size: 125)
             lblMonth?.font = UIFont(name: "Roboto-Thin", size: 55)
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 52)
-            lblmonthHeightCons.constant = 80;
-            //            lblyearHeightCons.constant = 55;
-            lblFullDayHeightCons.constant = 50;
-            LBLMonthTop_cons.constant = 30
+            lblmonthHeightCons.constant = 70
+            lblFullDayHeightCons.constant = 40
+            LBLMonthTop_cons.constant = 20
             dateLeadingCons.constant = self.view.frame.size.width * 0.08
             dateTrailingCons.constant = self.view.frame.size.width * 0.08
         } else {
@@ -223,11 +179,10 @@ class Today: UIViewController {
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 100)
             lblFulldate?.font = UIFont(name: "Roboto-Thin", size: 45)
             lblday?.font = UIFont(name: "Roboto-Thin", size: 45)
-            lblmonthHeightCons.constant = 100;
-            //            lblyearHeightCons.constant = 45;
-            lblFullDayHeightCons.constant = 70;
-            dateLeadingCons.constant = self.view.frame.size.width * 0.15
-            dateTrailingCons.constant = self.view.frame.size.width * 0.15
+            lblmonthHeightCons.constant = 100
+            lblFullDayHeightCons.constant = 70
+            //dateLeadingCons.constant = self.view.frame.size.width * 0.15
+            //dateTrailingCons.constant = self.view.frame.size.width * 0.15
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -235,12 +190,12 @@ class Today: UIViewController {
         let yourDate = formatter.date(from: myString)
         formatter.dateFormat = "MMMM dd, yyyy"
         let myStringafd = formatter.string(from: yourDate!)
-        lblFulldate?.text = myStringafd;
+        lblFulldate?.text = myStringafd
         let formatter1 = DateFormatter()
         formatter1.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatter1.dateFormat = "MMMM dd"
         let myStrcur = formatter1.string(from: yourDate!)
-        UserDefaults.standard.setValue(myStrcur , forKey: "CurrentMonthDate")
+        UserDefaults.standard.setValue(myStrcur, forKey: "CurrentMonthDate")
         let date = Date()
         let calendar = Calendar.current
         strYear = calendar.component(.year, from: date)
@@ -265,13 +220,13 @@ class Today: UIViewController {
         vc.eventNameFromToday = strEevnt
         self .present(vc, animated: true, completion: nil)
     }
-    override func  viewWillLayoutSubviews()
-    {
+    
+    override func  viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        lblDate?.layer.cornerRadius = (lblDate?.frame.size.height)!/2;
-        lblDate?.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8324027032);
-        lblDate?.layer.borderWidth = 3;
-        lblDate?.layer.masksToBounds = true;
+        lblDate?.layer.cornerRadius = (lblDate?.frame.size.height)!/2
+        lblDate?.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8324027032)
+        lblDate?.layer.borderWidth = 3
+        lblDate?.layer.masksToBounds = true
         let date = Date()
         let calendar = Calendar.current
         strYear = calendar.component(.year, from: date)

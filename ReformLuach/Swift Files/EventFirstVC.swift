@@ -14,8 +14,8 @@ import Alamofire
 
 class EventFirstVC: EventBaseVC {
     var myNavController: UINavigationController?
-    var  data:[[String:String]] = []
-    var  columnTitles:[String] = []
+    var data:[[String:String]] = []
+    var columnTitles:[String] = []
     internal var _title : NSString = "Page Zero"
     internal var _setupSubViews:Bool = false
     
