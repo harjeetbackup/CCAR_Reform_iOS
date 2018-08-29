@@ -1259,60 +1259,29 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
 
         self.view.makeToast("events added Successfully")
         UserDefaults.standard.set(arrCustomList, forKey: "CustomLst")
-       
-        
     }
-
 }
 
 class daCustomCell: UITableViewCell
 {
     @IBOutlet weak var lblTitle: UILabel!
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
 }
 
 class eventCountCell: UITableViewCell
 {
     @IBOutlet weak var myView: UIView!
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
 }
-
-
-
-
