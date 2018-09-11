@@ -42,7 +42,7 @@ public class RLEvent {
         yomtov = dictionary["yomtov"] as? Bool ?? false
 	}
     
-    func isSpecialDayForSubTitle() -> Bool {
+    func isShabbatDayForSubTitle() -> Bool {
         if let str = self.spellChangedTitle {
             if (str == "Shabbat Parah" || str == "Shabbat Sh'kalim" || str == "Shabbat HaGadol" || str == "Shabbat Zachor" || str == "Shabbat HaChodesh" || str == "Shabbat Shuva" || str == "Shabbat Chanukah") || str.hasPrefix("Chanukah") {
                 return true
@@ -51,7 +51,7 @@ public class RLEvent {
         return false
     }
     
-    func isComparableDayForSubTitle() -> Bool {
+    func isParashatDayForSubTitle() -> Bool {
         if let str = self.spellChangedTitle {
             if (str.hasPrefix("Parashat") || str.hasPrefix("parashat")) {
                 return true
@@ -60,7 +60,7 @@ public class RLEvent {
         return false
     }
     
-    func isThreeEventsOfSpecialDayForSubTitle() -> Bool{
+    func isRoshChodeshSpecialDayForSubTitle() -> Bool{
         if let str = self.spellChangedTitle {
             if (str.hasPrefix("Rosh Chodesh")){
                 return true
