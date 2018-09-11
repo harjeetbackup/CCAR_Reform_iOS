@@ -12,57 +12,60 @@ extension EventManager {
     
     func applySubTitleLogic(_ events:[RLEvent]){
         
-        var specialEvent : RLEvent?
-        var comparableEvent : RLEvent?
-        var threeSpecialEvent : RLEvent?
+        var shabbatEvent : RLEvent?
+        var parashatEvent : RLEvent?
+        var roshChodeshEvent : RLEvent?
         for event in events {
             
-            if event.isSpecialDayForSubTitle() {
-                specialEvent = event
+            if event.isShabbatDayForSubTitle() {
+                shabbatEvent = event
             }
-            if event.isComparableDayForSubTitle(){
-                comparableEvent = event
+            if event.isParashatDayForSubTitle(){
+                parashatEvent = event
             }
             
-            if specialEvent != nil && comparableEvent != nil {
-                if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
-                    if let title = specialEvent?.title?.spellChangedForTitle() {
+            if shabbatEvent != nil && parashatEvent != nil {
+                if Calendar.current.isDate(shabbatEvent!.eventDate(), inSameDayAs: (parashatEvent?.eventDate())!) {
+                    if let title = shabbatEvent?.title?.spellChangedForTitle() {
                         var title1 = title
                         if (title == "Chanukah: 2nd Night" || title == "Chanukah: 3rd Night" || title == "Chanukah: 4th Night" || title == "Chanukah: 5th Night" || title == "Chanukah: 6th Night" || title == "Chanukah: 7th Night" || title == "Chanukah: 8th Night" || title == "Chanukah: 8th Day") {
                             title1 = "Shabbat Chanukah"
                         }
-                        comparableEvent?.subTitle = "The Haftarah for \(title1) should be read."
-                        specialEvent?.subTitle = ""
-                        specialEvent = nil
-                        comparableEvent = nil
+                        parashatEvent?.subTitle = "The Haftarah for \(title1) should be read."
+                        shabbatEvent?.subTitle = ""
+                        shabbatEvent = nil
+                        parashatEvent = nil
                     }
                 }
             }
         }
         for event in events {
             
-            if event.isSpecialDayForSubTitle() {
-                specialEvent = event
+            if event.isShabbatDayForSubTitle() {
+                
+                shabbatEvent = event
             }
-            if event.isComparableDayForSubTitle() {
-                comparableEvent = event
+            if event.isParashatDayForSubTitle() {
+                parashatEvent = event
             }
-            if event.isThreeEventsOfSpecialDayForSubTitle() {
-                threeSpecialEvent = event
+            if event.isRoshChodeshSpecialDayForSubTitle() {
+                roshChodeshEvent = event
             }
-            if specialEvent != nil && comparableEvent != nil && threeSpecialEvent != nil {
-                if Calendar.current.isDate(specialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) && Calendar.current.isDate(threeSpecialEvent!.eventDate(), inSameDayAs: (comparableEvent?.eventDate())!) {
-                    if let title = specialEvent?.title?.spellChangedForTitle() {
+            if shabbatEvent != nil && parashatEvent != nil && roshChodeshEvent != nil {
+                if Calendar.current.isDate(shabbatEvent!.eventDate(), inSameDayAs: (parashatEvent?.eventDate())!) && Calendar.current.isDate(roshChodeshEvent!.eventDate(), inSameDayAs: (parashatEvent?.eventDate())!) {
+                    if let title = shabbatEvent?.title?.spellChangedForTitle() {
                         var title1 = title
-                        if (title == "Chanukah: 2nd Night" || title == "Chanukah: 3rd Night" || title == "Chanukah: 4th Night" || title == "Chanukah: 5th Night" || title == "Chanukah: 6th Night" || title == "Chanukah: 7th Night" || title == "Chanukah: 8th Night" || title == "Chanukah: 8th Day") {
-                            title1 = "Shabbat Chanukah"
+                        if let event = shabbatEvent, event.inSaturday() {
+                            if (title == "Chanukah: 2nd Night" || title == "Chanukah: 3rd Night" || title == "Chanukah: 4th Night" || title == "Chanukah: 5th Night" || title == "Chanukah: 6th Night" || title == "Chanukah: 7th Night" || title == "Chanukah: 8th Night" || title == "Chanukah: 8th Day") {
+                                title1 = "Shabbat Chanukah"
+                            }
                         }
-                        comparableEvent?.subTitle = "The Haftarah for \(title1) should be read."
-                        specialEvent?.subTitle = ""
-                        threeSpecialEvent?.subTitle = "The Haftarah for \(title1) should be read."
-                        specialEvent = nil
-                        comparableEvent = nil
-                        threeSpecialEvent = nil
+                        parashatEvent?.subTitle = "The Haftarah for \(title1) should be read."
+                        shabbatEvent?.subTitle = ""
+                        roshChodeshEvent?.subTitle = "The Haftarah for \(title1) should be read."
+                        shabbatEvent = nil
+                        parashatEvent = nil
+                        roshChodeshEvent = nil
                     }
                 }
             }
