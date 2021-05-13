@@ -6,14 +6,14 @@ target 'ReformLuach' do
   use_frameworks!
 
   # Pods for ReformLuach
-	pod 'Alamofire'
-	pod 'SwiftyJSON'
-	pod 'PageMenu'
-	pod 'CSV.swift'
-	pod 'Toast-Swift'
-	pod 'Fabric'
-	pod 'Crashlytics'
-    pod 'KYDrawerController'
-    pod 'MBProgressHUD'
+  pod 'Alamofire', '~> 4.0.0'
+  pod 'SwiftyJSON'
+  pod 'PageMenu'
+  pod 'CSV.swift'
+  pod 'Toast-Swift'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'KYDrawerController'
+  pod 'MBProgressHUD'
 end
 

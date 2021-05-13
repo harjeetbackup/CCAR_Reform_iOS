@@ -188,14 +188,14 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         txtmonth2_widthConst.constant = (self.view.frame.size.width - 95)/2
         txtmonth3_widthCont.constant = (self.view.frame.size.width - 95)/2
         btnBeforeSunset1.tag = 7011
-        btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         btnBeforeSunset2.tag = 7021
-        btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         btnBeforeSunset3.tag = 7031
-        btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         let strCheckEmpt1 = UserDefaults.standard.object(forKey: "Conv_Date") as! String
         if UserDefaults.standard.object(forKey: "Conv_Date") != nil && strCheckEmpt1 != "" {
             txtDate1.text = UserDefaults.standard.string(forKey: "Conv_Date")!
@@ -279,24 +279,24 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
             isSunSet = UserDefaults.standard.bool(forKey: "Conv_SunSet")
             if(isSunSet == true) {
                 isAfterSunSet1 = true
-                btnBeforeSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-                btnAfterSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+                btnBeforeSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+                btnAfterSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
                 isAfterSunSet2 = true
-                btnBeforeSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-                btnAfterSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+                btnBeforeSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+                btnAfterSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
                 isAfterSunSet3 = true
-                btnBeforeSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-                btnAfterSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+                btnBeforeSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+                btnAfterSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
             } else {
                 isAfterSunSet1 = false
-                btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-                btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+                btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+                btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
                 isAfterSunSet2 = false
-                btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-                btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+                btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+                btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
                 isAfterSunSet3 = false
-                btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-                btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+                btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+                btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
             }
         }
     }
@@ -423,39 +423,39 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
     @IBAction func btnSunSet1(_ sender: UIButton) {
         if sender.tag == 7012 {
             isAfterSunSet1 = true
-            btnBeforeSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-            btnAfterSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+            btnBeforeSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+            btnAfterSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
         } else {
             isAfterSunSet1 = false
-            btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-            btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+            btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+            btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         }
     }
     @IBAction func btnSunSet2(_ sender: UIButton) {
         if sender.tag == 7022 {
             isAfterSunSet2 = true
-            btnBeforeSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-            btnAfterSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+            btnBeforeSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+            btnAfterSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
         } else {
             isAfterSunSet2 = false
-            btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-            btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+            btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+            btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         }
     }
     
     @IBAction func btnSunSet3(_ sender: UIButton) {
         if sender.tag == 7032 {
             isAfterSunSet3 = true
-            btnBeforeSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-            btnAfterSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+            btnBeforeSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+            btnAfterSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
         } else {
             isAfterSunSet3 = false
-            btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-            btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+            btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+            btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         }
     }
     
-    func buttonActionMonth1() {
+    @objc func buttonActionMonth1() {
         if buttonMonth11.tag == 5011 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = false
@@ -493,7 +493,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionYear1() {
+    @objc func buttonActionYear1() {
         if  buttonYear11.tag == 5012 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -531,7 +531,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionDate1() {
+    @objc func buttonActionDate1() {
         if buttonDate11.tag == 5013 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -569,7 +569,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionMonth2() {
+    @objc func buttonActionMonth2() {
         if buttonMonth22.tag == 5021 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -606,7 +606,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionYear2() {
+    @objc func buttonActionYear2() {
         if  buttonYear22.tag == 5022 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -643,7 +643,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionDate2() {
+    @objc func buttonActionDate2() {
         if buttonDate22.tag == 5023 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -680,7 +680,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionMonth3() {
+    @objc func buttonActionMonth3() {
         if buttonMonth33.tag == 5031 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -717,7 +717,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionYear3() {
+    @objc func buttonActionYear3() {
         if  buttonYear33.tag == 5032 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -754,7 +754,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
-    func buttonActionDate3() {
+    @objc func buttonActionDate3() {
         if buttonDate33.tag == 5033 {
             self.view .endEditing(true)
             MonthBGView1.isHidden = true
@@ -921,8 +921,11 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         layer32.shadowOffset = CGSize(width: 0, height: 10)
         layer32.shadowOpacity = 0.8
         layer32.shadowRadius = 7
+
+        let subViewsFrameSize = MainView.frame.origin.y +  ThirdView.frame.origin.y
+        let textMonthFrameSize = txtMonth3.frame.origin.y + txtMonth3.frame.size.height
         
-        if self.view.frame.size.height - ( MainView.frame.origin.y +  ThirdView.frame.origin.y + txtMonth3.frame.origin.y + txtMonth3.frame.size.height) >= 270 {
+        if self.view.frame.size.height - (subViewsFrameSize + textMonthFrameSize) >= 270 {
             MonthBGView3.frame = CGRect(x: txtMonth3.frame.origin.x, y: ThirdView.frame.origin.y + txtMonth3.frame.origin.y + txtMonth3.frame.size.height, width: txtMonth3.frame.size.width, height: CGFloat(44 * 5))
             
             YearBGView3.frame = CGRect(x: txtYear3.frame.origin.x, y: ThirdView.frame.origin.y + txtYear3.frame.origin.y + txtYear3.frame.size.height, width: txtYear3.frame.size.width, height: CGFloat(44 * 5))
@@ -1078,7 +1081,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
     func loaddata() {
         strTxtTitle1 = txtTitle1.text!
         if (strM1 != nil  && strY1 != nil && strD1 != nil) {
-            if (strM1 != nil  && strY1 != nil && strD1 != nil && strTxtTitle1 != nil && strTxtTitle1.characters.count > 0) {
+            if (strM1 != nil  && strY1 != nil && strD1 != nil && strTxtTitle1 != nil && strTxtTitle1.count > 0) {
                 let dic = NSMutableDictionary()
                 if strM1 != nil  && strY1 != nil && strD1 != nil {
                     dic .setObject(txtTitle1.text!, forKey: "evTitle" as NSCopying);
@@ -1089,7 +1092,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 arrMyEvents .add(dic)
             } else {
                 let alert = UIAlertView()
-                if strTxtTitle1.characters.count <= 0 {
+                if strTxtTitle1.count <= 0 {
                     alert.message = "Please select title"
                     alert.addButton(withTitle: "OK")
                     alert.show()
@@ -1114,7 +1117,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
         strTxtTitle2 = txtTitle2.text!
         if (strM2 != nil  && strY2 != nil && strD2 != nil) {
-            if (strM2 != nil  && strY2 != nil && strD2 != nil && strTxtTitle2 != nil && strTxtTitle2.characters.count > 0) {
+            if (strM2 != nil  && strY2 != nil && strD2 != nil && strTxtTitle2 != nil && strTxtTitle2.count > 0) {
                 let dic = NSMutableDictionary()
                 if strM2 != nil  && strY2 != nil && strD2 != nil {
                     dic .setObject(txtTitle2.text!, forKey: "evTitle" as NSCopying);
@@ -1125,7 +1128,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 arrMyEvents .add(dic)
             } else {
                 let alert = UIAlertView()
-                if strTxtTitle2.characters.count <= 0 {
+                if strTxtTitle2.count <= 0 {
                     alert.message = "Please select title"
                     alert.addButton(withTitle: "OK")
                     alert.show()
@@ -1150,7 +1153,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
         strTxtTitle3 = txtTitle3.text!
         if (strM3 != nil  && strY3 != nil && strD3 != nil) {
-            if (strM3 != nil  && strY3 != nil && strD3 != nil && strTxtTitle3 != nil && strTxtTitle3.characters.count > 0) {
+            if (strM3 != nil  && strY3 != nil && strD3 != nil && strTxtTitle3 != nil && strTxtTitle3.count > 0) {
                 let dic = NSMutableDictionary()
                 if strM3 != nil  && strY3 != nil && strD3 != nil {
                     dic .setObject(txtTitle3.text!, forKey: "evTitle" as NSCopying);
@@ -1161,7 +1164,7 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 arrMyEvents .add(dic)
             } else {
                 let alert = UIAlertView()
-                if strTxtTitle3.characters.count <= 0 {
+                if strTxtTitle3.count <= 0 {
                     alert.message = "Please select title"
                     alert.addButton(withTitle: "OK")
                     alert.show()
@@ -1314,8 +1317,8 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         txtDate1.text = ""
         txtMonth1.text = ""
         txtYear1.text = ""
-        btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnBeforeSunset1.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        btnAfterSunset1.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         isAfterSunSet1 = false
         txtTitle1.textFieldDidChange()
         txtDate1.textFieldDidChange()
@@ -1325,8 +1328,8 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         txtDate2.text = ""
         txtMonth2.text = ""
         txtYear2.text = ""
-        btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnBeforeSunset2.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        btnAfterSunset2.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         isAfterSunSet2 = false
         txtTitle2.textFieldDidChange()
         txtDate2.textFieldDidChange()
@@ -1336,8 +1339,8 @@ class AddCustomEvent: UIViewController, UITextFieldDelegate, UITableViewDelegate
         txtDate3.text = ""
         txtMonth3.text = ""
         txtYear3.text = ""
-        btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnBeforeSunset3.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        btnAfterSunset3.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         isAfterSunSet3 = false
         txtTitle3.textFieldDidChange()
         txtDate3.textFieldDidChange()
@@ -1370,7 +1373,7 @@ class dateCustonCell: UITableViewCell {
         super.init(coder: aDecoder)!
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 }

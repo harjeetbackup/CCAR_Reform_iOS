@@ -1,17 +1,17 @@
 PODS:
-  - Alamofire (4.6.0)
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
-  - CSV.swift (2.1.0)
-  - Fabric (1.7.2)
-  - KYDrawerController (2.0.4)
-  - MBProgressHUD (1.1.0)
+  - Alamofire (4.0.1)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
+  - CSV.swift (2.4.3)
+  - Fabric (1.10.2)
+  - KYDrawerController (2.1.0)
+  - MBProgressHUD (1.2.0)
   - PageMenu (2.0.0)
-  - SwiftyJSON (4.0.0)
-  - Toast-Swift (3.0.1)
+  - SwiftyJSON (5.0.1)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 4.0.0)
   - Crashlytics
   - CSV.swift
   - Fabric
@@ -21,17 +21,29 @@ DEPENDENCIES:
   - SwiftyJSON
   - Toast-Swift
 
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Crashlytics
+    - CSV.swift
+    - Fabric
+    - KYDrawerController
+    - MBProgressHUD
+    - PageMenu
+    - SwiftyJSON
+    - Toast-Swift
+
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
-  CSV.swift: a24fb11c17875523783fe963592762ff163ef8ea
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
-  KYDrawerController: cf5839877c442132123e9d482f458821026defdf
-  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
+  CSV.swift: d38741b349c067b4a6db42237cb0e2974d21ccac
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
+  KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   PageMenu: 9c38fd7e0d9ef4b1408320f55bb907bbc0e538dc
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
-  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 1c55ab9f3dcd8355282c995b942e1af33e30fc32
+PODFILE CHECKSUM: 698598636d753772740ecc9e2cdff8fb92d765a4
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.10.1

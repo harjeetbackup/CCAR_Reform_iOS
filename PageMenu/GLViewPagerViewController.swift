@@ -225,7 +225,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         //        mySearchBar.showsBookmarkButton = false
         
         // set Default bar status.
-        mySearchBar.searchBarStyle = UISearchBarStyle.default
+        mySearchBar.searchBarStyle = UISearchBar.Style.default
         mySearchBar.returnKeyType = UIReturnKeyType.search
     
         // set placeholder
@@ -239,7 +239,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         
         // add searchBar to the view.
         subbView.addSubview(mySearchBar)
-        mySearchBar.bringSubview(toFront: imageView)
+        mySearchBar.bringSubviewToFront(imageView)
     }
     
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
@@ -255,7 +255,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         Heb_Year.text = strYeasr;
     }
     
-    func settingsTapped(){
+    @objc func settingsTapped(){
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
         let settingViewController: SettingVC = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
         self.present(settingViewController, animated: true, completion: nil)
@@ -292,13 +292,13 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     // MARK: - Data Source
     open func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if self.supportArabic {
-            let index:Int = self.contentViewControllers .index(of: viewController)!
+            let index:Int = self.contentViewControllers .firstIndex(of: viewController)!
             if index == self.contentViewControllers.count - 1 {
                 return nil
             }
             return self.contentViewControllers[index + 1]
         }
-        let index:Int = self.contentViewControllers .index(of: viewController)!
+        let index:Int = self.contentViewControllers .firstIndex(of: viewController)!
         if index == 0 {
             return nil
         }
@@ -307,13 +307,13 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     open func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if self.supportArabic {
-            let index:Int = self.contentViewControllers .index(of: viewController)!
+            let index:Int = self.contentViewControllers .firstIndex(of: viewController)!
             if index == 0 {
                 return nil
             }
             return self.contentViewControllers[index - 1]
         }
-        let index:Int = self.contentViewControllers .index(of: viewController)!
+        let index:Int = self.contentViewControllers .firstIndex(of: viewController)!
         if index == self.contentViewControllers.count - 1 {
             return nil
         }
@@ -323,8 +323,8 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     // MARK: - Delegate
     open func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-            let currentPageIndex:Int = self.contentViewControllers .index(of: self.pageViewController.viewControllers![0])!
-            let prevPageIndex:Int = self.contentViewControllers .index(of: previousViewControllers[0])!
+            let currentPageIndex:Int = self.contentViewControllers .firstIndex(of: self.pageViewController.viewControllers![0])!
+            let prevPageIndex:Int = self.contentViewControllers .firstIndex(of: previousViewControllers[0])!
             self ._setActiveTabIndex(tabIndex: currentPageIndex)
             self ._caculateTabOffsetWidth(pageIndex: currentPageIndex)
             _currentPageIndex = currentPageIndex
@@ -351,7 +351,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.tabAnimationType == GLTabAnimationType.GLTabAnimationType_WhileScrolling && _enableTabAnimationWhileScrolling {
-            let scale:CGFloat = fabs(scrollView.contentOffset.x - scrollView.frame.size.width) / scrollView.frame.size.width
+            let scale:CGFloat = abs(scrollView.contentOffset.x - scrollView.frame.size.width) / scrollView.frame.size.width
             var offset:CGFloat = 0
             var indicationAnimationWidth:CGFloat = 0
             let currentPageIndex:Int = _currentPageIndex
@@ -411,7 +411,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     }
     
     // MARK: - User Events
-    func tapInTabView(tapGR:UIGestureRecognizer) -> Void {
+    @objc func tapInTabView(tapGR:UIGestureRecognizer) -> Void {
         let tabIndex = (tapGR.view?.tag)! - kTabTagBegin
         self ._selectTab(tabIndex: tabIndex, animate: false)
     }
@@ -615,9 +615,9 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     }
     
     func _layoutSubviews() -> Void {
-        let topLayoutGuide:CGFloat = self.topLayoutGuide.length
-        var bottomLayoutGuide:CGFloat = self.bottomLayoutGuide.length
-        
+        let topLayoutGuide: CGFloat = self.topLayoutGuide.length
+        var bottomLayoutGuide: CGFloat = self.bottomLayoutGuide.length
+
         var tabContentViewFrame:CGRect = self.tabContentView.frame
         tabContentViewFrame.size.width = self.view.bounds.size.width
         tabContentViewFrame.size.height = kTabHeight
@@ -628,8 +628,7 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
         self.tabContentView.frame = tabContentViewFrame
         self.tabContentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         var bottomSpace: CGFloat
-        if IS_IPAD || IS_IPAD_PRO
-        {
+        if IS_IPAD || IS_IPAD_PRO {
             bottomSpace = 70
         }
         else if IS_IPHONE_X
@@ -685,9 +684,9 @@ open class GLViewPagerViewController: UIViewController, UIPageViewControllerData
     
     func _setActivePageIndex(pageIndex:Int) -> Void {
         assert(pageIndex < self.contentViewControllers.count, "Default display page index is bigger than amount of view controller")
-        var direction:UIPageViewControllerNavigationDirection = self.supportArabic ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
+        var direction:UIPageViewController.NavigationDirection = self.supportArabic ? UIPageViewController.NavigationDirection.forward : UIPageViewController.NavigationDirection.reverse
         if pageIndex > _currentPageIndex {
-            direction = self.supportArabic ? UIPageViewControllerNavigationDirection.reverse : UIPageViewControllerNavigationDirection.forward
+            direction = self.supportArabic ? UIPageViewController.NavigationDirection.reverse : UIPageViewController.NavigationDirection.forward
         }
         self.pageViewController .setViewControllers([self.contentViewControllers[pageIndex]], direction: direction, animated: true, completion: nil)
         

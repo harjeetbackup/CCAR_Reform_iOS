@@ -189,7 +189,7 @@ class EventManager: NSObject {
         })
     }
     
-    func calenderDidChange() {
+    @objc func calenderDidChange() {
         EventManager.shared.events.removeAll()
         EventManager.shared.setCalenderType()
         EventManager.shared.yearLoaded = 0

@@ -19,7 +19,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var filteredEvents = [RLEvent]()
     var nextEvent: RLEvent?
     var tableFooterView: FooterView?
-    var searchType : EventType? = .none
+    var searchType : EventType? = EventType.none
     var searchString: String? = nil {
         didSet {
             guard let str = searchString else { return }
@@ -33,7 +33,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         tblParshiyot.estimatedRowHeight = 100.0
-        tblParshiyot.rowHeight = UITableViewAutomaticDimension
+        tblParshiyot.rowHeight = UITableView.automaticDimension
         tableFooterView = FooterView.footerView()
         self.tblParshiyot.tableFooterView = tableFooterView
         self.tblParshiyot.contentInset.bottom += tableFooterView!.frame.size.height
@@ -98,7 +98,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 let eventDate = dateFarmater.date(from: ed)
                 let result = eventDate?.compare(currentDate)
                 if result == .orderedDescending {
-                    index = self.filteredEvents.index(where: { (searchEvent) -> Bool in
+                    index = self.filteredEvents.firstIndex(where: { (searchEvent) -> Bool in
                         guard event.title != nil, event.date != nil else {
                             return false
                         }
@@ -113,7 +113,7 @@ class EventBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.tblParshiyot.scrollToRow(at: indePath, at: .top, animated: false)
     }
     
-    func newEventsDidLoaded() {
+    @objc func newEventsDidLoaded() {
         self.events = EventManager.shared.events
         self.filterAsPerType();
         self.tblParshiyot.reloadData()

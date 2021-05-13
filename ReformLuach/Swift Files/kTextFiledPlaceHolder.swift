@@ -48,7 +48,7 @@ class kTextFiledPlaceHolder: UITextField
     }
     @IBInspectable var placeHolderColor: UIColor? = UIColor.lightGray {
         didSet {
-            self.attributedPlaceholder = NSAttributedString(string: self.placeholder! as String ,attributes:[NSForegroundColorAttributeName: placeHolderColor!])
+            self.attributedPlaceholder = NSAttributedString(string: self.placeholder! as String ,attributes:[NSAttributedString.Key.foregroundColor: placeHolderColor!])
         }
     }
     override internal var placeholder:String?  {
@@ -56,7 +56,7 @@ class kTextFiledPlaceHolder: UITextField
             //  NSLog("placeholder = \(placeholder)")
         }
         willSet {
-            let atts  = [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.labelFontSize] as [String : Any]
+            let atts  = [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.labelFontSize] as [NSAttributedString.Key: Any]
             self.attributedPlaceholder = NSAttributedString(string: newValue!, attributes:atts)
             self.EnableMaterialPlaceHolder(enableMaterialPlaceHolder: self.enableMaterialPlaceHolder)
         }
@@ -75,11 +75,11 @@ class kTextFiledPlaceHolder: UITextField
             
         }
     }
-    func textFieldDidChange()
+    @objc func textFieldDidChange()
     {
         if self.enableMaterialPlaceHolder
         {
-            if (self.text == nil) || (self.text?.characters.count)! > 0 {
+            if (self.text == nil) || (self.text?.count)! > 0 {
                 self.lblPlaceHolder.alpha = 1
                 self.attributedPlaceholder = nil
                 self.lblPlaceHolder.textColor = self.placeHolderColor
@@ -87,7 +87,7 @@ class kTextFiledPlaceHolder: UITextField
                 self.lblPlaceHolder.font = UIFont.init(name: (self.font?.fontName)!, size: fontSize-3)
             }
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {() -> Void in
-                if (self.text == nil) || (self.text?.characters.count)! <= 0 {
+                if (self.text == nil) || (self.text?.count)! <= 0 {
                     self.lblPlaceHolder.font = self.defaultFont
                     self.lblPlaceHolder.frame = CGRect(x: self.lblPlaceHolder.frame.origin.x, y : 0, width :self.frame.size.width, height : self.frame.size.height)
                 }
@@ -116,7 +116,7 @@ class kTextFiledPlaceHolder: UITextField
         //self.lblPlaceHolder.sizeToFit()
     }
     func placeholderText(_ placeholder: NSString){
-        let atts  = [NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont.labelFontSize] as [String : Any]
+        let atts  = [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.labelFontSize] as [NSAttributedString.Key: Any]
         self.attributedPlaceholder = NSAttributedString(string: placeholder as String , attributes:atts)
         self.EnableMaterialPlaceHolder(enableMaterialPlaceHolder: self.enableMaterialPlaceHolder)
     }

@@ -16,33 +16,11 @@ import CoreData
 
 //import SkyFloatingLabelTextField
 
-class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource
-    //class DateConverterVC: UIViewController
-{
+class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     //    var coreData = CoreDataStack1()
-    
     @IBOutlet weak var CustomHeaderImage: UIImageView!
-    
-    //    @IBOutlet weak var txtDate: kTextFiledPlaceHolder!
-    
     @IBOutlet weak var btnCheckBox: UIButton!
-    
-    var isCheck = false
-    var iAutoSync = false
-    
-    var isAfterSunSet = false
-    
-    var event: EKEvent!
-    let eventStore = EKEventStore()
-    var calendars: [EKCalendar]?
-    var eventDetailsArray = [AnyHashable]()
-    var strPickerDate = NSString()
-    
-    var arrCustomList = NSMutableArray()
-    
     @IBOutlet weak var btnAdd: UIButton!
-    
-    
     @IBOutlet weak var FirstView: UIView!
     @IBOutlet weak var txtTitle: kTextFiledPlaceHolder!
     @IBOutlet var txtMonth: kTextFiledPlaceHolder!
@@ -50,124 +28,83 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
     @IBOutlet var txtDate: kTextFiledPlaceHolder!
     @IBOutlet var txtLanguage: kTextFiledPlaceHolder!
     @IBOutlet var txtTemparay: kTextFiledPlaceHolder!
-    
     @IBOutlet weak var btnCheck: UIButton!
-    
     @IBOutlet weak var SecondView: UIView!
-    
     @IBOutlet weak var btnSelLangauage: UIButton!
-    
-    
     @IBOutlet weak var arrow_month: UIImageView!
     @IBOutlet weak var arrow_Year: UIImageView!
     @IBOutlet weak var arrow_Day: UIImageView!
-    
-    
     @IBOutlet weak var lblSDay: UILabel!
     @IBOutlet weak var lblSMonth: UILabel!
     @IBOutlet weak var lblSYear: UILabel!
     @IBOutlet weak var lblSDayValue: UILabel!
     @IBOutlet weak var lblSMonthValue: UILabel!
     @IBOutlet weak var lblSYearValue: UILabel!
-    
     @IBOutlet weak var tblMonth: UITableView!
     @IBOutlet weak var tblYear: UITableView!
     @IBOutlet weak var tblDate: UITableView!
     //    @IBOutlet weak var tblLanguage: UITableView!
-    
     @IBOutlet weak var MonthBGView: UIView!
     @IBOutlet weak var YearBGView: UIView!
     @IBOutlet weak var DateBGView: UIView!
     //    @IBOutlet weak var LanguageBGView: UIView!
-    
     @IBOutlet weak var ThirdView: UIView!
     @IBOutlet weak var btnAutoSync: UIButton!
-    
-    
-    
-    
-    
     @IBOutlet weak var lblDayCons_Height1: NSLayoutConstraint!
-    
     @IBOutlet weak var lblMonthCons_Height1: NSLayoutConstraint!
-    
     @IBOutlet weak var lblYearCons_height1: NSLayoutConstraint!
-    
     @IBOutlet weak var lblMonthVAlue_height1: NSLayoutConstraint!
-    
     @IBOutlet weak var lblYearValueCons_Heigt1: NSLayoutConstraint!
-    
     @IBOutlet weak var sec_Day_TopCons: NSLayoutConstraint!
-    
     @IBOutlet weak var sec_SelectYearList_BottomCons1: NSLayoutConstraint!
-    
     @IBOutlet weak var SecondViewBottomCons1: NSLayoutConstraint!
-    
     @IBOutlet weak var secondViewLeadingCon1: NSLayoutConstraint!
-    
     @IBOutlet weak var secondViewTrailingCon1: NSLayoutConstraint!
-    
     //    @IBOutlet weak var btnSwitch: UISwitch!
-    
     @IBOutlet weak var BtnConvertDate: UIButton!
-    
     @IBOutlet weak var viewMIddleCons_Height1: NSLayoutConstraint!
-    
-    
     @IBOutlet weak var btnConvert_Top_cons: NSLayoutConstraint!
-    
     @IBOutlet weak var btnConvert_Height_cons: NSLayoutConstraint!
-    
     @IBOutlet weak var thirdviewBotton_Cons: NSLayoutConstraint!
-    
     @IBOutlet  weak var BtnBeforeSunSet: UIButton!
     @IBOutlet  weak var BtnAfterSunSet: UIButton!
-    
-    
+
     var arrMonth: NSArray!
     var arrYear: NSArray!
-    
-    
-    
     var strL = String()
-    
+    var isCheck = false
+    var iAutoSync = false
+    var isAfterSunSet = false
+    var event: EKEvent!
+    let eventStore = EKEventStore()
+    var calendars: [EKCalendar]?
+    var eventDetailsArray = [AnyHashable]()
+    var strPickerDate = NSString()
+    var arrCustomList = NSMutableArray()
     var arrMonthGregion = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    
     var arrMonthHebrew = ["Nisan", "Iyyar", "Sivan", "Tamuz", "Av", "Elul", "Tishrei", "Cheshvan", "Kislev", "Tevet", "Sh'vat", "Adar"]
-    
     var arrYearGregion = ["1920","1921","1922","1923","1924","1925","1926","1927","1928","1929","1930","1931","1932","1933","1934","1935","1936","1937","1938","1939","1940","1941","1942","1943","1944","1945","1946","1947","1948","1949","1950","1951","1952","1953","1954","1955","1956","1957","1958","1959","1960","1961","1962","1963","1964","1965","1966","1967","1968","1969","1970","1971","1972","1973","1974","1975","1976","1977","1978","1979","1980","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036","2037","2038","2039","2040","2041","2042","2043","2044","2045","2046","2047","2048","2049","2050"]
-    
     var arrYearHebrew = ["5685","5686","5687","5688","5689","5690","5691","5692","5693","5694","5695","5696","5697","5698","5699","5700","5701","5702","5703","5704","5705","5706","5707","5708","5709","5710","5711","5712","5713","5714","5715","5716","5717","5718","5719","5720","5721","5722","5723","5724","5725","5726","5727","5728","5729","5730","5731","5732","5733","5734","5735","5736","5737","5738","5739","5740","5741","5742","5743","5744","5745","5746","5747","5748","5749","5750","5751","5752","5753","5754","5755","5756","5757","5758","5759","5760","5761","5762","5763","5764","5765","5766","5767","5768","5769","5770","5771","5772","5773","5774","5775","5776","5777","5778","5779","5780","5781","5782","5783","5784","5785","5786","5787","5788","5789","5790","5791","5792","5793","5794","5795","5796","5797","5798","5799","5800","5801","5802","5803","5804","5805","5806","5807","5808","5809","5810","5811"]
-    
-    
     var arrDate = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31",]
     var arrLanguage = ["Hebrew"]
-    
     let tap1 = UITapGestureRecognizer()
     //    var isCheckSunSet = false
-    
     var strM: String!
     var strD: String!
     var strY: String!
-    
     var buttonMonth: UIButton!
     var buttonYear: UIButton!
     var buttonDate: UIButton!
     
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
-        
         btnSelLangauage.tag = 401;
-        btnSelLangauage.setImage(UIImage(named: "Dir_Right"), for: UIControlState.normal)
-        
+        btnSelLangauage.setImage(UIImage(named: "Dir_Right"), for: UIControl.State.normal)
         btnAdd?.layer.cornerRadius = 5;
         btnAdd?.layer.borderColor = UIColor.black.cgColor;
         btnAdd?.layer.borderWidth = 1;
         btnAdd?.layer.masksToBounds = true;
-        
-        
         //        btnSwitch .setOn(false, animated: true)
         strL = "Hebrew"
         arrMonth = arrMonthGregion as NSArray
@@ -192,8 +129,6 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
         tblMonth.delegate = self;
         tblYear.delegate = self;
         tblDate.delegate = self;
-        
-        
         MonthBGView.isHidden = true
         YearBGView.isHidden = true
         DateBGView.isHidden = true
@@ -221,14 +156,13 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
         self.view.addGestureRecognizer(right)
     }
     
-    
-    func swipeLeft() {
+    @objc func swipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
         
     }
     
-    func swipeRight() {
+    @objc func swipeRight() {
         tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
     }
     
@@ -244,8 +178,8 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
         self.lblSYearValue?.text = "Select Year from list"
         
         BtnBeforeSunSet.tag = 901
-        BtnBeforeSunSet.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        BtnAfterSunSet.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        BtnBeforeSunSet.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        BtnAfterSunSet.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         
     }
     
@@ -326,7 +260,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
     }
     
     
-    func buttonActionMonth()
+    @objc func buttonActionMonth()
     {
         
         if buttonMonth.tag == 701
@@ -362,7 +296,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
         
     }
     
-    func buttonActionYear()
+    @objc func buttonActionYear()
     {
         if  buttonYear.tag == 801
         {
@@ -405,7 +339,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
         
     }
     
-    func buttonActionDate()
+    @objc func buttonActionDate()
     {
         if buttonDate.tag == 901
         {
@@ -590,9 +524,9 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
             lblSDay?.font = UIFont(name: "Roboto-Light", size: 35)
             lblSYear?.font = UIFont(name: "Roboto-Light", size: 35)
             lblSMonth?.font = UIFont(name: "Roboto-Light", size: 35)
-            lblSDayValue?.font = UIFont(name: "Roboto-Light", size: 220)
-            lblSMonthValue?.font = UIFont(name: "Roboto-Light", size: 50)
-            lblSYearValue?.font = UIFont(name: "Roboto-Light", size: 50)
+            lblSDayValue?.font = UIFont(name: "Roboto-Light", size: 50)
+            lblSMonthValue?.font = UIFont(name: "Roboto-Light", size: 30)
+            lblSYearValue?.font = UIFont(name: "Roboto-Light", size: 30)
             
             lblDayCons_Height1.constant = 45
             lblMonthCons_Height1.constant = 45
@@ -659,15 +593,15 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
         {
             isAfterSunSet = true;
             BtnAfterSunSet.tag = 902
-            BtnBeforeSunSet.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-            BtnAfterSunSet.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+            BtnBeforeSunSet.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+            BtnAfterSunSet.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
         }
         else
         {
             isAfterSunSet = false;
             BtnBeforeSunSet.tag = 901
-            BtnBeforeSunSet.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-            BtnAfterSunSet.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+            BtnBeforeSunSet.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+            BtnAfterSunSet.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         }
     }
     
@@ -677,12 +611,12 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
         //        if iAutoSync==false
         //        {
         //            iAutoSync = true
-        //            btnAutoSync.setBackgroundImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
+        //            btnAutoSync.setBackgroundImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
         //        }
         //        else
         //        {
         //            iAutoSync = false
-        //            btnAutoSync.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
+        //            btnAutoSync.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
         //        }
     }
     
@@ -711,7 +645,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
             arrMonth = arrMonthHebrew as NSArray
             strL = "English"
             btnSelLangauage.tag = 402
-            btnSelLangauage.setImage(UIImage(named: "Dir_Left"), for: UIControlState.normal)
+            btnSelLangauage.setImage(UIImage(named: "Dir_Left"), for: UIControl.State.normal)
         }
         else
         {
@@ -734,7 +668,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
             arrYear = arrYearGregion as NSArray
             arrMonth = arrMonthGregion as NSArray
             btnSelLangauage.tag = 401
-            btnSelLangauage.setImage(UIImage(named: "Dir_Right"), for: UIControlState.normal)
+            btnSelLangauage.setImage(UIImage(named: "Dir_Right"), for: UIControl.State.normal)
         }
         
         
@@ -911,7 +845,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
             
             //            http://www.hebcal.com/converter/?cfg=json&hy=5749&hm=Kislev&hd=25&h2g=1
             
-            Alamofire.request("http://www.hebcal.com/converter/", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            Alamofire.request("http://www.hebcal.com/converter/", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response: DataResponse<Any>) in
                 
                 switch(response.result)
                 {
@@ -965,7 +899,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
                 "gd": strDate,
                 "g2h": "1",
                 "cfg":"json" ]
-            
+
             Alamofire.request("http://www.hebcal.com/converter/", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
                 
                 switch(response.result) {
@@ -1001,10 +935,10 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
     @IBAction func btnCheckBoxYear(_ sender: UIButton) {
         if isCheck==false {
             isCheck = true
-            btnCheckBox.setBackgroundImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
+            btnCheckBox.setBackgroundImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
         } else {
             isCheck = false
-            btnCheckBox.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
+            btnCheckBox.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
         }
     }
     
@@ -1077,7 +1011,7 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
                     dateFormatter.dateFormat = "MM/dd/yyyy"
                     let dateStart = dateFormatter.string(from:mmdate as Date)
                     let dateEnd = dateFormatter.string(from:mmdate.addingTimeInterval(60*60*24) as Date)
-                    myLocalDic .setObject(txtTitle.text, forKey: "Title" as NSCopying);
+                    myLocalDic .setObject(txtTitle.text ?? "", forKey: "Title" as NSCopying);
                     myLocalDic .setObject(dateStart, forKey: "Startdate" as NSCopying);
                     myLocalDic .setObject(dateEnd, forKey: "EndDate" as NSCopying);
                 } else {
@@ -1148,8 +1082,8 @@ class DateConverterVC: UIViewController, UITextFieldDelegate, UITableViewDelegat
                 strPickerDate = ""
                 txtMonth.text = ""
                 txtYear.text = ""
-                btnCheckBox.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
-                btnAutoSync.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
+                btnCheckBox.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
+                btnAutoSync.setBackgroundImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
                 iAutoSync = false
                 isCheck = false
                 txtTitle.textFieldDidChange()
@@ -1292,7 +1226,7 @@ class dateOneCell: UITableViewCell {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 }

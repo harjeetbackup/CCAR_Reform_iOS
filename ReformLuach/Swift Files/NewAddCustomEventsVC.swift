@@ -139,7 +139,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
         bottomMonthLine.backgroundColor = UIColor(red: 210.0 / 255.0, green: 210.0 / 255.0, blue: 210.0 / 255.0, alpha: 0.87)
         myCellViewMain.addSubview(bottomMonthLine)
 
-        buttonMonthMain  = UIButton(type: UIButtonType.custom) as UIButton
+        buttonMonthMain  = UIButton(type: UIButton.ButtonType.custom) as UIButton
         buttonMonthMain.frame = CGRect(x: txtMonthMain.frame.origin.x, y: txtMonthMain.frame.origin.y, width: txtMonthMain.frame.size.width, height: txtMonthMain.frame.size.height)
         buttonMonthMain.addTarget(self, action: #selector(buttonActionMonth), for: .touchUpInside)
         myCellViewMain.addSubview(buttonMonthMain)
@@ -162,41 +162,41 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
         myCellViewMain.addSubview(bottomDateLine)
 
         
-        buttonDateMain  = UIButton(type: UIButtonType.custom) as UIButton
+        buttonDateMain  = UIButton(type: UIButton.ButtonType.custom) as UIButton
         buttonDateMain.frame = CGRect(x: txtDateMain.frame.origin.x, y: txtDateMain.frame.origin.y, width: txtDateMain.frame.size.width, height: txtDateMain.frame.size.height)
         buttonDateMain.addTarget(self, action: #selector(buttonActionDate), for: .touchUpInside)
         self.myCellViewMain.addSubview(buttonDateMain)
 
-        btnBeforSunsetMain  = UIButton(type: UIButtonType.custom) as UIButton
+        btnBeforSunsetMain  = UIButton(type: UIButton.ButtonType.custom) as UIButton
         btnBeforSunsetMain.frame = CGRect(x: txtMonthMain.frame.origin.x, y: txtMonthMain.frame.origin.y + 50, width: txtMonthMain.frame.size.width, height: 35)
         btnBeforSunsetMain.tag = 222
         btnBeforSunsetMain.addTarget(self, action: #selector(buttonSunSet), for: .touchUpInside)
-        btnBeforSunsetMain .setTitle("Before Sunset", for: UIControlState.normal)
-        btnBeforSunsetMain .setTitle("Before Sunset", for: UIControlState.normal)
-        btnBeforSunsetMain.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControlState.normal)
-        btnBeforSunsetMain.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 0, 5);
-        btnBeforSunsetMain.titleEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 0);
-        btnBeforSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+        btnBeforSunsetMain .setTitle("Before Sunset", for: UIControl.State.normal)
+        btnBeforSunsetMain .setTitle("Before Sunset", for: UIControl.State.normal)
+        btnBeforSunsetMain.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControl.State.normal)
+        btnBeforSunsetMain.imageEdgeInsets = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 5);
+        btnBeforSunsetMain.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0);
+        btnBeforSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
         self.myCellViewMain.addSubview(btnBeforSunsetMain)
 
-         btnAfterSunsetMain  = UIButton(type: UIButtonType.custom) as UIButton
+        btnAfterSunsetMain  = UIButton(type: UIButton.ButtonType.custom) as UIButton
         btnAfterSunsetMain.frame = CGRect(x: txtDateMain.frame.origin.x, y: txtDateMain.frame.origin.y + 50, width: txtDateMain.frame.size.width, height: 35)
         btnAfterSunsetMain.tag = 333
         btnAfterSunsetMain.addTarget(self, action: #selector(buttonSunSet), for: .touchUpInside)
-        btnAfterSunsetMain .setTitle("After Sunset", for: UIControlState.normal)
-        btnAfterSunsetMain.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControlState.normal)
-        btnAfterSunsetMain.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 0, 5);
-        btnAfterSunsetMain.titleEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 0);
-        btnAfterSunsetMain .setTitle("Before Sunset", for: UIControlState.normal)
-        btnAfterSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnAfterSunsetMain .setTitle("After Sunset", for: UIControl.State.normal)
+        btnAfterSunsetMain.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControl.State.normal)
+        btnAfterSunsetMain.imageEdgeInsets = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 5);
+        btnAfterSunsetMain.titleEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 0);
+        btnAfterSunsetMain .setTitle("Before Sunset", for: UIControl.State.normal)
+        btnAfterSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         self.myCellViewMain.addSubview(btnAfterSunsetMain)
 
         
         
 //       let buttonOKMain = UIButton(frame: CGRect(x: (myCellViewMain.frame.size.width-50)/2 + 35, y: btnAfterSunsetMain.frame.origin.y + 50, width: (myCellViewMain.frame.size.width-50)/2, height: 35))
         let buttonOKMain = UIButton(frame: CGRect(x: myCellViewMain.frame.size.width/2 - myCellViewMain.frame.size.width/4, y: btnAfterSunsetMain.frame.origin.y + 50, width: myCellViewMain.frame.size.width/2, height: 40))
-        buttonOKMain .setTitle("OK", for: UIControlState.normal)
-        buttonOKMain .setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControlState.normal)
+        buttonOKMain .setTitle("OK", for: UIControl.State.normal)
+        buttonOKMain .setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControl.State.normal)
         buttonOKMain.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         buttonOKMain.layer.cornerRadius = 5;
         buttonOKMain.layer.borderWidth = 1
@@ -207,7 +207,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         let buttonCancelMain = UIButton(frame: CGRect(x: myCellViewMain.frame.size.width - 35, y: 5, width: 30, height: 30))
-        buttonCancelMain .setImage(UIImage(named: "cross"), for: UIControlState.normal)
+        buttonCancelMain .setImage(UIImage(named: "cross"), for: UIControl.State.normal)
         buttonCancelMain.addTarget(self, action: #selector(buttonActionCancel), for: .touchUpInside)
         self.myCellViewMain.addSubview(buttonCancelMain)
         
@@ -229,7 +229,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    func handleTap(_ sender: UITapGestureRecognizer)
+    @objc func handleTap(_ sender: UITapGestureRecognizer)
     {
         print("Hello World")
         self.myCellViewMain.endEditing(true);
@@ -314,14 +314,14 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
             if(isSunSet == true )
             {
                 strMySunSet = "AFTER SUNSET"
-                btnBeforSunsetMain.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-                btnAfterSunsetMain.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+                btnBeforSunsetMain.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+                btnAfterSunsetMain.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
             }
             else
             {
                 strMySunSet = "BEFORE SUNSET"
-                btnBeforSunsetMain.setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-                btnAfterSunsetMain.setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+                btnBeforSunsetMain.setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+                btnAfterSunsetMain.setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
                 
             }
             
@@ -364,7 +364,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    func buttonActionOk()
+    @objc func buttonActionOk()
     {
         strMyTitle = txtTitleMain.text!
         let dic = NSMutableDictionary()
@@ -398,7 +398,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
        
     }
     
-    func buttonActionCancel()
+    @objc func buttonActionCancel()
     {
         PopupView.isHidden = true;
         self .dismiss(animated: true, completion: nil)
@@ -407,8 +407,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
 
    
 //    func buttonActionMonth(sender: UIButton)
-    func buttonActionMonth()
-    {
+    @objc func buttonActionMonth() {
         txtTitleMain.resignFirstResponder()
         self.view.endEditing(true)
 //        if buttonDate11.tag == 2001
@@ -418,7 +417,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
 //        monthTable.frame = BGMonthTable.frame;
         
         
-       myCellViewMain.bringSubview(toFront: BGMonthTable)
+        myCellViewMain.bringSubviewToFront(BGMonthTable)
         
 //        myCellViewMain .addSubview(BGMonthTable)
 
@@ -440,15 +439,14 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
 //    func buttonActionDate(sender: UIButton)
-    func buttonActionDate()
-    {
+    @objc func buttonActionDate() {
         txtTitleMain.resignFirstResponder()
         self.view.endEditing(true)
 //        if buttonDate11.tag == 1001
 //        {
 //        BGDateTable.frame = CGRect(x: myCellViewMain.frame.origin.x + txtDateMain.frame.origin.x, y: myCellViewMain.frame.origin.y + txtDateMain.frame.origin.y + txtDateMain.frame.size.height, width: txtDateMain.frame.size.width, height: CGFloat(44 * 7))
             self.view .endEditing(true)
-        myCellViewMain.bringSubview(toFront: BGDateTable)
+        myCellViewMain.bringSubviewToFront(BGDateTable)
 //        myCellViewMain .addSubview(BGDateTable)
             BGDateTable.isHidden = false
             BGMonthTable.isHidden = true
@@ -470,46 +468,32 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
 //        }
     }
     
-    func buttonSunSet(_ sender: UIButton)
-    {
-        if sender.tag == 222
-        {
+    @objc func buttonSunSet(_ sender: UIButton) {
+        if sender.tag == 222 {
             strMySunSet = "BEFORE SUNSET"
-            btnBeforSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-            btnAfterSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-        }
-        else
-        {
+            btnBeforSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+            btnAfterSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+        } else {
             strMySunSet = "AFTER SUNSET"
-            btnBeforSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
-            btnAfterSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
+            btnBeforSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
+            btnAfterSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
         }
     }
     
-    func buttonDelete(_ sender: UIButton)
-    {
+    @objc func buttonDelete(_ sender: UIButton) {
         self.eventTable.beginUpdates()
         let indexPath = IndexPath(row: sender.tag, section: 0)
-
 //        NSIndexPath(); *path = [NSIndexPath, indexPathForRow: sender.tag inSection:0];
         arrMyEventDetils .removeObject(at: indexPath.row)
         self.eventTable.deleteRows(at: [indexPath], with: .automatic)
-        
         self.eventTable.endUpdates()
         eventTable.reloadData()
-        if arrMyEventDetils.count <= 0
-        {
+        if arrMyEventDetils.count <= 0 {
             btnAddAnother(sender)
         }
-        
     }
 
-    
-    
-    
-    @IBAction func btnAddAnother(_ sender: UIButton)
-    {
-       
+    @IBAction func btnAddAnother(_ sender: UIButton) {
         UserDefaults.standard.set("", forKey: "Conv_Date")
         UserDefaults.standard.set("", forKey: "Conv_Month")
         UserDefaults.standard.set("", forKey: "Conv_Year")
@@ -520,8 +504,8 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
         txtDateMain.text = nil;
         
         strMySunSet = "BEFORE SUNSET"
-        btnBeforSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControlState.normal)
-        btnAfterSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControlState.normal)
+        btnBeforSunsetMain .setImage(UIImage(named: "Sunset_selected"), for: UIControl.State.normal)
+        btnAfterSunsetMain .setImage(UIImage(named: "Sunset_Unselected"), for: UIControl.State.normal)
         
         PopupView .addSubview(myCellViewMain)
         PopupView.isHidden = false;
@@ -550,79 +534,50 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
     
     
    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         txtDateMain.resignFirstResponder()
         myCellViewMain.endEditing(true)
         PopupView.endEditing(true)
         self.view.endEditing(true)
         return false
     }
-    
-    
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool
-    {
+
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
-    
-    func textFieldDidEndEditing(_ textField: UITextField)
-    {
-        
-    }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
 //        strMyTitle = string;
         return true
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-  
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        if tableView.tag == 1001
-        {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView.tag == 1001 {
             return arrDate.count;
-        }
-        else if tableView.tag == 2001
-        {
+        } else if tableView.tag == 2001 {
             return arrMonthGregion.count
-        }
-        else
-        {
+        } else {
 //            return arrMyEventCount.count
             return arrMyEventDetils.count
-            
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        if tableView.tag == 5001
-        {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView.tag == 5001 {
             let identifier = "eventCountCell"
             let cell: eventCountCell! = tableView.dequeueReusableCell(withIdentifier: identifier) as? eventCountCell
 //            if (arrMyEventDetils.count > 0 && arrMyEventDetils.count == arrMyEventCount.count - 1)
-            if (arrMyEventDetils.count > 0)
-            {
-                
+            if (arrMyEventDetils.count > 0) {
 //                let txtTitle: kTextFiledPlaceHolder!
 //                let txtMonth: kTextFiledPlaceHolder!
 //                let txtDate: kTextFiledPlaceHolder!
-                
                 let myCellView = UIView(frame: CGRect(x: 10, y: 5, width: self.view.frame.size.width - 20, height: 50))
                 myCellView.layer.borderWidth = 1;
                 myCellView.layer.cornerRadius = 5;
                 myCellView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 myCellView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 myCellView.layer.masksToBounds = true
-            
                 let txtTitle = kTextFiledPlaceHolder(frame: CGRect(x: 10, y: 20, width: myCellView.frame.size.width - 20, height: 35))
 //                txtTitle.frame = CGRect(x: 10, y: 20, width: myCellView.frame.size.width - 20, height: 35)
                 txtTitle.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -701,8 +656,8 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
                 let btnDelete = UIButton(frame: CGRect(x: myCellView.frame.size.width - 45, y: 5, width: 35, height: 35))
                 btnDelete.tag = indexPath.row
                 btnDelete.addTarget(self, action: #selector(buttonDelete), for: .touchUpInside)
-                btnDelete .setImage(UIImage(named: "cross"), for: UIControlState.normal)
-                btnDelete.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControlState.normal)
+                btnDelete .setImage(UIImage(named: "cross"), for: UIControl.State.normal)
+                btnDelete.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControl.State.normal)
                 myCellView.addSubview(btnDelete)
             
                 
@@ -1098,28 +1053,17 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
                 dateComponents.day = 31
             }
             
-            var strMMM = (String (describing: dicc["evDate"]!))
-            if strMMM != ""
-            {
-            
-                if (strdddd == "January")
-                {
+            let strMMM = (String (describing: dicc["evDate"]!))
+            if strMMM != "" {
+                if (strdddd == "January") {
                     dateComponents.month = 1
-                }
-                else if (strdddd == "February")
-                {
+                } else if (strdddd == "February") {
                     dateComponents.month = 2
-                }
-                else if (strdddd == "March")
-                {
+                } else if (strdddd == "March") {
                     dateComponents.month = 3
-                }
-                else if (strdddd == "April")
-                {
+                } else if (strdddd == "April") {
                     dateComponents.month = 4
-                }
-                else if (strdddd == "May")
-                {
+                } else if (strdddd == "May") {
                     dateComponents.month = 5
                 }
                 else if (strdddd == "June")
@@ -1151,9 +1095,6 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
                     dateComponents.month = 12
                 }
             }
-          
-            
-            
             //            dateComponents.day = Int(String (describing: dicc["evDate"]!))!
             
 //            dateComponents.month = Int(String (describing: dicc["evMonth"]!))!
@@ -1195,11 +1136,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
 //                //                self.dismiss(animated: true, completion: nil)
 //            }
 //            arrMyEventDetils .add(myLocalDic)
-            
-            
-            
-            for i in 0 ... 100
-            {
+            for i in 0 ... 100 {
 //                let dateComponents = NSDateComponents()
                 
 //                dateComponents.day = Int(strD)!
@@ -1207,8 +1144,7 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
                 dateComponents.year = Int(year123) + i
                 
                 if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),
-                    let date = gregorianCalendar.date(from: dateComponents as DateComponents)
-                {
+                    let date = gregorianCalendar.date(from: dateComponents as DateComponents) {
                     let weekday = gregorianCalendar.component(.year, from: date)
                     print(weekday)
                     
@@ -1228,60 +1164,46 @@ class NewAddCustomEventsVC: UIViewController, UITableViewDelegate, UITableViewDa
                         print(e.description)
                         return
                     }
-                    
-                    
                 }
-                
             }
             dateComponents.year = Int(year123)
             if let gregorianCalendar12345 = NSCalendar(calendarIdentifier: .gregorian),
-                let date12345 = gregorianCalendar12345.date(from: dateComponents as DateComponents)
-            {
-                
+                let date12345 = gregorianCalendar12345.date(from: dateComponents as DateComponents) {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MM/dd/yyyy"
                 let dateStart = dateFormatter.string(from:date12345 as Date)
                 let dateEnd = dateFormatter.string(from:date12345.addingTimeInterval(60*60*1) as Date)
-                
                 //                myLocalDic .setObject(event.notes, forKey: "eventType" as NSCopying);
                 myLocalDic .setObject((String (describing: dicc["evTitle"]!)), forKey: "eventTitle" as NSCopying);
                 myLocalDic .setObject(dateStart, forKey: "eventSDate" as NSCopying);
                 myLocalDic .setObject(dateEnd, forKey: "eventEDate" as NSCopying);
             }
-            
             arrCustomList .add(myLocalDic)
-            
         }
-        
-        
-        
         self.dismiss(animated: true, completion: nil)
-
         self.view.makeToast("events added Successfully")
         UserDefaults.standard.set(arrCustomList, forKey: "CustomLst")
     }
 }
 
-class daCustomCell: UITableViewCell
-{
+class daCustomCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 }
 
-class eventCountCell: UITableViewCell
-{
+class eventCountCell: UITableViewCell {
     @IBOutlet weak var myView: UIView!
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 }

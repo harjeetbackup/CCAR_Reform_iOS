@@ -29,7 +29,7 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
         self.trailingPadding = 10
         self.defaultDisplayPageIndex = 0
         self.tabAnimationType = GLTabAnimationType.GLTabAnimationType_WhileScrolling
-        self.indicatorColor = UIColor.init(colorLiteralRed: 1.0/255.0, green: 186.0/255.0, blue: 211.0/255.0, alpha: 1.0)
+        self.indicatorColor = UIColor(red: 1.0/255.0, green: 186.0/255.0, blue: 211.0/255.0, alpha: 1.0)
         self.supportArabic = false
         self.fixTabWidth = false
         let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main",bundle:Bundle.main)
@@ -77,12 +77,12 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
         tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
     }
     
-    func overrideswipeLeft() {
+    @objc func overrideswipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
     }
     
-    func overrideSwipeRight() {
+    @objc func overrideSwipeRight() {
         tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
     }
     
@@ -98,7 +98,7 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
     func viewForTabIndex(_ viewPager: GLViewPagerViewController, index: Int) -> UIView {
         let label:UILabel = UILabel.init()
         label.text = self.tabTitles.object(at: index) as? String
-        label.textColor = UIColor.init(colorLiteralRed: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+        label.textColor = UIColor(red: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0)
         label.textAlignment = NSTextAlignment.center
         label.transform = CGAffineTransform.init(scaleX: 0.8, y: 0.8)
         return label
@@ -112,8 +112,8 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
     func didChangeTabToIndex(_ viewPager: GLViewPagerViewController, index: Int, fromTabIndex: Int) {
         let prevLabel:UILabel = viewPager.tabViewAtIndex(index: fromTabIndex) as! UILabel
         let currentLabel:UILabel = viewPager.tabViewAtIndex(index: index) as! UILabel
-        prevLabel.textColor = UIColor.init(colorLiteralRed: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0)
-        currentLabel.textColor = UIColor.init(colorLiteralRed: 1.0/255.0, green: 183.0/255.0, blue: 211.0/255.0, alpha: 1.0)
+        prevLabel.textColor = UIColor(red: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+        currentLabel.textColor = UIColor(red: 1.0/255.0, green: 183.0/255.0, blue: 211.0/255.0, alpha: 1.0)
     }
     
     func willChangeTabToIndex(_ viewPager: GLViewPagerViewController, index: Int, fromTabIndex: Int, progress: CGFloat) {
@@ -124,8 +124,8 @@ class Event: GLViewPagerViewController, GLViewPagerViewControllerDataSource, GLV
         let currentLabel:UILabel = viewPager.tabViewAtIndex(index: index) as! UILabel
         prevLabel.transform = CGAffineTransform.identity.scaledBy(x: 1.0 - (0.1 * progress), y: 1.0 - (0.1 * progress))
         currentLabel.transform = CGAffineTransform.identity.scaledBy(x: 0.9 + (0.1 * progress), y: 0.9 + (0.1 * progress))
-        currentLabel.textColor =  UIColor.init(colorLiteralRed: 1.0/255.0, green: 183.0/255.0, blue: 211.0/255.0, alpha: 1.0)
-        prevLabel.textColor = UIColor.init(colorLiteralRed: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+        currentLabel.textColor =  UIColor(red: 1.0/255.0, green: 183.0/255.0, blue: 211.0/255.0, alpha: 1.0)
+        prevLabel.textColor = UIColor(red: 102.0/255.0, green: 102.0/255.0, blue: 102.0/255.0, alpha: 1.0)
     }
     
     func widthForTabIndex(_ viewPager: GLViewPagerViewController, index: Int) -> CGFloat {

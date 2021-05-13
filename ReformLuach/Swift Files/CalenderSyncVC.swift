@@ -51,7 +51,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             UIEdgeInsets.init(top: 0, left: -20, bottom: 0, right: 50)
         configYearSegmentedControl()
         loadSavedSyncDataSources()
-        NotificationCenter.default.addObserver(self, selector: #selector(saveDataSources), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(saveDataSources), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func loadSavedSyncDataSources() {
@@ -76,8 +76,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 yearDisplaySegmentedControl.setTitle(year, forSegmentAt: count)
                 let source = SyncDataSouce()
                 source.year = year
-                guard let types = syncTypes else { return }
-                for type in types {
+                for type in syncTypes {
                     source.syncTypes.append(SyncType(dict: type, source: source))
                 }
                 years.append(source)
@@ -87,7 +86,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
     }
     
-    func selectionDidChange(_ sender: UISegmentedControl) {
+    @objc func selectionDidChange(_ sender: UISegmentedControl) {
         selectedYearIndex = yearDisplaySegmentedControl.selectedSegmentIndex
         tableView.reloadData()
     }
@@ -125,12 +124,12 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadRows(at: [indexPath], with: .none)
     }
     
-    func swipeLeft() {
+    @objc func swipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
     }
     
-    func swipeRight() {
+    @objc func swipeRight() {
         tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
     }
     
@@ -188,12 +187,14 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func checkCalendarAuthorizationStatus() {
         let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-        switch (status) {
+        switch status {
         case EKAuthorizationStatus.notDetermined:
             requestAccessToCalendar()
         case EKAuthorizationStatus.authorized:
             loadCalendars()
         case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied: break
+        @unknown default:
+            break
         }
     }
     
@@ -216,7 +217,7 @@ class CalenderSyncVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         saveDataSources()
     }
     
-    func saveDataSources() {
+    @objc func saveDataSources() {
         let userDefaults = UserDefaults.standard
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: calenders)
         userDefaults.set(encodedData, forKey: kSyncDataSourceKey)

@@ -36,8 +36,8 @@ class DetailVC: UIViewController, UIWebViewDelegate {
         self.view.hideHud()
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.linkClicked {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+        if navigationType == UIWebView.NavigationType.linkClicked {
             if let reformLink = request.url {
                 if UIApplication.shared.canOpenURL(reformLink) {
                     UIApplication.shared.open(reformLink, options: [:], completionHandler: nil)

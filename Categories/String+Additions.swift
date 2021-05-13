@@ -366,7 +366,7 @@ extension String {
     }
     //TODO: - FUNC
         var lastThreeLettersAreNumbers: Bool {
-            if case let chars = characters.suffix(4), chars.count > 3 {
+            if case let chars = suffix(4), chars.count > 3 {
                 let numbersPattern = Character("0")..."9"
                 return chars.reduce(true) { $0 && (numbersPattern ~= $1) }
             }

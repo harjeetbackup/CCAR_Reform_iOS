@@ -46,12 +46,12 @@ class Today: UIViewController {
         self.view.addGestureRecognizer(right)
     }
     
-    func swipeLeft() {
+    @objc func swipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
     }
     
-    func swipeRight() {
+    @objc func swipeRight() {
         tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
     }
     
@@ -72,7 +72,7 @@ class Today: UIViewController {
             case .success(_):
                 if response.result.value != nil {
                     print(response.result.value!)
-                    var dic = response.result.value as! [String : Any]
+                    let dic = response.result.value as! [String : Any]
                     let str  =  String (describing: dic["hd"]!)
                     let str1  = String (describing: dic["hm"]!)
                     let str2  = String (describing: dic["hy"]!)
@@ -82,7 +82,7 @@ class Today: UIViewController {
                     if dic["events"] == nil {
                         self.lblday?.text = ""
                     } else {
-                        var arrEvent = dic["events"] as! [String]
+                        let arrEvent = dic["events"] as! [String]
                         if arrEvent[0] == "Shemot" {
                             self.lblday?.text = "Sh'mot"
                         }
@@ -174,7 +174,7 @@ class Today: UIViewController {
             dateLeadingCons.constant = self.view.frame.size.width * 0.08
             dateTrailingCons.constant = self.view.frame.size.width * 0.08
         } else {
-            lblDate?.font = UIFont(name: "Roboto-Thin", size: 240)
+            lblDate?.font = UIFont(name: "Roboto-Thin", size: 125)
             lblMonth?.font = UIFont(name: "Roboto-Thin", size: 100)
             lblYear?.font = UIFont(name: "Roboto-Thin", size: 100)
             lblFulldate?.font = UIFont(name: "Roboto-Thin", size: 45)

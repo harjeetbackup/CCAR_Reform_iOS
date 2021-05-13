@@ -59,8 +59,8 @@ class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate {
         self.view.hideHud()
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.linkClicked {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+        if navigationType == UIWebView.NavigationType.linkClicked {
             if let reformLink = request.url {
                 if UIApplication.shared.canOpenURL(reformLink) {
                     UIApplication.shared.open(reformLink, options: [:], completionHandler: nil)
@@ -71,12 +71,12 @@ class AboutVC: UIViewController, UIScrollViewDelegate, UIWebViewDelegate {
         return true
     }
     
-    func swipeLeft() {
+    @objc func swipeLeft() {
         let total = self.tabBarController!.viewControllers!.count - 1
         tabBarController!.selectedIndex = min(total, tabBarController!.selectedIndex + 1)
     }
     
-    func swipeRight() {
+    @objc func swipeRight() {
         tabBarController!.selectedIndex = max(0, tabBarController!.selectedIndex - 1)
     }
     

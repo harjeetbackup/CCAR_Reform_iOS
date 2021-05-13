@@ -29,7 +29,6 @@ class SettingVC: UIViewController {
     
     @IBAction func btnActionBAck(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        //self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -42,13 +41,13 @@ class SettingVC: UIViewController {
         }
         if btnTagValue == "REFORM" {
             calTypeName = "R"
-            btnReform.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
+            btnReform.setImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
         } else if btnTagValue == "ISEARL" {
             calTypeName = "I"
-            btnIsreal.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
+            btnIsreal.setImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
         } else if btnTagValue == "DIASPORA" {
              calTypeName = "D"
-            btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
+            btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
         }
         let strImageMoth = Int(UserDefaults.standard.integer(forKey: "monthImageNo"))
         myBackGraound(strmonth: strImageMoth)
@@ -67,21 +66,21 @@ class SettingVC: UIViewController {
         if sender.tag == 501 {
             let ad = "REFORM"
             UserDefaults.standard.setValue("\(ad)", forKey: "CCTYPE")
-            btnReform.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
-            btnIsreal.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
-            btnDiaspora.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
+            btnReform.setImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
+            btnIsreal.setImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
+            btnDiaspora.setImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
         } else if sender.tag == 502 {
             let ad = "ISEARL"
             UserDefaults.standard.setValue("\(ad)", forKey: "CCTYPE")
-            btnReform.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
-            btnIsreal.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
-            btnDiaspora.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
+            btnReform.setImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
+            btnIsreal.setImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
+            btnDiaspora.setImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
         } else if sender.tag == 503 {
             let ad = "DIASPORA"
             UserDefaults.standard.setValue("\(ad)", forKey: "CCTYPE")
-            btnReform.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
-            btnIsreal.setImage(UIImage(named: "Calender_Unselect"), for: UIControlState.normal)
-            btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControlState.normal)
+            btnReform.setImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
+            btnIsreal.setImage(UIImage(named: "Calender_Unselect"), for: UIControl.State.normal)
+            btnDiaspora.setImage(UIImage(named: "Calender_select"), for: UIControl.State.normal)
         }
         UserDefaults.standard.synchronize()
         NotificationCenter.default.post(name: NotificationCalenderChange, object: nil)
